@@ -50,7 +50,7 @@ const NavbarOverlay = ({ isOpen = false }: NavbarOverlayProps) => {
   return (
     <main
       className={`${
-        isOpen ? 'opacity-100' : 'opacity-0'
+        isOpen ? 'opacity-100' : 'hidden'
       } transition-all duration-300 w-[100vw] text-white min-h-[100vh] flex flex-col gap-4 bg-black/95 absolute top-25 left-0 right-0 bottom-0 z-[10000]`}
     >
       <section className="w-[70%] max-md:w-[90%] mx-auto flex items-start py-12 justify-center">
