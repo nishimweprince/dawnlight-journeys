@@ -15,7 +15,7 @@ const Navbar = () => {
         isOverlayOpen ? 'bg-black' : 'bg-black/50'
       }`}
     >
-      <nav className="w-[70%] max-md:w-[90%] mx-auto flex items-center gap-3 justify-between">
+      <nav className="w-[90%] max-md:w-[90%] mx-auto flex items-center gap-3 justify-between">
         <Link
           to={`#`}
           className="text-white flex items-center gap-2 uppercase"
@@ -32,10 +32,17 @@ const Navbar = () => {
           </figure>
           <p className="max-md:hidden">Menu</p>
         </Link>
-        <h1 className="text-white text-2xl font-bold">Dawnlight Journeys</h1>
-        <Button className="max-md:hidden">Explore Wild Wonders</Button>
+        <Button onClick={() => {
+          const newsletterSection = document.getElementById('newsletter');
+          if (newsletterSection) {
+            newsletterSection.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+            setTimeout(() => {
+              newsletterSection.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+          }
+        }} className="max-md:hidden bg-black text-white py-2 px-4 rounded text-center">Craft Your Experiences</Button>
       </nav>
-      <NavbarOverlay isOpen={isOverlayOpen} />
+      <NavbarOverlay setIsOpen={setIsOverlayOpen} isOpen={isOverlayOpen} />
     </header>
   );
 };

@@ -5,12 +5,14 @@ import { faArrowRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OverlayTours from './menus/OverlayTours';
 import OverlaySafaris from './menus/OverlaySafaris';
+import Button from '@/components/inputs/Button';
 
 export interface NavbarOverlayProps {
   isOpen?: boolean;
+  setIsOpen?: (isOpen: boolean) => void;
 }
 
-const NavbarOverlay = ({ isOpen = false }: NavbarOverlayProps) => {
+const NavbarOverlay = ({ isOpen = false, setIsOpen }: NavbarOverlayProps) => {
   // STATE VARIABLES
   const [menuList] = useState([
     {
@@ -92,6 +94,27 @@ const NavbarOverlay = ({ isOpen = false }: NavbarOverlayProps) => {
               </Link>
             );
           })}
+          <Button
+            onClick={() => {
+              const newsletterSection = document.getElementById('newsletter');
+              if (newsletterSection) {
+                if (setIsOpen) {
+                  setIsOpen(false);
+                }
+                newsletterSection.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                  inline: 'nearest',
+                });
+                setTimeout(() => {
+                  newsletterSection.scrollIntoView({ behavior: 'smooth' });
+                }, 300);
+              }
+            }}
+            className="min-md:hidden bg-black text-white py-2 px-4 text-center rounded"
+          >
+            Craft Your Experiences
+          </Button>
         </nav>
         <section
           className={`w-full px-6 max-md:px-0 ${
@@ -101,7 +124,7 @@ const NavbarOverlay = ({ isOpen = false }: NavbarOverlayProps) => {
           {selectedMenu && (
             <>
               <Link
-                className="flex items-center gap-2 text-white px-6 py-4"
+                className="items-center gap-2 text-white px-6 py-4 hidden max-md:flex"
                 to={`#`}
                 onClick={(e) => {
                   e.preventDefault();

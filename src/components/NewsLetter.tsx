@@ -1,116 +1,136 @@
-import React, { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
+import { countriesList } from '@/constants/countries.constants';
+import Select from './inputs/Select';
+import { Controller, useForm } from 'react-hook-form';
 
 const NewsletterForm = () => {
-  const [firstName, setFirstName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [email, setEmail] = useState('');
-  const [country, setCountry] = useState('');
-  const { toast } = useToast();
+  // REACT HOOK FORM
+  const { control, handleSubmit } = useForm();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Validate form
-    if (!firstName || !surname || !email || !country) {
-      toast({
-        title: "Error",
-        description: "Please fill in all fields",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    // Here you would normally send the data to an API
-    toast({
-      title: "Success!",
-      description: "Thank you for subscribing to our newsletter.",
-    });
-    
-    // Reset form
-    setFirstName('');
-    setSurname('');
-    setEmail('');
-    setCountry('');
-  };
+  // HANDLE SUBMIT
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+  });
 
   return (
-    <div className="w-full max-w-5xl mx-auto bg-[#f4f1ea] p-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
+    <section className="w-full max-w-5xl mx-auto bg-[#f4f1ea] p-12 my-12">
+      <article className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <header>
           <h3 className="font-heading text-4xl md:text-5xl text-[#222222] mb-6">
-            Need some<br /> inspiration?
+            Get in Touch
+            <br /> with Us
           </h3>
-        </div>
-        
-        <div>
+        </header>
+
+        <article>
           <p className="text-[#222222] mb-6">
-            Be inspired by the latest news from Dawnlight journey. Subscribe to our newsletter.
+            We'd love to hear from you. Please fill out the form below to
+            contact us.
           </p>
-          
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input 
-                type="text" 
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="First name" 
-                className="bg-[#e2dfd7] p-3 text-[#222222] w-full"
+
+          <form onSubmit={onSubmit} className="space-y-4">
+            <fieldset className="w-full flex flex-col gap-4">
+              <ul className="w-full grid grid-cols-2 gap-4">
+                <li>
+                  <Controller
+                    control={control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        type="text"
+                        className="bg-[#e2dfd7] p-3 text-[#222222] w-full"
+                        placeholder="First name"
+                      />
+                    )}
+                  />
+                </li>
+                <li>
+                  <Controller
+                    control={control}
+                    name="surname"
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        className="bg-[#e2dfd7] p-3 text-[#222222] w-full"
+                        placeholder="Surname"
+                      />
+                    )}
+                  />
+                </li>
+              </ul>
+              <Controller
+                control={control}
+                name="email"
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    className="bg-[#e2dfd7] p-3 text-[#222222] w-full"
+                    placeholder="Email Address"
+                  />
+                )}
               />
-              <input 
-                type="text"
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)} 
-                placeholder="Surname" 
-                className="bg-[#e2dfd7] p-3 text-[#222222] w-full"
-              />
-            </div>
-            
-            <input 
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="Email Address" 
-              className="bg-[#e2dfd7] p-3 text-[#222222] w-full"
+            </fieldset>
+
+            <Controller
+              name="country"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  className="bg-[#e2dfd7] cursor-pointer !h-[45px] p-3 text-[#222222] w-full"
+                  {...field}
+                  options={countriesList?.map((country) => ({
+                    label: country.name,
+                    value: country.code,
+                  }))}
+                />
+              )}
             />
-            
-            <select 
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              className="bg-[#e2dfd7] p-3 text-[#222222] w-full appearance-none"
-            >
-              <option value="" disabled>Country of residence</option>
-              <option value="usa">United States</option>
-              <option value="uk">United Kingdom</option>
-              <option value="canada">Canada</option>
-              <option value="australia">Australia</option>
-              <option value="south-africa">South Africa</option>
-              <option value="namibia">Namibia</option>
-              <option value="botswana">Botswana</option>
-              <option value="zimbabwe">Zimbabwe</option>
-              <option value="zambia">Zambia</option>
-              <option value="rwanda">Rwanda</option>
-              <option value="other">Other</option>
-            </select>
-            
-            <button 
-              type="submit"
+
+            <Controller
+              name="message"
+              control={control}
+              render={({ field }) => (
+                <textarea
+                  {...field}
+                  placeholder="Your Message"
+                  className="bg-[#e2dfd7] p-3 text-[#222222] w-full h-32 resize-none"
+                />
+              )}
+            />
+
+            <Link
+              to="/contact"
               className="flex items-center mt-6 group"
+              onClick={(e) => {
+                e.preventDefault();
+              }}
             >
-              <div className="w-10 h-10 rounded-full border border-[#FF5C28] flex items-center justify-center group-hover:bg-[#FF5C28] transition-colors duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#FF5C28] group-hover:text-white transition-colors duration-300">
+              <figure className="w-10 h-10 rounded-full border border-[#FF5C28] flex items-center justify-center group-hover:bg-[#FF5C28] transition-colors duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-[#FF5C28] group-hover:text-white transition-colors duration-300"
+                >
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
                 </svg>
-              </div>
+              </figure>
               <span className="ml-2 text-[#222222] uppercase tracking-wider text-sm font-medium">
-                SUBMIT
+                SEND MESSAGE
               </span>
-            </button>
+            </Link>
           </form>
-        </div>
-      </div>
-    </div>
+        </article>
+      </article>
+    </section>
   );
 };
 

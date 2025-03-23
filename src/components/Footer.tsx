@@ -1,90 +1,149 @@
-import React from 'react';
-import { Facebook, Instagram, Linkedin, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
+import { Link } from 'react-router-dom';
+import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = () => {
+  const socialLinks = [
+    { icon: faFacebook, to: '#' },
+    { icon: faInstagram, to: '#' },
+    { icon: faLinkedin, to: '#' },
+    { icon: faTwitter, to: '#' },
+  ];
+
+  const aboutLinks = [
+    { text: 'About', to: '/about' },
+    { text: 'Impact', to: '/impact' },
+    { text: 'Journal', to: '/journal' },
+    { text: 'Careers', to: '/careers' },
+    { text: 'Contact', to: '/contact' },
+  ];
+
+  const destinationLinks = [
+    { text: 'Botswana', to: '/destinations/botswana' },
+    { text: 'Namibia', to: '/destinations/namibia' },
+    { text: 'Rwanda', to: '/destinations/rwanda' },
+    { text: 'Zambia', to: '/destinations/zambia' },
+    { text: 'Zimbabwe', to: '/destinations/zimbabwe' },
+  ];
+
+  const journeyLinks = [
+    { text: 'Our Journeys', to: '/journeys' },
+    { text: 'Journey Inspiration', to: '/inspiration' },
+    { text: 'Our Services', to: '/services' },
+    { text: 'Dawnlight journey Store', to: '/store' },
+  ];
+
+  const legalLinks = [
+    { text: 'Disclaimer', to: '/disclaimer' },
+    { text: 'Privacy Policy', to: '/privacy' },
+    { text: 'Sitemap', to: '/sitemap' },
+  ];
+
   return (
-    <footer className="bg-[#1e1e1e] text-white py-16 pt-80 px-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Social Media Icons */}
-        <div className="flex justify-center space-x-4 mb-16">
-          <a href="#" className="bg-[#333333] p-3 rounded-full hover:bg-[#444444] transition-colors">
-            <Facebook size={20} />
-          </a>
-          <a href="#" className="bg-[#333333] p-3 rounded-full hover:bg-[#444444] transition-colors">
-            <Instagram size={20} />
-          </a>
-          <a href="#" className="bg-[#333333] p-3 rounded-full hover:bg-[#444444] transition-colors">
-            <Linkedin size={20} />
-          </a>
-          <a href="#" className="bg-[#333333] p-3 rounded-full hover:bg-[#444444] transition-colors">
-            <X size={20} />
-          </a>
-        </div>
+    <footer className="bg-[#1e1e1e] text-white">
+      <article className="max-w-7xl mx-auto px-6">
+        {/* Main Footer Content */}
+        <section className="py-16">
+          <article className="grid grid-cols-1 md:grid-cols-4 gap-12">
+            {/* Brand Section */}
+            <section className="space-y-6">
+              <figure className="flex items-center space-x-3">
+                <img 
+                  src="https://images.unsplash.com/photo-1469041797191-50ace28483c3"
+                  alt="Dawnlight journey Logo" 
+                  className="h-12 w-12 object-cover rounded-full"
+                />
+                <h3 className="text-xl font-semibold">Dawnlight journey</h3>
+              </figure>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Discover Earth's ultimate, untamed places. We are the proud custodians of our planet's most significant wild places.
+              </p>
+              <nav className="flex space-x-4">
+                {socialLinks.map(({ icon: Icon, to }, index) => (
+                  <Link
+                    key={index}
+                    to={to}
+                    className="bg-[#333333] p-2 rounded-full hover:bg-[#444444] transition-colors"
+                  >
+                    <FontAwesomeIcon icon={Icon} size="sm" />
+                  </Link>
+                ))}
+              </nav>
+            </section>
 
-        {/* Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          <div>
-            <h4 className="text-lg font-medium mb-6">About Dawnlight journey</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Impact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Journal</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-            </ul>
-          </div>
+            {/* Quick Links */}
+            <section>
+              <h4 className="text-lg font-medium mb-6 text-white">Quick Links</h4>
+              <nav>
+                <ul className="space-y-3">
+                  {aboutLinks.map(({ text, to }, index) => (
+                    <li key={index}>
+                      <Link to={to} className="text-gray-400 hover:underline hover:underline-offset-2 hover:text-white transition-colors text-sm">
+                        {text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </section>
 
-          <div>
-            <h4 className="text-lg font-medium mb-6">Destinations</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Botswana</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Namibia</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Rwanda</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Zambia</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Zimbabwe</a></li>
-            </ul>
-          </div>
+            {/* Destinations */}
+            <section>
+              <h4 className="text-lg font-medium mb-6 text-white">Destinations</h4>
+              <nav>
+                <ul className="space-y-3">
+                  {destinationLinks.map(({ text, to }, index) => (
+                    <li key={index}>
+                      <Link to={to} className="text-gray-400 hover:text-white transition-colors text-sm">
+                        {text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </section>
 
-          <div>
-            <h4 className="text-lg font-medium mb-6">Journeys & Services</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Our Journeys</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Journey Inspiration</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Our Services</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Dawnlight journey Store</a></li>
-            </ul>
-          </div>
-        </div>
+            {/* Journeys & Services */}
+            <section>
+              <h4 className="text-lg font-medium mb-6 text-white">Journeys & Services</h4>
+              <nav>
+                <ul className="space-y-3">
+                  {journeyLinks.map(({ text, to }, index) => (
+                    <li key={index}>
+                      <Link to={to} className="text-gray-400 hover:text-white transition-colors text-sm">
+                        {text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </section>
+          </article>
+        </section>
 
-        <Separator className="my-16 bg-[#333333]" />
+        <Separator className="bg-[#333333]" />
 
-        {/* Logo */}
-        <div className="flex justify-center mb-16">
-          <div className="text-center">
-            <img 
-              src="https://images.unsplash.com/photo-1469041797191-50ace28483c3"
-              alt="Dawnlight journey Logo" 
-              className="h-24 mx-auto mb-4 object-cover"
-            />
-            <p className="text-xs text-gray-400 max-w-xs mx-auto">
-              Discover Earth's ultimate, untamed Places
+        {/* Bottom Footer */}
+        <section className="py-8">
+          <article className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-sm text-gray-400">
+              Copyright ©2024 Dawnlight journey. All rights reserved
             </p>
-          </div>
-        </div>
-
-        {/* Bottom Links */}
-        <div className="flex justify-center space-x-6 text-sm text-gray-400 mb-6">
-          <a href="#" className="hover:text-white transition-colors">Disclaimer</a>
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Sitemap</a>
-        </div>
-        
-        {/* Copyright Text */}
-        <div className="text-center text-sm text-gray-400">
-          Copyright ©2024 Dawnlight journey. All rights reserved
-        </div>
-      </div>
+            <nav className="flex space-x-6">
+              {legalLinks.map(({ text, to }, index) => (
+                <Link
+                  key={index}
+                  to={to}
+                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {text}
+                </Link>
+              ))}
+            </nav>
+          </article>
+        </section>
+      </article>
     </footer>
   );
 };
