@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import DestinationSlider from '@/components/DestinationSlider';
@@ -6,6 +7,16 @@ import Footer from '@/components/Footer';
 import NewsletterForm from '@/components/NewsLetter';
 import Navbar from '@/containers/layout/Navbar';
 import { Link } from 'react-router-dom';
+=======
+import React, { useEffect, useRef, useState } from "react";
+import Navigation from "@/components/Navigation";
+import { ArrowRight } from "lucide-react";
+import DestinationSlider from "@/components/DestinationSlider";
+import ExperienceSlider from "@/components/ExperienceSlider";
+import Footer from "@/components/Footer";
+import NewsletterForm from "@/components/NewsLetter";
+import { experiences, purposeCategories } from "@/data/experiences";
+>>>>>>> Stashed changes
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -216,8 +227,60 @@ const Index = () => {
           </article>
         </article>
       </section>
+<<<<<<< Updated upstream
       <ExperienceSlider />
       {/* It's Wild Out There Section */}
+=======
+      <ExperienceSlider experiences={experiences} purposeCategories={purposeCategories} />
+      <section className="relative py-32 bg-[#0A3531]">
+        <div className="max-w-7xl mx-auto grid grid-cols-12 gap-8 px-6">
+          <div className="col-span-5">
+            <h2 className="font-heading text-5xl lg:text-6xl mb-8">
+              Our impact ethos
+            </h2>
+
+            <p className="text-white/80 text-lg leading-relaxed mb-12">
+              Our journeys change lives. Not just yours but also those of our
+              staff, communities, and the ecosystems we impact. We restore
+              Dawnlight journey through low-volume high-value conservation tourism. Our
+              purpose is a shared one. To ensure upliftment of local communities
+              with help from guests, partners, donors, governments, and
+              researchers. Our ambitions are bold. Our model is responsible,
+              sustainable, inspiring.
+            </p>
+
+            <a
+              href="/impact"
+              className="inline-flex items-center space-x-2 group"
+            >
+              <div className="w-12 h-12 rounded-full border-2 border-[#FF5C28] flex items-center justify-center group-hover:bg-[#FF5C28] transition-colors duration-300">
+                <ArrowRight className="w-6 h-6 text-[#FF5C28] group-hover:text-white transition-colors duration-300" />
+              </div>
+              <span className="text-[#FF5C28] uppercase tracking-wider text-sm font-medium">
+                READ ABOUT OUR IMPACT
+              </span>
+            </a>
+          </div>
+
+          <div className="col-span-7 relative">
+            <div className="absolute top-0 right-0 w-[500px] h-[400px]">
+              <img
+                src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51"
+                alt="People planting trees"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute bottom-0 right-[200px] w-[400px] h-[300px]">
+              <img
+                src="https://images.unsplash.com/photo-1594708767771-a7502209ff51"
+                alt="Community engagement"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+>>>>>>> Stashed changes
       <section
         ref={wildRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -343,9 +406,14 @@ const Index = () => {
         </article>
       </section>
 
+<<<<<<< Updated upstream
       {/* Footer Section with Newsletter Form */}
       <footer className="relative">
         <article id='newsletter' className="absolute left-0 right-0 top-[-150px] z-10 flex justify-center">
+=======
+      <div className="relative">
+        <div className="absolute left-0 right-0 top-[-150px] z-10 flex justify-center">
+>>>>>>> Stashed changes
           <NewsletterForm />
         </article>
 
