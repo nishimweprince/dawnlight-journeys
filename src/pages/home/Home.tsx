@@ -1,22 +1,11 @@
-<<<<<<< Updated upstream
-import { useEffect, useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import DestinationSlider from '@/components/DestinationSlider';
-import ExperienceSlider from '@/components/ExperienceSlider';
-import Footer from '@/components/Footer';
-import NewsletterForm from '@/components/NewsLetter';
-import Navbar from '@/containers/layout/Navbar';
-import { Link } from 'react-router-dom';
-=======
 import React, { useEffect, useRef, useState } from "react";
 import Navigation from "@/components/Navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Link } from "lucide-react";
 import DestinationSlider from "@/components/DestinationSlider";
 import ExperienceSlider from "@/components/ExperienceSlider";
 import Footer from "@/components/Footer";
 import NewsletterForm from "@/components/NewsLetter";
 import { experiences, purposeCategories } from "@/data/experiences";
->>>>>>> Stashed changes
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -87,7 +76,7 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-primary text-white">
-      <Navbar />
+      <Navigation />
 
       {/* Hero Section */}
       <header className="relative h-screen flex items-center justify-center">
@@ -227,10 +216,6 @@ const Index = () => {
           </article>
         </article>
       </section>
-<<<<<<< Updated upstream
-      <ExperienceSlider />
-      {/* It's Wild Out There Section */}
-=======
       <ExperienceSlider experiences={experiences} purposeCategories={purposeCategories} />
       <section className="relative py-32 bg-[#0A3531]">
         <div className="max-w-7xl mx-auto grid grid-cols-12 gap-8 px-6">
@@ -280,7 +265,6 @@ const Index = () => {
           </div>
         </div>
       </section>
->>>>>>> Stashed changes
       <section
         ref={wildRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -406,21 +390,15 @@ const Index = () => {
         </article>
       </section>
 
-<<<<<<< Updated upstream
-      {/* Footer Section with Newsletter Form */}
-      <footer className="relative">
-        <article id='newsletter' className="absolute left-0 right-0 top-[-150px] z-10 flex justify-center">
-=======
       <div className="relative">
         <div className="absolute left-0 right-0 top-[-150px] z-10 flex justify-center">
->>>>>>> Stashed changes
           <NewsletterForm />
-        </article>
+        </div>
 
         <article className="pt-120">
           <Footer />
         </article>
-      </footer>
+      </div>
     </main>
   );
 };
