@@ -17,4 +17,18 @@ export default defineConfig({
     },
     dedupe: ['react', 'react-dom'],
   },
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        // Ignore certain warnings
+        if (warning.code === 'TYPE_ONLY_EXPORT') return
+        if (warning.code === 'MISSING_EXPORT') return
+        if (warning.message.includes('HTMLElement')) return
+        warn(warning)
+      }
+    }
+  },
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
+  }
 })
