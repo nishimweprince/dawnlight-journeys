@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import OverlayDestinations from './menus/OverlayDestinations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { faArrowRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OverlayTours from './menus/OverlayTours';
@@ -17,27 +17,53 @@ const NavbarOverlay = ({ isOpen = false, setIsOpen }: NavbarOverlayProps) => {
   const [menuList] = useState([
     {
       label: 'Destinations',
+      submenu: true,
     },
     {
-      label: `Tours`,
+      label: 'Tours',
+      submenu: true,
     },
     {
-      label: `Safaris`,
+      label: 'Safaris',
+      submenu: true,
     },
     {
-      label: `About`,
-      route: `/about`,
+      label: 'About',
+      route: '/about',
     },
     {
-      label: `Contact`,
-      route: `/contact`,
+      label: 'Regions',
+      route: '/africa',
+      submenu: [
+        { label: 'East Africa', route: '/africa/east' },
+        { label: 'Southern Africa', route: '/africa/south' },
+        { label: 'Central Africa', route: '/africa/central' },
+      ]
+    },
+    {
+      label: 'Countries',
+      submenu: [
+        { label: 'Kenya', route: '/africa/kenya' },
+        { label: 'Tanzania', route: '/africa/tanzania' },
+        { label: 'Uganda', route: '/africa/uganda' },
+        { label: 'Rwanda', route: '/africa/rwanda' },
+        { label: 'South Africa', route: '/africa/south-africa' },
+        { label: 'Botswana', route: '/africa/botswana' },
+        { label: 'Namibia', route: '/africa/namibia' },
+        { label: 'Zimbabwe', route: '/africa/zimbabwe' },
+      ]
+    },
+    {
+      label: 'Contact',
+      route: '/contact',
     },
   ]);
 
+  // NAVIGATION
+  const navigate = useNavigate();
+
   // STATE VARIABLES
-  const [selectedMenu, setSelectedMenu] = useState<string | undefined>(
-    undefined
-  );
+  const [selectedMenu, setSelectedMenu] = useState<string | undefined>(undefined);
   const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
   // GET SCREEN WIDTH
@@ -63,52 +89,75 @@ const NavbarOverlay = ({ isOpen = false, setIsOpen }: NavbarOverlayProps) => {
         >
           {menuList.map((menu, index) => {
             return (
-              <Link
-                to={menu?.route || `#`}
-                key={index}
-                className="text-white flex items-center gap-3 justify-between uppercase text-[16px] font-regular py-2 border-b-[.5px] border-slate-200 hover:border-primary hover:border-b-[1.5px] transition-all"
-                onMouseEnter={(e) => {
-                  e.preventDefault();
-                  if (!menu?.route && screenWidth > 768) {
-                    setSelectedMenu(menu.label);
-                  } else {
-                    setSelectedMenu(undefined);
-                  }
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (!menu?.route) {
-                    setSelectedMenu(menu.label);
-                  } else {
-                    setSelectedMenu(undefined);
-                  }
-                }}
-              >
-                {menu.label}
-                {selectedMenu === menu?.label && (
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className="ml-2 text-primary"
-                  />
+              <div key={index} className="flex flex-col gap-2">
+                <Link
+                  to={menu?.route || `#`}
+                  className="text-white flex items-center gap-3 justify-between uppercase text-[16px] font-regular py-2 border-b-[.5px] border-slate-200 hover:border-primary hover:border-b-[1.5px] transition-all"
+                  onMouseEnter={(e) => {
+                    e.preventDefault();
+                    if (menu.submenu && screenWidth > 768) {
+                      setSelectedMenu(menu.label);
+                    }
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (menu.submenu === true) {
+                      setSelectedMenu(menu.label);
+                    } else if (menu.route) {
+                      if (menu?.route === '/contact') {
+                        const newsletterSection = document.getElementById('newsletter');
+                        if (newsletterSection) {
+                          newsletterSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                            inline: 'nearest',
+                          }); 
+                        }
+                      } else {
+                        navigate(menu.route);
+                      }
+                      if (setIsOpen) setIsOpen(false);
+                    }
+                  }}
+                >
+                  {menu.label}
+                  {(menu.submenu || selectedMenu === menu?.label) && (
+                    <FontAwesomeIcon
+                      icon={faArrowRight}
+                      className="ml-2 text-primary"
+                    />
+                  )}
+                </Link>
+                {/* Show submenu items directly on mobile */}
+                {menu.submenu && Array.isArray(menu.submenu) && screenWidth <= 768 && (
+                  <div className="pl-4 flex flex-col gap-2">
+                    {menu.submenu.map((subItem, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        to={subItem.route}
+                        className="text-white/80 hover:text-white text-[14px] py-1"
+                        onClick={() => {
+                          if (setIsOpen) setIsOpen(false);
+                        }}
+                      >
+                        {subItem.label}
+                      </Link>
+                    ))}
+                  </div>
                 )}
-              </Link>
+              </div>
             );
           })}
           <Button
             onClick={() => {
               const newsletterSection = document.getElementById('newsletter');
               if (newsletterSection) {
-                if (setIsOpen) {
-                  setIsOpen(false);
-                }
+                if (setIsOpen) setIsOpen(false);
                 newsletterSection.scrollIntoView({
                   behavior: 'smooth',
                   block: 'start',
                   inline: 'nearest',
                 });
-                setTimeout(() => {
-                  newsletterSection.scrollIntoView({ behavior: 'smooth' });
-                }, 300);
               }
             }}
             className="min-md:hidden bg-black text-white py-2 px-4 text-center rounded"
@@ -116,6 +165,8 @@ const NavbarOverlay = ({ isOpen = false, setIsOpen }: NavbarOverlayProps) => {
             Craft Your Experiences
           </Button>
         </nav>
+        
+        {/* Submenu Content */}
         <section
           className={`w-full px-6 max-md:px-0 ${
             selectedMenu ? 'max-md:flex max-md:flex-col' : 'max-md:hidden'
@@ -125,10 +176,10 @@ const NavbarOverlay = ({ isOpen = false, setIsOpen }: NavbarOverlayProps) => {
             <>
               <Link
                 className="items-center gap-2 text-white px-6 py-4 hidden max-md:flex"
-                to={`#`}
+                to="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  setSelectedMenu('');
+                  setSelectedMenu(undefined);
                 }}
               >
                 <FontAwesomeIcon icon={faChevronLeft} className="text-[13px]" />
@@ -140,6 +191,22 @@ const NavbarOverlay = ({ isOpen = false, setIsOpen }: NavbarOverlayProps) => {
           {selectedMenu === 'Destinations' && <OverlayDestinations />}
           {selectedMenu === 'Tours' && <OverlayTours />}
           {selectedMenu === 'Safaris' && <OverlaySafaris />}
+          {selectedMenu && menuList.find(m => m.label === selectedMenu)?.submenu && Array.isArray(menuList.find(m => m.label === selectedMenu)?.submenu) && (
+            <div className="grid grid-cols-2 gap-4 p-6">
+              {(menuList.find(m => m.label === selectedMenu)?.submenu as { label: string; route: string }[]).map((item, index) => (
+                <Link
+                  key={index}
+                  to={item.route}
+                  className="text-white/80 hover:text-white text-[16px] py-2"
+                  onClick={() => {
+                    if (setIsOpen) setIsOpen(false);
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
       </section>
     </main>

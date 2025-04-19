@@ -8,8 +8,8 @@ const ExperienceCard = ({ experience }: { experience: ExperienceSliderProps['exp
   <div className="relative w-[500px] h-[500px] z-20">
     <div className="w-[500px] h-[500px] overflow-hidden rounded-full border-8 border-black">
       <img 
-        src={experience.image} 
-        alt={experience.title} 
+        src={experience?.image} 
+        alt={experience?.title} 
         className="w-full h-full object-cover"
       />
     </div>
@@ -20,13 +20,13 @@ const ExperienceContent = ({ experience }: { experience: ExperienceSliderProps['
   <div className="relative w-[500px] ml-[-100px] z-10">
     <div className="bg-[#0A3531] p-10 min-h-[450px] flex flex-col justify-between">
       <div className="mt-8 ml-16">
-        <h2 className="font-heading text-4xl lg:text-5xl mb-6">{experience.title}</h2>
+        <h2 className="font-heading text-4xl lg:text-5xl mb-6">{experience?.title}</h2>
         <p className="text-white/80 mb-8 text-base leading-relaxed max-w-lg">
-          {experience.description}
+          {experience?.description}
         </p>
         
         <a 
-          href={`/experiences/${experience.title.toLowerCase().replace(/\s+/g, '-')}`} 
+          href={`/experiences/${experience?.title?.toLowerCase().replace(/\s+/g, '-')}`} 
           className="inline-flex items-center text-[#FF5C28] hover:text-[#FF7040] group"
         >
           <div className="w-8 h-8 rounded-full border border-[#FF5C28] flex items-center justify-center mr-3 group-hover:bg-[#FF5C28] group-hover:text-white transition-all">
@@ -39,7 +39,7 @@ const ExperienceContent = ({ experience }: { experience: ExperienceSliderProps['
       <div className="mt-auto pt-6 ml-16 flex items-center space-x-2 text-white/80">
         <MapPin size={16} />
         <p className="text-xs">
-          {experience.locations.join(', ')}
+            {experience?.locations?.join(', ')}
         </p>
       </div>
     </div>
@@ -116,27 +116,27 @@ const PurposeSection = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
               <div className="h-[400px] overflow-hidden rounded-sm mx-auto w-full">
                 <img 
-                  src={activeCategory.image} 
-                  alt={activeCategory.heading} 
+                  src={activeCategory?.image} 
+                  alt={activeCategory?.heading} 
                   className="w-full h-full object-cover transition-all duration-500 animate-[fadeIn_0.5s_ease]"
                 />
               </div>
               <div className="flex flex-col justify-center mx-auto text-center md:text-left">
                 <h3 className="font-heading text-4xl md:text-5xl mb-6 animate-[fadeUp_0.4s_ease]">
-                  {activeCategory.heading}
+                  {activeCategory?.heading}
                 </h3>
                 <p className="text-white/80 text-base mb-6 animate-[fadeUp_0.5s_ease]">
-                  {activeCategory.description}
+                  {activeCategory?.description}
                 </p>
                 <div className="flex justify-center md:justify-start">
                   <a 
-                    href={activeCategory.link} 
+                    href={activeCategory?.link} 
                     className="inline-flex items-center text-[#FF5C28] hover:text-[#FF7040] group animate-[fadeUp_0.6s_ease]"
                   >
                     <div className="w-8 h-8 rounded-full border border-[#FF5C28] flex items-center justify-center mr-3 group-hover:bg-[#FF5C28] group-hover:text-white transition-all">
                       <ArrowRight size={16} />
                     </div>
-                    <span className="uppercase text-xs font-medium tracking-wider">{activeCategory.cta}</span>
+                    <span className="uppercase text-xs font-medium tracking-wider">{activeCategory?.cta}</span>
                   </a>
                 </div>
               </div>
@@ -230,8 +230,8 @@ const ExperienceSlider = ({
             <figure className="absolute left-[-50%] top-1/2 -translate-y-1/2 w-[35%] h-[500px] opacity-70 overflow-visible">
               <article className="w-[500px] h-[500px] overflow-hidden rounded-full border-8 border-black/80">
                 <img
-                  src={experiences[prevIndex].image}
-                  alt={`Preview of ${experiences[prevIndex].title}`}
+                  src={experiences[prevIndex]?.image}
+                  alt={`Preview of ${experiences[prevIndex]?.title}`}
                   className="w-full h-full object-cover"
                 />
               </article>
@@ -240,8 +240,8 @@ const ExperienceSlider = ({
             <figure className="absolute right-[-35%] top-1/2 -translate-y-1/2 w-[35%] h-[500px] opacity-70 overflow-visible">
               <article className="w-[500px] h-[500px] overflow-hidden rounded-full border-8 border-black/80">
                 <img
-                  src={experiences[nextIndex].image}
-                  alt={`Preview of ${experiences[nextIndex].title}`}
+                  src={experiences[nextIndex]?.image}
+                  alt={`Preview of ${experiences[nextIndex]?.title}`}
                   className="w-full h-full object-cover"
                 />
               </article>

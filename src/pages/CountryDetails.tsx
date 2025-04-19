@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArrowRight } from "lucide-react";
 import CountryInfoSlider from "@/components/CountryInfoSlider";
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import NewsletterForm from "@/components/NewsLetter";
 import FeaturedStories from "@/components/FeaturedStories";
+import Layout from "@/containers/layout/Layout";
 
 // Country data - this would typically come from an API
 type CountryInfo = {
@@ -136,10 +136,9 @@ const CountryDetail = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <Layout>
       {/* Hero Section */}
       <div className="relative h-screen">
-        <Navigation />
         <img
           src={countryInfo.heroImage}
           alt={countryInfo.title}
@@ -450,7 +449,7 @@ const CountryDetail = () => {
         
         <Footer />
       </div>
-    </div>
+    </Layout>
   );
 };
 

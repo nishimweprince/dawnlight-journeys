@@ -1,4 +1,3 @@
-import Navigation from "@/components/Navigation";
 import { useParams } from "react-router-dom";
 import CountryInfoSlider from "@/components/CountryInfoSlider";
 import Footer from "@/components/Footer";
@@ -16,6 +15,7 @@ import FeaturedStories from "@/components/FeaturedStories";
 import NewsletterForm from "@/components/NewsLetter";
 import { useRef, useState } from "react";
 import { useEffect } from "react";
+import Layout from "@/containers/layout/Layout";
 
 // Region data type definition
 type RegionInfo = {
@@ -124,10 +124,9 @@ function RegionDetails() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <Layout>
       {/* Hero Section */}
       <div className="relative h-screen">
-        <Navigation />
         <img
           src={regionInfo.heroImage}
           alt={regionInfo.title}
@@ -323,7 +322,7 @@ function RegionDetails() {
 
         <Footer />
       </div>
-    </div>
+    </Layout>
   );
 }
 

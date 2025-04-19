@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import Navigation from "@/components/Navigation";
 import { ArrowRight, Link } from "lucide-react";
 import DestinationSlider from "@/components/DestinationSlider";
 import ExperienceSlider from "@/components/ExperienceSlider";
 import Footer from "@/components/Footer";
 import NewsletterForm from "@/components/NewsLetter";
 import { experiences, purposeCategories } from "@/data/experiences";
+import Layout from "@/containers/layout/Layout";
 
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,9 +75,7 @@ const Index = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-primary text-white">
-      <Navigation />
-
+    <Layout>
       {/* Hero Section */}
       <header className="relative h-screen flex items-center justify-center">
         <figure
@@ -391,7 +389,7 @@ const Index = () => {
       </section>
 
       <div className="relative">
-        <div className="absolute left-0 right-0 top-[-150px] z-10 flex justify-center">
+        <div className="absolute left-0 right-0 top-[-150px] z-10 flex justify-center" id="newsletter">
           <NewsletterForm />
         </div>
 
@@ -399,7 +397,7 @@ const Index = () => {
           <Footer />
         </article>
       </div>
-    </main>
+    </Layout>
   );
 };
 

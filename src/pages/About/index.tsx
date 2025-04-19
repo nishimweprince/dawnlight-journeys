@@ -1,9 +1,9 @@
 import TimeLine from '../../components/TimeLine';
-import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import ConservationSection from './ConservationSection';
 import NewsletterForm from '@/components/NewsLetter';
 import { useEffect, useRef, useState,  } from 'react';
+import Layout from '@/containers/layout/Layout';
 
 const About = () => {
   const readyRef = useRef(null);
@@ -30,9 +30,9 @@ const About = () => {
     };
   }, []);
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation />
-      
+    <Layout>
+      <div className="min-h-screen bg-black">
+        
       {/* Hero Section */}
       <section className="relative w-full h-[400px] bg-[#0A3531]">
         <div className="max-w-7xl mx-auto px-6 h-full flex items-center">
@@ -128,7 +128,8 @@ const About = () => {
 
         <Footer />
       </div>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

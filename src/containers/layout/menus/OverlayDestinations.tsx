@@ -6,7 +6,7 @@ const OverlayDestinations = () => {
     () => [
       {
         label: 'Rwanda',
-        route: '/rwanda',
+        route: '/africa/rwanda',
       },
     ],
     []

@@ -16,23 +16,28 @@ const Navbar = () => {
       }`}
     >
       <nav className="w-[90%] max-md:w-[90%] mx-auto flex items-center gap-3 justify-between">
-        <Link
-          to={`#`}
-          className="text-white flex items-center gap-2 uppercase"
-          onClick={(e) => {
-            e.preventDefault();
-            setIsOverlayOpen(!isOverlayOpen);
-          }}
-        >
-          <figure className="p-2 px-3 max-md:p-3 max-md:px-[11.5px] rounded-full border border-white hover:bg-primary hover:border-primary hover:text-white transition-all">
-            <FontAwesomeIcon
-              icon={isOverlayOpen ? faXmark : faBars}
-              className="h-4 w-4 max-md:h-6 max-md:w-6"
-            />
-          </figure>
-          <p className="max-md:hidden">Menu</p>
-        </Link>
-        <Button onClick={() => {
+        <div className="flex items-center gap-4">
+          <Link
+            to={`#`}
+            className="text-white flex items-center uppercase"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsOverlayOpen(!isOverlayOpen);
+            }}
+          >
+            <figure className="p-2 px-3 max-md:p-3 max-md:px-[11.5px] rounded-full border border-white hover:bg-primary hover:border-primary hover:text-white transition-all">
+              <FontAwesomeIcon
+                icon={isOverlayOpen ? faXmark : faBars}
+                className="h-4 w-4 max-md:h-6 max-md:w-6"
+              />
+            </figure>
+          </Link>
+          <Link to={`/`} className="text-white flex items-center uppercase">
+            Dawnlight Journey
+          </Link>
+        </div>
+        <Button to='/africa/rwanda' onClick={(e) => {
+          e.preventDefault();
           const newsletterSection = document.getElementById('newsletter');
           if (newsletterSection) {
             newsletterSection.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
@@ -40,7 +45,7 @@ const Navbar = () => {
               newsletterSection.scrollIntoView({ behavior: 'smooth' });
             }, 300);
           }
-        }} className="max-md:hidden bg-black text-white py-2 px-4 rounded text-center">Craft Your Experiences</Button>
+        }} className="max-md:hidden bg-black text-white py-2 px-4 rounded text-center">Plan Your Journey</Button>
       </nav>
       <NavbarOverlay setIsOpen={setIsOverlayOpen} isOpen={isOverlayOpen} />
     </header>
