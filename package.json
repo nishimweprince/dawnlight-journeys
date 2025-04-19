@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "CI=false tsc --noEmit || vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "npm audit fix --force && tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "postinstall": "npm audit fix --force"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
