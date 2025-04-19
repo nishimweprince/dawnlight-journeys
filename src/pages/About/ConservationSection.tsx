@@ -1,4 +1,3 @@
-import React from 'react';
 import { Truck, Leaf } from 'lucide-react';
 
 const ConservationSection = () => {
