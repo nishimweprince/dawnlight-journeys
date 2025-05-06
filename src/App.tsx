@@ -1,21 +1,21 @@
-import { Navbar } from "./components/navbar"
-import { Hero } from "./components/hero"
-import { Destinations } from "./components/destinations"
-import { Safaris } from "./components/safaris"
-import { Experiences } from "./components/experiences"
-import { Affiliates } from "./components/affiliates"
-import { FAQ } from "./components/faq"
-import { Contact } from "./components/contact"
-import { Footer } from "./components/footer"
-import { ThemeProvider } from "./components/theme-provider"
-import { FaWhatsapp } from "react-icons/fa"
+import { Navbar } from './components/navbar';
+import { Hero } from './components/hero';
+import { Destinations } from './components/destinations';
+import { Safaris } from './components/safaris';
+import { Experiences } from './components/experiences';
+import { Affiliates } from './components/affiliates';
+import { FAQ } from './components/faq';
+import { Contact } from './components/contact';
+import { Footer } from './components/footer';
+import { ThemeProvider } from './components/theme-provider';
+import { FaWhatsapp } from 'react-icons/fa';
 
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="wildlife-adventures-theme">
-      <div className="flex min-h-screen flex-col">
+      <main className="flex min-h-screen flex-col">
         <Navbar />
-        <main className="flex-1">
+        <section className="flex-1">
           <Hero />
           <Destinations />
           <Safaris />
@@ -23,7 +23,7 @@ function App() {
           <Affiliates />
           <FAQ />
           <Contact />
-        </main>
+        </section>
         <Footer />
         <a
           href="https://wa.me/250785917385"
@@ -34,9 +34,9 @@ function App() {
         >
           <FaWhatsapp className="w-6 h-6" />
         </a>
-      </div>
+      </main>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,6 +1,7 @@
 import React, { forwardRef, HTMLAttributes } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
+import Link from "next/link"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -35,9 +36,9 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement>, VariantP
 const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, href, ...props }, ref) => {
   if (href) {
     return (
-      <a href={href} className={cn(buttonVariants({ variant, size, className }))}>
+      <Link href={href} className={cn(buttonVariants({ variant, size, className }))}>
         {props.children}
-      </a>
+      </Link>
     )
   }
 

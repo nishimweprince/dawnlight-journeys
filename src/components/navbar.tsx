@@ -1,183 +1,213 @@
-"use client"
+'use client';
 
-import React from "react"
-import { useState } from "react"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { CustomButton } from "./ui/custom-button"
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { CustomButton } from './ui/custom-button';
+import Link from 'next/link';
 
 const safarisDropdown = [
-  { label: "Classic Safari", href: "#classic-safari" },
-  { label: "Luxury Safari", href: "#luxury-safari" },
-  { label: "Family Safari", href: "#family-safari" },
-]
+  { label: 'Classic Safari', href: '#safaris' },
+  { label: 'Luxury Safari', href: '#safaris' },
+  { label: 'Family Safari', href: '#safaris' },
+];
 
 const experiencesDropdown = [
-  { label: "Gorilla Trekking", href: "#gorilla-trekking" },
-  { label: "Hot Air Balloon", href: "#hot-air-balloon" },
-  { label: "Cultural Tours", href: "#cultural-tours" },
-]
+  { label: 'Gorilla Trekking', href: '#trekking' },
+  { label: 'Hot Air Balloon', href: '#balloon' },
+  { label: 'Cultural Tours', href: '#cultural' },
+];
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
-  const handleDropdown = (name: string | null) => setOpenDropdown(name)
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleDropdown = (name: string | null) => setOpenDropdown(name);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur border-b shadow-lg rounded-b-xl transition-all">
-      <div className="container flex h-16 items-center justify-between">
+    <header
+      className={
+        `sticky top-0 z-50 w-full transition-all duration-300 ` +
+        (scrolled
+          ? 'bg-white/80 backdrop-blur border-b shadow-lg rounded-b-xl'
+          : 'bg-white/75')
+      }
+    >
+      <section className="container flex h-16 items-center justify-between">
         {/* Logo area */}
-        <a href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-2">
           <img
-            src="/placeholder.svg?height=40&width=40"
+            src="/assets/logos/dawnlight-journeys-logo.svg"
             alt="Logo"
-            className="h-10 w-10 rounded-full shadow"
+            className="h-12 w-12 rounded-full"
           />
-          <span className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-amber-600 to-orange-400 bg-clip-text text-transparent">
+          <span className="font-extrabold text-lg tracking-tight text-black-800">
             Dawnlight Journeys
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="#destinations" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800">
+        <nav className="hidden md:flex items-center gap-4">
+          <Link
+            href="#destinations"
+            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+          >
             Destinations
-          </a>
+          </Link>
 
           {/* Safaris Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleDropdown("safaris")}
-            onMouseLeave={() => handleDropdown(null)}
-          >
+          <section className="relative group">
             <button
-              className="text-base font-medium px-3 py-2 rounded flex items-center gap-1 transition-colors hover:bg-orange-50 hover:text-orange-800"
+              className="text-sm font-medium px-2.5 py-1.5 rounded-md flex items-center gap-1 transition-colors hover:bg-orange-50 hover:text-orange-800"
               aria-haspopup="true"
-              aria-expanded={openDropdown === "safaris"}
+              aria-expanded={openDropdown === 'safaris'}
               tabIndex={0}
               type="button"
             >
-              Safaris <ChevronDown className="w-4 h-4" />
+              Safaris <ChevronDown className="w-3.5 h-3.5" />
             </button>
-            {openDropdown === "safaris" && (
-              <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-2 z-50">
-                {safarisDropdown.map((item) => (
-                  <a key={item.label} href={item.href} className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors">
+            <menu className="absolute left-0 mt-1.5 w-44 bg-white rounded-md shadow-lg border py-1.5 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              {safarisDropdown.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="block px-3 py-1.5 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
+                  >
                     {item.label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
+                  </Link>
+                </li>
+              ))}
+            </menu>
+          </section>
 
           {/* Experiences Dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={() => handleDropdown("experiences")}
-            onMouseLeave={() => handleDropdown(null)}
-          >
+          <section className="relative group">
             <button
-              className="text-base font-medium px-3 py-2 rounded flex items-center gap-1 transition-colors hover:bg-orange-50 hover:text-orange-800"
+              className="text-sm font-medium px-2.5 py-1.5 rounded-md flex items-center gap-1 transition-colors hover:bg-orange-50 hover:text-orange-800"
               aria-haspopup="true"
-              aria-expanded={openDropdown === "experiences"}
+              aria-expanded={openDropdown === 'experiences'}
               tabIndex={0}
               type="button"
             >
-              Experiences <ChevronDown className="w-4 h-4" />
+              Experiences <ChevronDown className="w-3.5 h-3.5" />
             </button>
-            {openDropdown === "experiences" && (
-              <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-2 z-50">
-                {experiencesDropdown.map((item) => (
-                  <a key={item.label} href={item.href} className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors">
+            <menu className="absolute left-0 mt-1.5 w-44 bg-white rounded-md shadow-lg border py-1.5 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              {experiencesDropdown.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="block px-3 py-1.5 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
+                  >
                     {item.label}
                   </a>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <a href="#affiliates" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800">
-            Affiliates
-          </a>
-          <a href="#contact" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800">
+                </li>
+              ))}
+            </menu>
+          </section>
+          <Link
+            href="#contact"
+            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+          >
             Contact
-          </a>
-          <a href="/blog" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800">
+          </Link>
+          <Link
+            href="/blog"
+            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+          >
             Blog
-          </a>
-          <CustomButton variant="primary" size="sm" href="https://wa.me/1234567890" className="ml-2">
-            WhatsApp Us
-          </CustomButton>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 rounded-md hover:bg-accent"
+          className="md:hidden p-1.5 rounded-md hover:bg-accent"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
         </button>
-      </div>
+      </section>
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden container py-4 pb-6 border-t bg-white/95 rounded-b-xl shadow-lg">
-          <nav className="flex flex-col space-y-4">
-            <a href="#destinations" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>
+        <section className="md:hidden container py-3 pb-5 border-t bg-white/95 rounded-b-xl shadow-lg">
+          <nav className="flex flex-col space-y-3">
+            <a
+              href="#destinations"
+              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Destinations
             </a>
             {/* Safaris Dropdown (mobile) */}
-            <div>
-              <span className="text-base font-semibold px-3 py-2">Safaris</span>
-              <div className="ml-4 flex flex-col space-y-2">
+            <section>
+              <h2 className="text-sm font-semibold px-3 py-1.5">Safaris</h2>
+              <menu className="ml-4 flex flex-col space-y-1.5">
                 {safarisDropdown.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="block px-3 py-1.5 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </menu>
+            </section>
             {/* Experiences Dropdown (mobile) */}
-            <div>
-              <span className="text-base font-semibold px-3 py-2">Experiences</span>
-              <div className="ml-4 flex flex-col space-y-2">
+            <section>
+              <h2 className="text-sm font-semibold px-3 py-1.5">Experiences</h2>
+              <menu className="ml-4 flex flex-col space-y-1.5">
                 {experiencesDropdown.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="block px-3 py-1.5 text-sm text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
                 ))}
-              </div>
-            </div>
-            <a href="#affiliates" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>
+              </menu>
+            </section>
+            <a
+              href="#affiliates"
+              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Affiliates
             </a>
-            <a href="#contact" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>
+            <a
+              href="#contact"
+              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Contact
             </a>
-            <a href="/blog" className="text-base font-medium px-3 py-2 rounded transition-colors hover:bg-orange-50 hover:text-orange-800" onClick={() => setIsMenuOpen(false)}>
+            <a
+              href="/blog"
+              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Blog
             </a>
-            <CustomButton
-              variant="primary"
-              size="sm"
-              href="https://wa.me/1234567890"
-              className="w-full mt-2"
-            >
-              WhatsApp Us
-            </CustomButton>
           </nav>
-        </div>
+        </section>
       )}
     </header>
-  )
+  );
 }

@@ -13,6 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="icon" href="/assets/logos/dawnlight-journeys-logo.svg" sizes="any" />
       <body>{children}</body>
     </html>
   )

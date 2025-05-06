@@ -45,17 +45,17 @@ export function FAQ() {
 
   return (
     <section id="faq" className="py-16 md:py-24 bg-background">
-      <div className="container">
-        <div className="text-center mb-12">
+      <main className="container">
+        <header className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Frequently Asked Questions</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Find answers to common questions about traveling to Rwanda and Uganda.
           </p>
-        </div>
+        </header>
 
-        <div className="max-w-3xl mx-auto divide-y">
+        <article className="max-w-3xl mx-auto divide-y">
           {faqs.map((faq, index) => (
-            <div key={index} className="py-5">
+            <section key={index} className="py-5">
               <button className="flex w-full justify-between items-center text-left" onClick={() => toggleFaq(index)}>
                 <h3 className="text-lg font-medium">{faq.question}</h3>
                 <ChevronDown
@@ -64,17 +64,17 @@ export function FAQ() {
                   }`}
                 />
               </button>
-              <div
+              <aside
                 className={`mt-2 transition-all duration-300 overflow-hidden ${
                   openIndex === index ? "max-h-96" : "max-h-0"
                 }`}
               >
                 <p className="text-muted-foreground">{faq.answer}</p>
-              </div>
-            </div>
+              </aside>
+            </section>
           ))}
-        </div>
-      </div>
+        </article>
+      </main>
     </section>
   )
 }

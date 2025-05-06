@@ -3,13 +3,14 @@ import { CustomButton } from './ui/custom-button';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center">
+    <section className="relative h-[calc(100vh+100px)] top-[-100px] flex items-center overflow-hidden">
       {/* Hero Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 w-full h-full">
         <img
-          src="/placeholder.svg?height=800&width=1600"
+          src="/assets/common/hero.jpg"
           alt="African Safari"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
+          style={{ minHeight: '100vh', minWidth: '100vw' }}
         />
         <div className="absolute inset-0 bg-black/30" />
       </div>

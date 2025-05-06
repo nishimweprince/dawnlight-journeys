@@ -3,17 +3,17 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 export function Footer() {
   return (
     <footer className="bg-muted py-12 border-t">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img src="/placeholder.svg?height=32&width=32" alt="Logo" className="h-8 w-8" />
+      <main className="container">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          <article>
+            <header className="flex items-center gap-2 mb-4">
+              <img src="/assets/logos/dawnlight-journeys-logo.svg" alt="Logo" className="h-8 w-8" />
               <span className="font-bold text-xl">Dawnlight Journeys</span>
-            </div>
+            </header>
             <p className="text-muted-foreground mb-4">
               Unforgettable Dawnlight Journeys in Rwanda and Uganda. Experience the magic of Africa.
             </p>
-            <div className="flex space-x-4">
+            <nav className="flex space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 <Facebook className="h-5 w-5" />
                 <span className="sr-only">Facebook</span>
@@ -30,10 +30,10 @@ export function Footer() {
                 <Youtube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </a>
-            </div>
-          </div>
+            </nav>
+          </article>
 
-          <div>
+          <nav>
             <h3 className="font-bold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
@@ -62,9 +62,9 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <nav>
             <h3 className="font-bold text-lg mb-4">Destinations</h3>
             <ul className="space-y-2">
               <li>
@@ -102,9 +102,9 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
-          <div>
+          <section>
             <h3 className="font-bold text-lg mb-4">Subscribe</h3>
             <p className="text-muted-foreground mb-4">
               Subscribe to our newsletter for travel tips and exclusive offers.
@@ -123,14 +123,14 @@ export function Footer() {
                 Subscribe
               </button>
             </form>
-          </div>
-        </div>
+          </section>
+        </section>
 
-        <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center">
+        <footer className="border-t pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
             © {new Date().getFullYear()} Dawnlight Journeys. All rights reserved.
           </p>
-          <div className="flex space-x-6">
+          <nav className="flex space-x-6">
             <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Privacy Policy
             </a>
@@ -140,9 +140,9 @@ export function Footer() {
             <a href="/cookie-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Cookie Policy
             </a>
-          </div>
-        </div>
-      </div>
+          </nav>
+        </footer>
+      </main>
     </footer>
   )
 }
