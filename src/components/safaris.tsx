@@ -9,7 +9,7 @@ const safariPackages = [
     duration: "5 days",
     image: "/assets/safaris/gorilla-trekking.jpg",
     description: "Get up close with endangered mountain gorillas in their natural habitat.",
-    url: "/safaris/gorilla-trekking",
+    url: "/safaris",
   },
   {
     id: 2,
@@ -64,10 +64,6 @@ export function Safaris() {
                 </span>
               </section>
               <figcaption className="p-6">
-                <header className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold">{safari.title}</h3>
-                  <span className="text-lg font-bold text-primary">{safari.price}</span>
-                </header>
                 <p className="text-sm text-muted-foreground mb-2">{safari.location}</p>
                 <p className="mb-4">{safari.description}</p>
                 <CustomButton variant="secondary" size="sm" href={safari.url} className="w-full">

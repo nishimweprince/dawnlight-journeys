@@ -1,5 +1,5 @@
-import { Mail, MapPin, Phone, Send } from "lucide-react"
-import { CustomButton } from "./ui/custom-button"
+import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { CustomButton } from './ui/custom-button';
 
 export function Contact() {
   return (
@@ -7,9 +7,12 @@ export function Contact() {
       <main className="container">
         <article className="grid md:grid-cols-2 gap-12">
           <section>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Contact Us</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+              Contact Us
+            </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Ready to start planning your African adventure? Get in touch with our team of experts.
+              Ready to start planning your African adventure? Get in touch with
+              our team of experts.
             </p>
 
             <nav className="space-y-6">
@@ -30,7 +33,10 @@ export function Contact() {
                 </figure>
                 <section>
                   <h3 className="font-medium mb-1">Email Us</h3>
-                  <a href="mailto:info@dawnlightjourneys.com" className="text-primary hover:underline">
+                  <a
+                    href="mailto:info@dawnlightjourneys.com"
+                    className="text-primary hover:underline"
+                  >
                     info@dawnlightjourneys.com
                   </a>
                 </section>
@@ -42,13 +48,22 @@ export function Contact() {
                 </figure>
                 <section>
                   <h3 className="font-medium mb-1">Call Us</h3>
-                  <p className="text-muted-foreground">Rwanda: +250 123 456 789</p>
-                  <p className="text-muted-foreground">Uganda: +256 123 456 789</p>
+                  <p className="text-muted-foreground">
+                    Rwanda: +250 123 456 789
+                  </p>
+                  <p className="text-muted-foreground">
+                    Uganda: +256 123 456 789
+                  </p>
                 </section>
               </article>
 
               <footer className="pt-4">
-                <CustomButton variant="primary" size="lg" href="https://wa.me/250785917385" className="w-full sm:w-auto">
+                <CustomButton
+                  variant="primary"
+                  size="lg"
+                  href="https://wa.me/250785917385"
+                  className="w-full sm:w-auto"
+                >
                   Chat on WhatsApp
                 </CustomButton>
               </footer>
@@ -111,7 +126,7 @@ export function Contact() {
                 />
               </section>
 
-              <CustomButton variant="primary" type="submit" className="w-full">
+              <CustomButton variant="primary" className="w-full">
                 <Send className="h-4 w-4 mr-2" />
                 Send Message
               </CustomButton>
@@ -120,5 +135,5 @@ export function Contact() {
         </article>
       </main>
     </section>
-  )
+  );
 }
