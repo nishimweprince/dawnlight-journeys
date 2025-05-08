@@ -9,7 +9,7 @@ const safariPackages = [
     duration: "5 days",
     image: "/assets/safaris/gorilla-trekking.jpg",
     description: "Get up close with endangered mountain gorillas in their natural habitat.",
-    url: "/safaris",
+    url: "/safaris/gorilla-trekking",
   },
   {
     id: 2,
