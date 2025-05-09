@@ -13,7 +13,6 @@ import {
   Calendar,
   ChevronLeft,
   ChevronRight,
-  DollarSign,
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
@@ -126,15 +125,6 @@ export default function SafariDetailsPage({
     return () => clearInterval(interval);
   }, []);
 
-  // Define theme colors for consistent usage
-  const themeColors = {
-    primary: 'text-primary bg-primary',
-    accent1: 'text-teal-600 bg-teal-50',
-    accent2: 'text-amber-600 bg-amber-50',
-    accent3: 'text-indigo-600 bg-indigo-50',
-    accent4: 'text-rose-600 bg-rose-50',
-  };
-
   return (
     <main className="min-h-screen flex flex-col gap-8 bg-gradient-to-b from-orange-50 to-white pb-16">
       {/* Hero Section - Enhanced height to minimum 50vh */}
@@ -201,7 +191,7 @@ export default function SafariDetailsPage({
         </header>
       </section>
 
-      {/* Overview Section - Full width */}
+      {/* Overview Section - Using semantic article */}
       <section className="container max-w-6xl mx-auto px-4 md:px-8 mt-0 mb-10">
         <article className="bg-white rounded-2xl shadow-lg p-8 md:p-14">
           <header>
@@ -215,7 +205,7 @@ export default function SafariDetailsPage({
         </article>
       </section>
 
-      {/* Snapshot Info Cards - With varied color themes */}
+      {/* Snapshot Info Cards - Using semantic elements */}
       <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[
@@ -255,9 +245,9 @@ export default function SafariDetailsPage({
                 className={`rounded-xl shadow-lg hover:shadow-xl transition-shadow flex flex-col items-center p-8 text-center h-full ${item.colorClass}`}
               >
                 {item.icon}
-                <span className="font-bold text-sm text-gray-600 uppercase tracking-wider">
+                <h3 className="font-bold text-sm text-gray-600 uppercase tracking-wider">
                   {item.label}
-                </span>
+                </h3>
                 <span className="text-lg font-medium mt-1">{item.value}</span>
               </article>
             </li>
@@ -265,7 +255,7 @@ export default function SafariDetailsPage({
         </ul>
       </section>
 
-      {/* Highlights Section - Row of cards with varied colors */}
+      {/* Highlights Section - Using semantic elements */}
       <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
         <header>
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">
@@ -298,9 +288,9 @@ export default function SafariDetailsPage({
                       iconColors[idx % iconColors.length]
                     } mb-3`}
                   />
-                  <span className="font-medium text-lg md:text-xl">
+                  <h3 className="font-medium text-lg md:text-xl">
                     {highlight}
-                  </span>
+                  </h3>
                 </article>
               </li>
             );
@@ -308,7 +298,7 @@ export default function SafariDetailsPage({
         </ul>
       </section>
 
-      {/* Improved Itinerary Section - Enhanced timeline */}
+      {/* Improved Itinerary Section - Enhanced timeline with semantic elements */}
       <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
         <header>
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">
@@ -325,13 +315,6 @@ export default function SafariDetailsPage({
                 'bg-amber-600',
                 'bg-indigo-600',
                 'bg-rose-600',
-              ];
-              const lineColors = [
-                'bg-primary/40',
-                'bg-teal-600/40',
-                'bg-amber-600/40',
-                'bg-indigo-600/40',
-                'bg-rose-600/40',
               ];
 
               return (
@@ -370,49 +353,59 @@ export default function SafariDetailsPage({
         </article>
       </section>
 
-      {/* FAQ Section - With varied colors */}
+      {/* Redesigned FAQ Section - More visually appealing with accordions */}
       <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
         <header>
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">
             Frequently Asked Questions
           </h2>
         </header>
-        <ul className="space-y-6">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
           {safari.faqs.map((faq, idx) => {
-            const bgColors = ['bg-amber-50', 'bg-teal-50', 'bg-indigo-50'];
             const accentColors = [
-              'text-amber-600',
-              'text-teal-600',
-              'text-indigo-600',
+              'from-amber-50 to-amber-100 border-l-amber-500',
+              'from-teal-50 to-teal-100 border-l-teal-500',
+              'from-indigo-50 to-indigo-100 border-l-indigo-500',
             ];
+            const iconColors = [
+              'text-amber-600 group-open:text-amber-700',
+              'text-teal-600 group-open:text-teal-700',
+              'text-indigo-600 group-open:text-indigo-700',
+            ];
+
             return (
-              <li key={idx}>
-                <article
-                  className={`${
-                    bgColors[idx % bgColors.length]
-                  } rounded-2xl shadow-lg p-6 flex flex-col gap-4`}
+              <details
+                key={idx}
+                className={`group border-b last:border-b-0 border-l-4 ${
+                  accentColors[idx % accentColors.length]
+                }`}
+              >
+                <summary
+                  className={`flex items-center justify-between cursor-pointer p-6 bg-gradient-to-r ${
+                    accentColors[idx % accentColors.length].split(' ')[0]
+                  } ${
+                    accentColors[idx % accentColors.length].split(' ')[1]
+                  } transition-all duration-300`}
                 >
-                  <details className="group flex flex-col gap-4">
-                    <summary className="flex items-center cursor-pointer font-semibold text-base md:text-lg text-gray-800 group-open:text-primary transition-colors">
-                      <ChevronDown
-                        className={`h-5 w-5 mr-3 group-open:rotate-180 transition-transform duration-300 ${
-                          accentColors[idx % accentColors.length]
-                        } flex-shrink-0`}
-                      />
-                      {faq.question}
-                    </summary>
-                    <p className="mt-3 text-gray-700 text-[13px] leading-relaxed pl-12">
-                      {faq.answer}
-                    </p>
-                  </details>
-                </article>
-              </li>
+                  <h3 className="font-semibold text-lg text-gray-800 group-open:text-gray-900">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown
+                    className={`h-5 w-5 ${
+                      iconColors[idx % iconColors.length]
+                    } transition-transform duration-300 group-open:rotate-180`}
+                  />
+                </summary>
+                <div className="p-6 bg-white">
+                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                </div>
+              </details>
             );
           })}
-        </ul>
+        </div>
       </section>
 
-      {/* Sidebar - Booking, Gallery, Features, Help */}
+      {/* Sidebar - Booking, Gallery, Features, Help - Using semantic elements */}
       <aside className="fixed right-8 top-32 w-80 hidden xl:block z-30">
         <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col gap-8">
           <article className="flex flex-col items-center">

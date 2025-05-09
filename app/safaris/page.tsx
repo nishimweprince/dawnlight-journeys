@@ -10,7 +10,7 @@ const safariPackages = [
     duration: '5 days',
     image: '/assets/safaris/gorilla-trekking.jpg',
     description: 'Get up close with endangered mountain gorillas in their natural habitat.',
-    url: '/safaris',
+    url: '/safaris/gorilla-trekking',
     faqs: [
       {
         question: 'How difficult is the gorilla trekking?',
@@ -29,7 +29,7 @@ const safariPackages = [
     duration: '7 days',
     image: '/assets/safaris/wildlife-sararis.jpg',
     description: "Experience the Big Five and stunning landscapes in Rwanda's premier national park.",
-    url: '/safaris',
+    url: '/safaris/rwanda-wildlife-safari',
     faqs: [
       {
         question: 'What animals can I expect to see?',
@@ -48,7 +48,7 @@ const safariPackages = [
     duration: '6 days',
     image: '/assets/safaris/uganda-primate-experience.jpg',
     description: 'Track chimpanzees and other primates in the lush forests of Uganda.',
-    url: '/safaris',
+    url: '/safaris/uganda-primate-experience',
     faqs: [
       {
         question: 'What primates will I see?',
@@ -67,7 +67,7 @@ const safariPackages = [
     duration: '4 days',
     image: '/assets/common/placeholder.svg',
     description: 'Experience diverse wildlife including tree-climbing lions and boat safaris on the Kazinga Channel.',
-    url: '/safaris',
+    url: '/safaris/queen-elizabeth-wildlife-safari',
     faqs: [
       {
         question: 'What makes this park unique?',
@@ -86,7 +86,7 @@ const safariPackages = [
     duration: '3 days',
     image: '/assets/common/placeholder.svg',
     description: 'Hike through volcanic landscapes and encounter golden monkeys in their natural habitat.',
-    url: '/safaris',
+    url: '/safaris/volcanoes-national-park-trek',
     faqs: [
       {
         question: "What's the hiking difficulty?",
@@ -105,7 +105,7 @@ const safariPackages = [
     duration: '5 days',
     image: '/assets/common/placeholder.svg',
     description: "Witness the powerful Murchison Falls and enjoy game drives in Uganda's largest national park.",
-    url: '/safaris',
+    url: '/safaris/murchison-falls-safari',
     faqs: [
       {
         question: 'What activities are included?',
@@ -124,7 +124,7 @@ const safariPackages = [
     duration: '4 days',
     image: '/assets/common/placeholder.svg',
     description: "Explore one of Africa's oldest rainforests and track chimpanzees in their natural environment.",
-    url: '/safaris',
+    url: '/safaris/nyungwe-forest-experience',
     faqs: [
       {
         question: "What makes Nyungwe special?",
