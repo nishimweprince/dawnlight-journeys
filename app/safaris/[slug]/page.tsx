@@ -98,9 +98,10 @@ function getSafariBySlug(slug: string) {
 export default function SafariDetailsPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const safari = getSafariBySlug(params.slug);
+  const { slug } = React.use(params);
+  const safari = getSafariBySlug(slug);
   if (!safari) return notFound();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -125,12 +126,14 @@ export default function SafariDetailsPage({
     return () => clearInterval(interval);
   }, []);
 
+  // FAQs
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
   return (
-    <main className="min-h-screen flex flex-col gap-8 bg-gradient-to-b from-orange-50 to-white pb-16">
-      {/* Hero Section - Enhanced height to minimum 50vh */}
-      <section className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] flex items-end overflow-hidden mb-0">
-        {/* Image Slider */}
-        <figure className="absolute inset-0 w-full h-[50vh]">
+    <main className="min-h-screen flex flex-col gap-8 pb-12 bg-primary-50">
+      {/* Hero Section */}
+      <header className="relative w-full flex items-end overflow-hidden h-[60vh] rounded-b-3xl shadow-lg">
+        <figure className="absolute inset-0 w-full h-full">
           {safari.images.map((image, index) => (
             <img
               key={index}
@@ -141,19 +144,20 @@ export default function SafariDetailsPage({
               }`}
             />
           ))}
+          <figure className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-900/40 to-transparent" />
         </figure>
 
         {/* Image navigation controls */}
         <button
           onClick={prevImage}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full z-20 transition-all"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary-900/50 hover:bg-primary-900/70 text-white p-3 rounded-full z-20 transition-all"
           aria-label="Previous image"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={nextImage}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-3 rounded-full z-20 transition-all"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary-900/50 hover:bg-primary-900/70 text-white p-3 rounded-full z-20 transition-all"
           aria-label="Next image"
         >
           <ChevronRight className="h-6 w-6" />
@@ -175,299 +179,261 @@ export default function SafariDetailsPage({
           ))}
         </nav>
 
-        <mark className="absolute h-[50vh] inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        <header className="relative h-[50vh] z-10 p-8 md:p-16 text-white max-w-5xl mx-auto w-full">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
+        <section className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center p-8">
+          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
             {safari.title}
           </h1>
-          <ul className="flex flex-wrap items-center gap-6 mb-2">
-            <li className="flex items-center gap-2 text-xl font-medium">
-              <MapPin className="h-6 w-6" /> {safari.location}
+          <ul className="flex flex-wrap items-center justify-center gap-8 text-lg font-medium">
+            <li className="flex items-center gap-2 text-lg font-medium">
+              <MapPin className="h-5 w-5" /> {safari.location}
             </li>
-            <li className="flex items-center gap-2 text-xl font-medium">
-              <Clock className="h-6 w-6" /> {safari.duration}
+            <li className="flex items-center gap-2 text-lg font-medium">
+              <Clock className="h-5 w-5" /> {safari.duration}
             </li>
           </ul>
-        </header>
-      </section>
+        </section>
+      </header>
 
-      {/* Overview Section - Using semantic article */}
-      <section className="container max-w-6xl mx-auto px-4 md:px-8 mt-0 mb-10">
-        <article className="bg-white rounded-2xl shadow-lg p-8 md:p-14">
-          <header>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
-              Overview
-            </h2>
-          </header>
-          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+      {/* Overview Section */}
+      <section className="container mx-auto px-4 md:px-8">
+        <article className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary-900">
+            Overview
+          </h2>
+          <p className="text-base md:text-lg text-primary-800 leading-relaxed">
             {safari.description}
           </p>
         </article>
       </section>
 
-      {/* Snapshot Info Cards - Using semantic elements */}
-      <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {[
-            {
-              icon: <Clock className="h-8 w-8 text-teal-600 mb-2" />,
-              label: 'Duration',
-              value: safari.duration,
-              colorClass: 'bg-teal-50 hover:bg-teal-100',
-            },
-            {
-              icon: <MapPin className="h-8 w-8 text-amber-600 mb-2" />,
-              label: 'Location',
-              value: safari.location,
-              colorClass: 'bg-amber-50 hover:bg-amber-100',
-            },
-            {
-              icon: <Calendar className="h-8 w-8 text-indigo-600 mb-2" />,
-              label: 'Best Time',
-              value: safari.bestTime,
-              colorClass: 'bg-indigo-50 hover:bg-indigo-100',
-            },
-            {
-              icon: <Users className="h-8 w-8 text-rose-600 mb-2" />,
-              label: 'Group Size',
-              value: safari.groupSize,
-              colorClass: 'bg-rose-50 hover:bg-rose-100',
-            },
-            {
-              icon: <TrendingUp className="h-8 w-8 text-emerald-600 mb-2" />,
-              label: 'Difficulty',
-              value: safari.difficulty,
-              colorClass: 'bg-emerald-50 hover:bg-emerald-100',
-            },
-          ].map((item, idx) => (
-            <li key={idx}>
-              <article
-                className={`rounded-xl shadow-lg hover:shadow-xl transition-shadow flex flex-col items-center p-8 text-center h-full ${item.colorClass}`}
-              >
-                {item.icon}
-                <h3 className="font-bold text-sm text-gray-600 uppercase tracking-wider">
-                  {item.label}
+      {/* Snapshot Info Cards */}
+      <section className="container mx-auto px-4 md:px-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+          <li>
+            <article className="rounded-2xl shadow-lg bg-white p-8 flex flex-col items-center text-center h-full transition-transform hover:scale-105 hover:shadow-2xl">
+              <figure className="bg-primary-100 p-3 rounded-full mb-2">
+                <Clock className="h-8 w-8 text-primary-700" />
+              </figure>
+              <h3 className="font-bold text-sm text-primary-600 uppercase tracking-wider">
+                Duration
+              </h3>
+              <span className="text-lg font-medium mt-1 text-primary-900">
+                {safari.duration}
+              </span>
+            </article>
+          </li>
+          <li>
+            <article className="rounded-2xl shadow-lg bg-white p-8 flex flex-col items-center text-center h-full transition-transform hover:scale-105 hover:shadow-2xl">
+              <figure className="bg-primary-100 p-3 rounded-full mb-2">
+                <MapPin className="h-8 w-8 text-primary-700" />
+              </figure>
+              <h3 className="font-bold text-sm text-primary-600 uppercase tracking-wider">
+                Location
+              </h3>
+              <span className="text-lg font-medium mt-1 text-primary-900">
+                {safari.location}
+              </span>
+            </article>
+          </li>
+          <li>
+            <article className="rounded-2xl shadow-lg bg-white p-8 flex flex-col items-center text-center h-full transition-transform hover:scale-105 hover:shadow-2xl">
+              <figure className="bg-primary-100 p-3 rounded-full mb-2">
+                <Calendar className="h-8 w-8 text-primary-700" />
+              </figure>
+              <h3 className="font-bold text-sm text-primary-600 uppercase tracking-wider">
+                Best Time
+              </h3>
+              <span className="text-lg font-medium mt-1 text-primary-900">
+                {safari.bestTime}
+              </span>
+            </article>
+          </li>
+          <li>
+            <article className="rounded-2xl shadow-lg bg-white p-8 flex flex-col items-center text-center h-full transition-transform hover:scale-105 hover:shadow-2xl">
+              <figure className="bg-primary-100 p-3 rounded-full mb-2">
+                <Users className="h-8 w-8 text-primary-700" />
+              </figure>
+              <h3 className="font-bold text-sm text-primary-600 uppercase tracking-wider">
+                Group Size
+              </h3>
+              <span className="text-lg font-medium mt-1 text-primary-900">
+                {safari.groupSize}
+              </span>
+            </article>
+          </li>
+          <li>
+            <article className="rounded-2xl shadow-lg bg-white p-8 flex flex-col items-center text-center h-full transition-transform hover:scale-105 hover:shadow-2xl">
+              <figure className="bg-primary-100 p-3 rounded-full mb-2">
+                <TrendingUp className="h-8 w-8 text-primary-700" />
+              </figure>
+              <h3 className="font-bold text-sm text-primary-600 uppercase tracking-wider">
+                Difficulty
+              </h3>
+              <span className="text-lg font-medium mt-1 text-primary-900">
+                {safari.difficulty}
+              </span>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      {/* Highlights Section */}
+      <section className="container mx-auto px-4 md:px-8">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary-900">
+          Highlights
+        </h2>
+        <ul className="flex overflow-x-auto gap-6 py-2 md:grid md:grid-cols-4 md:gap-6">
+          {safari.highlights.map((highlight, idx) => (
+            <li key={idx} className="min-w-[220px]">
+              <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center h-full transition hover:shadow-xl">
+                <figure className="bg-gradient-to-br from-primary-100 to-primary-200 p-3 rounded-full mb-3">
+                  <Star className="h-7 w-7 text-primary-700" />
+                </figure>
+                <h3 className="font-medium text-lg text-primary-800">
+                  {highlight}
                 </h3>
-                <span className="text-lg font-medium mt-1">{item.value}</span>
               </article>
             </li>
           ))}
         </ul>
       </section>
 
-      {/* Highlights Section - Using semantic elements */}
-      <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
-        <header>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">
-            Highlights
-          </h2>
-        </header>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-          {safari.highlights.map((highlight, idx) => {
-            const colors = [
-              'bg-amber-50 text-amber-700',
-              'bg-teal-50 text-teal-700',
-              'bg-indigo-50 text-indigo-700',
-              'bg-rose-50 text-rose-700',
-            ];
-            const iconColors = [
-              'text-amber-500',
-              'text-teal-500',
-              'text-indigo-500',
-              'text-rose-500',
-            ];
-            return (
-              <li key={idx}>
-                <article
-                  className={`${
-                    colors[idx % colors.length]
-                  } rounded-2xl shadow-lg p-8 flex flex-col items-center text-center h-full`}
-                >
-                  <Star
-                    className={`h-8 w-8 ${
-                      iconColors[idx % iconColors.length]
-                    } mb-3`}
-                  />
-                  <h3 className="font-medium text-lg md:text-xl">
-                    {highlight}
-                  </h3>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      {/* Improved Itinerary Section - Enhanced timeline with semantic elements */}
-      <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
-        <header>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">
-            Itinerary
-          </h2>
-        </header>
-        <article className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-          <ol className="relative border-l-4 border-primary/30 ml-4">
-            {safari.itinerary.map((day, idx) => {
-              // Alternate colors for timeline markers
-              const markerColors = [
-                'bg-primary',
-                'bg-teal-600',
-                'bg-amber-600',
-                'bg-indigo-600',
-                'bg-rose-600',
-              ];
-
-              return (
-                <li
-                  key={day.day}
-                  className={`mb-12 flex flex-col ml-6 relative ${
-                    idx === safari.itinerary.length - 1 ? 'pb-0' : 'pb-8'
-                  }`}
-                >
-                  <header className="flex items-center gap-4">
-                    <figure className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-md font-bold">
-                      {day.day}
-                    </figure>
-                    <h3
-                      className={`text-lg font-bold ${
-                        idx % 2 === 0
-                          ? 'text-primary'
-                          : markerColors[idx % markerColors.length].replace(
-                              'bg-',
-                              'text-'
-                            )
-                      }`}
-                    >
+      {/* Itinerary Section */}
+      <section className="container mx-auto px-4 md:px-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-8">
+          Itinerary
+        </h2>
+        <article className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+          <ol className="relative border-l-2 border-primary-200 ml-4 md:ml-6">
+            {safari.itinerary.map((day, idx) => (
+              <li
+                key={day.day}
+                className="mb-12 last:mb-0 ml-6 md:ml-8 relative"
+              >
+                <figure className="absolute -left-10 w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center border-2 border-primary-200">
+                  <span className="text-sm font-semibold text-primary-700">
+                    {idx + 1}
+                  </span>
+                </figure>
+                <section className="pt-2">
+                  <header className="mb-3">
+                    <h3 className="text-xl font-bold text-primary-800">
                       {day.title}
                     </h3>
                   </header>
-                  <section className="mt-2">
-                    <p className="text-gray-700 text-base leading-relaxed">
-                      {day.details}
-                    </p>
-                  </section>
-                </li>
-              );
-            })}
+                  <p className="text-primary-700 text-base leading-relaxed">
+                    {day.details}
+                  </p>
+                </section>
+              </li>
+            ))}
           </ol>
         </article>
       </section>
 
-      {/* Redesigned FAQ Section - More visually appealing with accordions */}
-      <section className="container max-w-6xl mx-auto px-4 md:px-8 mb-12">
-        <header>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-primary">
-            Frequently Asked Questions
-          </h2>
-        </header>
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          {safari.faqs.map((faq, idx) => {
-            const accentColors = [
-              'from-amber-50 to-amber-100 border-l-amber-500',
-              'from-teal-50 to-teal-100 border-l-teal-500',
-              'from-indigo-50 to-indigo-100 border-l-indigo-500',
-            ];
-            const iconColors = [
-              'text-amber-600 group-open:text-amber-700',
-              'text-teal-600 group-open:text-teal-700',
-              'text-indigo-600 group-open:text-indigo-700',
-            ];
-
-            return (
-              <details
-                key={idx}
-                className={`group border-b last:border-b-0 border-l-4 ${
-                  accentColors[idx % accentColors.length]
+      {/* FAQs */}
+      <section className="container mx-auto px-4 md:px-8">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary-900 flex items-center gap-2">
+          <span>Frequently Asked Questions</span>
+          <span className="text-sm font-normal text-primary-600">
+            ({safari.faqs.length})
+          </span>
+        </h2>
+        <ul className="space-y-4">
+          {safari.faqs.map((faq, idx) => (
+            <li
+              key={idx}
+              className={`rounded-xl bg-white shadow border transition-all ${
+                activeFaq === idx
+                  ? 'border-primary-300 ring-2 ring-primary-200'
+                  : 'border-primary-100'
+              }`}
+            >
+              <button
+                onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                className="w-full flex items-center justify-between p-5 text-left font-medium text-primary-800 hover:text-primary-900 transition-colors"
+              >
+                <span className="flex items-center gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-800 flex items-center justify-center text-sm font-semibold">
+                    {idx + 1}
+                  </span>
+                  <span>{faq.question}</span>
+                </span>
+                <ChevronDown
+                  className={`h-5 w-5 transition-transform duration-300 text-primary-600 ${
+                    activeFaq === idx ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+              <section
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  activeFaq === idx
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                 }`}
               >
-                <summary
-                  className={`flex items-center justify-between cursor-pointer p-6 bg-gradient-to-r ${
-                    accentColors[idx % accentColors.length].split(' ')[0]
-                  } ${
-                    accentColors[idx % accentColors.length].split(' ')[1]
-                  } transition-all duration-300`}
-                >
-                  <h3 className="font-semibold text-lg text-gray-800 group-open:text-gray-900">
-                    {faq.question}
-                  </h3>
-                  <ChevronDown
-                    className={`h-5 w-5 ${
-                      iconColors[idx % iconColors.length]
-                    } transition-transform duration-300 group-open:rotate-180`}
-                  />
-                </summary>
-                <div className="p-6 bg-white">
-                  <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                </div>
-              </details>
-            );
-          })}
-        </div>
+                <article className="p-5 pt-0 text-primary-700 border-t border-primary-100">
+                  <p className="leading-relaxed">{faq.answer}</p>
+                </article>
+              </section>
+            </li>
+          ))}
+        </ul>
       </section>
 
-      {/* Sidebar - Booking, Gallery, Features, Help - Using semantic elements */}
-      <aside className="fixed right-8 top-32 w-80 hidden xl:block z-30">
-        <section className="bg-white rounded-2xl shadow-xl p-8 flex flex-col gap-8">
+      {/* Sidebar - Booking, Gallery, Features, Help */}
+      <aside className="fixed right-8 top-20 w-80 hidden xl:block z-30">
+        <section className="bg-white rounded-lg shadow-lg p-6 flex flex-col gap-6">
           <article className="flex flex-col items-center">
             <CustomButton
               variant="primary"
               size="lg"
               href="https://wa.me/250785917385"
-              className="w-full py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-shadow"
             >
               <Send className="h-5 w-5 mr-2" /> Book or Inquire Now
             </CustomButton>
           </article>
+
           <article>
-            <h4 className="text-xl font-bold mb-4 text-primary">
+            <h4 className="text-lg font-bold mb-3 text-primary-900">
               Gallery Preview
             </h4>
-            <ul className="grid grid-cols-2 gap-3">
+            <ul className="grid grid-cols-2 gap-2">
               {safari.images.slice(0, 4).map((image, idx) => (
                 <li key={idx}>
-                  <figure>
-                    <img
-                      src={image}
-                      alt={`Gallery preview ${idx + 1}`}
-                      className="rounded-lg h-24 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
-                      onClick={() => setCurrentImageIndex(idx)}
-                    />
-                  </figure>
+                  <img
+                    src={image}
+                    alt={`Gallery preview ${idx + 1}`}
+                    className="rounded-md h-20 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
+                    onClick={() => setCurrentImageIndex(idx)}
+                  />
                 </li>
               ))}
             </ul>
           </article>
+
           <article>
-            <h4 className="text-xl font-bold mb-4 text-primary">
+            <h4 className="text-lg font-bold mb-3 text-primary-900">
               Package Features
             </h4>
-            <ul className="space-y-3">
-              {safari.highlights.map((item, idx) => {
-                const starColors = [
-                  'text-amber-500',
-                  'text-teal-500',
-                  'text-indigo-500',
-                  'text-rose-500',
-                ];
-                return (
-                  <li
-                    key={idx}
-                    className="flex items-center gap-3 text-gray-700"
-                  >
-                    <Star
-                      className={`h-5 w-5 ${
-                        starColors[idx % starColors.length]
-                      } flex-shrink-0`}
-                    />
-                    <span className="text-base">{item}</span>
-                  </li>
-                );
-              })}
+            <ul className="space-y-2">
+              {safari.highlights.map((item, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-center gap-2 text-primary-800"
+                >
+                  <Star className="h-4 w-4 text-primary-700 flex-shrink-0" />
+                  <span className="text-sm">{item}</span>
+                </li>
+              ))}
             </ul>
           </article>
-          <article className="bg-gradient-to-br from-amber-50 to-orange-50 p-5 rounded-xl">
-            <h4 className="text-xl font-bold mb-2 text-primary">Need Help?</h4>
-            <p className="text-gray-700 mb-4">
+
+          <article className="bg-primary-50 p-4 rounded-lg border border-primary-100">
+            <h4 className="text-lg font-bold mb-2 text-primary-900">
+              Need Help?
+            </h4>
+            <p className="text-primary-700 mb-4 text-sm">
               Our safari experts are ready to assist you with any questions
               about this experience.
             </p>
@@ -475,7 +441,7 @@ export default function SafariDetailsPage({
               variant="outline"
               size="default"
               href="tel:+250785917385"
-              className="w-full"
+              className="w-full border-primary-300 text-primary-800 hover:bg-primary-100"
             >
               Contact Us
             </CustomButton>

@@ -161,9 +161,9 @@ const SafariFAQ = ({ faqs }: { faqs: { question: string; answer: string }[] }) =
 
 export default function SafarisPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white pb-16">
+    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Hero Section */}
-      <section className="relative h-[700px] md:h-[800px] flex items-center justify-center mb-12 overflow-hidden px-4 md:px-8 lg:px-16 py-8 md:py-16 lg:py-20">
+      <section className="relative h-[40vh] md:h-[50vh] flex items-center justify-center mb-12 overflow-hidden px-4 md:px-8 lg:px-16 py-8 md:py-16 lg:py-20">
         <img
           src="/assets/safaris/gorilla-trekking.jpg"
           alt="Safari Hero"
@@ -172,23 +172,23 @@ export default function SafarisPage() {
         <section className="py-16 absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
         <section className="relative py-12 px-6 z-10 text-center text-white max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-8 drop-shadow-lg">Safari Adventures</h1>
-          <p className="text-lg md:text-2xl max-w-2xl mx-auto drop-shadow px-4">
+          <p className="text-[15px] md:text-[15px] max-w-2xl mx-auto drop-shadow px-4">
             Discover Africa's most breathtaking wildlife experiences and create memories that last a lifetime.
           </p>
         </section>
       </section>
 
       {/* Description Section */}
-      <section className="container max-w-4xl mx-auto px-4 mb-4 rounded-md">
+      <section className="container mx-auto px-4 mb-4 rounded-md">
         <article className="bg-white rounded-2xl shadow-lg p-4 md:p-8">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-primary">Our Safari Packages</h2>
-          <p className="text-base md:text-lg text-gray-700 mb-4">
+          <p className="text-[15px] md:text-[15px] text-gray-700 mb-4">
             At Dawnlight Journeys, we curate exceptional safari experiences that combine adventure, wildlife encounters, and cultural immersion. Our carefully designed packages take you through Uganda and Rwanda's most spectacular landscapes and wildlife reserves.
           </p>
-          <p className="text-base md:text-lg text-gray-700 mb-4">
+          <p className="text-[15px] md:text-[15px] text-gray-700 mb-4">
             From tracking mountain gorillas in their natural habitat to witnessing the Big Five on thrilling game drives, each safari is crafted to provide an unforgettable journey. Our expert guides ensure your safety while maximizing wildlife viewing opportunities.
           </p>
-          <p className="text-base md:text-lg text-gray-700">
+          <p className="text-[15px] md:text-[15px] text-gray-700">
             Whether you're seeking a short wildlife excursion or an extended adventure, our diverse range of packages caters to all preferences and durations. Each safari includes comfortable accommodations, experienced guides, and all necessary permits.
           </p>
         </article>
@@ -208,17 +208,17 @@ export default function SafarisPage() {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <figcaption className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-4">
-                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold shadow">
+                <span className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-[15px] font-semibold shadow">
                   {safari.duration}
                 </span>
               </figcaption>
             </figure>
             <header className="p-6 pb-0">
               <h2 className="text-2xl font-bold mb-1 text-primary group-hover:underline">{safari.title}</h2>
-              <p className="text-sm text-muted-foreground mb-1">{safari.location}</p>
+              <p className="text-[15px] text-muted-foreground mb-1">{safari.location}</p>
             </header>
             <section className="p-6 pt-2 flex-1 flex flex-col">
-              <p className="mb-4 flex-1 text-gray-700">{safari.description}</p>
+              <p className="mb-4 flex-1 text-[15px] text-gray-700">{safari.description}</p>
               <CustomButton variant="primary" size="sm" href={safari.url} className="w-full mb-4">
                 View Details
               </CustomButton>
@@ -229,4 +229,4 @@ export default function SafarisPage() {
       </section>
     </main>
   );
-} 
+}

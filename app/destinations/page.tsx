@@ -24,7 +24,7 @@ export default function DestinationsPage() {
   return (
     <main className="min-h-screen flex flex-col gap-16 bg-gradient-to-b from-orange-50 to-white pb-16">
       {/* Hero Section */}
-      <header className="relative h-[400px] md:h-[500px] flex items-center justify-center mb-16 overflow-hidden px-4 md:px-8 lg:px-16 py-8 md:py-16 lg:py-20">
+      <header className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden px-4 md:px-8 lg:px-16 py-8 md:py-16 lg:py-20">
         <img
           src="/assets/destinations/rwanda-tourism.jpg"
           alt="Destinations Hero"
@@ -40,8 +40,8 @@ export default function DestinationsPage() {
       </header>
 
       {/* Destinations Cards */}
-      <section id="destinations" className="container mx-auto mt-16">
-        <section className="grid md:grid-cols-2 gap-10 justify-between mt-16">
+      <section id="destinations" className="container mx-auto">
+        <section className="grid md:grid-cols-2 gap-10 justify-between">
           {destinations.map((destination) => (
             <figure key={destination.id} className="group relative overflow-hidden rounded-xl">
               <img
