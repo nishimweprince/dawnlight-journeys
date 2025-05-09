@@ -1,6 +1,7 @@
 import type React from "react"
 import { Camera, Coffee, Compass, Users } from "lucide-react"
 import { CustomButton } from "./ui/custom-button"
+import Link from "next/link"
 
 const experiences = [
   {
@@ -55,9 +56,9 @@ export function Experiences() {
                 </figure>
                 <h3 className="text-xl font-bold mb-2">{experience.title}</h3>
                 <p className="text-muted-foreground mb-4">{experience.description}</p>
-                <a href={experience.url} className="text-primary font-medium hover:underline inline-flex items-center">
+                <Link href={experience.url} className="text-primary font-medium hover:underline inline-flex items-center">
                   Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </a>
+                </Link>
               </article>
             )
           })}
