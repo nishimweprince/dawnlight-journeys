@@ -16,83 +16,10 @@ import {
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
-// Mock safari data (replace with real data fetching in the future)
-const safariPackages = [
-  {
-    slug: 'gorilla-trekking',
-    title: 'Gorilla Trekking Adventure',
-    location: 'Bwindi Impenetrable Forest, Uganda',
-    duration: '5 days',
-    images: [
-      '/assets/common/placeholder.svg',
-      '/assets/common/placeholder.svg',
-      '/assets/common/placeholder.svg',
-      '/assets/common/placeholder.svg',
-    ],
-    description:
-      'Get up close with endangered mountain gorillas in their natural habitat. This adventure takes you deep into the forests of Uganda, guided by expert trackers, for a once-in-a-lifetime wildlife encounter.',
-    highlights: [
-      'Guided gorilla trekking experience',
-      'Visit local communities and cultural sites',
-      'Scenic drives through the Ugandan countryside',
-      'All permits and park fees included',
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: 'Arrival in Entebbe',
-        details:
-          'Arrive at Entebbe International Airport, transfer to your hotel, and meet your guide for a briefing.',
-      },
-      {
-        day: 2,
-        title: 'Transfer to Bwindi',
-        details:
-          'Drive through beautiful landscapes to Bwindi Impenetrable Forest. Evening at leisure.',
-      },
-      {
-        day: 3,
-        title: 'Gorilla Trekking',
-        details:
-          'Early morning trek to find gorilla families. Spend an hour observing them in their natural habitat.',
-      },
-      {
-        day: 4,
-        title: 'Community Visit & Relaxation',
-        details:
-          'Visit a local village or relax at your lodge. Optional nature walks available.',
-      },
-      {
-        day: 5,
-        title: 'Return to Entebbe & Departure',
-        details: 'Drive back to Entebbe for your onward flight.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'How difficult is the gorilla trekking?',
-        answer:
-          'It can be moderately to highly physically demanding, depending on the gorilla location. Treks can last from 30 minutes to 6+ hours.',
-      },
-      {
-        question: 'What should I bring for the trek?',
-        answer:
-          'Sturdy hiking boots, rain jacket, long pants, gloves, and a camera are recommended.',
-      },
-      {
-        question: 'Are gorilla permits included?',
-        answer:
-          'Yes, all necessary permits and park fees are included in the package.',
-      },
-    ],
-    bestTime: 'June - September',
-    groupSize: '2-8 people',
-    difficulty: 'Moderate',
-  },
-];
+import { safariPackages } from '../../../src/constants/safaris';
 
 function getSafariBySlug(slug: string) {
-  return safariPackages?.[0];
+  return safariPackages.find(safari => safari.slug === slug);
 }
 
 export default function SafariDetailsPage({
