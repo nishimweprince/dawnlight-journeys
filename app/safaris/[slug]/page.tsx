@@ -32,7 +32,7 @@ export default function SafariDetailsPage({
   if (!safari) return notFound();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === (safari?.images?.length || 0) - 1 ? 0 : prevIndex + 1
@@ -308,72 +308,89 @@ export default function SafariDetailsPage({
         </ul>
       </section>
 
-      {/* Sidebar - Booking, Gallery, Features, Help */}
+      {/* Collapsible Sidebar - Booking, Gallery, Features, Help */}
       <aside className="fixed right-8 top-20 w-80 hidden xl:block z-30">
-        <section className="bg-white rounded-lg shadow-lg p-6 flex flex-col gap-6">
-          <article className="flex flex-col items-center">
-            <CustomButton
-              variant="primary"
-              size="lg"
-              href="https://wa.me/250785917385"
-            >
-              <Send className="h-5 w-5 mr-2" /> Book or Inquire Now
-            </CustomButton>
-          </article>
+        <nav className="bg-white rounded-lg shadow-lg overflow-hidden">
+          {/* Collapsed State */}
+          <button 
+            onClick={(e) => {
+              e.preventDefault();
+              setIsSidebarExpanded(!isSidebarExpanded);
+            }}
+            className="w-full p-4 flex items-center justify-between bg-primary-600 text-primary hover:bg-primary-700 transition-colors"
+          >
+            <span className="font-medium">Safari Details</span>
+            <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${isSidebarExpanded ? 'rotate-180' : ''}`} />
+          </button>
 
-          <article>
-            <h4 className="text-lg font-bold mb-3 text-primary-900">
-              Gallery Preview
-            </h4>
-            <ul className="grid grid-cols-2 gap-2">
-              {safari?.images?.slice(0, 4).map((image, idx) => (
-                <li key={idx}>
-                  <img
-                    src={image}
-                    alt={`Gallery preview ${idx + 1}`}
-                    className="rounded-md h-20 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
-                    onClick={() => setCurrentImageIndex(idx)}
-                  />
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article>
-            <h4 className="text-lg font-bold mb-3 text-primary-900">
-              Package Features
-            </h4>
-            <ul className="space-y-2">
-              {safari?.highlights?.map((item, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-center gap-2 text-primary-800"
+          {/* Expanded Content */}
+          <nav className={`transition-all duration-300 ease-in-out ${isSidebarExpanded ? 'max-h-[70vh] overflow-y-auto opacity-100' : 'max-h-0 opacity-0'}`}>
+            <menu className="p-6 flex flex-col gap-6">
+              <article className="flex flex-col items-center">
+                <CustomButton
+                  variant="primary"
+                  size="lg"
+                  href="https://wa.me/250785917385"
                 >
-                  <Star className="h-4 w-4 text-primary-700 flex-shrink-0" />
-                  <span className="text-sm">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+                  <Send className="h-5 w-5 mr-2" /> Book or Inquire Now
+                </CustomButton>
+              </article>
 
-          <article className="bg-primary-50 p-4 rounded-lg border border-primary-100">
-            <h4 className="text-lg font-bold mb-2 text-primary-900">
-              Need Help?
-            </h4>
-            <p className="text-primary-700 mb-4 text-sm">
-              Our safari experts are ready to assist you with any questions
-              about this experience.
-            </p>
-            <CustomButton
-              variant="outline"
-              size="default"
-              href="tel:+250785917385"
-              className="w-full border-primary-300 text-primary-800 hover:bg-primary-100"
-            >
-              Contact Us
-            </CustomButton>
-          </article>
-        </section>
+              <article>
+                <h4 className="text-lg font-bold mb-3 text-primary-900">
+                  Gallery Preview
+                </h4>
+                <ul className="grid grid-cols-2 gap-2">
+                  {safari?.images?.slice(0, 4).map((image, idx) => (
+                    <li key={idx}>
+                      <img
+                        src={image}
+                        alt={`Gallery preview ${idx + 1}`}
+                        className="rounded-md h-20 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
+                        onClick={() => setCurrentImageIndex(idx)}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article>
+                <h4 className="text-lg font-bold mb-3 text-primary-900">
+                  Package Features
+                </h4>
+                <ul className="space-y-2">
+                  {safari?.highlights?.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-center gap-2 text-primary-800"
+                    >
+                      <Star className="h-4 w-4 text-primary-700 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="bg-primary-50 p-4 rounded-lg border border-primary-100">
+                <h4 className="text-lg font-bold mb-2 text-primary-900">
+                  Need Help?
+                </h4>
+                <p className="text-primary-700 mb-4 text-sm">
+                  Our safari experts are ready to assist you with any questions
+                  about this experience.
+                </p>
+                <CustomButton
+                  variant="outline"
+                  size="default"
+                  href="tel:+250785917385"
+                  className="w-full border-primary-300 text-primary-800 hover:bg-primary-100"
+                >
+                  Contact Us
+                </CustomButton>
+              </article>
+            </menu>
+          </nav>
+        </nav>
       </aside>
     </main>
   );
