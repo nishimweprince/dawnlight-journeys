@@ -1,35 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import { CustomButton } from "./ui/custom-button"
-
-const safariPackages = [
-  {
-    id: 1,
-    title: "Gorilla Trekking Adventure",
-    location: "Bwindi Impenetrable Forest, Uganda",
-    duration: "5 days",
-    image: "/assets/safaris/gorilla-trekking.jpg",
-    description: "Get up close with endangered mountain gorillas in their natural habitat.",
-    url: "/safaris/gorilla-trekking",
-  },
-  {
-    id: 2,
-    title: "Rwanda Wildlife Safari",
-    location: "Akagera National Park, Rwanda",
-    duration: "7 days",
-    image: "/assets/safaris/wildlife-sararis.jpg",
-    description: "Experience the Big Five and stunning landscapes in Rwanda's premier national park.",
-    url: "/safaris/rwanda-wildlife",
-  },
-  {
-    id: 3,
-    title: "Uganda Primate Experience",
-    location: "Kibale Forest, Uganda",
-    duration: "6 days",
-    image: "/assets/safaris/uganda-primate-experience.jpg",
-    description: "Track chimpanzees and other primates in the lush forests of Uganda.",
-    url: "/safaris/uganda-primates",
-  },
-]
+import { safariPackages } from "../constants/safaris"
 
 export function Safaris() {
   return (
@@ -48,14 +19,14 @@ export function Safaris() {
         </header>
 
         <article className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {safariPackages.map((safari) => (
+          {safariPackages.slice(0, 6).map((safari) => (
             <figure
               key={safari.id}
               className="group bg-background rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-shadow"
             >
               <section className="relative overflow-hidden">
                 <img
-                  src={safari.image || "/placeholder.svg"}
+                  src={safari.image || "/assets/common/placeholder.svg"}
                   alt={safari.title}
                   className="w-full aspect-[3/2] object-cover transition-transform duration-300 group-hover:scale-105"
                 />

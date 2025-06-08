@@ -16,83 +16,10 @@ import {
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 
-// Mock safari data (replace with real data fetching in the future)
-const safariPackages = [
-  {
-    slug: 'gorilla-trekking',
-    title: 'Gorilla Trekking Adventure',
-    location: 'Bwindi Impenetrable Forest, Uganda',
-    duration: '5 days',
-    images: [
-      '/assets/common/placeholder.svg',
-      '/assets/common/placeholder.svg',
-      '/assets/common/placeholder.svg',
-      '/assets/common/placeholder.svg',
-    ],
-    description:
-      'Get up close with endangered mountain gorillas in their natural habitat. This adventure takes you deep into the forests of Uganda, guided by expert trackers, for a once-in-a-lifetime wildlife encounter.',
-    highlights: [
-      'Guided gorilla trekking experience',
-      'Visit local communities and cultural sites',
-      'Scenic drives through the Ugandan countryside',
-      'All permits and park fees included',
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: 'Arrival in Entebbe',
-        details:
-          'Arrive at Entebbe International Airport, transfer to your hotel, and meet your guide for a briefing.',
-      },
-      {
-        day: 2,
-        title: 'Transfer to Bwindi',
-        details:
-          'Drive through beautiful landscapes to Bwindi Impenetrable Forest. Evening at leisure.',
-      },
-      {
-        day: 3,
-        title: 'Gorilla Trekking',
-        details:
-          'Early morning trek to find gorilla families. Spend an hour observing them in their natural habitat.',
-      },
-      {
-        day: 4,
-        title: 'Community Visit & Relaxation',
-        details:
-          'Visit a local village or relax at your lodge. Optional nature walks available.',
-      },
-      {
-        day: 5,
-        title: 'Return to Entebbe & Departure',
-        details: 'Drive back to Entebbe for your onward flight.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'How difficult is the gorilla trekking?',
-        answer:
-          'It can be moderately to highly physically demanding, depending on the gorilla location. Treks can last from 30 minutes to 6+ hours.',
-      },
-      {
-        question: 'What should I bring for the trek?',
-        answer:
-          'Sturdy hiking boots, rain jacket, long pants, gloves, and a camera are recommended.',
-      },
-      {
-        question: 'Are gorilla permits included?',
-        answer:
-          'Yes, all necessary permits and park fees are included in the package.',
-      },
-    ],
-    bestTime: 'June - September',
-    groupSize: '2-8 people',
-    difficulty: 'Moderate',
-  },
-];
+import { safariPackages } from '../../../src/constants/safaris';
 
 function getSafariBySlug(slug: string) {
-  return safariPackages?.[0];
+  return safariPackages.find(safari => safari.slug === slug);
 }
 
 export default function SafariDetailsPage({
@@ -105,16 +32,16 @@ export default function SafariDetailsPage({
   if (!safari) return notFound();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === safari.images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === (safari?.images?.length || 0) - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? safari.images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? (safari?.images?.length || 0) - 1 : prevIndex - 1
     );
   };
 
@@ -134,7 +61,7 @@ export default function SafariDetailsPage({
       {/* Hero Section */}
       <header className="relative w-full flex items-end overflow-hidden h-[60vh] rounded-b-3xl shadow-lg">
         <figure className="absolute inset-0 w-full h-full">
-          {safari.images.map((image, index) => (
+          {safari?.images?.map((image, index) => (
             <img
               key={index}
               src={image || '/assets/placeholders/safari-placeholder.jpg'}
@@ -165,7 +92,7 @@ export default function SafariDetailsPage({
 
         {/* Image indicator dots */}
         <nav className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {safari.images.map((_, index) => (
+          {safari?.images?.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
@@ -283,7 +210,7 @@ export default function SafariDetailsPage({
           Highlights
         </h2>
         <ul className="flex overflow-x-auto gap-6 py-2 md:grid md:grid-cols-4 md:gap-6">
-          {safari.highlights.map((highlight, idx) => (
+          {safari?.highlights?.map((highlight, idx) => (
             <li key={idx} className="min-w-[220px]">
               <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center h-full transition hover:shadow-xl">
                 <figure className="bg-gradient-to-br from-primary-100 to-primary-200 p-3 rounded-full mb-3">
@@ -305,7 +232,7 @@ export default function SafariDetailsPage({
         </h2>
         <article className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <ol className="relative border-l-2 border-primary-200 ml-4 md:ml-6">
-            {safari.itinerary.map((day, idx) => (
+            {safari?.itinerary?.map((day, idx) => (
               <li
                 key={day.day}
                 className="mb-12 last:mb-0 ml-6 md:ml-8 relative"
@@ -340,7 +267,7 @@ export default function SafariDetailsPage({
           </span>
         </h2>
         <ul className="space-y-4">
-          {safari.faqs.map((faq, idx) => (
+          {safari?.faqs?.map((faq, idx) => (
             <li
               key={idx}
               className={`rounded-xl bg-white shadow border transition-all ${
@@ -381,72 +308,89 @@ export default function SafariDetailsPage({
         </ul>
       </section>
 
-      {/* Sidebar - Booking, Gallery, Features, Help */}
+      {/* Collapsible Sidebar - Booking, Gallery, Features, Help */}
       <aside className="fixed right-8 top-20 w-80 hidden xl:block z-30">
-        <section className="bg-white rounded-lg shadow-lg p-6 flex flex-col gap-6">
-          <article className="flex flex-col items-center">
-            <CustomButton
-              variant="primary"
-              size="lg"
-              href="https://wa.me/250785917385"
-            >
-              <Send className="h-5 w-5 mr-2" /> Book or Inquire Now
-            </CustomButton>
-          </article>
+        <nav className="bg-white rounded-lg shadow-lg overflow-hidden">
+          {/* Collapsed State */}
+          <button 
+            onClick={(e) => {
+              e.preventDefault();
+              setIsSidebarExpanded(!isSidebarExpanded);
+            }}
+            className="w-full p-4 flex items-center justify-between bg-primary-600 text-primary hover:bg-primary-700 transition-colors"
+          >
+            <span className="font-medium">Safari Details</span>
+            <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${isSidebarExpanded ? 'rotate-180' : ''}`} />
+          </button>
 
-          <article>
-            <h4 className="text-lg font-bold mb-3 text-primary-900">
-              Gallery Preview
-            </h4>
-            <ul className="grid grid-cols-2 gap-2">
-              {safari.images.slice(0, 4).map((image, idx) => (
-                <li key={idx}>
-                  <img
-                    src={image}
-                    alt={`Gallery preview ${idx + 1}`}
-                    className="rounded-md h-20 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
-                    onClick={() => setCurrentImageIndex(idx)}
-                  />
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article>
-            <h4 className="text-lg font-bold mb-3 text-primary-900">
-              Package Features
-            </h4>
-            <ul className="space-y-2">
-              {safari.highlights.map((item, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-center gap-2 text-primary-800"
+          {/* Expanded Content */}
+          <nav className={`transition-all duration-300 ease-in-out ${isSidebarExpanded ? 'max-h-[70vh] overflow-y-auto opacity-100' : 'max-h-0 opacity-0'}`}>
+            <menu className="p-6 flex flex-col gap-6">
+              <article className="flex flex-col items-center">
+                <CustomButton
+                  variant="primary"
+                  size="lg"
+                  href="https://wa.me/250785917385"
                 >
-                  <Star className="h-4 w-4 text-primary-700 flex-shrink-0" />
-                  <span className="text-sm">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+                  <Send className="h-5 w-5 mr-2" /> Book or Inquire Now
+                </CustomButton>
+              </article>
 
-          <article className="bg-primary-50 p-4 rounded-lg border border-primary-100">
-            <h4 className="text-lg font-bold mb-2 text-primary-900">
-              Need Help?
-            </h4>
-            <p className="text-primary-700 mb-4 text-sm">
-              Our safari experts are ready to assist you with any questions
-              about this experience.
-            </p>
-            <CustomButton
-              variant="outline"
-              size="default"
-              href="tel:+250785917385"
-              className="w-full border-primary-300 text-primary-800 hover:bg-primary-100"
-            >
-              Contact Us
-            </CustomButton>
-          </article>
-        </section>
+              <article>
+                <h4 className="text-lg font-bold mb-3 text-primary-900">
+                  Gallery Preview
+                </h4>
+                <ul className="grid grid-cols-2 gap-2">
+                  {safari?.images?.slice(0, 4).map((image, idx) => (
+                    <li key={idx}>
+                      <img
+                        src={image}
+                        alt={`Gallery preview ${idx + 1}`}
+                        className="rounded-md h-20 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
+                        onClick={() => setCurrentImageIndex(idx)}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article>
+                <h4 className="text-lg font-bold mb-3 text-primary-900">
+                  Package Features
+                </h4>
+                <ul className="space-y-2">
+                  {safari?.highlights?.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-center gap-2 text-primary-800"
+                    >
+                      <Star className="h-4 w-4 text-primary-700 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="bg-primary-50 p-4 rounded-lg border border-primary-100">
+                <h4 className="text-lg font-bold mb-2 text-primary-900">
+                  Need Help?
+                </h4>
+                <p className="text-primary-700 mb-4 text-sm">
+                  Our safari experts are ready to assist you with any questions
+                  about this experience.
+                </p>
+                <CustomButton
+                  variant="outline"
+                  size="default"
+                  href="tel:+250785917385"
+                  className="w-full border-primary-300 text-primary-800 hover:bg-primary-100"
+                >
+                  Contact Us
+                </CustomButton>
+              </article>
+            </menu>
+          </nav>
+        </nav>
       </aside>
     </main>
   );
