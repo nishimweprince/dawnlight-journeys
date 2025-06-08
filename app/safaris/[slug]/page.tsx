@@ -35,13 +35,13 @@ export default function SafariDetailsPage({
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === safari.images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === (safari?.images?.length || 0) - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevImage = () => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? safari.images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? (safari?.images?.length || 0) - 1 : prevIndex - 1
     );
   };
 
@@ -61,7 +61,7 @@ export default function SafariDetailsPage({
       {/* Hero Section */}
       <header className="relative w-full flex items-end overflow-hidden h-[60vh] rounded-b-3xl shadow-lg">
         <figure className="absolute inset-0 w-full h-full">
-          {safari.images.map((image, index) => (
+          {safari?.images?.map((image, index) => (
             <img
               key={index}
               src={image || '/assets/placeholders/safari-placeholder.jpg'}
@@ -92,7 +92,7 @@ export default function SafariDetailsPage({
 
         {/* Image indicator dots */}
         <nav className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {safari.images.map((_, index) => (
+          {safari?.images?.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
@@ -210,7 +210,7 @@ export default function SafariDetailsPage({
           Highlights
         </h2>
         <ul className="flex overflow-x-auto gap-6 py-2 md:grid md:grid-cols-4 md:gap-6">
-          {safari.highlights.map((highlight, idx) => (
+          {safari?.highlights?.map((highlight, idx) => (
             <li key={idx} className="min-w-[220px]">
               <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center h-full transition hover:shadow-xl">
                 <figure className="bg-gradient-to-br from-primary-100 to-primary-200 p-3 rounded-full mb-3">
@@ -232,7 +232,7 @@ export default function SafariDetailsPage({
         </h2>
         <article className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <ol className="relative border-l-2 border-primary-200 ml-4 md:ml-6">
-            {safari.itinerary.map((day, idx) => (
+            {safari?.itinerary?.map((day, idx) => (
               <li
                 key={day.day}
                 className="mb-12 last:mb-0 ml-6 md:ml-8 relative"
@@ -267,7 +267,7 @@ export default function SafariDetailsPage({
           </span>
         </h2>
         <ul className="space-y-4">
-          {safari.faqs.map((faq, idx) => (
+          {safari?.faqs?.map((faq, idx) => (
             <li
               key={idx}
               className={`rounded-xl bg-white shadow border transition-all ${
@@ -326,7 +326,7 @@ export default function SafariDetailsPage({
               Gallery Preview
             </h4>
             <ul className="grid grid-cols-2 gap-2">
-              {safari.images.slice(0, 4).map((image, idx) => (
+              {safari?.images?.slice(0, 4).map((image, idx) => (
                 <li key={idx}>
                   <img
                     src={image}
@@ -344,7 +344,7 @@ export default function SafariDetailsPage({
               Package Features
             </h4>
             <ul className="space-y-2">
-              {safari.highlights.map((item, idx) => (
+              {safari?.highlights?.map((item, idx) => (
                 <li
                   key={idx}
                   className="flex items-center gap-2 text-primary-800"

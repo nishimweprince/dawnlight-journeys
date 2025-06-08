@@ -26,7 +26,7 @@ export function Safaris() {
             >
               <section className="relative overflow-hidden">
                 <img
-                  src={safari.image || "/placeholder.svg"}
+                  src={safari.image || "/assets/common/placeholder.svg"}
                   alt={safari.title}
                   className="w-full aspect-[3/2] object-cover transition-transform duration-300 group-hover:scale-105"
                 />

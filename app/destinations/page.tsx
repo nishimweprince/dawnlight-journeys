@@ -1,6 +1,5 @@
 import { CustomButton } from '../../src/components/ui/custom-button';
 import React from 'react';
-import Image from 'next/image';
 import { destinations } from '../../src/constants/destinations';
 
 export default function DestinationsPage() {
@@ -24,9 +23,9 @@ export default function DestinationsPage() {
 
       {/* Destinations Cards */}
       <section id="destinations" className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
+        <section className="flex flex-col sm:flex-row gap-8 justify-center items-stretch">
           {destinations.map((destination) => (
-            <figure key={destination.id} className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <figure key={destination.id} className="flex-1 min-w-0 group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 max-w-xl mx-auto">
               <img
                 src={destination.image}
                 alt={destination.name}

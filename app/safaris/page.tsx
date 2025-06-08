@@ -61,38 +61,50 @@ export default function SafarisPage() {
 
       {/* Safari Cards */}
       <section className="container mx-auto px-4 mb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
           {safariPackages.map((safari) => (
-            <article
-              key={safari.id}
-              className="group rounded-2xl overflow-hidden shadow-xl border bg-white hover:scale-[1.02] transition-transform flex flex-col"
-            >
-              <figure className="relative h-48 sm:h-56 overflow-hidden">
-                <img
-                  src={safari.image}
-                  alt={safari.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <figcaption className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-3 sm:p-4">
-                  <span className="bg-primary text-primary-foreground px-2 sm:px-3 py-1 rounded-full text-sm sm:text-[15px] font-semibold shadow">
-                    {safari.duration}
-                  </span>
-                </figcaption>
-              </figure>
-              <header className="p-4 sm:p-6 pb-0">
-                <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-primary group-hover:underline line-clamp-2">{safari.title}</h2>
-                <p className="text-sm sm:text-[15px] text-muted-foreground mb-1 line-clamp-1">{safari.location}</p>
-              </header>
-              <section className="p-4 sm:p-6 pt-2 flex-1 flex flex-col">
-                <p className="mb-4 flex-1 text-sm sm:text-[15px] text-gray-700 line-clamp-3">{safari.description}</p>
-                <CustomButton variant="primary" size="sm" href={safari.url} className="w-full mb-4">
-                  View Details
-                </CustomButton>
-                <SafariFAQ faqs={safari.faqs} />
-              </section>
-            </article>
+            <li key={safari.id}>
+              <article
+                className="group rounded-2xl overflow-hidden border-2 border-primary/20 shadow-xl bg-white hover:shadow-2xl hover:border-primary/60 hover:scale-[1.03] transition-all flex flex-col"
+              >
+                <figure className="relative h-48 sm:h-56 overflow-hidden">
+                  <img
+                    src={safari.image}
+                    alt={safari.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <figcaption className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-3 sm:p-4 flex items-center gap-2">
+                    <span className="bg-primary text-primary-foreground px-2 sm:px-3 py-1 rounded-full text-sm sm:text-[15px] font-semibold shadow">
+                      {safari.duration}
+                    </span>
+                    <span className="bg-white/80 text-primary px-2 py-1 rounded-full text-xs font-medium ml-2 shadow">
+                      {safari.location}
+                    </span>
+                  </figcaption>
+                </figure>
+                <header className="p-4 sm:p-6 pb-0">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-primary line-clamp-2">{safari.title}</h2>
+                </header>
+                <section className="p-4 sm:p-6 pt-2 flex-1 flex flex-col">
+                  <p className="mb-4 flex-1 text-sm sm:text-[15px] text-gray-700 line-clamp-3">{safari.description}</p>
+                  {safari.highlights && safari.highlights.length > 0 && (
+                    <ul className="flex flex-wrap gap-2 mb-4">
+                      {safari.highlights.slice(0, 3).map((h, i) => (
+                        <li key={i} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium shadow-sm">
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <CustomButton variant="primary" size="sm" href={safari.url} className="w-full mb-4">
+                    View Details
+                  </CustomButton>
+                  {/* <SafariFAQ faqs={safari.faqs} /> */}
+                </section>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </main>
   );
