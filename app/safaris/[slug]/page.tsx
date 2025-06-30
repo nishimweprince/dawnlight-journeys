@@ -1,6 +1,6 @@
 'use client';
 
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { CustomButton } from '../../../src/components/ui/custom-button';
 import {
   ChevronDown,
@@ -17,6 +17,7 @@ import {
 import React, { useState, useEffect } from 'react';
 
 import { safariPackages } from '../../../src/constants/safaris';
+import { Button } from '@/components/ui/button';
 
 function getSafariBySlug(slug: string) {
   return safariPackages.find(safari => safari.slug === slug);
@@ -27,6 +28,7 @@ export default function SafariDetailsPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const router = useRouter();
   const { slug } = React.use(params);
   const safari = getSafariBySlug(slug);
   if (!safari) return notFound();
@@ -69,9 +71,11 @@ export default function SafariDetailsPage({
               className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
                 index === currentImageIndex ? 'opacity-100' : 'opacity-0'
               }`}
+              loading="eager"
+              decoding="async"
             />
           ))}
-          <figure className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-900/40 to-transparent" />
+          <figure className="absolute inset-0 bg-gradient-to-t from-primary-900/60 via-primary-900/30 to-transparent" />
         </figure>
 
         {/* Image navigation controls */}
@@ -306,6 +310,9 @@ export default function SafariDetailsPage({
             </li>
           ))}
         </ul>
+        <Button variant="outline" className="w-fit mt-4 hover:bg-primary-100 hover:text-primary-900" onClick={() => router.back()}>
+          Back
+        </Button>
       </section>
 
       {/* Collapsible Sidebar - Booking, Gallery, Features, Help */}
