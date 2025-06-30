@@ -3,6 +3,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Footer } from '@/src/components/footer';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: {
@@ -91,6 +92,9 @@ export default function RootLayout({
           <FaWhatsapp className="w-6 h-6" />
         </a>
         <Footer />
+        <Link href="/contact" className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-colors">
+          Contact Us
+        </Link>
       </body>
     </html>
   );
