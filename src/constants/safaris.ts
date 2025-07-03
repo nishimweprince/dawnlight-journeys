@@ -166,7 +166,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/w1mmn52r8kip2ggbogt4',
     description:
-      "Explore Rwanda's only savanna park with diverse wildlife including the Big Five.",
+      'This 2-day Akagera safari offers awe-inspiring game viewing and a boat cruise in Rwanda\'s finest savanna wilderness. Encounter the Big 5, aquatic species, and over 525 bird species in Akagera National Park. The journey begins and ends in Kigali.',
     url: '/safaris/2-days-akagera',
     slug: '2-days-akagera',
     images: [
@@ -178,10 +178,69 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/rytcqpf0eectu62pictj',
     ],
     highlights: [
-      'Game drives in search of Big Five',
-      'Boat safari on Lake Ihema',
-      'Bird watching (over 500 species)',
+      'Guided game drives in search of the Big Five',
+      'Boat cruise on Lake Ihema',
+      'Bird watching (over 525 species)',
       'Scenic landscapes and photography',
+      'Chance to see leopards, elephants, buffaloes, rhinos, giraffes, hyenas, zebras, antelopes',
+      'Expert local guides and rangers',
+      'All park entry fees included',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Kigali – Akagera National Park – Boat Cruise on Lake Ihema',
+        details: `Enjoy a leisurely breakfast at your hotel/lodge in Kigali. Meet your Dawnlight Journeys guide for a briefing about your 2-day Akagera safari. Depart for Akagera National Park in the Eastern Province, a scenic 2.5-hour drive from Kigali. Upon arrival, enjoy a game drive en route to your lodge, spotting wildlife such as elephants, buffaloes, giraffes, zebras, antelopes, and more. Check in and relax at your lodge. After lunch, embark on an afternoon boat cruise on Lake Ihema, guided by an expert. The cruise offers opportunities to see hippos, crocodiles, and a variety of water birds, as well as other wildlife along the lake shores. After the 2-3 hour cruise, return to your lodge or camp for relaxation and dinner.
+
+Accommodation options:
+- Budget: Karenge Bush Lodge / Akagera Rhino Lodge
+- Midrange: Akagera Game Lodge
+- Luxury: Rusizi Tented Camp / Magashi Tented Camp
+
+Meal plan: Lunch & Dinner
+Travel time: 2.5 hours from Kigali`
+      },
+      {
+        day: 2,
+        title: 'Guided Game Drive & Return to Kigali',
+        details: `After a hearty breakfast, depart your lodge for a morning guided game drive in Akagera National Park. Explore the park's game tracks and observe a diversity of wildlife in their natural habitat, including African bush elephants, buffaloes, lions, leopards, hyenas, rhinos, and many antelope species. The 2-3 hour game drive offers memorable wildlife encounters and photo opportunities. After the game drive, return to your lodge for a short relaxation, then depart for Kigali, marking the end of your safari.
+
+Meal plan: Breakfast`
+      }
+    ],
+    inclusions: [
+      'Guided game drives',
+      'All park entry fees',
+      'Boat cruise expenses',
+      'Transportation using a 4x4 car',
+      'Full-time driver guide',
+      'Park ranger guide services',
+      'A bottle of water',
+      'Snacks',
+    ],
+    exclusions: [
+      'Visas',
+      'Laundry services',
+      'Telephone costs',
+      'Travel insurance',
+      'Airfares',
+      'Hiring a porter',
+      'Cigarettes',
+      'Souvenirs',
+    ],
+    packingList: [
+      'Long-sleeved shirts',
+      'Waterproof daypack',
+      'Insect repellent',
+      'Pair of binoculars',
+      'Lightweight and waterproof rain jacket',
+      'First aid kit',
+      'Safari hat',
+      'Toiletries',
+      'Comfortable walking shoes',
+      'Camera with extra batteries',
+      'Sunscreen',
+      'Snacks',
     ],
     faqs: [
       {
@@ -192,7 +251,17 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
       {
         question: 'Is accommodation included?',
         answer:
-          'Yes, accommodation at a lodge near the park is included in the package.',
+          'Yes, accommodation at a lodge near the park is included in the package. Options are available for budget, midrange, and luxury preferences.',
+      },
+      {
+        question: 'What else can I do in Akagera National Park?',
+        answer:
+          'Other activities include behind-the-scenes tours, bird-watching, hot air balloon tours, rhino tracking, and nature walks.',
+      },
+      {
+        question: 'What should I carry for the Akagera safari?',
+        answer:
+          'Pack long-sleeved shirts, a waterproof daypack, insect repellent, binoculars, a rain jacket, first aid kit, safari hat, toiletries, and comfortable shoes.',
       },
     ],
     bestTime: 'June - September',

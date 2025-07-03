@@ -222,14 +222,20 @@ export default function SafariDetailsPage({
                   className="mb-8 last:mb-0 ml-2 md:ml-8 relative flex flex-col sm:flex-row gap-4 md:gap-6"
                 >
                   {/* Timeline marker */}
-                  <div className="flex flex-row sm:flex-col items-center sm:items-center mb-2 sm:mb-0">
-                    <div className="hover:bg-green-700 cursor-pointer hover:text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center border-4 border-white shadow-lg z-10">
-                      <span className="text-base sm:text-lg font-bold">
-                        {idx + 1}
-                      </span>
+                  <div className="flex flex-col items-center mb-2 sm:mb-0 relative" style={{ minWidth: '3rem' }}>
+                    {/* Vertical line above marker (except first) */}
+                    {idx !== 0 && (
+                      <div className="w-1 h-4 bg-primary-200 absolute left-1/2 -translate-x-1/2 top-0 z-0" />
+                    )}
+                    <div className="relative z-10 flex flex-col items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-200 to-primary-400 flex flex-col items-center justify-center border-4 border-white shadow-lg absolute left-1/2 -translate-x-1/2 top-0">
+                        <span className="text-xs font-semibold text-primary-700">Day</span>
+                        <span className="text-lg font-bold">{idx + 1}</span>
+                      </div>
                     </div>
+                    {/* Vertical line below marker (except last) */}
                     {safari?.itinerary && idx !== safari.itinerary.length - 1 && (
-                      <div className="h-8 w-1 sm:w-1 sm:h-full bg-primary-200 mt-1 mb-1 sm:mt-1 sm:mb-1" />
+                      <div className="w-1 h-8 bg-primary-200 absolute left-1/2 -translate-x-1/2 top-12 z-0" />
                     )}
                   </div>
                   {/* Day content */}
