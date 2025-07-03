@@ -21,6 +21,9 @@ export interface SafariPackage {
   bestTime?: string;
   groupSize?: string;
   difficulty?: string;
+  inclusions?: string[];
+  exclusions?: string[];
+  packingList?: string[];
 }
 
 export const safariPackages: SafariPackage[] = [
@@ -68,7 +71,7 @@ export const safariPackages: SafariPackage[] = [
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
     description:
-      "Track the magnificent white rhinos on foot in Uganda's premier rhino sanctuary.",
+      'Embark on a journey to witness the massive creatures: the rhinos in their natural environment on a 1-day rhino trekking tour. This excursion at Ziwa Rhino Sanctuary involves navigating through lush vegetation in search of rhinos, bringing you closer to these Big 5 game members. Ziwa is the only place in Uganda where rhinos can be spotted in the wild, also home to other mammals and over 300 bird species.',
     url: '/safaris/1-day-rhino-trekking',
     slug: '1-day-rhino-trekking',
     images: [
@@ -80,6 +83,50 @@ export const safariPackages: SafariPackage[] = [
       'Educational center visit',
       'Bird watching opportunities',
       'Local community interaction',
+      'Chance to see other mammals: aardvark, oribis, giraffes, bushbucks, hartebeest, waterbucks, leopards, mongoose',
+      'Spotting rare birds like shoebill storks, kingfishers, and African fish eagles',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title:
+          'Kampala/Entebbe – Ziwa Rhino Sanctuary – Rhino Trekking – Return',
+        details: `
+Early morning breakfast at your hotel in Entebbe or Kampala. Meet your Dawnlight Journeys guide for a briefing about your day tour to Ziwa Rhino Sanctuary, including rhino tracking. Depart early via the Kampala-Gulu Highway, branching off at Nakasongola to access Ziwa.
+
+Upon arrival, receive a briefing from sanctuary officials on rhino tracking regulations. Enjoy 2-3 hours trekking through lush vegetation in search of rhinos, observing them up close in the wild and learning about their behavior. Other wildlife and bird species may also be encountered.
+
+After the trek, return with your guide. If time allows, have lunch at a lodge in the sanctuary. After lunch and relaxation, drive back to Kampala/Entebbe via the Luweero Triangle, with an optional stop for fresh fruits. Drop-off at your hotel or airport marks the end of the tour.`,
+      },
+    ],
+    inclusions: [
+      'Rhino tracking fees',
+      'Experienced guide fees',
+      'Services of an English-speaking guide',
+      'Transport using a 4WD tourist vehicle',
+      'All tour activities as per the travel plan (excluding optional ones)',
+      'A bottled drinking water',
+      'All relevant government taxes',
+    ],
+    exclusions: [
+      'Tipping expenses',
+      'Telephone bills/expenses',
+      'All personal insurance costs',
+      'Laundry services as requested',
+      'All bills on shopping',
+      'Safari lodge/hotel fees after your day excursion at Ziwa',
+      'All costs on beverages/alcoholic drinks',
+      'Flight services',
+    ],
+    packingList: [
+      'Waterproof rain jacket',
+      'Safari hat',
+      'Waterproof walking shoes/boots',
+      'Camera with flashlight',
+      'Bottled drinking water',
+      'Sunscreen',
+      'Snacks',
+      'Long pants and neutral colored clothing',
     ],
     faqs: [
       {
@@ -90,10 +137,20 @@ export const safariPackages: SafariPackage[] = [
       {
         question: 'What should I wear for rhino trekking?',
         answer:
-          'Wear comfortable walking shoes, long pants, and neutral colored clothing.',
+          'Wear comfortable walking shoes, long pants, and neutral colored clothing. A waterproof jacket and hat are recommended.',
+      },
+      {
+        question: 'When is the best time for rhino trekking in Ziwa?',
+        answer:
+          'The dry months (June–September and December–February) are ideal for rhino tracking due to favorable weather and accessible paths, but the sanctuary is open year-round.',
+      },
+      {
+        question: 'What other animals can I see at Ziwa?',
+        answer:
+          'Besides rhinos, you may encounter aardvark, oribis, giraffes, bushbucks, hartebeest, waterbucks, leopards, mongoose, and over 300 bird species including shoebill storks.',
       },
     ],
-    bestTime: 'Year round',
+    bestTime: 'June - September, December - February (dry months)',
     groupSize: '2-10 people',
     difficulty: 'Easy',
   },

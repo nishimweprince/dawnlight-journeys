@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 import { safariPackages } from '../../../src/constants/safaris';
 import { Button } from '@/components/ui/button';
@@ -60,85 +61,51 @@ export default function SafariDetailsPage({
 
   return (
     <main className="min-h-screen flex flex-col gap-8 pb-12 bg-primary-50">
-      {/* Hero Section */}
-      <header className="relative w-full flex items-end overflow-hidden h-[60vh] rounded-b-3xl shadow-lg">
-        <figure className="absolute inset-0 w-full h-full">
-          {safari?.images?.map((image, index) => (
-            <img
-              key={index}
-              src={image || '/assets/placeholders/safari-placeholder.jpg'}
-              alt={`${safari.title} - Image ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
-                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-              loading="eager"
-              decoding="async"
-            />
-          ))}
-          <figure className="absolute inset-0 bg-gradient-to-t from-primary-900/60 via-primary-900/30 to-transparent" />
-        </figure>
+      {/* Hero Section - Only Image */}
+      <header className="relative w-full overflow-hidden h-[50vh] rounded-b-3xl shadow-lg flex items-center justify-center">
+        <img
+          src={safari.image || '/assets/placeholders/safari-placeholder.jpg'}
+          alt={`${safari.title} - Main`}
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          decoding="async"
+        />
+      </header>
 
-        {/* Image navigation controls */}
-        <button
-          onClick={prevImage}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary-900/50 hover:bg-primary-900/70 text-white p-3 rounded-full z-20 transition-all"
-          aria-label="Previous image"
-        >
-          <ChevronLeft className="h-6 w-6" />
-        </button>
-        <button
-          onClick={nextImage}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary-900/50 hover:bg-primary-900/70 text-white p-3 rounded-full z-20 transition-all"
-          aria-label="Next image"
-        >
-          <ChevronRight className="h-6 w-6" />
-        </button>
-
-        {/* Image indicator dots */}
-        <nav className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {safari?.images?.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentImageIndex
-                  ? 'bg-white scale-125'
-                  : 'bg-white/50'
-              }`}
-              aria-label={`Go to image ${index + 1}`}
-            />
-          ))}
-        </nav>
-
-        <section className="relative z-10 flex flex-col items-center justify-center w-full h-full text-center p-8">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
+      {/* Heading Section */}
+      <motion.section
+        className="container mx-auto px-4 md:px-8 -mt-16 z-10 relative"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        <div className="bg-white/90 backdrop-blur rounded-xl shadow-lg p-8 md:p-12 flex flex-col items-center text-center border border-primary-100">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-primary-900 drop-shadow-lg">
             {safari.title}
           </h1>
-          <ul className="flex flex-wrap items-center justify-center gap-8 text-lg font-medium">
-            <li className="flex items-center gap-2 text-lg font-medium">
+          <ul className="flex flex-wrap items-center justify-center gap-8 text-lg font-medium mb-4">
+            <li className="flex items-center gap-2 text-lg font-medium text-primary-700">
               <MapPin className="h-5 w-5" /> {safari.location}
             </li>
-            <li className="flex items-center gap-2 text-lg font-medium">
+            <li className="flex items-center gap-2 text-lg font-medium text-primary-700">
               <Clock className="h-5 w-5" /> {safari.duration}
             </li>
           </ul>
-        </section>
-      </header>
-
-      {/* Overview Section */}
-      <section className="container mx-auto px-4 md:px-8">
-        <article className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-primary-900">
-            Overview
-          </h2>
-          <p className="text-base md:text-lg text-primary-800 leading-relaxed">
+          <p className="text-base md:text-lg text-primary-800 leading-relaxed max-w-2xl">
             {safari.description}
           </p>
-        </article>
-      </section>
+        </div>
+      </motion.section>
 
       {/* Snapshot Info Cards */}
-      <section className="container mx-auto px-4 md:px-8">
+      <motion.section
+        className="container mx-auto px-4 md:px-8"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+      >
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
           <li>
             <article className="rounded-2xl shadow-lg bg-white p-8 flex flex-col items-center text-center h-full transition-transform hover:scale-105 hover:shadow-2xl">
@@ -206,10 +173,16 @@ export default function SafariDetailsPage({
             </article>
           </li>
         </ul>
-      </section>
+      </motion.section>
 
       {/* Highlights Section */}
-      <section className="container mx-auto px-4 md:px-8">
+      <motion.section
+        className="container mx-auto px-4 md:px-8"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+      >
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary-900">
           Highlights
         </h2>
@@ -227,43 +200,99 @@ export default function SafariDetailsPage({
             </li>
           ))}
         </ul>
-      </section>
+      </motion.section>
 
       {/* Itinerary Section */}
-      <section className="container mx-auto px-4 md:px-8">
+      <motion.section
+        className="container mx-auto px-4 md:px-8"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+      >
         <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-8">
           Itinerary
         </h2>
         <article className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <ol className="relative border-l-2 border-primary-200 ml-4 md:ml-6">
-            {safari?.itinerary?.map((day, idx) => (
-              <li
-                key={day.day}
-                className="mb-12 last:mb-0 ml-6 md:ml-8 relative"
-              >
-                <figure className="absolute -left-10 w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center border-2 border-primary-200">
-                  <span className="text-sm font-semibold text-primary-700">
-                    {idx + 1}
-                  </span>
-                </figure>
-                <section className="pt-2">
-                  <header className="mb-3">
-                    <h3 className="text-xl font-bold text-primary-800">
-                      {day.title}
-                    </h3>
-                  </header>
-                  <p className="text-primary-700 text-base leading-relaxed">
-                    {day.details}
-                  </p>
-                </section>
-              </li>
-            ))}
-          </ol>
+          {safari?.itinerary && safari.itinerary.length > 0 ? (
+            <ol className="relative border-l-2 border-primary-200 ml-4 md:ml-6">
+              {safari.itinerary.map((day, idx) => (
+                <li
+                  key={day.day}
+                  className="mb-12 last:mb-0 ml-6 md:ml-8 relative flex gap-6"
+                >
+                  {/* Timeline marker */}
+                  <div className="flex flex-col items-center">
+                    <div className="hover:bg-green-700 cursor-pointer hover:text-white w-10 h-10 rounded-full bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center border-4 border-white shadow-lg z-10">
+                      <span className="text-lg font-bold">
+                        {idx + 1}
+                      </span>
+                    </div>
+                    {safari?.itinerary && idx !== safari.itinerary.length - 1 && (
+                      <div className="w-1 h-full bg-primary-200 mt-1 mb-1" />
+                    )}
+                  </div>
+                  {/* Day content */}
+                  <section className="flex-1 bg-primary-50 rounded-lg shadow p-6 transition hover:shadow-xl">
+                    <header className="mb-3">
+                      <h3 className="text-xl font-bold text-primary-800">
+                        {day.title}
+                      </h3>
+                    </header>
+                    <p className="text-primary-700 text-base leading-relaxed whitespace-pre-line">
+                      {day.details}
+                    </p>
+                  </section>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p className="text-primary-700">No itinerary available.</p>
+          )}
         </article>
-      </section>
+        {/* Inclusions, Exclusions, Packing List */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          {safari.inclusions && safari.inclusions.length > 0 && (
+            <article className="bg-white rounded-xl shadow p-6">
+              <h3 className="text-lg font-bold mb-3 text-primary-900">Tour Inclusions</h3>
+              <ul className="list-disc pl-5 space-y-1 text-primary-800">
+                {safari.inclusions.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          )}
+          {safari.exclusions && safari.exclusions.length > 0 && (
+            <article className="bg-white rounded-xl shadow p-6">
+              <h3 className="text-lg font-bold mb-3 text-primary-900">Tour Exclusions</h3>
+              <ul className="list-disc pl-5 space-y-1 text-primary-800">
+                {safari.exclusions.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          )}
+          {safari.packingList && safari.packingList.length > 0 && (
+            <article className="bg-white rounded-xl shadow p-6">
+              <h3 className="text-lg font-bold mb-3 text-primary-900">Recommended Packing List</h3>
+              <ul className="list-disc pl-5 space-y-1 text-primary-800">
+                {safari.packingList.map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          )}
+        </div>
+      </motion.section>
 
       {/* FAQs */}
-      <section className="container mx-auto px-4 md:px-8">
+      <motion.section
+        className="container mx-auto px-4 md:px-8"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+      >
         <h2 className="text-2xl md:text-3xl font-bold mb-6 text-primary-900 flex items-center gap-2">
           <span>Frequently Asked Questions</span>
           <span className="text-sm font-normal text-primary-600">
@@ -274,46 +303,53 @@ export default function SafariDetailsPage({
           {safari?.faqs?.map((faq, idx) => (
             <li
               key={idx}
-              className={`rounded-xl bg-white shadow border transition-all ${
+              className={`relative group overflow-hidden bg-white shadow-lg border-l-4 transition-all duration-300 ${
                 activeFaq === idx
-                  ? 'border-primary-300 ring-2 ring-primary-200'
-                  : 'border-primary-100'
+                  ? 'border-primary-600 bg-primary-50'
+                  : 'border-primary-200'
               }`}
             >
-              <button
-                onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-5 text-left font-medium text-primary-800 hover:text-primary-900 transition-colors"
-              >
-                <span className="flex items-center gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 text-primary-800 flex items-center justify-center text-sm font-semibold">
-                    {idx + 1}
-                  </span>
-                  <span>{faq.question}</span>
-                </span>
-                <ChevronDown
-                  className={`h-5 w-5 transition-transform duration-300 text-primary-600 ${
-                    activeFaq === idx ? 'rotate-180' : ''
+              <div>
+                <button
+                  onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
+                  className={`w-full flex items-center justify-between px-6 py-5 text-left font-semibold text-primary-900 transition-colors focus:outline-none ${
+                    activeFaq === idx ? 'bg-primary-50' : 'bg-white hover:bg-primary-50'
                   }`}
-                />
-              </button>
-              <section
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  activeFaq === idx
-                    ? 'max-h-96 opacity-100'
-                    : 'max-h-0 opacity-0'
-                }`}
-              >
-                <article className="p-5 pt-0 text-primary-700 border-t border-primary-100">
-                  <p className="leading-relaxed">{faq.answer}</p>
-                </article>
-              </section>
+                >
+                  <span className="flex items-center gap-3">
+                    <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-base font-bold transition-all duration-300 ${activeFaq === idx ? 'bg-primary-600 text-white scale-110 shadow' : 'bg-primary-100 text-primary-800'}`}>
+                      {idx + 1}
+                    </span>
+                    <span className="ml-2 text-md font-medium">{faq.question}</span>
+                  </span>
+                  <ChevronDown
+                    className={`h-6 w-6 ml-2 transition-transform duration-300 ${activeFaq === idx ? 'rotate-180 text-primary-600' : 'text-primary-400 group-hover:text-primary-600'}`}
+                  />
+                </button>
+                <section
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                    activeFaq === idx
+                      ? 'max-h-96 opacity-100 bg-primary-50'
+                      : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <article className="px-6 pb-5 pt-0 text-primary-800 border-t border-primary-100">
+                    <div className="flex items-start gap-2 mt-2">
+                      <span className="mt-1 text-primary-600">
+                        <ChevronDown className="h-4 w-4 rotate-90" />
+                      </span>
+                      <p className="leading-relaxed text-base font-light">{faq.answer}</p>
+                    </div>
+                  </article>
+                </section>
+              </div>
             </li>
           ))}
         </ul>
         <Button variant="outline" className="w-fit mt-4 hover:bg-primary-100 hover:text-primary-900" onClick={() => router.back()}>
           Back
         </Button>
-      </section>
+      </motion.section>
 
       {/* Collapsible Sidebar - Booking, Gallery, Features, Help */}
       <aside className="fixed right-8 top-20 w-80 hidden xl:block z-30">

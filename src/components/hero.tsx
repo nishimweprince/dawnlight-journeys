@@ -7,7 +7,7 @@ export function Hero() {
       {/* Hero Background */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <img
-          src="/assets/common/hero.jpg"
+          src="/assets/common/gorilla-hero.jpg"
           alt="African Safari"
           className="w-full h-full object-cover object-center"
           style={{ minHeight: '100vh', minWidth: '100vw' }}
