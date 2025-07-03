@@ -4,6 +4,7 @@ export interface SafariPackage {
   location: string;
   duration: string;
   image: string;
+  destination: string;
   description: string;
   url: string;
   slug?: string;
@@ -31,6 +32,7 @@ export const safariPackages: SafariPackage[] = [
     id: 1,
     title: '1 Day Gorilla Tour',
     location: 'Bwindi Impenetrable Forest, Uganda',
+    destination: 'Uganda',
     duration: '1 day',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vi9wpd1uict3rlxejqf1',
@@ -67,6 +69,7 @@ export const safariPackages: SafariPackage[] = [
     id: 2,
     title: '1 Day Rhino Trekking',
     location: 'Ziwa Rhino Sanctuary, Uganda',
+    destination: 'Uganda',
     duration: '1 day',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
@@ -158,6 +161,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 3,
     title: '2 Days Akagera Safari',
     location: 'Akagera National Park, Rwanda',
+    destination: 'Rwanda',
     duration: '2 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/w1mmn52r8kip2ggbogt4',
@@ -199,6 +203,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 4,
     title: '2 Days Gorilla Tour',
     location: 'Volcanoes National Park, Rwanda',
+    destination: 'Rwanda',
     duration: '2 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
@@ -237,6 +242,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 5,
     title: '2 Days Lake Mburo Safari',
     location: 'Lake Mburo National Park, Uganda',
+    destination: 'Uganda',
     duration: '2 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cpcb9sygwrp3xjten5mv',
@@ -275,6 +281,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 6,
     title: '2 Days Nyungwe Tour',
     location: 'Nyungwe Forest National Park, Rwanda',
+    destination: 'Rwanda',
     duration: '2 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
@@ -314,6 +321,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 7,
     title: '3 Days Bwindi Gorilla Trekking Tour',
     location: 'Bwindi Impenetrable Forest, Uganda',
+    destination: 'Uganda',
     duration: '3 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
@@ -351,6 +359,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 8,
     title: '3 Days Kibale Safari',
     location: 'Kibale Forest National Park, Uganda',
+    destination: 'Uganda',
     duration: '3 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/psmowi9sxjinfba9ra0v',
@@ -389,6 +398,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 9,
     title: '3 Days Queen Elizabeth Safari',
     location: 'Queen Elizabeth National Park, Uganda',
+    destination: 'Uganda',
     duration: '3 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
@@ -427,6 +437,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 10,
     title: '3 Days Rwanda Gorilla Safari',
     location: 'Volcanoes National Park, Rwanda',
+    destination: 'Rwanda',
     duration: '3 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vbwkdn99escdqc8scxix',
@@ -465,6 +476,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 11,
     title: '5 Days Queen Elizabeth and Bwindi Safari',
     location: 'Queen Elizabeth NP & Bwindi Forest, Uganda',
+    destination: 'Uganda',
     duration: '5 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hbi2suzdhpietabb6a8v',
@@ -505,6 +517,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 12,
     title: '8 Days Kibale Queen and Bwindi Safari',
     location: 'Kibale, Queen Elizabeth & Bwindi, Uganda',
+    destination: 'Uganda',
     duration: '8 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dvz6tkydiawtznebjkhp',
@@ -545,6 +558,7 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     id: 13,
     title: '10 Days Uganda Safari',
     location: 'Multiple Parks, Uganda',
+    destination: 'Uganda',
     duration: '10 days',
     image:
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sihgp7fwvkhzrdwgiz6y',

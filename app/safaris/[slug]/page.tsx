@@ -213,33 +213,33 @@ export default function SafariDetailsPage({
         <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-8">
           Itinerary
         </h2>
-        <article className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+        <article className="bg-white rounded-xl shadow-lg p-4 md:p-8">
           {safari?.itinerary && safari.itinerary.length > 0 ? (
-            <ol className="relative border-l-2 border-primary-200 ml-4 md:ml-6">
+            <ol className="relative border-l-2 border-primary-200 ml-2 md:ml-6">
               {safari.itinerary.map((day, idx) => (
                 <li
                   key={day.day}
-                  className="mb-12 last:mb-0 ml-6 md:ml-8 relative flex gap-6"
+                  className="mb-8 last:mb-0 ml-2 md:ml-8 relative flex flex-col sm:flex-row gap-4 md:gap-6"
                 >
                   {/* Timeline marker */}
-                  <div className="flex flex-col items-center">
-                    <div className="hover:bg-green-700 cursor-pointer hover:text-white w-10 h-10 rounded-full bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center border-4 border-white shadow-lg z-10">
-                      <span className="text-lg font-bold">
+                  <div className="flex flex-row sm:flex-col items-center sm:items-center mb-2 sm:mb-0">
+                    <div className="hover:bg-green-700 cursor-pointer hover:text-white w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary-200 to-primary-400 flex items-center justify-center border-4 border-white shadow-lg z-10">
+                      <span className="text-base sm:text-lg font-bold">
                         {idx + 1}
                       </span>
                     </div>
                     {safari?.itinerary && idx !== safari.itinerary.length - 1 && (
-                      <div className="w-1 h-full bg-primary-200 mt-1 mb-1" />
+                      <div className="h-8 w-1 sm:w-1 sm:h-full bg-primary-200 mt-1 mb-1 sm:mt-1 sm:mb-1" />
                     )}
                   </div>
                   {/* Day content */}
-                  <section className="flex-1 bg-primary-50 rounded-lg shadow p-6 transition hover:shadow-xl">
-                    <header className="mb-3">
-                      <h3 className="text-xl font-bold text-primary-800">
+                  <section className="flex-1 bg-primary-50 rounded-lg shadow p-4 md:p-6 transition hover:shadow-xl">
+                    <header className="mb-2 md:mb-3">
+                      <h3 className="text-lg md:text-xl font-bold text-primary-800">
                         {day.title}
                       </h3>
                     </header>
-                    <p className="text-primary-700 text-base leading-relaxed whitespace-pre-line">
+                    <p className="text-primary-700 text-sm md:text-base leading-relaxed whitespace-pre-line">
                       {day.details}
                     </p>
                   </section>
