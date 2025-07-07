@@ -207,7 +207,7 @@ export default function SafariDetailsPage({
         className="container mx-auto px-4 md:px-8"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
       >
         <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-8">
@@ -245,9 +245,9 @@ export default function SafariDetailsPage({
                         {day.title}
                       </h3>
                     </header>
-                    <p className="text-primary-700 text-sm md:text-base leading-relaxed whitespace-pre-line">
+                    <div className="text-primary-700 text-sm md:text-base leading-relaxed whitespace-pre-line max-h-96 overflow-y-auto">
                       {day.details}
-                    </p>
+                    </div>
                   </section>
                 </li>
               ))}
