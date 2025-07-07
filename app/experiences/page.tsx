@@ -1,6 +1,36 @@
 import { CustomButton } from "../../src/components/ui/custom-button";
 import React from "react";
 import { experiences } from "../../src/constants/experiences";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Unique Experiences | Dawnlight Journeys',
+  description: 'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
+  openGraph: {
+    title: 'Unique Experiences | Dawnlight Journeys',
+    description: 'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
+    images: ['/assets/safaris/wildlife-safari.jpg'],
+    type: 'website',
+    url: 'https://dawnlightjourneys.com/experiences',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Unique Experiences | Dawnlight Journeys',
+    description: 'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
+    images: ['/assets/safaris/wildlife-safari.jpg'],
+  },
+  keywords: [
+    'africa experiences',
+    'wildlife photography',
+    'cultural immersion',
+    'adventure trekking',
+    'mountain climbing',
+    'bird watching',
+    'conservation volunteering',
+    'uganda experiences',
+    'rwanda experiences'
+  ],
+};
 
 export default function ExperiencesPage() {
   return (
@@ -42,7 +72,7 @@ export default function ExperiencesPage() {
                   </header>
                   <p className="text-muted-foreground mb-4 flex-1 text-sm sm:text-base line-clamp-3">{exp.description}</p>
                   <ul className="mb-4 space-y-1">
-                    {exp.highlights.slice(0, 3).map((h, i) => (
+                    {exp.highlights.slice(0, 3).map((h: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground">
                         <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
                         <span className="line-clamp-1">{h}</span>

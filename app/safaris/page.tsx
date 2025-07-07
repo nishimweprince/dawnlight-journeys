@@ -2,6 +2,37 @@ import { CustomButton } from '../../src/components/ui/custom-button';
 import React from 'react';
 import { ChevronDown, MapPin } from 'lucide-react';
 import { safariPackages } from '../../src/constants/safaris';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Safari Packages | Dawnlight Journeys',
+  description: 'Discover our comprehensive safari packages in Uganda and Rwanda. From gorilla trekking to wildlife safaris, find your perfect African adventure with expert guides.',
+  openGraph: {
+    title: 'Safari Packages | Dawnlight Journeys',
+    description: 'Discover our comprehensive safari packages in Uganda and Rwanda. From gorilla trekking to wildlife safaris, find your perfect African adventure with expert guides.',
+    images: ['/assets/safaris/gorilla-trekking.jpg'],
+    type: 'website',
+    url: 'https://dawnlightjourneys.com/safaris',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Safari Packages | Dawnlight Journeys',
+    description: 'Discover our comprehensive safari packages in Uganda and Rwanda. From gorilla trekking to wildlife safaris, find your perfect African adventure with expert guides.',
+    images: ['/assets/safaris/gorilla-trekking.jpg'],
+  },
+  keywords: [
+    'safari packages',
+    'uganda safari',
+    'rwanda safari',
+    'gorilla trekking',
+    'wildlife safari',
+    'africa tours',
+    'bwindi forest',
+    'queen elizabeth park',
+    'akagera national park',
+    'kibale forest'
+  ],
+};
 
 const SafariFAQ = ({ faqs }: { faqs: { question: string; answer: string }[] }) => (
   <section className="mt-6">
@@ -25,7 +56,7 @@ const SafariFAQ = ({ faqs }: { faqs: { question: string; answer: string }[] }) =
 );
 
 // Group safaris by destination
-const safarisByDestination = safariPackages.reduce((acc, safari) => {
+const safarisByDestination = safariPackages.reduce((acc: Record<string, typeof safariPackages>, safari) => {
   if (!acc[safari.destination]) acc[safari.destination] = [];
   acc[safari.destination].push(safari);
   return acc;
@@ -105,7 +136,7 @@ export default function SafarisPage() {
                     <p className="mb-4 flex-1 text-sm sm:text-[15px] text-gray-700 line-clamp-3">{safari.description}</p>
                     {safari.highlights && safari.highlights.length > 0 && (
                       <ul className="flex flex-wrap gap-2 mb-4">
-                        {safari.highlights.slice(0, 3).map((h, i) => (
+                        {safari.highlights.slice(0, 3).map((h: string, i: number) => (
                           <li key={i} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium shadow-sm">
                             {h}
                           </li>
