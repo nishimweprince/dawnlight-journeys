@@ -3,22 +3,29 @@ import React from 'react';
 import { ChevronDown, MapPin } from 'lucide-react';
 import { safariPackages } from '../../src/constants/safaris';
 import type { Metadata } from 'next';
+import Link from 'next/link';
+
+// Pick a random safari image for SEO
+const randomSafari = safariPackages[Math.floor(Math.random() * safariPackages.length)];
+const randomImage = randomSafari?.image || '/assets/common/placeholder.svg';
 
 export const metadata: Metadata = {
-  title: 'Safari Packages | Dawnlight Journeys',
-  description: 'Discover our comprehensive safari packages in Uganda and Rwanda. From gorilla trekking to wildlife safaris, find your perfect African adventure with expert guides.',
+  title: 'Safari Adventures | Dawnlight Journeys',
+  description:
+    "Discover Africa's most breathtaking wildlife experiences and create memories that last a lifetime. Explore our curated safari packages in Uganda and Rwanda.",
   openGraph: {
-    title: 'Safari Packages | Dawnlight Journeys',
-    description: 'Discover our comprehensive safari packages in Uganda and Rwanda. From gorilla trekking to wildlife safaris, find your perfect African adventure with expert guides.',
-    images: ['/assets/safaris/gorilla-trekking.jpg'],
+    title: 'Safari Adventures | Dawnlight Journeys',
+    description:
+      "Discover Africa's most breathtaking wildlife experiences and create memories that last a lifetime. Explore our curated safari packages in Uganda and Rwanda.",
+    images: [randomImage],
     type: 'website',
-    url: 'https://dawnlightjourneys.com/safaris',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Safari Packages | Dawnlight Journeys',
-    description: 'Discover our comprehensive safari packages in Uganda and Rwanda. From gorilla trekking to wildlife safaris, find your perfect African adventure with expert guides.',
-    images: ['/assets/safaris/gorilla-trekking.jpg'],
+    title: 'Safari Adventures | Dawnlight Journeys',
+    description:
+      "Discover Africa's most breathtaking wildlife experiences and create memories that last a lifetime. Explore our curated safari packages in Uganda and Rwanda.",
+    images: [randomImage],
   },
   keywords: [
     'safari packages',
@@ -101,55 +108,64 @@ export default function SafarisPage() {
       {/* Safari Cards */}
       {destinations.sort().map((destination) => (
         <section key={destination} className="container mx-auto px-4 mb-10">
-          <header className="mb-6 flex items-center gap-3">
-            <span className="inline-flex items-center gap-2 bg-white border-2 border-primary-600 text-primary-600 px-5 py-2 rounded-full text-xl sm:text-2xl font-extrabold shadow-sm">
-              <MapPin className="h-5 w-5" />
-              {destination}
+          <Link href={`/destinations/${destination?.toLowerCase()}`} className="mb-6 flex items-center gap-3">
+            <span className="inline-flex items-center gap-2 bg-white border-2 border-primary-600 text-primary-600 px-4 py-1.5 rounded-full text-base sm:text-lg font-semibold shadow-sm">
+              <MapPin className="h-4 w-4 opacity-80" />
+              <span className="tracking-wide">{destination}</span>
             </span>
-            <div className="flex-1 h-1 bg-primary-100 rounded-full ml-2" />
-          </header>
+            <hr className="flex-1 h-1 bg-primary-100 rounded-full ml-2 border-0" role="presentation" />
+          </Link>
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6">
-            {safarisByDestination[destination].map((safari) => (
-              <li key={safari.id}>
-                <article
-                  className="group rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl hover:scale-[1.03] transition-all flex flex-col"
-                >
-                  <figure className="relative h-48 sm:h-56 overflow-hidden">
-                    <img
-                      src={safari.image}
-                      alt={safari.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <figcaption className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-3 sm:p-4 flex items-center gap-2">
-                      <span className="bg-primary text-primary-foreground px-2 sm:px-3 py-1 rounded-full text-sm sm:text-[15px] font-semibold shadow">
-                        {safari.duration}
-                      </span>
-                      <span className="bg-white/80 text-primary px-2 py-1 rounded-full text-xs font-medium ml-2 shadow">
-                        {safari.location}
-                      </span>
-                    </figcaption>
-                  </figure>
-                  <header className="p-4 sm:p-6 pb-0">
-                    <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1 text-primary line-clamp-2">{safari.title}</h2>
-                  </header>
-                  <section className="p-4 sm:p-6 pt-2 flex-1 flex flex-col">
-                    <p className="mb-4 flex-1 text-sm sm:text-[15px] text-gray-700 line-clamp-3">{safari.description}</p>
-                    {safari.highlights && safari.highlights.length > 0 && (
-                      <ul className="flex flex-wrap gap-2 mb-4">
-                        {safari.highlights.slice(0, 3).map((h: string, i: number) => (
-                          <li key={i} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium shadow-sm">
-                            {h}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    <CustomButton variant="primary" size="sm" href={safari.url} className="w-full mb-4">
-                      View Details
-                    </CustomButton>
-                  </section>
-                </article>
-              </li>
-            ))}
+            {safarisByDestination[destination]
+              .slice()
+              .sort((a, b) => a.id - b.id)
+              .map((safari, index) => (
+                <li key={index}>
+                  <article
+                    className="group rounded-2xl overflow-hidden bg-white border border-primary-100 shadow-sm hover:shadow-lg hover:scale-[1.02] transition-all flex flex-col text-xs sm:text-sm md:text-base h-full min-h-[370px]"
+                  >
+                    <figure className="relative h-40 sm:h-44 md:h-48 overflow-hidden">
+                      <img
+                        src={safari.image}
+                        alt={safari.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <figcaption className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-2 sm:p-3 flex items-center gap-2">
+                        <span className="bg-primary text-primary-foreground px-2 py-1 rounded-full text-[10px] sm:text-xs font-semibold shadow">
+                          {safari.duration}
+                        </span>
+                        <span className="bg-white/80 text-primary px-2 py-1 rounded-full text-[10px] sm:text-xs font-medium ml-2 shadow">
+                          {safari.location}
+                        </span>
+                      </figcaption>
+                    </figure>
+                    <header className="p-3 sm:p-4 pb-0">
+                      <h2 className="text-base sm:text-lg md:text-xl font-bold mb-1 text-primary tracking-wide uppercase line-clamp-2">
+                        {safari.title.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())}
+                      </h2>
+                    </header>
+                    <section className="p-3 sm:p-4 pt-2 flex-1 flex flex-col min-h-[120px]">
+                      <p className="mb-3 flex-1 text-xs sm:text-sm text-gray-700 line-clamp-3">
+                        {safari.description.length > 80
+                          ? safari.description.slice(0, 80).trim() + '...'
+                          : safari.description}
+                      </p>
+                      {safari.highlights && safari.highlights.length > 0 && (
+                        <ul className="flex flex-wrap gap-1 mb-3">
+                          {safari.highlights.slice(0, 3).map((h: string, i: number) => (
+                            <li key={i} className="bg-primary/10 text-primary text-[10px] sm:text-xs px-2 py-1 rounded-full font-medium shadow-sm">
+                              {h}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <CustomButton variant="primary" size="sm" href={safari.url} className="w-full mt-auto text-xs sm:text-sm py-2">
+                        View Details
+                      </CustomButton>
+                    </section>
+                  </article>
+                </li>
+              ))}
           </ul>
         </section>
       ))}

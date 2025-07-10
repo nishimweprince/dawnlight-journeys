@@ -28,7 +28,7 @@ export function Navbar() {
       <section className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <img
-            src="/assets/logos/dawnlight-journeys-logo.svg"
+            src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1"
             alt="Logo"
             className="h-12 w-12 rounded-full"
           />

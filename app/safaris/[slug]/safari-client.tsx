@@ -142,12 +142,12 @@ export default function SafariClient({ safari }: SafariClientProps) {
               transition={{ duration: 0.6 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <div className="flex items-center justify-center gap-2 mb-4">
+              <section className="flex items-center justify-center gap-2 mb-4">
                 <MapPin className="h-5 w-5 text-primary" />
                 <span className="text-lg text-muted-foreground">
                   {safari?.location}
                 </span>
-              </div>
+              </section>
 
               <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
                 {safari?.title}
@@ -157,26 +157,26 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 {safari?.description}
               </p>
 
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <div className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
+              <section className="flex flex-wrap justify-center gap-4 mb-8">
+                <section className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
                   <Clock className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.duration}
                   </span>
-                </div>
-                <div className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
+                </section>
+                <section className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
                   <Users className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.groupSize}
                   </span>
-                </div>
-                <div className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
+                </section>
+                <section className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
                   <Star className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.difficulty}
                   </span>
-                </div>
-              </div>
+                </section>
+              </section>
 
               <CustomButton
                 variant="primary"
@@ -210,27 +210,27 @@ export default function SafariClient({ safari }: SafariClientProps) {
               </p>
 
               {/* Quick Info */}
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-muted rounded-2xl p-6">
+              <section className="grid md:grid-cols-2 gap-6 mb-8">
+                <article className="bg-muted rounded-2xl p-6">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-primary" />
                     Best Time to Visit
                   </h3>
                   <p className="text-muted-foreground">{safari?.bestTime}</p>
-                </div>
-                <div className="bg-muted rounded-2xl p-6">
+                </article>
+                <article className="bg-muted rounded-2xl p-6">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <Users className="h-5 w-5 text-primary" />
                     Group Size
                   </h3>
                   <p className="text-muted-foreground">{safari?.groupSize}</p>
-                </div>
-              </div>
+                </article>
+              </section>
             </article>
 
             {/* Booking Card */}
             <aside className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
+              <aside className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
                 <h3 className="text-xl font-bold mb-4">Book This Safari</h3>
                 <dl className="space-y-4 mb-6">
                   <div className="flex justify-between">
@@ -258,7 +258,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 <p className="text-sm text-muted-foreground mt-4 text-center">
                   Contact us for custom pricing and availability
                 </p>
-              </div>
+              </aside>
             </aside>
           </motion.div>
 
@@ -274,15 +274,15 @@ export default function SafariClient({ safari }: SafariClientProps) {
               <h2 className="text-2xl md:text-3xl font-bold text-center">
                 Safari Gallery
               </h2>
-              <div className="relative">
-                <div className="overflow-hidden rounded-2xl">
-                  <div
+              <section className="relative">
+                <section className="overflow-hidden rounded-2xl">
+                  <section
                     className="flex transition-transform duration-300 ease-in-out"
                     style={{
                       transform: `translateX(-${carouselIndex * 100}%)`,
                     }}
                   >
-                    {safari.images.map((image, index) => (
+                    {safari?.images?.map((image, index) => (
                       <figure
                         key={index}
                         className="w-full flex-shrink-0 relative"
@@ -294,8 +294,8 @@ export default function SafariClient({ safari }: SafariClientProps) {
                         />
                       </figure>
                     ))}
-                  </div>
-                </div>
+                  </section>
+                </section>
 
                 {/* Carousel Controls */}
                 <button
@@ -314,8 +314,8 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 </button>
 
                 {/* Carousel Indicators */}
-                <div className="flex justify-center gap-2 mt-4">
-                  {safari.images.map((_, index) => (
+                <nav className="flex justify-center gap-2 mt-4">
+                  {safari?.images?.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCarouselIndex(index)}
@@ -325,8 +325,8 @@ export default function SafariClient({ safari }: SafariClientProps) {
                       aria-label={`Go to image ${index + 1}`}
                     />
                   ))}
-                </div>
-              </div>
+                </nav>
+              </section>
             </motion.section>
           )}
 
@@ -341,7 +341,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
                 Safari Itinerary
               </h2>
-              <div className="space-y-6">
+              <section className="space-y-6">
                 {safari?.itinerary?.map((day, index) => (
                   <motion.article
                     key={index}
@@ -352,9 +352,9 @@ export default function SafariClient({ safari }: SafariClientProps) {
                     className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-primary"
                   >
                     <header className="flex items-center gap-4 mb-3">
-                      <div className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">
+                      <section className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">
                         {day.day}
-                      </div>
+                      </section>
                       <h3 className="text-lg md:text-xl font-bold">
                         {day.title}
                       </h3>
@@ -364,7 +364,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
                     </p>
                   </motion.article>
                 ))}
-              </div>
+              </section>
             </motion.section>
           )}
 
@@ -418,7 +418,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
                 Frequently Asked Questions
               </h2>
-              <div className="space-y-4">
+              <section className="space-y-4">
                 {safari?.faqs?.map((faq, index) => (
                   <motion.article
                     key={index}
@@ -436,7 +436,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
                     </p>
                   </motion.article>
                 ))}
-              </div>
+              </section>
             </motion.section>
           )}
 

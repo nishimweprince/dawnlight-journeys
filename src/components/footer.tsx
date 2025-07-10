@@ -7,7 +7,7 @@ export function Footer() {
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <article>
             <header className="flex items-center gap-2 mb-4">
-              <img src="/assets/logos/dawnlight-journeys-logo.svg" alt="Logo" className="h-8 w-8" />
+              <img src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1" alt="Logo" className="h-8 w-8" />
               <span className="font-bold text-xl">Dawnlight Journeys</span>
             </header>
             <p className="text-muted-foreground mb-4">

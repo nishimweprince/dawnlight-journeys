@@ -30,204 +30,6 @@ export interface SafariPackage {
 export const safariPackages: SafariPackage[] = [
   {
     id: 1,
-    title: '1 Day Gorilla Tour',
-    location: 'Volcanoes National Park, Rwanda',
-    destination: 'Rwanda',
-    duration: '1 day',
-    image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vi9wpd1uict3rlxejqf1',
-    description:
-      'This 1-day gorilla tour in Rwanda is a full-day adventure to trek and interact with a group of mountain gorillas in their natural habitat at Volcanoes National Park. The tour includes a guided trek, park briefing, and a close-up hour with a habituated gorilla family, all in the lush forests of northwestern Rwanda.',
-    url: '/safaris/1-day-gorilla-tour',
-    slug: '1-day-gorilla-tour',
-    images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vi9wpd1uict3rlxejqf1',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/mqamqqc2dohryiras64o',
-    ],
-    highlights: [
-      'Gorilla trekking permit included',
-      'Guided trek in Volcanoes National Park',
-      'Visit to one of 13 habituated gorilla families',
-      'Professional park ranger and guide service',
-      'Scenic drive from Kigali to Volcanoes National Park',
-      'Certificate of participation',
-      'Chance to see other wildlife and birds',
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: 'Kigali – Volcanoes National Park – Gorilla Trekking – Return',
-        details: `Set off early in the morning from Kigali with your essentials for a 2-3 hour drive to Volcanoes National Park. Upon arrival, settle at Kinigi for a briefing from park officials about gorilla trekking rules and regulations, including maintaining a safe distance of 8-10 meters from the gorillas. After the briefing, park rangers will lead you into the forest to begin your trek at around 8:00 am. The trek can take 2-6 hours, depending on the location of the gorilla family. Once the gorillas are located, you will have one hour to observe and photograph them in their natural habitat. After the trek, return to meet your safari guide and depart for Kigali, marking the end of your memorable one-day gorilla tour in Rwanda.
-
-Accommodation (for extended stays):
-- Budget: Kinigi Guesthouse, Sambora Kinigi Lodge
-- Midrange: Amakoro Songa Lodge, Sabyinyo Silverback Lodge
-- Luxury: One&Only Gorilla's Nest, Wilderness Bisate Lodge, Volcanoes Virunga Lodge, Singita Kwitonda Lodge
-
-Meal plan: Not included (can be arranged on request)
-Travel time: 2-3 hours from Kigali`,
-      },
-    ],
-    inclusions: [
-      'A valid gorilla permit for Rwanda',
-      'All transportation using a 4x4 safari vehicle',
-      'Services of a safari/park ranger guide',
-      'All relevant taxes as per Rwanda government',
-      'Free bottled drinking water',
-      'All tour activities as per the trip itinerary',
-    ],
-    exclusions: [
-      'Tips',
-      'Laundry services',
-      'Travel insurance',
-      'All optional activities',
-      'Passports',
-      'Visas',
-      'All costs on beverages',
-    ],
-    packingList: [
-      'Good and waterproof hiking boots',
-      'Long-sleeved shirts',
-      'Long pants',
-      'Safari hat',
-      'Rain jacket',
-      'Sweater',
-      'Insect repellent',
-      'Daypack',
-      'Bottled drinking water',
-      'Pair of socks',
-      'Camera and additional batteries',
-      'Gorilla permit',
-      'Toiletries',
-      'Valid passport and visa',
-      'Sunscreen',
-      'Anti-malaria medication',
-      'Sunglasses',
-      'Walking stick (optional)',
-    ],
-    faqs: [
-      {
-        question: 'What is the minimum age for gorilla trekking?',
-        answer: 'The minimum age for gorilla trekking is 15 years old.',
-      },
-      {
-        question: 'How long does the trek take?',
-        answer:
-          'The trek can take anywhere from 2-6 hours depending on the location of the gorilla family. You will spend one hour with the gorillas once found.',
-      },
-      {
-        question: 'What other attractions are in Volcanoes National Park?',
-        answer:
-          'Other attractions include golden monkey tracking, volcano hiking, Dian Fossey tomb site hike, and bird-watching. The park is home to Virunga volcanoes and a variety of wildlife and over 200 bird species.',
-      },
-      {
-        question: 'Where can I stay if I want to extend my tour?',
-        answer: `There are budget, midrange, and luxury accommodation options near Volcanoes National Park, including One&Only Gorilla's Nest, Wilderness Bisate Lodge, Kinigi Guesthouse, Sabyinyo Silverback Lodge, Volcanoes Virunga Lodge, Singita Kwitonda Lodge, Amakoro Songa Lodge, and Sambora Kinigi Lodge.`,
-      },
-      {
-        question: 'What should I carry for a Rwanda gorilla tour?',
-        answer:
-          'Essentials include waterproof hiking boots, long-sleeved shirts, long pants, a safari hat, rain jacket, sweater, insect repellent, daypack, bottled water, socks, camera, gorilla permit, toiletries, passport, visa, sunscreen, anti-malaria medication, sunglasses, and optionally a walking stick.',
-      },
-    ],
-    bestTime: 'June - September',
-    groupSize: '1-8 people',
-    difficulty: 'Moderate',
-  },
-  {
-    id: 2,
-    title: '1 Day Rhino Trekking',
-    location: 'Ziwa Rhino Sanctuary, Uganda',
-    destination: 'Uganda',
-    duration: '1 day',
-    image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
-    description:
-      'Embark on a journey to witness the massive creatures: the rhinos in their natural environment on a 1-day rhino trekking tour. This excursion at Ziwa Rhino Sanctuary involves navigating through lush vegetation in search of rhinos, bringing you closer to these Big 5 game members. Ziwa is the only place in Uganda where rhinos can be spotted in the wild, also home to other mammals and over 300 bird species.',
-    url: '/safaris/1-day-rhino-trekking',
-    slug: '1-day-rhino-trekking',
-    images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wpa5xei3futepcrbq7vm',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
-    ],
-    highlights: [
-      'Rhino tracking on foot',
-      'Educational center visit',
-      'Bird watching opportunities',
-      'Local community interaction',
-      'Chance to see other mammals: aardvark, oribis, giraffes, bushbucks, hartebeest, waterbucks, leopards, mongoose',
-      'Spotting rare birds like shoebill storks, kingfishers, and African fish eagles',
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title:
-          'Kampala/Entebbe – Ziwa Rhino Sanctuary – Rhino Trekking – Return',
-        details: `
-Early morning breakfast at your hotel in Entebbe or Kampala. Meet your Dawnlight Journeys guide for a briefing about your day tour to Ziwa Rhino Sanctuary, including rhino tracking. Depart early via the Kampala-Gulu Highway, branching off at Nakasongola to access Ziwa.
-
-Upon arrival, receive a briefing from sanctuary officials on rhino tracking regulations. Enjoy 2-3 hours trekking through lush vegetation in search of rhinos, observing them up close in the wild and learning about their behavior. Other wildlife and bird species may also be encountered.
-
-After the trek, return with your guide. If time allows, have lunch at a lodge in the sanctuary. After lunch and relaxation, drive back to Kampala/Entebbe via the Luweero Triangle, with an optional stop for fresh fruits. Drop-off at your hotel or airport marks the end of the tour.`,
-      },
-    ],
-    inclusions: [
-      'Rhino tracking fees',
-      'Experienced guide fees',
-      'Services of an English-speaking guide',
-      'Transport using a 4WD tourist vehicle',
-      'All tour activities as per the travel plan (excluding optional ones)',
-      'A bottled drinking water',
-      'All relevant government taxes',
-    ],
-    exclusions: [
-      'Tipping expenses',
-      'Telephone bills/expenses',
-      'All personal insurance costs',
-      'Laundry services as requested',
-      'All bills on shopping',
-      'Safari lodge/hotel fees after your day excursion at Ziwa',
-      'All costs on beverages/alcoholic drinks',
-      'Flight services',
-    ],
-    packingList: [
-      'Waterproof rain jacket',
-      'Safari hat',
-      'Waterproof walking shoes/boots',
-      'Camera with flashlight',
-      'Bottled drinking water',
-      'Sunscreen',
-      'Snacks',
-      'Long pants and neutral colored clothing',
-    ],
-    faqs: [
-      {
-        question: 'Is rhino trekking safe?',
-        answer:
-          'Yes, rhino trekking is conducted with experienced guides and safety protocols are strictly followed.',
-      },
-      {
-        question: 'What should I wear for rhino trekking?',
-        answer:
-          'Wear comfortable walking shoes, long pants, and neutral colored clothing. A waterproof jacket and hat are recommended.',
-      },
-      {
-        question: 'When is the best time for rhino trekking in Ziwa?',
-        answer:
-          'The dry months (June–September and December–February) are ideal for rhino tracking due to favorable weather and accessible paths, but the sanctuary is open year-round.',
-      },
-      {
-        question: 'What other animals can I see at Ziwa?',
-        answer:
-          'Besides rhinos, you may encounter aardvark, oribis, giraffes, bushbucks, hartebeest, waterbucks, leopards, mongoose, and over 300 bird species including shoebill storks.',
-      },
-    ],
-    bestTime: 'June - September, December - February (dry months)',
-    groupSize: '2-10 people',
-    difficulty: 'Easy',
-  },
-  {
-    id: 3,
     title: '2 Days Akagera Safari',
     location: 'Akagera National Park, Rwanda',
     destination: 'Rwanda',
@@ -339,6 +141,204 @@ Meal plan: Breakfast`,
   },
   {
     id: 4,
+    title: '1 Day Gorilla Tour',
+    location: 'Volcanoes National Park, Rwanda',
+    destination: 'Rwanda',
+    duration: '1 day',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vi9wpd1uict3rlxejqf1',
+    description:
+      'This 1-day gorilla tour in Rwanda is a full-day adventure to trek and interact with a group of mountain gorillas in their natural habitat at Volcanoes National Park. The tour includes a guided trek, park briefing, and a close-up hour with a habituated gorilla family, all in the lush forests of northwestern Rwanda.',
+    url: '/safaris/1-day-gorilla-tour',
+    slug: '1-day-gorilla-tour',
+    images: [
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vi9wpd1uict3rlxejqf1',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/mqamqqc2dohryiras64o',
+    ],
+    highlights: [
+      'Gorilla trekking permit included',
+      'Guided trek in Volcanoes National Park',
+      'Visit to one of 13 habituated gorilla families',
+      'Professional park ranger and guide service',
+      'Scenic drive from Kigali to Volcanoes National Park',
+      'Certificate of participation',
+      'Chance to see other wildlife and birds',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Kigali – Volcanoes National Park – Gorilla Trekking – Return',
+        details: `Set off early in the morning from Kigali with your essentials for a 2-3 hour drive to Volcanoes National Park. Upon arrival, settle at Kinigi for a briefing from park officials about gorilla trekking rules and regulations, including maintaining a safe distance of 8-10 meters from the gorillas. After the briefing, park rangers will lead you into the forest to begin your trek at around 8:00 am. The trek can take 2-6 hours, depending on the location of the gorilla family. Once the gorillas are located, you will have one hour to observe and photograph them in their natural habitat. After the trek, return to meet your safari guide and depart for Kigali, marking the end of your memorable one-day gorilla tour in Rwanda.
+
+Accommodation (for extended stays):
+- Budget: Kinigi Guesthouse, Sambora Kinigi Lodge
+- Midrange: Amakoro Songa Lodge, Sabyinyo Silverback Lodge
+- Luxury: One&Only Gorilla's Nest, Wilderness Bisate Lodge, Volcanoes Virunga Lodge, Singita Kwitonda Lodge
+
+Meal plan: Not included (can be arranged on request)
+Travel time: 2-3 hours from Kigali`,
+      },
+    ],
+    inclusions: [
+      'A valid gorilla permit for Rwanda',
+      'All transportation using a 4x4 safari vehicle',
+      'Services of a safari/park ranger guide',
+      'All relevant taxes as per Rwanda government',
+      'Free bottled drinking water',
+      'All tour activities as per the trip itinerary',
+    ],
+    exclusions: [
+      'Tips',
+      'Laundry services',
+      'Travel insurance',
+      'All optional activities',
+      'Passports',
+      'Visas',
+      'All costs on beverages',
+    ],
+    packingList: [
+      'Good and waterproof hiking boots',
+      'Long-sleeved shirts',
+      'Long pants',
+      'Safari hat',
+      'Rain jacket',
+      'Sweater',
+      'Insect repellent',
+      'Daypack',
+      'Bottled drinking water',
+      'Pair of socks',
+      'Camera and additional batteries',
+      'Gorilla permit',
+      'Toiletries',
+      'Valid passport and visa',
+      'Sunscreen',
+      'Anti-malaria medication',
+      'Sunglasses',
+      'Walking stick (optional)',
+    ],
+    faqs: [
+      {
+        question: 'What is the minimum age for gorilla trekking?',
+        answer: 'The minimum age for gorilla trekking is 15 years old.',
+      },
+      {
+        question: 'How long does the trek take?',
+        answer:
+          'The trek can take anywhere from 2-6 hours depending on the location of the gorilla family. You will spend one hour with the gorillas once found.',
+      },
+      {
+        question: 'What other attractions are in Volcanoes National Park?',
+        answer:
+          'Other attractions include golden monkey tracking, volcano hiking, Dian Fossey tomb site hike, and bird-watching. The park is home to Virunga volcanoes and a variety of wildlife and over 200 bird species.',
+      },
+      {
+        question: 'Where can I stay if I want to extend my tour?',
+        answer: `There are budget, midrange, and luxury accommodation options near Volcanoes National Park, including One&Only Gorilla's Nest, Wilderness Bisate Lodge, Kinigi Guesthouse, Sabyinyo Silverback Lodge, Volcanoes Virunga Lodge, Singita Kwitonda Lodge, Amakoro Songa Lodge, and Sambora Kinigi Lodge.`,
+      },
+      {
+        question: 'What should I carry for a Rwanda gorilla tour?',
+        answer:
+          'Essentials include waterproof hiking boots, long-sleeved shirts, long pants, a safari hat, rain jacket, sweater, insect repellent, daypack, bottled water, socks, camera, gorilla permit, toiletries, passport, visa, sunscreen, anti-malaria medication, sunglasses, and optionally a walking stick.',
+      },
+    ],
+    bestTime: 'June - September',
+    groupSize: '1-8 people',
+    difficulty: 'Moderate',
+  },
+  {
+    id: 10,
+    title: '1 Day Rhino Trekking',
+    location: 'Ziwa Rhino Sanctuary, Uganda',
+    destination: 'Uganda',
+    duration: '1 day',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
+    description:
+      'Embark on a journey to witness the massive creatures: the rhinos in their natural environment on a 1-day rhino trekking tour. This excursion at Ziwa Rhino Sanctuary involves navigating through lush vegetation in search of rhinos, bringing you closer to these Big 5 game members. Ziwa is the only place in Uganda where rhinos can be spotted in the wild, also home to other mammals and over 300 bird species.',
+    url: '/safaris/1-day-rhino-trekking',
+    slug: '1-day-rhino-trekking',
+    images: [
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wpa5xei3futepcrbq7vm',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
+    ],
+    highlights: [
+      'Rhino tracking on foot',
+      'Educational center visit',
+      'Bird watching opportunities',
+      'Local community interaction',
+      'Chance to see other mammals: aardvark, oribis, giraffes, bushbucks, hartebeest, waterbucks, leopards, mongoose',
+      'Spotting rare birds like shoebill storks, kingfishers, and African fish eagles',
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title:
+          'Kampala/Entebbe – Ziwa Rhino Sanctuary – Rhino Trekking – Return',
+        details: `
+Early morning breakfast at your hotel in Entebbe or Kampala. Meet your Dawnlight Journeys guide for a briefing about your day tour to Ziwa Rhino Sanctuary, including rhino tracking. Depart early via the Kampala-Gulu Highway, branching off at Nakasongola to access Ziwa.
+
+Upon arrival, receive a briefing from sanctuary officials on rhino tracking regulations. Enjoy 2-3 hours trekking through lush vegetation in search of rhinos, observing them up close in the wild and learning about their behavior. Other wildlife and bird species may also be encountered.
+
+After the trek, return with your guide. If time allows, have lunch at a lodge in the sanctuary. After lunch and relaxation, drive back to Kampala/Entebbe via the Luweero Triangle, with an optional stop for fresh fruits. Drop-off at your hotel or airport marks the end of the tour.`,
+      },
+    ],
+    inclusions: [
+      'Rhino tracking fees',
+      'Experienced guide fees',
+      'Services of an English-speaking guide',
+      'Transport using a 4WD tourist vehicle',
+      'All tour activities as per the travel plan (excluding optional ones)',
+      'A bottled drinking water',
+      'All relevant government taxes',
+    ],
+    exclusions: [
+      'Tipping expenses',
+      'Telephone bills/expenses',
+      'All personal insurance costs',
+      'Laundry services as requested',
+      'All bills on shopping',
+      'Safari lodge/hotel fees after your day excursion at Ziwa',
+      'All costs on beverages/alcoholic drinks',
+      'Flight services',
+    ],
+    packingList: [
+      'Waterproof rain jacket',
+      'Safari hat',
+      'Waterproof walking shoes/boots',
+      'Camera with flashlight',
+      'Bottled drinking water',
+      'Sunscreen',
+      'Snacks',
+      'Long pants and neutral colored clothing',
+    ],
+    faqs: [
+      {
+        question: 'Is rhino trekking safe?',
+        answer:
+          'Yes, rhino trekking is conducted with experienced guides and safety protocols are strictly followed.',
+      },
+      {
+        question: 'What should I wear for rhino trekking?',
+        answer:
+          'Wear comfortable walking shoes, long pants, and neutral colored clothing. A waterproof jacket and hat are recommended.',
+      },
+      {
+        question: 'When is the best time for rhino trekking in Ziwa?',
+        answer:
+          'The dry months (June–September and December–February) are ideal for rhino tracking due to favorable weather and accessible paths, but the sanctuary is open year-round.',
+      },
+      {
+        question: 'What other animals can I see at Ziwa?',
+        answer:
+          'Besides rhinos, you may encounter aardvark, oribis, giraffes, bushbucks, hartebeest, waterbucks, leopards, mongoose, and over 300 bird species including shoebill storks.',
+      },
+    ],
+    bestTime: 'June - September, December - February (dry months)',
+    groupSize: '2-10 people',
+    difficulty: 'Easy',
+  },
+  {
+    id: 5,
     title: '2 Days Gorilla Tour',
     location: 'Volcanoes National Park, Rwanda',
     destination: 'Rwanda',
@@ -448,7 +448,7 @@ Travel time: 2-3 hours to Kigali`,
     difficulty: 'Moderate to Challenging',
   },
   {
-    id: 5,
+    id: 11,
     title: '2 Days Lake Mburo Safari',
     location: 'Lake Mburo National Park, Uganda',
     destination: 'Uganda',
@@ -676,7 +676,7 @@ Travel time: 6-7 hours to Kigali`,
     difficulty: 'Moderate',
   },
   {
-    id: 7,
+    id: 12,
     title: '3 Days Bwindi Gorilla Trekking Tour',
     location: 'Bwindi Impenetrable Forest, Uganda',
     destination: 'Uganda',
@@ -813,7 +813,7 @@ Travel time: 8-9 hours to Kampala/Entebbe`,
     difficulty: 'Moderate to Challenging',
   },
   {
-    id: 8,
+    id: 13,
     title: '3 Days Kibale Safari',
     location: 'Kibale Forest National Park, Uganda',
     destination: 'Uganda',
@@ -945,7 +945,7 @@ Travel time: 5-6 hours to Kampala/Entebbe`,
     difficulty: 'Moderate',
   },
   {
-    id: 9,
+    id: 14,
     title: '3 Days Queen Elizabeth Safari',
     location: 'Queen Elizabeth National Park, Uganda',
     destination: 'Uganda',
@@ -1077,7 +1077,7 @@ Travel time: 7-8 hours to Kampala/Entebbe`,
     difficulty: 'Easy',
   },
   {
-    id: 10,
+    id: 20,
     title: '3 Days Rwanda Gorilla Safari',
     location: 'Volcanoes National Park, Rwanda',
     destination: 'Rwanda',
@@ -1203,7 +1203,7 @@ Meal plan: Breakfast`,
     difficulty: 'Moderate',
   },
   {
-    id: 11,
+    id: 15,
     title: '5 Days Queen Elizabeth and Bwindi Safari',
     location: 'Queen Elizabeth NP & Bwindi Forest, Uganda',
     destination: 'Uganda',
@@ -1401,7 +1401,7 @@ Meal plan: Breakfast & Lunch`
     difficulty: 'Moderate',
   },
   {
-    id: 12,
+    id: 21,
     title: '8 Days Kibale, Queen Elizabeth and Bwindi Safari',
     location: 'Kibale, Queen Elizabeth & Bwindi, Uganda',
     destination: 'Uganda',
@@ -1641,7 +1641,7 @@ Travel time: 8-9 hours to Entebbe`,
     difficulty: 'Moderate',
   },
   {
-    id: 13,
+    id: 16,
     title: '10 Days Uganda Safari',
     location: 'Multiple Parks, Uganda',
     destination: 'Uganda',
@@ -1907,7 +1907,7 @@ Meal plan: Breakfast & Lunch`,
     difficulty: 'Moderate',
   },
   {
-    id: 100,
+    id: 17,
     title: '5 DAYS UGANDA',
     location: 'Uganda, Rwanda, Bwindi, Volcanoes',
     destination: 'Uganda',
@@ -1989,7 +1989,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 101,
+    id: 2,
     title: '3 DAYS AKAGERA NP SAFARI',
     location: 'Rwanda, Akagera',
     destination: 'Rwanda',
@@ -2065,7 +2065,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 102,
+    id: 18,
     title: '5 DAYS QUEEN ELIZABETH AND BWINDI SAFARI 1',
     location: 'Uganda, Bwindi, Queen Elizabeth',
     destination: 'Uganda',
@@ -2148,7 +2148,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 103,
+    id: 19,
     title: '8 DAYS KIBALE QUEEN AND BWINDI',
     location: 'Uganda, Bwindi, Queen Elizabeth, Kibale',
     destination: 'Uganda',
@@ -2245,7 +2245,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 104,
+    id: 7,
     title: '4 DAYS RWANDA GORILLA TOUR',
     location: 'Rwanda, Volcanoes',
     destination: 'Rwanda',
@@ -2323,7 +2323,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 105,
+    id: 3,
     title: '5 DAYS AKAGERA AND VOLCANOES SAFARI',
     location: 'Rwanda, Akagera, Volcanoes',
     destination: 'Rwanda',
@@ -2401,7 +2401,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 106,
+    id: 8,
     title: '3 DAYS RWANDA CHIMPANZEE TREK',
     location: 'Rwanda, Nyungwe',
     destination: 'Rwanda',
@@ -2473,7 +2473,7 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 107,
+    id: 9,
     title: '8 DAYS RWANDA SAFARI',
     location: 'Rwanda, Akagera, Volcanoes, Nyungwe',
     destination: 'Rwanda',
