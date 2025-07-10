@@ -14,7 +14,13 @@ const safariImages = Array.from(
 ).slice(0, 3);
 const fallbackImage =
   'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1';
-const images = safariImages.length > 0 ? safariImages : [fallbackImage];
+const images =
+  safariImages.length > 0
+    ? [
+        'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hero_image_itvueq',
+        ...safariImages,
+      ]
+    : [fallbackImage];
 
 // Gather all safari and experience titles
 const safariTitles = safariPackages.map((s) => s?.title);
@@ -43,7 +49,7 @@ export const metadata: Metadata = {
     apple: fallbackImage,
   },
   authors: [
-    { name: 'Dawnlight Journeys', url: 'https://dawnlightjourneys.com' },
+    { name: 'Dawnlight Journeys', url: 'https://dawnlightjourneysrwanda.com' },
     { name: 'Nishimwe Prince', url: 'https://github.com/nishimweprince' },
   ],
   publisher: 'Dawnlight Journeys',
@@ -51,7 +57,7 @@ export const metadata: Metadata = {
     title: 'Dawnlight Journeys',
     description:
       'Unforgettable safaris and adventures in Uganda and Rwanda. Experience gorilla trekking, Big Five game drives, cultural encounters, and luxury travel with Dawnlight Journeys.',
-    url: 'https://dawnlightjourneys.com',
+    url: 'https://dawnlightjourneysrwanda.com',
     siteName: 'Dawnlight Journeys',
     images: images.map((url) => ({
       url,
