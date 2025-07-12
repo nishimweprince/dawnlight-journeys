@@ -1,9 +1,11 @@
+'use client';
+
 import { CustomButton } from '../../src/components/ui/custom-button';
-import React from 'react';
+import React, { useState } from 'react';
 import { experiences } from '../../src/constants/experiences';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Unique Experiences | Dawnlight Journeys',
   description:
     'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
@@ -36,6 +38,15 @@ export const metadata: Metadata = {
 };
 
 export default function ExperiencesPage() {
+  const [search, setSearch] = useState('');
+  // Filter experiences by search query (title or description)
+  const filteredExperiences = experiences.filter((exp) => {
+    const query = search.toLowerCase();
+    return (
+      exp.title.toLowerCase().includes(query) ||
+      exp.description.toLowerCase().includes(query)
+    );
+  });
   return (
     <main className="bg-background min-h-screen">
       {/* Hero Section */}
@@ -57,10 +68,36 @@ export default function ExperiencesPage() {
         </section>
       </header>
 
+      {/* Search Bar */}
+      <section className="container flex justify-center px-4 my-8">
+        <section className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5">
+          <form className="relative flex items-center" role="search" aria-label="Search experiences" onSubmit={e => e.preventDefault()}>
+            <input
+              type="text"
+              placeholder="Search experiences by title or description..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full px-5 py-3 border-2 border-primary/20 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-primary/40 text-base bg-white transition-all duration-200 placeholder:text-muted-foreground"
+              style={{ minHeight: "3.25rem" }}
+              aria-label="Search experiences"
+            />
+            <span className="absolute right-4 text-primary/60 pointer-events-none">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2"/>
+                <path d="M20 20L16.65 16.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </span>
+          </form>
+          <p className="mt-2 text-sm text-muted-foreground text-center">
+            Find your perfect adventure by keyword, activity, or highlight.
+          </p>
+        </section>
+      </section>
+
       {/* Experiences Grid */}
       <section className="container py-12 sm:py-16 md:py-20 lg:py-24">
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
-          {experiences?.map((exp) => {
+          {filteredExperiences?.map((exp) => {
             const Icon = exp?.icon;
             return (
               <li
