@@ -149,11 +149,11 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 </span>
               </section>
 
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 text-foreground">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
                 {safari?.title}
               </h1>
 
-              <p className="text-lg md:text-xl mb-8 text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              <p className="text-md md:text-lg mb-8 text-muted-foreground leading-relaxed max-w-3xl mx-auto">
                 {safari?.description}
               </p>
 
@@ -205,7 +205,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 Safari Overview
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-md md:text-md text-muted-foreground mb-8 leading-relaxed">
                 {safari?.description}
               </p>
 
@@ -272,99 +272,41 @@ export default function SafariClient({ safari }: SafariClientProps) {
               className="space-y-6"
             >
               <h2 className="text-2xl md:text-3xl font-bold text-center">
-                Safari Gallery
+                Itinerary
               </h2>
-              <section className="relative">
-                <section className="overflow-hidden rounded-2xl">
-                  <section
-                    className="flex transition-transform duration-300 ease-in-out"
-                    style={{
-                      transform: `translateX(-${carouselIndex * 100}%)`,
-                    }}
-                  >
-                    {safari?.images?.map((image, index) => (
-                      <figure
-                        key={index}
-                        className="w-full flex-shrink-0 relative"
+              <article className="bg-white rounded-xl shadow-lg p-4 md:p-8">
+                {safari?.itinerary && safari.itinerary.length > 0 ? (
+                  <ol className="relative border-l-2 border-primary-200 ml-2 md:ml-6">
+                    {safari.itinerary.map((day, idx) => (
+                      <li
+                        key={idx}
+                        className="mb-8 last:mb-0 ml-2 md:ml-4 relative flex flex-col sm:flex-row gap-4 md:gap-6"
                       >
-                        <img
-                          src={image}
-                          alt={`${safari.title} - Image ${index + 1}`}
-                          className="w-full h-[400px] md:h-[500px] object-cover"
-                        />
-                      </figure>
+                        {/* Timeline marker */}
+                        <figure className="flex flex-row sm:flex-col items-center sm:items-center mb-2 sm:mb-0">
+                          {safari?.itinerary &&
+                            idx !== safari.itinerary.length - 1 && (
+                              <hr className="h-8 w-1 sm:w-1 sm:h-full bg-primary-200 mt-1 mb-1 sm:mt-1 sm:mb-1" />
+                            )}
+                        </figure>
+                        {/* Day content */}
+                        <section className="flex-1 bg-primary-50 rounded-lg shadow p-4 md:p-6 transition hover:shadow-xl">
+                          <header className="mb-2 md:mb-3">
+                            <h3 className="text-lg md:text-xl font-bold text-primary-800">
+                              {day.title}
+                            </h3>
+                          </header>
+                          <p className="text-primary-700 text-sm md:text-base leading-relaxed whitespace-pre-line">
+                            {day.details}
+                          </p>
+                        </section>
+                      </li>
                     ))}
-                  </section>
-                </section>
-
-                {/* Carousel Controls */}
-                <button
-                  onClick={prevCarouselImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-colors"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="h-6 w-6" />
-                </button>
-                <button
-                  onClick={nextCarouselImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-colors"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="h-6 w-6" />
-                </button>
-
-                {/* Carousel Indicators */}
-                <nav className="flex justify-center gap-2 mt-4">
-                  {safari?.images?.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCarouselIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-colors ${
-                        index === carouselIndex ? 'bg-primary' : 'bg-muted'
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </nav>
-              </section>
-            </motion.section>
-          )}
-
-          {/* Itinerary */}
-          {safari?.itinerary && safari?.itinerary?.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-                Safari Itinerary
-              </h2>
-              <section className="space-y-6">
-                {safari?.itinerary?.map((day, index) => (
-                  <motion.article
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-primary"
-                  >
-                    <header className="flex items-center gap-4 mb-3">
-                      <section className="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">
-                        {day.day}
-                      </section>
-                      <h3 className="text-lg md:text-xl font-bold">
-                        {day.title}
-                      </h3>
-                    </header>
-                    <p className="text-muted-foreground ml-14 leading-relaxed">
-                      {day.details}
-                    </p>
-                  </motion.article>
-                ))}
-              </section>
+                  </ol>
+                ) : (
+                  <p className="text-primary-700">No itinerary available.</p>
+                )}
+              </article>
             </motion.section>
           )}
 

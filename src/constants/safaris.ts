@@ -35,12 +35,21 @@ export const safariPackages: SafariPackage[] = [
     destination: 'Rwanda',
     duration: '2 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/w1mmn52r8kip2ggbogt4',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-1_lbnyes',
     description:
       "This 2-day Akagera safari offers awe-inspiring game viewing and a boat cruise in Rwanda's finest savanna wilderness. Encounter the Big 5, aquatic species, and over 525 bird species in Akagera National Park. The journey begins and ends in Kigali.",
     url: '/safaris/2-days-akagera',
     slug: '2-days-akagera',
     images: [
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-9_fuphyd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-1_lbnyes',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-8_uea6aj',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-4_aq7lzv',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-7_z6cojs',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-3_qhhjdl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-6_cgxpdb',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-5_n8nvwf',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-2_ngnrt1',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/w1mmn52r8kip2ggbogt4',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wgjebndpmejp4fekooxk',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sbachfv7v1d2xu2ifdzs',
@@ -344,13 +353,12 @@ After the trek, return with your guide. If time allows, have lunch at a lodge in
     destination: 'Rwanda',
     duration: '2 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/mqamqqc2dohryiras64o',
     description:
       'Embark on a 2-day gorilla tour in Rwanda, offering a once-in-a-lifetime opportunity to trek and observe mountain gorillas in their natural habitat at Volcanoes National Park. This short safari includes a cultural encounter with locals, guided trekking, and comfortable accommodation.',
     url: '/safaris/2-days-gorilla-tour',
     slug: '2-days-gorilla-tour',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vbwkdn99escdqc8scxix',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/xas90h6m4uio90wnqzes',
     ],
@@ -454,14 +462,15 @@ Travel time: 2-3 hours to Kigali`,
     destination: 'Uganda',
     duration: '2 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cpcb9sygwrp3xjten5mv',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/lake-mburo-2_i4lpc6',
     description: `Enjoy an enriching 2-day wildlife tour in Lake Mburo National Park, Uganda's most accessible and compact savanna park. Experience guided game drives, a scenic boat cruise, and close encounters with diverse wildlife and bird species. The tour begins and ends in Kampala or Entebbe.`,
     url: '/safaris/2-days-lake-mburo',
     slug: '2-days-lake-mburo',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cpcb9sygwrp3xjten5mv',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/ckuby2rtv6w3eomdigry',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/lake-mburo-4_ktz7rl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/lake-mburo-3_ieosfd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/lake-mburo-2_i4lpc6',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/lake-mburo-1_uz1ygi',
     ],
     highlights: [
       'Guided game drives in Lake Mburo National Park',
@@ -569,16 +578,15 @@ Travel time: 4 hours to Kampala/Entebbe`,
     destination: 'Rwanda',
     duration: '2 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/nyungwe-1_cudb3j',
     description:
       'Experience the wonders of Nyungwe Forest National Park on this thrilling 2-day tour. Enjoy a canopy walk and chimpanzee trekking, with opportunities to see a variety of primates, birds, and the lush forest canopy. The tour begins and ends in Kigali.',
     url: '/safaris/2-days-nyungwe-tour',
     slug: '2-days-nyungwe-tour',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gg1h6xmgnjijfcmnvivp',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/rjyuvbbaogyt11dvluwc',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sdk206waaj8esw5ynner',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/nyungwe-1_cudb3j',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/nyungwe-3_kh54n7',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/nyungwe-2_brotwk',
     ],
     highlights: [
       'Guided chimpanzee trekking in Nyungwe Forest',
@@ -682,14 +690,16 @@ Travel time: 6-7 hours to Kigali`,
     destination: 'Uganda',
     duration: '3 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
     description:
       'Embark on an exclusive 3-day journey to witness the massive mountain gorillas in their natural habitat in Bwindi Impenetrable National Park, a UNESCO World Heritage Site. Enjoy gorilla trekking, a Batwa cultural experience, and scenic drives through southwestern Uganda. The adventure begins and ends in Kampala or Entebbe.',
     url: '/safaris/3-days-bwindi-gorilla-trekking-tour',
     slug: '3-days-bwindi-gorilla-trekking-tour',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/s7ekengitq8docursrgc',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-3_jbxzpq',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     ],
     highlights: [
       'Guided gorilla trekking in Bwindi Impenetrable National Park',
@@ -819,15 +829,18 @@ Travel time: 8-9 hours to Kampala/Entebbe`,
     destination: 'Uganda',
     duration: '3 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/psmowi9sxjinfba9ra0v',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-3_wlucad',
     description:
       'This 3-day Kibale safari offers an enriching chimpanzee trekking experience in Kibale National Park, home to over 13 primate species and more than 1,500 chimpanzees. Enjoy guided chimpanzee tracking, a Bigodi Wetland nature walk, and scenic drives through western Uganda. The adventure begins and ends in Kampala or Entebbe.',
     url: '/safaris/3-days-kibale-safari',
     slug: '3-days-kibale-safari',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/zssahq149fpoed8a0ptb',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/psmowi9sxjinfba9ra0v',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/mcmgun9paxpintehqdks',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-4_arotus',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-3_wlucad',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-5_aupvr9',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-1_v7wyzx',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-0_dqukbt',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-2_phh1f0',
     ],
     highlights: [
       'Guided chimpanzee trekking in Kibale Forest',
@@ -951,14 +964,16 @@ Travel time: 5-6 hours to Kampala/Entebbe`,
     destination: 'Uganda',
     duration: '3 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-3_icmnmd',
     description: `This 3-day Queen Elizabeth safari offers an enriching wildlife experience in Uganda's second largest park. Enjoy guided game drives in the Kasenyi Plains, a scenic boat cruise on the Kazinga Channel, and breathtaking views of the savanna. The adventure begins and ends in Kampala or Entebbe.`,
     url: '/safaris/3-days-queen-elizabeth-safari',
     slug: '3-days-queen-elizabeth-safari',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hbi2suzdhpietabb6a8v',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dvz6tkydiawtznebjkhp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-5_aoc4rw',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-3_icmnmd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-2_ihrp3x',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-4_mgjoyl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-1_qvrvjy',
     ],
     highlights: [
       'Guided game drives in the Kasenyi Plains',
@@ -1083,20 +1098,21 @@ Travel time: 7-8 hours to Kampala/Entebbe`,
     destination: 'Rwanda',
     duration: '3 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vbwkdn99escdqc8scxix',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     description: `A captivating 3-day Rwanda gorilla safari takes you deep into the lush Volcanoes National Park for a once-in-a-lifetime encounter with mountain gorillas, plus a Kigali city tour and a vibrant cultural experience in the Iby'Iwacu Village. The adventure begins and ends in Kigali with a full-time experienced guide.`,
     url: '/safaris/3-days-rwanda-gorilla-safari',
     slug: '3-days-rwanda-gorilla-safari',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q08oh8nujhyvmofs0zpp',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/vbwkdn99escdqc8scxix',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/xas90h6m4uio90wnqzes',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-3_jbxzpq',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     ],
     highlights: [
       'Guided gorilla trekking in Volcanoes National Park',
       'Visit to habituated gorilla families (Bwenge, Hirwa, Karisimbi, Ugenda, Kwitonda, Amahoro, Susa A, Sabyinyo, Agashya, and more)',
       'Kigali city tour (memorial center, Kimironko market, and more)',
-      'Cultural tour in Iby\'Iwacu Village',
+      "Cultural tour in Iby'Iwacu Village",
       'Professional park ranger and guide service',
       'Scenic drive from Kigali to Volcanoes National Park',
       'Certificate of participation',
@@ -1209,17 +1225,20 @@ Meal plan: Breakfast`,
     destination: 'Uganda',
     duration: '5 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hbi2suzdhpietabb6a8v',
-    description:
-      `The 5 Days Queen Elizabeth and Bwindi Safari offers unforgettable wildlife and gorilla trekking experiences. Enjoy game drives and a boat cruise in Queen Elizabeth National Park, then cross to Bwindi Impenetrable National Park for a thrilling gorilla trek and Batwa cultural experience. The adventure begins in Kampala/Entebbe and ends with a return after exploring Uganda's top wildlife and primate destinations.`,
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-4_mgjoyl',
+    description: `The 5 Days Queen Elizabeth and Bwindi Safari offers unforgettable wildlife and gorilla trekking experiences. Enjoy game drives and a boat cruise in Queen Elizabeth National Park, then cross to Bwindi Impenetrable National Park for a thrilling gorilla trek and Batwa cultural experience. The adventure begins in Kampala/Entebbe and ends with a return after exploring Uganda's top wildlife and primate destinations.`,
     url: '/safaris/5-days-queen-elizabeth-and-bwindi-safari',
     slug: '5-days-queen-elizabeth-and-bwindi-safari',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/s7ekengitq8docursrgc',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hbi2suzdhpietabb6a8v',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dvz6tkydiawtznebjkhp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-5_aoc4rw',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-3_icmnmd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-2_ihrp3x',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-4_mgjoyl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-1_qvrvjy',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-3_jbxzpq',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     ],
     highlights: [
       'Game drives in Queen Elizabeth National Park (Kasenyi Plains, Ishasha sector)',
@@ -1244,7 +1263,7 @@ Accommodation options:
 - Luxury: Katara Lodge / Elephant Plains Lodge / Mweya Safari Lodge
 
 Meal plan: Lunch & Dinner + Water en route
-Travel time: 7-8 hours`
+Travel time: 7-8 hours`,
       },
       {
         day: 2,
@@ -1256,7 +1275,7 @@ Accommodation options:
 - Midrange: Enganzi Game Lodge / Buffalo Safari Lodge
 - Luxury: Katara Lodge / Elephant Plains Lodge / Mweya Safari Lodge
 
-Meal plan: Breakfast, Lunch & Dinner`
+Meal plan: Breakfast, Lunch & Dinner`,
       },
       {
         day: 3,
@@ -1269,7 +1288,7 @@ Accommodation options:
 - Luxury: Bwindi Lodge / Buhoma Lodge
 
 Meal plan: Breakfast, Lunch & Dinner
-Travel time: 3-4 hours`
+Travel time: 3-4 hours`,
       },
       {
         day: 4,
@@ -1281,15 +1300,15 @@ Accommodation options:
 - Midrange: Mahogany Springs / Engagi Lodge
 - Luxury: Bwindi Lodge / Buhoma Lodge
 
-Meal plan: Breakfast, Lunch & Dinner`
+Meal plan: Breakfast, Lunch & Dinner`,
       },
       {
         day: 5,
         title: 'Departure',
         details: `Enjoy a leisurely breakfast, then check out and meet your driver guide for the journey back to Kampala or Entebbe. Enjoy scenic countryside views and a lunch stop en route. Arrive in Kampala/Entebbe and be dropped off at your hotel, marking the end of your 5-day safari.
 
-Meal plan: Breakfast & Lunch`
-      }
+Meal plan: Breakfast & Lunch`,
+      },
     ],
     inclusions: [
       'All park entry fees',
@@ -1394,7 +1413,7 @@ Meal plan: Breakfast & Lunch`
         question: 'How do I obtain a Ugandan visa?',
         answer:
           'Ugandan visas can be obtained online (e-visa) or on arrival at Entebbe International Airport. Please check current requirements before travel.',
-      }
+      },
     ],
     bestTime: 'June - September, December - February',
     groupSize: '2-8 people',
@@ -1407,17 +1426,27 @@ Meal plan: Breakfast & Lunch`
     destination: 'Uganda',
     duration: '8 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dvz6tkydiawtznebjkhp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-1_qvrvjy',
     description:
       'The extensive 8 Days Kibale, Queen Elizabeth and Bwindi Safari presents a lifetime opportunity to witness both the Big game and Great primates in their natural habitats. Explore Kibale National Park for chimpanzee trekking and Bigodi Wetland, enjoy game drives and a boat cruise in Queen Elizabeth National Park, and finish with gorilla trekking in Bwindi Impenetrable National Park. This comprehensive adventure begins and ends in Entebbe.',
     url: '/safaris/8-days-kibale-queen-and-bwindi',
     slug: '8-days-kibale-queen-and-bwindi',
     images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/s7ekengitq8docursrgc',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hbi2suzdhpietabb6a8v',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dvz6tkydiawtznebjkhp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-4_arotus',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-3_wlucad',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-5_aupvr9',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-1_v7wyzx',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-0_dqukbt',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-2_phh1f0',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-5_aoc4rw',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-3_icmnmd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-2_ihrp3x',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-4_mgjoyl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/queen-elizabeth-safari-1_qvrvjy',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-3_jbxzpq',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     ],
     highlights: [
       'Chimpanzee trekking in Kibale National Park – the Primate Capital of the World',
@@ -1647,12 +1676,18 @@ Travel time: 8-9 hours to Entebbe`,
     destination: 'Uganda',
     duration: '10 days',
     image:
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sihgp7fwvkhzrdwgiz6y',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-3_furubg',
     description:
       'This 10-day Uganda safari is an adventure-packed journey featuring chimpanzee tracking, gorilla trekking, game viewing, rhino tracking, and cultural encounters. Explore Murchison Falls, Kibale, Queen Elizabeth, Bwindi Impenetrable National Park, and Lake Bunyonyi, with comfortable stays and expert guides throughout.',
     url: '/safaris/10-days-uganda-safari',
     slug: '10-days-uganda-safari',
     images: [
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-5_lqggkw',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-1_rgeuhj',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-4_ymrjzp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-2_ynxhle',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-6_pvtiwt',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-3_furubg',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sihgp7fwvkhzrdwgiz6y',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
       'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
@@ -1912,14 +1947,24 @@ Meal plan: Breakfast & Lunch`,
     location: 'Uganda, Rwanda, Bwindi, Volcanoes',
     destination: 'Uganda',
     duration: '5 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-    description: '5 DAYS UGANDA & RWANDA Safari Overview The 5 Days Uganda and Rwanda is perfectly tailored for those of you with plans to explore gorilla trekking in the two destinations. In Uganda, you will embark on gorilla trek in dense rainforest of Bwindi Impenetrable National Park and in Rwanda, expect to visi...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-5_lqggkw',
+    description:
+      '5 DAYS UGANDA & RWANDA Safari Overview The 5 Days Uganda and Rwanda is perfectly tailored for those of you with plans to explore gorilla trekking in the two destinations. In Uganda, you will embark on gorilla trek in dense rainforest of Bwindi Impenetrable National Park and in Rwanda, expect to visi...',
     url: '/safaris/5-days-uganda',
     slug: '5-days-uganda',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/murchison-hero_jkl012.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-5_lqggkw',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-1_rgeuhj',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-4_ymrjzp',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-2_ynxhle',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-6_pvtiwt',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/uganda-safari-3_furubg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sihgp7fwvkhzrdwgiz6y',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/aprkacmqhcomx6kuvrrb',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/k42zcswyvtf3pdcdqfim',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hbi2suzdhpietabb6a8v',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dvz6tkydiawtznebjkhp',
     ],
     highlights: [
       'Professional guide services',
@@ -1932,49 +1977,59 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'pick up & transfer to bwindi impenetrable national park day 2: gorilla trekking & batwa community tour day 3: travel by road to volcanoes national park day 4: a captivating gorilla trekking plus iby’iwacu cultural tour day 5: departure detailed itinerary day 1: pick up & transfer to bwindi impenetrable national park enjoy a hefty breakfast early morning and this will be followed by briefing about the enriching 5 days uganda and rwanda safari. today’s journey will be a bit long as you depart from',
+        details:
+          'pick up & transfer to bwindi impenetrable national park day 2: gorilla trekking & batwa community tour day 3: travel by road to volcanoes national park day 4: a captivating gorilla trekking plus iby’iwacu cultural tour day 5: departure detailed itinerary day 1: pick up & transfer to bwindi impenetrable national park enjoy a hefty breakfast early morning and this will be followed by briefing about the enriching 5 days uganda and rwanda safari. today’s journey will be a bit long as you depart from',
       },
       {
         day: 2,
         title: 'Day 2',
-        details: 'gorilla trekking & batwa community tour expect to assemble at the bwindi park offices where you will get briefed about the rules and regulations for gorilla trekking guidelines. the thrilling gorilla trek will commence at around 8:00 am and will take 2-6 hours. you will enjoy a maximum of 1 hour with gorillas which involves observing how they behave and their unique body gestures. you will start walking back to bwindi park offices to get your gorilla trekking certificate and later, connect to th',
+        details:
+          'gorilla trekking & batwa community tour expect to assemble at the bwindi park offices where you will get briefed about the rules and regulations for gorilla trekking guidelines. the thrilling gorilla trek will commence at around 8:00 am and will take 2-6 hours. you will enjoy a maximum of 1 hour with gorillas which involves observing how they behave and their unique body gestures. you will start walking back to bwindi park offices to get your gorilla trekking certificate and later, connect to th',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'travel by road to volcanoes national park early in the morning, you will meet the driver guide and today, you will be heading to volcanoes national park. the journey will involve driving through the uganda-rwanda border (katuna/chanika border crossing). arrive early to volcanoes national park to check in your respective lodges. accommodation options budget: kinigi guesthouse midrange: mountain gorilla view lodge/da vinci lodge luxury: five volcanoes boutique hotel/silverback lodge meal plan: ful',
+        details:
+          'travel by road to volcanoes national park early in the morning, you will meet the driver guide and today, you will be heading to volcanoes national park. the journey will involve driving through the uganda-rwanda border (katuna/chanika border crossing). arrive early to volcanoes national park to check in your respective lodges. accommodation options budget: kinigi guesthouse midrange: mountain gorilla view lodge/da vinci lodge luxury: five volcanoes boutique hotel/silverback lodge meal plan: ful',
       },
       {
         day: 5,
         title: 'Day 5',
-        details: 'departure have your luggage set for packing in your 4x4 safari vehicle and after, you will be transferred to kigali. you may consider engaging in a short kigali city tour to explore kigali genocide memorial. get lunch and then you will be dropped off to the airport for departure. end of tour tour inclusions all park entry fees gorilla permits cultural experiences transportation accommodation services + meals an english-speaking driver/park ranger guide tour exclusions tips laundry services telep',
+        details:
+          'departure have your luggage set for packing in your 4x4 safari vehicle and after, you will be transferred to kigali. you may consider engaging in a short kigali city tour to explore kigali genocide memorial. get lunch and then you will be dropped off to the airport for departure. end of tour tour inclusions all park entry fees gorilla permits cultural experiences transportation accommodation services + meals an english-speaking driver/park ranger guide tour exclusions tips laundry services telep',
       },
       {
         day: 5,
         title: 'Day 5',
-        details: 's uganda & rwanda safari overview the 5 days uganda and rwanda is perfectly tailored for those of you with plans to explore gorilla trekking in the two destinations. in uganda, you will embark on gorilla trek in dense rainforest of bwindi impenetrable national park and in rwanda, expect to visit volcanoes national park. at bwindi, you will start your gorilla trek from the 4 sectors; ruhija, nkuringo, rushaga, and buhoma region. bwindi impenetrable national park alone shelters over 25 habituated ',
+        details:
+          's uganda & rwanda safari overview the 5 days uganda and rwanda is perfectly tailored for those of you with plans to explore gorilla trekking in the two destinations. in uganda, you will embark on gorilla trek in dense rainforest of bwindi impenetrable national park and in rwanda, expect to visit volcanoes national park. at bwindi, you will start your gorilla trek from the 4 sectors; ruhija, nkuringo, rushaga, and buhoma region. bwindi impenetrable national park alone shelters over 25 habituated ',
       },
       {
         day: 5,
         title: 'Day 5',
-        details: 's uganda and rwanda safari. today’s journey will be a bit long as you depart from entebbe or kampala through masaka-mbarara-kabale route. but the interesting part of it is that you will be having stopover to other attraction sites including the equator crossing and later settle for lunch at the igongo cultural centre. leave igongo for bwindi and enjoy the stunning countryside featuring misty hills of kigezi region',
-      }
+        details:
+          's uganda and rwanda safari. today’s journey will be a bit long as you depart from entebbe or kampala through masaka-mbarara-kabale route. but the interesting part of it is that you will be having stopover to other attraction sites including the equator crossing and later settle for lunch at the igongo cultural centre. leave igongo for bwindi and enjoy the stunning countryside featuring misty hills of kigezi region',
+      },
     ],
     faqs: [
       {
         question: 'What is included in the 5 DAYS UGANDA?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
@@ -1994,14 +2049,28 @@ Meal plan: Breakfast & Lunch`,
     location: 'Rwanda, Akagera',
     destination: 'Rwanda',
     duration: '3 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/kibale-hero_def456.jpg',
-    description: '3 DAYS AKAGERA NP SAFARI Safari Overview Embark on captivating journey to witness the Big 5 game in the wild only on our budget-friendly 3 days Akagera NP safari. The Akagera National Park safari with Dawnlight Journeys includes guided game drives and boat cruise. During the game drive, you will be...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-6_cgxpdb',
+    description:
+      '3 DAYS AKAGERA NP SAFARI Safari Overview Embark on captivating journey to witness the Big 5 game in the wild only on our budget-friendly 3 days Akagera NP safari. The Akagera National Park safari with Dawnlight Journeys includes guided game drives and boat cruise. During the game drive, you will be...',
     url: '/safaris/3-days-akagera-np-safari',
     slug: '3-days-akagera-np-safari',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/queen-elizabeth-hero_abc123.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-9_fuphyd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-1_lbnyes',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-8_uea6aj',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-4_aq7lzv',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-7_z6cojs',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-3_qhhjdl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-6_cgxpdb',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-5_n8nvwf',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-2_ngnrt1',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/w1mmn52r8kip2ggbogt4',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wgjebndpmejp4fekooxk',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sbachfv7v1d2xu2ifdzs',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/ukxk9qgl3xahf3uhp7rk',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q1xoasufkmg0tqixqnl6',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/rytcqpf0eectu62pictj',
     ],
     highlights: [
       'Professional guide services',
@@ -2014,39 +2083,47 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'pick up & drive to akagera day 2: enjoy a game drive to see big 5 & boat cruise in afternoon day 3: depart for kigali detailed itinerary day 1: pick up & drive to akagera leave the hotel in kigali for you to start the day with the city tour. about 2 hours will be spent for you to explore historical sites like kigali genocide center, kandt house, and other sites. here, you will learn more about the historical 1994 rwanda genocide then continue to one of the restaurants to enjoy early lunch. exit ',
+        details:
+          'pick up & drive to akagera day 2: enjoy a game drive to see big 5 & boat cruise in afternoon day 3: depart for kigali detailed itinerary day 1: pick up & drive to akagera leave the hotel in kigali for you to start the day with the city tour. about 2 hours will be spent for you to explore historical sites like kigali genocide center, kandt house, and other sites. here, you will learn more about the historical 1994 rwanda genocide then continue to one of the restaurants to enjoy early lunch. exit ',
       },
       {
         day: 2,
         title: 'Day 2',
-        details: 'enjoy a game drive to see big 5 & boat cruise in afternoon start the day with a hefty breakfast and later, catch up with the sunrise game viewing session along the game tracks in akagera national park. the game drive along the akagera comes with ultimate exposure to wildlife such as elephants, hyenas, leopards, lions, buffaloes, rhinos, antelopes (including roan antelopes), birds, giraffes, zebras, warthogs, and more. a game drive through akagera will run for 2-3 hours and then you return to hav',
+        details:
+          'enjoy a game drive to see big 5 & boat cruise in afternoon start the day with a hefty breakfast and later, catch up with the sunrise game viewing session along the game tracks in akagera national park. the game drive along the akagera comes with ultimate exposure to wildlife such as elephants, hyenas, leopards, lions, buffaloes, rhinos, antelopes (including roan antelopes), birds, giraffes, zebras, warthogs, and more. a game drive through akagera will run for 2-3 hours and then you return to hav',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'depart for kigali enjoy a delicious breakfast and have your luggage packed safely in the vehicle. leave the lodge for the morning game drive which allows you see variety of wildlife that you missed to encounter the previous day. after the short game drive, proceed to kigali to be dropped off to the hotel/airport. travel time: 2',
+        details:
+          'depart for kigali enjoy a delicious breakfast and have your luggage packed safely in the vehicle. leave the lodge for the morning game drive which allows you see variety of wildlife that you missed to encounter the previous day. after the short game drive, proceed to kigali to be dropped off to the hotel/airport. travel time: 2',
       },
       {
         day: 3,
-        title: 'Day 3',
-        details: 's akagera np safari safari overview embark on captivating journey to witness the big 5 game in the wild only on our budget-friendly 3 days akagera np safari. the akagera national park safari with dawnlight journeys includes guided game drives and boat cruise. during the game drive, you will be exploring the wildlife tracks of akagera expecting to encounter the cape buffaloes, lions, elephants, zebras, giraffes, leopards, and a range of antelopes. a boat cruise excursion in akagera includes explo',
-      }
+        title: 'Day 4',
+        details:
+          's akagera np safari safari overview embark on captivating journey to witness the big 5 game in the wild only on our budget-friendly 3 days akagera np safari. the akagera national park safari with dawnlight journeys includes guided game drives and boat cruise. during the game drive, you will be exploring the wildlife tracks of akagera expecting to encounter the cape buffaloes, lions, elephants, zebras, giraffes, leopards, and a range of antelopes. a boat cruise excursion in akagera includes explo',
+      },
     ],
     faqs: [
       {
         question: 'What is included in the 3 DAYS AKAGERA NP SAFARI?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
@@ -2065,102 +2142,28 @@ Meal plan: Breakfast & Lunch`,
     ],
   },
   {
-    id: 18,
-    title: '5 DAYS QUEEN ELIZABETH AND BWINDI SAFARI 1',
-    location: 'Uganda, Bwindi, Queen Elizabeth',
-    destination: 'Uganda',
-    duration: '5 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/queen-elizabeth-hero_abc123.jpg',
-    description: '5 DAYS QUEEN ELIZABETH AND BWINDI SAFARI Safari Overview The 5 Days Queen Elizabeth and Bwindi safari offers unforgettable wildlife and gorilla trekking experiences. This trip plan includes a Big game tour in Queen Elizabeth National Park where you will have the best game drive via the Kasenyi Track...',
-    url: '/safaris/5-days-queen-elizabeth-and-bwindi-safari-1',
-    slug: '5-days-queen-elizabeth-and-bwindi-safari-1',
-    images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/murchison-hero_jkl012.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/queen-elizabeth-hero_abc123.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-    ],
-    highlights: [
-      'Professional guide services',
-      'Wildlife viewing opportunities',
-      'Cultural experiences',
-      'Scenic landscapes',
-      'Photography opportunities',
-    ],
-    itinerary: [
-      {
-        day: 1,
-        title: 'Day 1',
-        details: 'drive from entebbe to queen elizabeth national park day 2: game drive plus boat cruise with an expert day 3: leave queen elizabeth park for bwindi via ishasha sector day 4: a thrilling gorilla trekking with an expert & batwa cultural experience day 5: departure detailed itinerary day 1: drive from entebbe to queen elizabeth national park your journey will start from the entebbe city and involves driving to queen elizabeth national park. but first, you will be briefed about the 5-day tour in ugan',
-      },
-      {
-        day: 2,
-        title: 'Day 2',
-        details: 'game drive plus boat cruise with an expert a delicious cup of tea/coffee will be enjoyed early morning and after, expect to start your journey to explore the wonders of queen elizabeth national park. the sunrise game drive will be experienced along the kasenyi plains with an expert. the kasenyi plains game drive will involve sighting variety of wildlife including spotted hyenas, elephants, buffaloes, lions, leopards, warthogs, birds, and more. get back from the 2-3 hour game drive and chill at t',
-      },
-      {
-        day: 3,
-        title: 'Day 3',
-        details: 'leave queen elizabeth park for bwindi via the ishasha sector at leisure, enjoy a tasty cup of tea/coffee and after, you will be picked up and set for your journey to bwindi impenetrable national park. as you exit queen elizabeth national park, keep eyes on some of the wildlife as they begin their day. before crossing to bwindi, you will have a moment to spot the tree-climbing lions plus other species along the ishasha sector in the far southern end of queen elizabeth national park. you will have',
-      },
-      {
-        day: 4,
-        title: 'Day 4',
-        details: 'a thrilling gorilla trekking with an expert & batwa cultural experience get up early and have a hefty breakfast before you proceed to the briefing center at the park offices. at around 6:30 am, you will be expected at the park offices where you will meet the park officials to take you through the gorilla trekking rules and regulations. you will also have a gorilla group allocated to you plus an experienced park ranger guide. after getting briefed, expect to embark on the actual trekking to find ',
-      },
-      {
-        day: 5,
-        title: 'Day 5',
-        details: 'departure enjoy a leisurely breakfast in your respective gorilla safari lodges and after, check out. you will meet your professional driver guide and today, you will begin your journey early driving back to kampala via a stunning countryside featuring misty hillside. upon arrival at kampala or entebbe, you will be dropped off to the hotel for relaxation. end of safari safari inclusions all park entry fees',
-      },
-      {
-        day: 5,
-        title: 'Day 5',
-        details: 's queen elizabeth and bwindi safari safari overview the 5 days queen elizabeth and bwindi safari offers unforgettable wildlife and gorilla trekking experiences. this trip plan includes a big game tour in queen elizabeth national park where you will have the best game drive via the kasenyi track and a boat cruise on the kazinga channel. on a game drive, you will be exposed to lots of savanna species including elephants, buffaloes, leopards, lions, and a variety of antelopes. a boat cruise along t',
-      }
-    ],
-    faqs: [
-      {
-        question: 'What is included in the 5 DAYS QUEEN ELIZABETH AND BWINDI SAFARI 1?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
-      },
-      {
-        question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
-      },
-      {
-        question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
-    ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
-    groupSize: '2-8 people',
-    difficulty: 'Moderate',
-    inclusions: [
-      'This trip plan includes a Big game tour in Queen Elizabeth National Park where you will have the best game drive via the Kasenyi Track and a boat cruise on the Kazinga channel',
-      'Have a leisurely time at the accommodation, dinner, and overnight',
-      'Accommodation options Budget: Bush Lodge/Bulbul Safari Lodge/Simba Tented Camp Midrange: Enganzi Game Lodge/Buffalo Safari Lodge Luxury: Katara Lodge/Elephant Plains Lodge/Mweya Safari Lodge Meal plan: Lunch & Dinner +Water en route Travel time: 7-8 hours Day 2: Game drive plus Boat cruise with an expert A delicious cup of tea/coffee will be enjoyed early morning and after, expect to start your journey to explore the wonders of Queen Elizabeth National Park',
-      'Accommodation options Budget: Bush Lodge/Bulbul Safari Lodge/Simba Tented Camp Midrange: Enganzi Game Lodge/Buffalo Safari Lodge Luxury: Katara Lodge/Elephant Plains Lodge/Mweya Safari Lodge Meal plan: Breakfast, Lunch & Dinner Day 3: Leave Queen Elizabeth Park for Bwindi via the Ishasha sector At leisure, enjoy a tasty cup of tea/coffee and after, you will be picked up and set for your journey to Bwindi Impenetrable National Park',
-      'Accommodation options Budget: Ride 4 a Woman Midrange: Mahogany Springs/Engagi Lodge Luxury: Bwindi Lodge/Buhoma Lodge Meal plan: Breakfast, Lunch, and Dinner Travel time: 3 to 4 hours Day 4: A thrilling gorilla trekking with an expert & Batwa cultural experience Get up early and have a hefty breakfast before you proceed to the briefing center at the park offices',
-    ],
-    exclusions: [
-      'Once you have had the special 1 hour of up close and personal encounter with mountain gorillas, you will be accompanied back and the park official will provide you with your gorilla trekking certificate',
-      'Passports Visas Telephone bills Insurance, etc',
-    ],
-  },
-  {
     id: 19,
     title: '8 DAYS KIBALE QUEEN AND BWINDI',
     location: 'Uganda, Bwindi, Queen Elizabeth, Kibale',
     destination: 'Uganda',
     duration: '8 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-    description: '8 DAYS KIBALE, QUEEN ELIZABETH AND BWINDI SAFARI Safari Overview The extensive 8 Days Kibale, Queen Elizabeth and Bwindi Safari presents you a lifetime opportunity to witness both the Big game and Great primates in their natural habitats. On your tour, expect to explore Kibale National Park –the ren...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-0_dqukbt',
+    description:
+      '8 DAYS KIBALE, QUEEN ELIZABETH AND BWINDI SAFARI Safari Overview The extensive 8 Days Kibale, Queen Elizabeth and Bwindi Safari presents you a lifetime opportunity to witness both the Big game and Great primates in their natural habitats. On your tour, expect to explore Kibale National Park –the ren...',
     url: '/safaris/8-days-kibale-queen-and-bwindi',
     slug: '8-days-kibale-queen-and-bwindi',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/kibale-hero_def456.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-4_arotus',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-3_wlucad',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-5_aupvr9',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-1_v7wyzx',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-0_dqukbt',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/kibale-safari-2_phh1f0',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-3_jbxzpq',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     ],
     highlights: [
       'Professional guide services',
@@ -2173,64 +2176,77 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'arrival & transfer to the hotel in entebbe day 2: pick up & travel by road up to kibale day 3: chimpanzee trekking & enriching bigodi wetland walk day 4: kibale to queen elizabeth national park, game drive day 5: early morning game drive & boat cruise with a guide day 6: queen elizabeth park –bwindi day 7: gorilla trekking & visit the batwa pygmies day 8: departure detailed itinerary day 1: arrival & transfer to the hotel in entebbe upon arrival at the entebbe international airport (ebb), meet a',
+        details:
+          'arrival & transfer to the hotel in entebbe day 2: pick up & travel by road up to kibale day 3: chimpanzee trekking & enriching bigodi wetland walk day 4: kibale to queen elizabeth national park, game drive day 5: early morning game drive & boat cruise with a guide day 6: queen elizabeth park –bwindi day 7: gorilla trekking & visit the batwa pygmies day 8: departure detailed itinerary day 1: arrival & transfer to the hotel in entebbe upon arrival at the entebbe international airport (ebb), meet a',
       },
       {
         day: 2,
         title: 'Day 2',
-        details: 'pick up & travel by road up to kibale have a tasty cup of tea/coffee and after, be prepared for your journey to explore kibale forest national park. meet the safari guide for a short briefing and then start your trip through the kampala-mityana-mubende-fort portal city. en route, your journey will come with mesmerizing views of the countryside including the stunning matiri forest, vast farms of bananas, and tea. arrive at fort portal early for you to settle for a leisurely lunch and some refresh',
+        details:
+          'pick up & travel by road up to kibale have a tasty cup of tea/coffee and after, be prepared for your journey to explore kibale forest national park. meet the safari guide for a short briefing and then start your trip through the kampala-mityana-mubende-fort portal city. en route, your journey will come with mesmerizing views of the countryside including the stunning matiri forest, vast farms of bananas, and tea. arrive at fort portal early for you to settle for a leisurely lunch and some refresh',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'chimpanzee trekking & enriching bigodi wetland walk chimpanzee trekking adventure will begin with briefing at kanyanchu visitor center and this session will be led by the park official. the park official will allocate you an experienced and professional guide to lead you through the search for chimpanzee community in kibale forest. the morning chimp trek session will start at around 8:00 am and will take between 2 and 4 hours. you will be given a maximum of one (1) hour to enjoy up close and per',
+        details:
+          'chimpanzee trekking & enriching bigodi wetland walk chimpanzee trekking adventure will begin with briefing at kanyanchu visitor center and this session will be led by the park official. the park official will allocate you an experienced and professional guide to lead you through the search for chimpanzee community in kibale forest. the morning chimp trek session will start at around 8:00 am and will take between 2 and 4 hours. you will be given a maximum of one (1) hour to enjoy up close and per',
       },
       {
         day: 4,
         title: 'Day 4',
-        details: 'kibale to queen elizabeth national park, game drive take your delicious breakfast at leisure and later, check out of your respective accommodation options. today, you will be transferred to queen elizabeth national park driving via kasese town. enjoy the scenic beauty of the countryside characterized by the crater lakes, rwenzori mountain ranges, and vast savanna plains. at kikorongo, you will have a stopover at the equator crossing and then continue to queen elizabeth national park',
+        details:
+          'kibale to queen elizabeth national park, game drive take your delicious breakfast at leisure and later, check out of your respective accommodation options. today, you will be transferred to queen elizabeth national park driving via kasese town. enjoy the scenic beauty of the countryside characterized by the crater lakes, rwenzori mountain ranges, and vast savanna plains. at kikorongo, you will have a stopover at the equator crossing and then continue to queen elizabeth national park',
       },
       {
         day: 5,
         title: 'Day 5',
-        details: 'early morning game drive & boat cruise with a guide after a heavy breakfast, you will depart your lodge for a sunrise game drive. today, expect to return to kasenyi plains for a 2-3 hour game viewing session and this time, you will be searching for early risers. a variety of wildlife should be expected to be spotted today and include elephants, buffaloes, lions, leopards, uganda kobs, birds like kori bustards, and more. expect to return from the game drive for you to have a leisurely lunch plus ',
+        details:
+          'early morning game drive & boat cruise with a guide after a heavy breakfast, you will depart your lodge for a sunrise game drive. today, expect to return to kasenyi plains for a 2-3 hour game viewing session and this time, you will be searching for early risers. a variety of wildlife should be expected to be spotted today and include elephants, buffaloes, lions, leopards, uganda kobs, birds like kori bustards, and more. expect to return from the game drive for you to have a leisurely lunch plus ',
       },
       {
         day: 6,
         title: 'Day 6',
-        details: 'queen elizabeth park –bwindi have a hefty breakfast and later, you will set off from queen elizabeth national park for bwindi impenetrable national park. today’s journey will run for about 3-4 hours and includes ishasha game viewing en route. along the ishasha sector, you will be embarking on the search for the tree-climbing lions plus other mammals and birds. expect to enjoy a bush lunch or have it at one of the lodges',
+        details:
+          'queen elizabeth park –bwindi have a hefty breakfast and later, you will set off from queen elizabeth national park for bwindi impenetrable national park. today’s journey will run for about 3-4 hours and includes ishasha game viewing en route. along the ishasha sector, you will be embarking on the search for the tree-climbing lions plus other mammals and birds. expect to enjoy a bush lunch or have it at one of the lodges',
       },
       {
         day: 7,
         title: 'Day 7',
-        details: 'gorilla trekking & visit the batwa pygmies wake up early and today, you will be offered a hefty breakfast. leave your lodge with a pack of snacks and bottled water plus other equipment. report to the bwindi national park offices for you to meet the officials for clearing and briefing. expect to learn more about the gorilla trekking rules',
+        details:
+          'gorilla trekking & visit the batwa pygmies wake up early and today, you will be offered a hefty breakfast. leave your lodge with a pack of snacks and bottled water plus other equipment. report to the bwindi national park offices for you to meet the officials for clearing and briefing. expect to learn more about the gorilla trekking rules',
       },
       {
         day: 8,
         title: 'Day 8',
-        details: 'departure after a heavy breakfast, you will be exiting bwindi impenetrable national park. return to entebbe via mbarara-masaka-kampala route. arrive early at the entebbe and you will have the rest of the evening in your respective accommodation options. end of safari inclusions park entry fees travel using a 4x4 safari vehicle services of an experienced guide/park ranger gorilla trekking permits chimp permits game drives boat cruise accommodation fees and meals bottled drinking water exclusions ',
+        details:
+          'departure after a heavy breakfast, you will be exiting bwindi impenetrable national park. return to entebbe via mbarara-masaka-kampala route. arrive early at the entebbe and you will have the rest of the evening in your respective accommodation options. end of safari inclusions park entry fees travel using a 4x4 safari vehicle services of an experienced guide/park ranger gorilla trekking permits chimp permits game drives boat cruise accommodation fees and meals bottled drinking water exclusions ',
       },
       {
         day: 8,
         title: 'Day 8',
-        details: 's kibale, queen elizabeth and bwindi safari safari overview the extensive 8 days kibale, queen elizabeth and bwindi safari presents you a lifetime opportunity to witness both the big game and great primates in their natural habitats. on your tour, expect to explore kibale national park –the renowned primate capital of the world and home to 13 primate species. in kibale, expect to embark on the unforgettable chimpanzee tracking and also tour the bigodi wetland just close by the park. chimpanzee t',
-      }
+        details:
+          's kibale, queen elizabeth and bwindi safari safari overview the extensive 8 days kibale, queen elizabeth and bwindi safari presents you a lifetime opportunity to witness both the big game and great primates in their natural habitats. on your tour, expect to explore kibale national park –the renowned primate capital of the world and home to 13 primate species. in kibale, expect to embark on the unforgettable chimpanzee tracking and also tour the bigodi wetland just close by the park. chimpanzee t',
+      },
     ],
     faqs: [
       {
         question: 'What is included in the 8 DAYS KIBALE QUEEN AND BWINDI?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
@@ -2250,14 +2266,17 @@ Meal plan: Breakfast & Lunch`,
     location: 'Rwanda, Volcanoes',
     destination: 'Rwanda',
     duration: '4 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-    description: '4 DAYS RWANDA GORILLA TOUR Tour Overview 4 days are adequate enough to embark on unforgettable gorilla trekking adventure in Rwanda. Our exclusive 4 days Rwanda gorilla tour introduces you to the scenic Volcanoes National Park, home to the distinct mountain gorillas and golden monkeys plus 5 spectac...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+    description:
+      '4 DAYS RWANDA GORILLA TOUR Tour Overview 4 days are adequate enough to embark on unforgettable gorilla trekking adventure in Rwanda. Our exclusive 4 days Rwanda gorilla tour introduces you to the scenic Volcanoes National Park, home to the distinct mountain gorillas and golden monkeys plus 5 spectac...',
     url: '/safaris/4-days-rwanda-gorilla-tour',
     slug: '4-days-rwanda-gorilla-tour',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/queen-elizabeth-hero_abc123.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-3_jbxzpq',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrilas-1_zw9b3z',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-2_z2uafu',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorrillas-4_f71j1k',
     ],
     highlights: [
       'Professional guide services',
@@ -2270,44 +2289,53 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'embark on city tour in kigali & drive to volcanoes national park day 2: gorilla trekking + visit to iby’iwacu community day 3: golden monkey trek & relaxation day 4: departure detailed itinerary day 1: embark on city tour in kigali & drive to volcanoes national park get to meet your safari expert from dawnlight journeys at the hotel or agreed point of pickup. you will have a warm welcome and short introduction to your itinerary. after, you will be led on the rewarding city tour where you will be',
+        details:
+          'embark on city tour in kigali & drive to volcanoes national park day 2: gorilla trekking + visit to iby’iwacu community day 3: golden monkey trek & relaxation day 4: departure detailed itinerary day 1: embark on city tour in kigali & drive to volcanoes national park get to meet your safari expert from dawnlight journeys at the hotel or agreed point of pickup. you will have a warm welcome and short introduction to your itinerary. after, you will be led on the rewarding city tour where you will be',
       },
       {
         day: 2,
         title: 'Day 2',
-        details: 'gorilla trekking + visit to iby’iwacu community have a tasty cup of tea or coffee at the lodge and after, transfer to kinigi for briefing about gorilla trekking regulations. get to know the dos and don’ts for gorilla trekking plus a gorilla group to be visited. the park ranger guides will be present at the park offices and each will lead a group of 8 tourists. you will begin trekking to see mountain gorillas at around 8:00 am and the long adventure may take 2-6 hours depending on your fitness le',
+        details:
+          'gorilla trekking + visit to iby’iwacu community have a tasty cup of tea or coffee at the lodge and after, transfer to kinigi for briefing about gorilla trekking regulations. get to know the dos and don’ts for gorilla trekking plus a gorilla group to be visited. the park ranger guides will be present at the park offices and each will lead a group of 8 tourists. you will begin trekking to see mountain gorillas at around 8:00 am and the long adventure may take 2-6 hours depending on your fitness le',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'golden monkey trek & relaxation enjoy a hefty breakfast at the lodge and afterwards, you will return to kinigi for another briefing session. today, your interest will be different and the focus will be to visit golden monkeys. learn more about golden monkey trekking rules and later, the park ranger guide will lead you on the search for a habituated troop of golden monkeys in the lush vegetation of volcanoes national park. trekking with golden monkeys will extend for about 2-5 hours inclusive of ',
+        details:
+          'golden monkey trek & relaxation enjoy a hefty breakfast at the lodge and afterwards, you will return to kinigi for another briefing session. today, your interest will be different and the focus will be to visit golden monkeys. learn more about golden monkey trekking rules and later, the park ranger guide will lead you on the search for a habituated troop of golden monkeys in the lush vegetation of volcanoes national park. trekking with golden monkeys will extend for about 2-5 hours inclusive of ',
       },
       {
         day: 4,
         title: 'Day 4',
-        details: 'departure at leisure, you will enjoy your breakfast and after, expect to check out of your safari lodge/camp. meet the driver guide to take you back to kigali and get there early to be dropped off at the hotel or direct to the airport for departure. end of tour tour inclusions golden monkey permits gorilla permits kigali city tour accommodation plus tasty meals travel to and from destinations bottled water airport transfers all park entrance fees. tour exclusions visas',
+        details:
+          'departure at leisure, you will enjoy your breakfast and after, expect to check out of your safari lodge/camp. meet the driver guide to take you back to kigali and get there early to be dropped off at the hotel or direct to the airport for departure. end of tour tour inclusions golden monkey permits gorilla permits kigali city tour accommodation plus tasty meals travel to and from destinations bottled water airport transfers all park entrance fees. tour exclusions visas',
       },
       {
         day: 4,
         title: 'Day 4',
-        details: 's rwanda gorilla tour tour overview 4 days are adequate enough to embark on unforgettable gorilla trekking adventure in rwanda. our exclusive 4 days rwanda gorilla tour introduces you to the scenic volcanoes national park, home to the distinct mountain gorillas and golden monkeys plus 5 spectacular virunga volcanoes. the rwanda gorilla tour in volcanoes national park with dawnlight journeys includes trekking mountain gorillas and golden monkeys plus a city tour. gorilla trekking will include a s',
-      }
+        details:
+          's rwanda gorilla tour tour overview 4 days are adequate enough to embark on unforgettable gorilla trekking adventure in rwanda. our exclusive 4 days rwanda gorilla tour introduces you to the scenic volcanoes national park, home to the distinct mountain gorillas and golden monkeys plus 5 spectacular virunga volcanoes. the rwanda gorilla tour in volcanoes national park with dawnlight journeys includes trekking mountain gorillas and golden monkeys plus a city tour. gorilla trekking will include a s',
+      },
     ],
     faqs: [
       {
         question: 'What is included in the 4 DAYS RWANDA GORILLA TOUR?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
@@ -2328,14 +2356,19 @@ Meal plan: Breakfast & Lunch`,
     location: 'Rwanda, Akagera, Volcanoes',
     destination: 'Rwanda',
     duration: '5 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-    description: '5 DAYS AKAGERA AND VOLCANOES SAFARI Safari Overview The 5 Days Akagera and Volcanoes safari includes Big 5 game tour and a captivating mountain gorilla trekking. The Big 5 game tour and boat excursions will be enjoyed in the finest wilderness of Akagera National Park in the Eastern end of Rwanda. A...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/volcanoes-2_i7qo6d',
+    description:
+      '5 DAYS AKAGERA AND VOLCANOES SAFARI Safari Overview The 5 Days Akagera and Volcanoes safari includes Big 5 game tour and a captivating mountain gorilla trekking. The Big 5 game tour and boat excursions will be enjoyed in the finest wilderness of Akagera National Park in the Eastern end of Rwanda. A...',
     url: '/safaris/5-days-akagera-and-volcanoes-safari',
     slug: '5-days-akagera-and-volcanoes-safari',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/queen-elizabeth-hero_abc123.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/murchison-hero_jkl012.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/w1mmn52r8kip2ggbogt4',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wgjebndpmejp4fekooxk',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/sbachfv7v1d2xu2ifdzs',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/ukxk9qgl3xahf3uhp7rk',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/q1xoasufkmg0tqixqnl6',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/rytcqpf0eectu62pictj',
     ],
     highlights: [
       'Professional guide services',
@@ -2348,44 +2381,54 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'kigali city tour & travel to akagera national park day 2: game drive plus memorable boat tour day 3: drive to volcanoes national park day 4: a captivating gorilla trekking tour plus a visit to the iby’iwacu village day 5: departure detailed itinerary day 1: kigali city tour & travel to akagera national park meet your expert from dawnlight journeys for a quick briefing about a captivating 5-day rwanda tour to akagera and volcanoes national park. after the short briefing, continue with the city to',
+        details:
+          'kigali city tour & travel to akagera national park day 2: game drive plus memorable boat tour day 3: drive to volcanoes national park day 4: a captivating gorilla trekking tour plus a visit to the iby’iwacu village day 5: departure detailed itinerary day 1: kigali city tour & travel to akagera national park meet your expert from dawnlight journeys for a quick briefing about a captivating 5-day rwanda tour to akagera and volcanoes national park. after the short briefing, continue with the city to',
       },
       {
         day: 2,
         title: 'Day 2',
-        details: 'game drive plus memorable boat tour have an early morning breakfast and after, you will proceed with a game drive. on a game drive, you will be searching for variety of wildlife in akagera national park. these include elephants, buffaloes, leopards, giraffes, hyenas, warthogs, and many bird species. your sunrise game drive will extend for 2-3 hours and after, you will get back to relax at the lodge',
+        details:
+          'game drive plus memorable boat tour have an early morning breakfast and after, you will proceed with a game drive. on a game drive, you will be searching for variety of wildlife in akagera national park. these include elephants, buffaloes, leopards, giraffes, hyenas, warthogs, and many bird species. your sunrise game drive will extend for 2-3 hours and after, you will get back to relax at the lodge',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'drive to volcanoes national park have a leisurely cup of tea or coffee and after, depart from akagera for volcanoes national park. enjoy a scenic views en route to volcanoes park and on arrival, you will check in your respective lodges. accommodation options budget: muhabura hotel/kinigi guesthouse midrange: le bambou lodge/la palme hotel luxury: silverback lodge/bisate lodge meal plan: breakfast, lunch, and dinner day 4: a captivating gorilla trekking tour plus a visit to the iby’iwacu village ',
+        details:
+          'drive to volcanoes national park have a leisurely cup of tea or coffee and after, depart from akagera for volcanoes national park. enjoy a scenic views en route to volcanoes park and on arrival, you will check in your respective lodges. accommodation options budget: muhabura hotel/kinigi guesthouse midrange: le bambou lodge/la palme hotel luxury: silverback lodge/bisate lodge meal plan: breakfast, lunch, and dinner day 4: a captivating gorilla trekking tour plus a visit to the iby’iwacu village ',
       },
       {
         day: 5,
         title: 'Day 5',
-        details: 'departure today, you will have breakfast and depart for kigali. arrive early for you to carry out some shopping and later get dropped off to the airport for you to depart back home. end of safari inclusions park entrance fees gorilla permits ground transportation driver/park ranger guide services airport transfers relevant government taxes guided game drives & boat tours exclusions visas passports tips. laundry services',
+        details:
+          'departure today, you will have breakfast and depart for kigali. arrive early for you to carry out some shopping and later get dropped off to the airport for you to depart back home. end of safari inclusions park entrance fees gorilla permits ground transportation driver/park ranger guide services airport transfers relevant government taxes guided game drives & boat tours exclusions visas passports tips. laundry services',
       },
       {
         day: 5,
         title: 'Day 5',
-        details: 's akagera and volcanoes safari safari overview the 5 days akagera and volcanoes safari includes big 5 game tour and a captivating mountain gorilla trekking. the big 5 game tour and boat excursions will be enjoyed in the finest wilderness of akagera national park in the eastern end of rwanda. a variety of savanna wild animals will be encountered including lions, leopards, elephants, buffaloes, giraffes, zebras, and antelopes plus birds. volcanoes national park will reward you with iconic gorilla ',
-      }
+        details:
+          's akagera and volcanoes safari safari overview the 5 days akagera and volcanoes safari includes big 5 game tour and a captivating mountain gorilla trekking. the big 5 game tour and boat excursions will be enjoyed in the finest wilderness of akagera national park in the eastern end of rwanda. a variety of savanna wild animals will be encountered including lions, leopards, elephants, buffaloes, giraffes, zebras, and antelopes plus birds. volcanoes national park will reward you with iconic gorilla ',
+      },
     ],
     faqs: [
       {
-        question: 'What is included in the 5 DAYS AKAGERA AND VOLCANOES SAFARI?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        question:
+          'What is included in the 5 DAYS AKAGERA AND VOLCANOES SAFARI?',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
@@ -2406,14 +2449,18 @@ Meal plan: Breakfast & Lunch`,
     location: 'Rwanda, Nyungwe',
     destination: 'Rwanda',
     duration: '3 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-    description: '3 DAYS RWANDA CHIMPANZEE TREK Overview The 3 days Rwanda chimpanzee trek takes you to explore Nyungwe Forest National Park and its wonders. You will enjoy a guided trek with chimpanzees in Nyungwe and interact with them in their natural habitat. Expect to learn more about the unique behaviors of chi...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-1_kwoj9g',
+    description:
+      '3 DAYS RWANDA CHIMPANZEE TREK Overview The 3 days Rwanda chimpanzee trek takes you to explore Nyungwe Forest National Park and its wonders. You will enjoy a guided trek with chimpanzees in Nyungwe and interact with them in their natural habitat. Expect to learn more about the unique behaviors of chi...',
     url: '/safaris/3-days-rwanda-chimpanzee-trek',
     slug: '3-days-rwanda-chimpanzee-trek',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/kibale-hero_def456.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/queen-elizabeth-hero_abc123.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-1_kwoj9g',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-5_nwu5gg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-3_ctpmvd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-2_zyxglc',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-4_tupkjt',
     ],
     highlights: [
       'Professional guide services',
@@ -2426,39 +2473,47 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'pick up & transfer to nyungwe day 2: chimpanzee trekking and canopy walk day 3: return to kigali –enjoy a city tour detailed itinerary day 1: pick up & transfer to nyungwe enjoy a delicious breakfast at the hotel and after, you will transfer to nyungwe forest national park. today’s journey takes you towards the southern province and expect to spend about 6-7 hours on the road. you will branch off to the king’s palace museum and have another stopover for lunch in butare town. leave butare for nyu',
+        details:
+          'pick up & transfer to nyungwe day 2: chimpanzee trekking and canopy walk day 3: return to kigali –enjoy a city tour detailed itinerary day 1: pick up & transfer to nyungwe enjoy a delicious breakfast at the hotel and after, you will transfer to nyungwe forest national park. today’s journey takes you towards the southern province and expect to spend about 6-7 hours on the road. you will branch off to the king’s palace museum and have another stopover for lunch in butare town. leave butare for nyu',
       },
       {
         day: 2,
         title: 'Day 2',
-        details: 'chimpanzee trekking and canopy walk get up early to prepare and also settle for your breakfast. leave the lodge for briefing in uwinka or cyamudongo forest section. here, expect to learn more about guidelines for chimpanzee tracking rules and regulations. the park official will allocate the park ranger guides to accompany you on today’s chimpanzee trek',
+        details:
+          'chimpanzee trekking and canopy walk get up early to prepare and also settle for your breakfast. leave the lodge for briefing in uwinka or cyamudongo forest section. here, expect to learn more about guidelines for chimpanzee tracking rules and regulations. the park official will allocate the park ranger guides to accompany you on today’s chimpanzee trek',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'return to kigali –enjoy a city tour you will be picked up early from your respective lodges and today, you will transfer back to kigali. at kigali, you will proceed with a city tour which includes exploring the kigali genocide site, inema arts and gallery etc. after the city excursion, continue to the hotel or direct to the airport for late departure. end of tour inclusions chimp trek permits canopy walk fees',
+        details:
+          'return to kigali –enjoy a city tour you will be picked up early from your respective lodges and today, you will transfer back to kigali. at kigali, you will proceed with a city tour which includes exploring the kigali genocide site, inema arts and gallery etc. after the city excursion, continue to the hotel or direct to the airport for late departure. end of tour inclusions chimp trek permits canopy walk fees',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 's rwanda chimpanzee trek overview the 3 days rwanda chimpanzee trek takes you to explore nyungwe forest national park and its wonders. you will enjoy a guided trek with chimpanzees in nyungwe and interact with them in their natural habitat. expect to learn more about the unique behaviors of chimpanzees while in their natural habitat. you will also get a chance to engage in the canopy walk in nyungwe forest',
-      }
+        details:
+          's rwanda chimpanzee trek overview the 3 days rwanda chimpanzee trek takes you to explore nyungwe forest national park and its wonders. you will enjoy a guided trek with chimpanzees in nyungwe and interact with them in their natural habitat. expect to learn more about the unique behaviors of chimpanzees while in their natural habitat. you will also get a chance to engage in the canopy walk in nyungwe forest',
+      },
     ],
     faqs: [
       {
         question: 'What is included in the 3 DAYS RWANDA CHIMPANZEE TREK?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
@@ -2478,14 +2533,22 @@ Meal plan: Breakfast & Lunch`,
     location: 'Rwanda, Akagera, Volcanoes, Nyungwe',
     destination: 'Rwanda',
     duration: '8 Days',
-    image: 'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
-    description: '8 DAYS RWANDA SAFARI Safari Overview Embark on the captivating 8 days Rwanda safari to unearth wonders of Rwanda in the 3 park; Akagera National Park, Nyungwe Forest National Park, and Volcanoes National Park. A tour in Akagera National Park involves exploring the Big 5 game, antelopes, warthogs, an...',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-4_aq7lzv',
+    description:
+      '8 DAYS RWANDA SAFARI Safari Overview Embark on the captivating 8 days Rwanda safari to unearth wonders of Rwanda in the 3 park; Akagera National Park, Nyungwe Forest National Park, and Volcanoes National Park. A tour in Akagera National Park involves exploring the Big 5 game, antelopes, warthogs, an...',
     url: '/safaris/8-days-rwanda-safari',
     slug: '8-days-rwanda-safari',
     images: [
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/gorilla-hero_qxvqxq.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/kibale-hero_def456.jpg',
-      'https://res.cloudinary.com/dqkimsqvs/image/upload/v1733604117/akagera-hero_ghi789.jpg',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-9_fuphyd',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-1_lbnyes',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-8_uea6aj',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-4_aq7lzv',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-7_z6cojs',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-3_qhhjdl',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-6_cgxpdb',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-5_n8nvwf',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/akagera-safari-2_ngnrt1',
     ],
     highlights: [
       'Professional guide services',
@@ -2498,59 +2561,71 @@ Meal plan: Breakfast & Lunch`,
       {
         day: 1,
         title: 'Day 1',
-        details: 'pick up & transfer to the hotel day 2: drive to akagera national park for game viewing day 3: game drive plus boat cruise day 4: transfer to nyungwe forest national park in the southern province day 5: chimpanzee tracking + canopy walk day 6: travel from nyungwe to volcanoes national park day 7: embark on a thrilling gorilla trekking & relax day 8: golden monkey trekking & departure detailed itinerary day 1: pick up & transfer to the hotel today marks the first day of your unforgettable 8-days r',
+        details:
+          'pick up & transfer to the hotel day 2: drive to akagera national park for game viewing day 3: game drive plus boat cruise day 4: transfer to nyungwe forest national park in the southern province day 5: chimpanzee tracking + canopy walk day 6: travel from nyungwe to volcanoes national park day 7: embark on a thrilling gorilla trekking & relax day 8: golden monkey trekking & departure detailed itinerary day 1: pick up & transfer to the hotel today marks the first day of your unforgettable 8-days r',
       },
       {
         day: 3,
         title: 'Day 3',
-        details: 'game drive plus boat cruise a delicious breakfast will be offered to you and after, expect to embark on the early morning game drive. a game drive through akagera national park presents you a chance to see a range of savanna species. these include african bush elephants, cape buffaloes, rhinos, leopards, giraffes, bush bucks, waterbucks, zebras, and many bird species. you will return from your game drive to have a great moment at the lodge and also to enjoy lunch',
+        details:
+          'game drive plus boat cruise a delicious breakfast will be offered to you and after, expect to embark on the early morning game drive. a game drive through akagera national park presents you a chance to see a range of savanna species. these include african bush elephants, cape buffaloes, rhinos, leopards, giraffes, bush bucks, waterbucks, zebras, and many bird species. you will return from your game drive to have a great moment at the lodge and also to enjoy lunch',
       },
       {
         day: 4,
         title: 'Day 4',
-        details: 'transfer to nyungwe forest national park in the southern province enjoy an early breakfast at the lodge and after, you will be exiting akagera for nyungwe national park. it will be a long journey to connect to nyungwe but expect en route stopover at the king’s palace or ethnographic museum then lunch at butare. leave butare for you to connect up to nyungwe where you will check in your safari lodge. accommodation options budget: gisakura guesthouse midrange: nyungwe top view hotel luxury: one&onl',
+        details:
+          'transfer to nyungwe forest national park in the southern province enjoy an early breakfast at the lodge and after, you will be exiting akagera for nyungwe national park. it will be a long journey to connect to nyungwe but expect en route stopover at the king’s palace or ethnographic museum then lunch at butare. leave butare for you to connect up to nyungwe where you will check in your safari lodge. accommodation options budget: gisakura guesthouse midrange: nyungwe top view hotel luxury: one&onl',
       },
       {
         day: 6,
         title: 'Day 6',
-        details: 'travel from nyungwe to volcanoes national park leave nyungwe forest national park after having a delicious breakfast. drive along the route where you will enjoy views of the lake kivu. get to volcanoes national park early for you to proceed to iby’iwacu cultural village. enjoy the distinct cultural experiences including dances and learning more about cultures and traditions',
+        details:
+          'travel from nyungwe to volcanoes national park leave nyungwe forest national park after having a delicious breakfast. drive along the route where you will enjoy views of the lake kivu. get to volcanoes national park early for you to proceed to iby’iwacu cultural village. enjoy the distinct cultural experiences including dances and learning more about cultures and traditions',
       },
       {
         day: 7,
         title: 'Day 7',
-        details: 'embark on a thrilling gorilla trekking & relax begin your day with an early morning breakfast and after, you will connect to the park offices located in kinigi. it is at kinigi where briefing on guidelines, allocation of gorilla families, and park ranger guides will be conducted by the park official. expect to depart from the park offices at around 8:00 am taking 2-6 hours searching for mountain gorillas. the lengthy trek will reward you with mesmerizing encounter with gorillas for 1 hour then y',
+        details:
+          'embark on a thrilling gorilla trekking & relax begin your day with an early morning breakfast and after, you will connect to the park offices located in kinigi. it is at kinigi where briefing on guidelines, allocation of gorilla families, and park ranger guides will be conducted by the park official. expect to depart from the park offices at around 8:00 am taking 2-6 hours searching for mountain gorillas. the lengthy trek will reward you with mesmerizing encounter with gorillas for 1 hour then y',
       },
       {
         day: 8,
         title: 'Day 8',
-        details: 'golden monkey trekking & departure enjoy a hefty breakfast and later, join the rest of the visitors on golden monkey tracking briefing. you will embark on the actual trek with golden monkeys which will run for 2-4 hours. expect to enjoy a maximum of 1 hour face-to-face with a habituated troop of golden monkeys upon locating them in the wild. after the golden monkey trek, you will settle for an early lunch then check out of the lodge',
+        details:
+          'golden monkey trekking & departure enjoy a hefty breakfast and later, join the rest of the visitors on golden monkey tracking briefing. you will embark on the actual trek with golden monkeys which will run for 2-4 hours. expect to enjoy a maximum of 1 hour face-to-face with a habituated troop of golden monkeys upon locating them in the wild. after the golden monkey trek, you will settle for an early lunch then check out of the lodge',
       },
       {
         day: 8,
         title: 'Day 8',
-        details: 's rwanda safari safari overview embark on the captivating 8 days rwanda safari to unearth wonders of rwanda in the 3 park; akagera national park, nyungwe forest national park, and volcanoes national park. a tour in akagera national park involves exploring the big 5 game, antelopes, warthogs, and bird species. the main safari activities to engage in akagera include game drives and boat cruise. nyungwe forest national park includes chimpanzee tracking and canopy walk',
+        details:
+          's rwanda safari safari overview embark on the captivating 8 days rwanda safari to unearth wonders of rwanda in the 3 park; akagera national park, nyungwe forest national park, and volcanoes national park. a tour in akagera national park involves exploring the big 5 game, antelopes, warthogs, and bird species. the main safari activities to engage in akagera include game drives and boat cruise. nyungwe forest national park includes chimpanzee tracking and canopy walk',
       },
       {
         day: 8,
         title: 'Day 8',
-        details: 's rwanda safari. end of safari inclusions park entrance fees golden monkey trek gorilla trekking experience ground transportation driver/park ranger guide services airport transfers guided game drives plus boat tours exclusions tipping. laundry services. travel insurance',
-      }
+        details:
+          's rwanda safari. end of safari inclusions park entrance fees golden monkey trek gorilla trekking experience ground transportation driver/park ranger guide services airport transfers guided game drives plus boat tours exclusions tipping. laundry services. travel insurance',
+      },
     ],
     faqs: [
       {
         question: 'What is included in the 8 DAYS RWANDA SAFARI?',
-        answer: 'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
+        answer:
+          'This safari includes professional guide services, transportation, accommodation, park fees, and all activities mentioned in the itinerary.',
       },
       {
         question: 'What should I bring for this safari?',
-        answer: 'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
+        answer:
+          'We recommend bringing comfortable hiking boots, weather-appropriate clothing, a camera, sunscreen, and personal medications.',
       },
       {
         question: 'Is this safari suitable for beginners?',
-        answer: 'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
-      }
+        answer:
+          'Yes, this safari is designed to accommodate various fitness levels. Our experienced guides will ensure your safety and comfort throughout the journey.',
+      },
     ],
-    bestTime: 'Year-round with dry seasons (June-August, December-February) being optimal',
+    bestTime:
+      'Year-round with dry seasons (June-August, December-February) being optimal',
     groupSize: '2-8 people',
     difficulty: 'Moderate',
     inclusions: [
