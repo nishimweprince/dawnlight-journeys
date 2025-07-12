@@ -13,11 +13,11 @@ const safariImages = Array.from(
   new Set(shuffledSafaris.map((s) => s.image).filter(Boolean))
 ).slice(0, 3);
 const fallbackImage =
-  'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1';
+  'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorilla-hero_asdfbd';
 const images =
   safariImages.length > 0
     ? [
-        'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/hero_image_itvueq',
+        'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorilla-hero_asdfbd',
         ...safariImages,
       ]
     : [fallbackImage];
