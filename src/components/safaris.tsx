@@ -13,8 +13,14 @@ export function Safaris() {
               Carefully crafted itineraries to give you the ultimate African wildlife experience.
             </p>
           </section>
-          <CustomButton variant="link" href="/safaris" className="mt-4 md:mt-0 flex items-center gap-2">
-            View all packages <ArrowRight className="h-4 w-4" />
+          <CustomButton
+            variant="primary"
+            size="lg"
+            href="/safaris"
+            className="mt-4 md:mt-0 flex items-center gap-3 px-8 py-4 text-lg font-semibold shadow-lg rounded-full transition-all hover:scale-105 hover:bg-primary/90"
+          >
+            View all packages
+            <ArrowRight className="h-5 w-5" />
           </CustomButton>
         </header>
 

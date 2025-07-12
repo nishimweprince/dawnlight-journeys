@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { CustomButton } from './ui/custom-button';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,6 +69,14 @@ export function Navbar() {
           >
             Blog
           </Link>
+          <CustomButton
+            href="/safaris"
+            variant="primary"
+            size="default"
+            className="ml-4 !h-[38px]"
+          >
+            Plan Trip
+          </CustomButton>
         </nav>
 
         <button
@@ -130,6 +139,15 @@ export function Navbar() {
             >
               Blog
             </a>
+            <CustomButton
+              href="/safaris"
+              variant="primary"
+              size="lg"
+              className="mt-2 text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Plan Trip
+            </CustomButton>
           </nav>
         </section>
       )}

@@ -36,7 +36,7 @@ const experiences = [
 
 export function Experiences() {
   return (
-    <section id="experiences" className="py-16 md:py-24 bg-background">
+    <section id="experiences" className="py-16 md:py-12 bg-background">
       <main className="container">
         <header className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Unforgettable Experiences</h2>
@@ -85,6 +85,18 @@ export function Experiences() {
             </figure>
           </section>
         </article>
+
+      <section className="flex justify-center mt-12">
+        <CustomButton
+          variant="primary"
+          size="lg"
+          href="/experiences"
+          className="flex items-center gap-3 px-8 py-4 text-lg font-semibold shadow-lg rounded-full transition-all hover:scale-105 hover:bg-primary/90"
+        >
+          View All Experiences
+          <ArrowRight className="h-5 w-5" />
+        </CustomButton>
+      </section>
       </main>
     </section>
   )

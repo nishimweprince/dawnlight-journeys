@@ -41,7 +41,7 @@ export default function ExperiencesPage() {
       {/* Hero Section */}
       <header className="relative h-64 sm:h-72 md:h-96 lg:h-[28rem] flex items-center justify-center bg-black/60">
         <img
-          src="/assets/common/placeholder.svg"
+          src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/tourism-experiences_mtcka4"
           alt="Experiences Hero"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-70"
         />
@@ -69,7 +69,7 @@ export default function ExperiencesPage() {
               >
                 <figure className="relative h-40 sm:h-48 w-full overflow-hidden">
                   <img
-                    src={exp?.image || '/assets/common/placeholder.svg'}
+                    src={exp?.image}
                     alt={exp?.title}
                     className="w-full h-full object-cover"
                   />

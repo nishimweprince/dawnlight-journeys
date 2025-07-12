@@ -35,7 +35,7 @@ export const experiences: Experience[] = [
     description: "Capture stunning images of Africa's incredible wildlife with expert guidance.",
     url: "/experiences/photography",
     slug: "photography",
-    image: "/assets/safaris/wildlife-safari.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wildlife-photography_qif4cj",
     highlights: [
       "Guided by professional wildlife photographers",
       "Access to exclusive locations",
@@ -94,7 +94,7 @@ export const experiences: Experience[] = [
     description: "Connect with local communities and experience authentic African traditions.",
     url: "/experiences/cultural",
     slug: "cultural",
-    image: "/assets/safaris/bwindi-forest.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cultural-immersion_uhqf3i",
     highlights: [
       "Village visits and homestays",
       "Traditional music and dance",
@@ -153,7 +153,7 @@ export const experiences: Experience[] = [
     description: "Explore breathtaking landscapes on foot with experienced local guides.",
     url: "/experiences/trekking",
     slug: "trekking",
-    image: "/assets/safaris/nyungwe-forest.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/adventure-trekking_lyxkrr",
     highlights: [
       "Mountain and forest treks",
       "Wildlife tracking",
@@ -217,7 +217,7 @@ export const experiences: Experience[] = [
     description: "Taste authentic African cuisine and learn traditional cooking methods.",
     url: "/experiences/culinary",
     slug: "culinary",
-    image: "/assets/safaris/akagera-park.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/culinary-experinces_zc1zsv",
     highlights: [
       "Cooking classes with local chefs",
       "Market tours",
@@ -276,7 +276,7 @@ export const experiences: Experience[] = [
     description: "Challenge yourself with guided climbs of East Africa's highest peaks.",
     url: "/experiences/mountain-climbing",
     slug: "mountain-climbing",
-    image: "/assets/safaris/gorilla-trekking.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/mountain-climbing_mahx1d",
     highlights: [
       "Professional mountain guides",
       "All climbing equipment provided",
@@ -345,7 +345,7 @@ export const experiences: Experience[] = [
     description: "Discover East Africa's incredible avian diversity with expert ornithologists.",
     url: "/experiences/bird-watching",
     slug: "bird-watching",
-    image: "/assets/safaris/queen-elizabeth.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/bird-watching_neixw4",
     highlights: [
       "Expert ornithologist guides",
       "Specialized birding equipment",
@@ -404,7 +404,7 @@ export const experiences: Experience[] = [
     description: "Contribute to wildlife conservation efforts while learning about local ecosystems.",
     url: "/experiences/conservation",
     slug: "conservation",
-    image: "/assets/safaris/kibale-forest.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/conservation-volunterring_ecnzn6",
     highlights: [
       "Hands-on conservation work",
       "Research participation",
@@ -468,7 +468,7 @@ export const experiences: Experience[] = [
     description: "Learn traditional African arts and crafts from local master artisans.",
     url: "/experiences/arts-crafts",
     slug: "arts-crafts",
-    image: "/assets/safaris/lake-mburo.jpg",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/art-and-craftshops_vd5nzy",
     highlights: [
       "Traditional craft techniques",
       "Local artisan mentorship",
@@ -527,7 +527,7 @@ export const experiences: Experience[] = [
     description: "Track chimpanzees in their natural habitat with expert guides in Rwanda's pristine forests.",
     url: "/experiences/chimpanzee-trekking",
     slug: "chimpanzee-trekking",
-    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/psmowi9sxjinfba9ra0v",
+    image: "https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/chimpanzee-2_zyxglc",
     highlights: [
       "Expert chimpanzee tracking guides",
       "Close encounters with chimpanzees",

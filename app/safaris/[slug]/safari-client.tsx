@@ -262,7 +262,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
             </aside>
           </motion.div>
 
-          {/* Safari Images Carousel */}
+          {/* Itinerary */}
           {safari?.images && safari.images.length > 1 && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}

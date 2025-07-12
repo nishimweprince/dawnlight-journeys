@@ -469,14 +469,6 @@ export default function DestinationDetailsPage({
                     {destination.physicalRating.level} physical level
                   </li>
                 </ul>
-                <CustomButton
-                  variant="primary"
-                  size="lg"
-                  href={`/book/${destination.slug}`}
-                  className="w-full"
-                >
-                  Book this tour
-                </CustomButton>
               </section>
             </article>
           </aside>
