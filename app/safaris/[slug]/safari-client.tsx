@@ -158,19 +158,19 @@ export default function SafariClient({ safari }: SafariClientProps) {
               </p>
 
               <section className="flex flex-wrap justify-center gap-4 mb-8">
-                <section className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
+                <section className="flex items-center gap-2 rounded-full px-4 py-2">
                   <Clock className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.duration}
                   </span>
                 </section>
-                <section className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
+                <section className="flex items-center gap-2 rounded-full px-4 py-2">
                   <Users className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.groupSize}
                   </span>
                 </section>
-                <section className="flex items-center gap-2 bg-muted rounded-full px-4 py-2">
+                <section className="flex items-center gap-2 rounded-full px-4 py-2">
                   <Star className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.difficulty}
@@ -211,14 +211,14 @@ export default function SafariClient({ safari }: SafariClientProps) {
 
               {/* Quick Info */}
               <section className="grid md:grid-cols-2 gap-6 mb-8">
-                <article className="bg-muted rounded-2xl p-6">
+                <article className="rounded-2xl p-6 hover:shadow-md transition-shadow cursor-pointer">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-primary" />
                     Best Time to Visit
                   </h3>
                   <p className="text-muted-foreground">{safari?.bestTime}</p>
                 </article>
-                <article className="bg-muted rounded-2xl p-6">
+                <article className="rounded-2xl p-6 hover:shadow-md transition-shadow cursor-pointer">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <Users className="h-5 w-5 text-primary" />
                     Group Size
@@ -407,7 +407,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
             </CustomButton>
           </motion.section>
 
-          <CustomButton variant="primary" onClick={() => router.back()}>
+          <CustomButton variant="secondary" onClick={() => router.back()}>
             Back
           </CustomButton>
         </section>

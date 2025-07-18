@@ -361,7 +361,7 @@ export default async function ExperiencePage({
             {/* Right: Highlights Sidebar */}
             <aside className="lg:col-span-1">
               {experience.highlights && experience.highlights.length > 0 && (
-                <section className="bg-muted rounded-2xl p-8 mb-8">
+                <section className="rounded-2xl p-8 mb-8">
                   <h3 className="text-xl font-bold mb-4">
                     Experience Highlights
                   </h3>

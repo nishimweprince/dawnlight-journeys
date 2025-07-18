@@ -3,7 +3,7 @@ import { CustomButton } from './ui/custom-button';
 
 export function Contact() {
   return (
-    <section id="contact" className="py-16 md:py-24 bg-muted/50">
+    <section id="contact" className="py-16 md:py-24">
       <main className="container">
         <article className="grid md:grid-cols-2 gap-12">
           <section>
@@ -34,10 +34,10 @@ export function Contact() {
                 <section>
                   <h3 className="font-medium mb-1">Email Us</h3>
                   <a
-                    href="mailto:info@dawnlightjourneys.com"
+                    href="mailto:info@dawnlightjourneysrwanda.com"
                     className="text-primary hover:underline"
                   >
-                    info@dawnlightjourneys.com
+                    info@dawnlightjourneysrwanda.com
                   </a>
                 </section>
               </article>
@@ -49,10 +49,7 @@ export function Contact() {
                 <section>
                   <h3 className="font-medium mb-1">Call Us</h3>
                   <p className="text-muted-foreground">
-                    Rwanda: +250 123 456 789
-                  </p>
-                  <p className="text-muted-foreground">
-                    Uganda: +256 123 456 789
+                    Rwanda: +250 785 917 385
                   </p>
                 </section>
               </article>

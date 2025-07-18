@@ -36,7 +36,7 @@ const experiences = [
 
 export function Experiences() {
   return (
-    <section id="experiences" className="py-16 md:py-12 bg-background">
+    <section id="experiences" className="py-16 md:py-12">
       <main className="container">
         <header className="text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Unforgettable Experiences</h2>
@@ -44,13 +44,23 @@ export function Experiences() {
             Go beyond the ordinary safari with our curated experiences that connect you with the heart of Africa.
           </p>
         </header>
-
-        <article className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <section className="flex justify-center mt-12">
+        <CustomButton
+          variant="primary"
+          size="lg"
+          href="/experiences"
+          className="flex items-center gap-2 w-fit self-center"
+        >
+          View All Experiences
+          <ArrowRight className="h-5 w-5" />
+        </CustomButton>
+      </section>
+        <article className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 my-12">
           {experiences.map((experience) => {
             const Icon = experience.icon
 
             return (
-              <article key={experience.id} className="bg-muted/30 rounded-xl p-6 hover:bg-muted/50 transition-colors">
+              <article key={experience.id} className="bg-muted/10 cursor-pointer hover:scale-[1.01] duration-300 rounded-xl p-6 hover:bg-muted/50 transition-all">
                 <figure className="bg-primary/10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
                   <Icon className="h-6 w-6" />
                 </figure>
@@ -64,7 +74,7 @@ export function Experiences() {
           })}
         </article>
 
-        <article className="bg-muted rounded-xl overflow-hidden">
+        <article className="rounded-xl overflow-hidden">
           <section className="grid md:grid-cols-2">
             <section className="p-8 md:p-12 flex flex-col justify-center">
               <h3 className="text-2xl font-bold mb-4">Create Your Custom Experience</h3>
@@ -85,18 +95,6 @@ export function Experiences() {
             </figure>
           </section>
         </article>
-
-      <section className="flex justify-center mt-12">
-        <CustomButton
-          variant="primary"
-          size="lg"
-          href="/experiences"
-          className="flex items-center gap-3 px-8 py-4 text-lg font-semibold shadow-lg rounded-full transition-all hover:scale-105 hover:bg-primary/90"
-        >
-          View All Experiences
-          <ArrowRight className="h-5 w-5" />
-        </CustomButton>
-      </section>
       </main>
     </section>
   )

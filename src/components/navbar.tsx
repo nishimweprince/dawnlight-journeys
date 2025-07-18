@@ -1,13 +1,23 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { CustomButton } from './ui/custom-button';
+import { FlatNavItem } from './ui/flat-nav-item';
+import { FlatButton } from './ui/flat-button';
+import { DropdownMenu } from './ui/dropdown-menu';
+import { MobileExpandableSection } from './ui/mobile-expandable-section';
+import { getDestinationDropdownItems, getExperienceDropdownItems } from '../lib/dropdown-utils';
+import { safariPackages } from '../constants/safaris';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mobileMenuRef = useRef<HTMLElement>(null);
+
+  // Get dropdown items
+  const destinationItems = getDestinationDropdownItems();
+  const experienceItems = getExperienceDropdownItems();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,13 +27,38 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle outside tap to close mobile menu
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleMouseDown = (event: MouseEvent) => handleOutsideClick(event);
+    const handleTouchStart = (event: TouchEvent) => handleOutsideClick(event);
+
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('touchstart', handleTouchStart);
+
+    return () => {
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, [isMenuOpen]);
+
   return (
     <header
       className={
         `sticky top-0 z-50 w-full transition-all duration-300 ` +
         (scrolled
           ? 'bg-white/80 backdrop-blur border-b shadow-lg rounded-b-xl'
-          : 'bg-white/75')
+          : 'bg-white/85')
       }
     >
       <section className="container flex h-16 items-center justify-between">
@@ -39,44 +74,54 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-4">
-          <Link
-            href="/destinations"
-            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-          >
-            Destinations
-          </Link>
-          <Link
-            href="/safaris"
-            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-          >
-            Safaris
-          </Link>
-          <Link
-            href="/experiences"
-            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-          >
-            Experiences
-          </Link>
-          <Link
-            href="#contact"
-            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-          >
+        <DropdownMenu
+            items={safariPackages?.filter(safari => safari.destination === 'Rwanda')?.map(safari => ({
+              id: safari.id,
+              name: safari.title,
+              href: safari.url,
+              description: safari.description
+            }))}
+            trigger={
+              <FlatNavItem href="/destinations/rwanda" hasDropdown>
+                Rwanda
+              </FlatNavItem>
+            }
+          />
+          <DropdownMenu
+            items={safariPackages?.filter(safari => safari.destination === 'Uganda')?.map(safari => ({
+              id: safari.id,
+              name: safari.title,
+              href: safari.url,
+              description: safari.description
+            }))}
+            trigger={
+              <FlatNavItem href="/destinations/uganda" hasDropdown>
+                Uganda
+              </FlatNavItem>
+            }
+          />
+          <DropdownMenu
+            items={experienceItems}
+            trigger={
+              <FlatNavItem href="/experiences" hasDropdown>
+                Experiences
+              </FlatNavItem>
+            }
+          />
+          <FlatNavItem href="#contact">
             Contact
-          </Link>
-          <Link
-            href="/blog"
-            className="text-sm font-medium px-2.5 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-          >
+          </FlatNavItem>
+          <FlatNavItem href="/blog">
             Blog
-          </Link>
-          <CustomButton
+          </FlatNavItem>
+          <FlatButton
             href="/safaris"
             variant="primary"
             size="default"
-            className="ml-4 !h-[38px]"
+            className="ml-4"
           >
             Plan Trip
-          </CustomButton>
+          </FlatButton>
         </nav>
 
         <button
@@ -97,49 +142,31 @@ export function Navbar() {
       {isMenuOpen && (
         <section className="md:hidden container py-3 pb-5 border-t bg-white/95 rounded-b-xl shadow-lg">
           <nav className="flex flex-col space-y-3">
-            <a
-              href="#destinations"
-              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Destinations
-            </a>
-            <a
-              href="/safaris"
-              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Safaris
-            </a>
-            <a
+            <MobileExpandableSection
+              title="Destinations"
+              href="/destinations"
+              items={destinationItems}
+              onItemClick={() => setIsMenuOpen(false)}
+            />
+            <MobileExpandableSection
+              title="Experiences"
               href="/experiences"
-              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Experiences
-            </a>
-            <a
-              href="#affiliates"
-              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Affiliates
-            </a>
-            <a
+              items={experienceItems}
+              onItemClick={() => setIsMenuOpen(false)}
+            />
+            <FlatNavItem 
               href="#contact"
-              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
-            </a>
-            <a
+            </FlatNavItem>
+            <FlatNavItem 
               href="/blog"
-              className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors hover:bg-orange-50 hover:text-orange-800"
               onClick={() => setIsMenuOpen(false)}
             >
               Blog
-            </a>
-            <CustomButton
+            </FlatNavItem>
+            <FlatButton
               href="/safaris"
               variant="primary"
               size="lg"
@@ -147,7 +174,7 @@ export function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               Plan Trip
-            </CustomButton>
+            </FlatButton>
           </nav>
         </section>
       )}

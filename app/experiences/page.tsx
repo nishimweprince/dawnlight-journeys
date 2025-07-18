@@ -15,7 +15,7 @@ const metadata: Metadata = {
       'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
     images: ['/assets/safaris/wildlife-safari.jpg'],
     type: 'website',
-    url: 'https://dawnlightjourneys.com/experiences',
+    url: 'https://dawnlightjourneysrwanda.com/experiences',
   },
   twitter: {
     card: 'summary_large_image',
@@ -71,20 +71,36 @@ export default function ExperiencesPage() {
       {/* Search Bar */}
       <section className="container flex justify-center px-4 my-8">
         <section className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5">
-          <form className="relative flex items-center" role="search" aria-label="Search experiences" onSubmit={e => e.preventDefault()}>
+          <form
+            className="relative flex items-center"
+            role="search"
+            aria-label="Search experiences"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <input
               type="text"
               placeholder="Search experiences by title or description..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full px-5 py-3 border-2 border-primary/20 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-primary/40 text-base bg-white transition-all duration-200 placeholder:text-muted-foreground"
-              style={{ minHeight: "3.25rem" }}
+              style={{ minHeight: '3.25rem' }}
               aria-label="Search experiences"
             />
             <span className="absolute right-4 text-primary/60 pointer-events-none">
               <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2"/>
-                <path d="M20 20L16.65 16.65" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M20 20L16.65 16.65"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </span>
           </form>
@@ -156,7 +172,7 @@ export default function ExperiencesPage() {
       </section>
 
       {/* Custom Experience Section */}
-      <section className="bg-muted py-12 sm:py-16 md:py-20">
+      <section className="py-12 sm:py-16 md:py-20">
         <article className="container grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           <section className="order-2 md:order-1">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
@@ -178,7 +194,7 @@ export default function ExperiencesPage() {
           </section>
           <figure className="relative h-48 sm:h-64 md:h-72 w-full rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
             <img
-              src="/assets/common/placeholder.svg"
+              src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/tourism-experiences_mtcka4"
               alt="Custom Experience"
               className="w-full h-full object-cover"
             />

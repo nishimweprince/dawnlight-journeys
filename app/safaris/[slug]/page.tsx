@@ -29,7 +29,7 @@ export async function generateMetadata({
       description: safari?.description,
       images: [safari?.image],
       type: 'article',
-      url: `https://dawnlightjourneys.com/safaris/${safari?.slug}`,
+      url: `https://dawnlightjourneysrwanda.com/safaris/${safari?.slug}`,
     },
     twitter: {
       card: 'summary_large_image',

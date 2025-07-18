@@ -1,11 +1,12 @@
 import { Navbar } from '../src/components/navbar';
 import { FaWhatsapp } from 'react-icons/fa';
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Footer } from '@/src/components/footer';
 import Link from 'next/link';
 import { safariPackages } from '../src/constants/safaris';
 import { experiences } from '../src/constants/experiences';
+import { FloatingContact } from '@/src/components/floating-contact';
 
 // Select 3 unique random safari images for SEO
 const shuffledSafaris = safariPackages.sort(() => 0.5 - Math.random());
@@ -77,7 +78,6 @@ export const metadata: Metadata = {
     creator: '@pnishimwe',
     images,
   },
-  themeColor: '#4A6741',
   manifest: '/site.webmanifest',
   applicationName: 'Dawnlight Journeys',
   category: 'Travel',
@@ -172,6 +172,10 @@ export const metadata: Metadata = {
   ],
 };
 
+export const viewport: Viewport = {
+  themeColor: '#4A6741',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -187,22 +191,8 @@ export default function RootLayout({
       <body>
         <Navbar />
         <main className="flex min-h-screen flex-col">{children}</main>
-        <a
-          href="https://wa.me/250785917385"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-colors"
-          aria-label="Chat on WhatsApp"
-        >
-          <FaWhatsapp className="w-6 h-6" />
-        </a>
         <Footer />
-        <Link
-          href="/contact"
-          className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-colors"
-        >
-          Contact Us
-        </Link>
+        <FloatingContact />
       </body>
     </html>
   );
