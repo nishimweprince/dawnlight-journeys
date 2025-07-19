@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 import { CustomButton } from './ui/custom-button';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export function Contact() {
   return (
@@ -61,6 +62,7 @@ export function Contact() {
                   href="https://wa.me/250785917385"
                   className="w-full sm:w-auto"
                 >
+                  <FaWhatsapp className="h-4 w-4 mr-2" />
                   Chat on WhatsApp
                 </CustomButton>
               </footer>

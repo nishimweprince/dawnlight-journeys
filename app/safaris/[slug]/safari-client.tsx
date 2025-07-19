@@ -55,6 +55,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
   const router = useRouter();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [showAllImages, setShowAllImages] = useState(false);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -136,18 +137,18 @@ export default function SafariClient({ safari }: SafariClientProps) {
 
           {/* Hero Content */}
           <header className="container mx-auto px-4 py-8 md:py-12">
-            <motion.div
+            <motion.article
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <section className="flex items-center justify-center gap-2 mb-4">
+              <address className="flex items-center justify-center gap-2 mb-4 not-italic">
                 <MapPin className="h-5 w-5 text-primary" />
                 <span className="text-lg text-muted-foreground">
                   {safari?.location}
                 </span>
-              </section>
+              </address>
 
               <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
                 {safari?.title}
@@ -157,26 +158,26 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 {safari?.description}
               </p>
 
-              <section className="flex flex-wrap justify-center gap-4 mb-8">
-                <section className="flex items-center gap-2 rounded-full px-4 py-2">
+              <nav className="flex flex-wrap justify-center gap-4 mb-8">
+                <article className="flex items-center gap-2 rounded-full px-4 py-2">
                   <Clock className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.duration}
                   </span>
-                </section>
-                <section className="flex items-center gap-2 rounded-full px-4 py-2">
+                </article>
+                <article className="flex items-center gap-2 rounded-full px-4 py-2">
                   <Users className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.groupSize}
                   </span>
-                </section>
-                <section className="flex items-center gap-2 rounded-full px-4 py-2">
+                </article>
+                <article className="flex items-center gap-2 rounded-full px-4 py-2">
                   <Star className="h-4 w-4 text-primary" />
                   <span className="text-sm font-medium">
                     {safari?.difficulty}
                   </span>
-                </section>
-              </section>
+                </article>
+              </nav>
 
               <CustomButton
                 variant="primary"
@@ -187,21 +188,21 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 <Send className="h-4 w-4 mr-2" />
                 Book This Safari
               </CustomButton>
-            </motion.div>
+            </motion.article>
           </header>
         </section>
 
         {/* Content Sections */}
-        <section className="container mx-auto px-4 py-16 space-y-16">
+        <main className="container mx-auto px-4 py-16 space-y-16">
           {/* Safari Overview */}
-          <motion.div
+          <motion.article
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="grid lg:grid-cols-3 gap-12"
           >
-            <article className="lg:col-span-2">
+            <section className="lg:col-span-2">
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 Safari Overview
               </h2>
@@ -210,7 +211,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
               </p>
 
               {/* Quick Info */}
-              <section className="grid md:grid-cols-2 gap-6 mb-8">
+              <nav className="grid md:grid-cols-2 gap-6 mb-8">
                 <article className="rounded-2xl p-6 hover:shadow-md transition-shadow cursor-pointer">
                   <h3 className="font-semibold mb-4 flex items-center gap-2">
                     <Calendar className="h-5 w-5 text-primary" />
@@ -225,26 +226,26 @@ export default function SafariClient({ safari }: SafariClientProps) {
                   </h3>
                   <p className="text-muted-foreground">{safari?.groupSize}</p>
                 </article>
-              </section>
-            </article>
+              </nav>
+            </section>
 
             {/* Booking Card */}
             <aside className="lg:col-span-1">
               <aside className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
                 <h3 className="text-xl font-bold mb-4">Book This Safari</h3>
                 <dl className="space-y-4 mb-6">
-                  <div className="flex justify-between">
+                  <article className="flex justify-between">
                     <dt className="text-muted-foreground">Duration:</dt>
                     <dd className="font-semibold">{safari?.duration}</dd>
-                  </div>
-                  <div className="flex justify-between">
+                  </article>
+                  <article className="flex justify-between">
                     <dt className="text-muted-foreground">Group Size:</dt>
                     <dd className="font-semibold">{safari?.groupSize}</dd>
-                  </div>
-                  <div className="flex justify-between">
+                  </article>
+                  <article className="flex justify-between">
                     <dt className="text-muted-foreground">Difficulty:</dt>
                     <dd className="font-semibold">{safari?.difficulty}</dd>
-                  </div>
+                  </article>
                 </dl>
                 <CustomButton
                   variant="primary"
@@ -260,10 +261,69 @@ export default function SafariClient({ safari }: SafariClientProps) {
                 </p>
               </aside>
             </aside>
-          </motion.div>
+          </motion.article>
+
+          {/* Images */}
+          {safari?.images && safari.images.length > 1 && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-center">
+                Gallery
+              </h2>
+              <article className="bg-white rounded-xl shadow-lg p-4 md:p-8">
+                {safari?.images && safari.images.length > 0 ? (
+                  <>
+                    <nav className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {(showAllImages
+                        ? safari.images
+                        : safari.images.slice(0, 3)
+                      ).map((image, index) => (
+                        <figure key={index} className="relative">
+                          <img
+                            src={image}
+                            alt={safari?.title}
+                            className="w-full h-full object-cover rounded-lg"
+                          />
+                        </figure>
+                      ))}
+                    </nav>
+
+                    {safari.images.length > 3 && (
+                      <nav className="flex justify-center mt-6">
+                        <CustomButton
+                          variant="secondary"
+                          onClick={() => setShowAllImages(!showAllImages)}
+                          className="flex items-center gap-2"
+                        >
+                          {showAllImages ? (
+                            <>
+                              <ChevronLeft className="h-4 w-4" />
+                              Show Less
+                            </>
+                          ) : (
+                            <>
+                              <ChevronRight className="h-4 w-4" />
+                              Show All ({safari.images.length} images)
+                            </>
+                          )}
+                        </CustomButton>
+                      </nav>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-primary-700">No images available.</p>
+                )}
+              </article>
+            </motion.section>
+          )}
 
           {/* Itinerary */}
-          {safari?.images && safari.images.length > 1 && (
+          {safari?.itinerary?.length && safari.itinerary.length > 1 && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -290,7 +350,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
                             )}
                         </figure>
                         {/* Day content */}
-                        <section className="flex-1 bg-primary-50 rounded-lg shadow p-4 md:p-6 transition hover:shadow-xl">
+                        <article className="flex-1 bg-primary-50 rounded-lg shadow p-4 md:p-6 transition hover:shadow-xl">
                           <header className="mb-2 md:mb-3">
                             <h3 className="text-lg md:text-xl font-bold text-primary-800">
                               {day.title}
@@ -299,7 +359,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
                           <p className="text-primary-700 text-sm md:text-base leading-relaxed whitespace-pre-line">
                             {day.details}
                           </p>
-                        </section>
+                        </article>
                       </li>
                     ))}
                   </ol>
@@ -360,7 +420,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
               <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
                 Frequently Asked Questions
               </h2>
-              <section className="space-y-4">
+              <nav className="space-y-4">
                 {safari?.faqs?.map((faq, index) => (
                   <motion.article
                     key={index}
@@ -378,7 +438,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
                     </p>
                   </motion.article>
                 ))}
-              </section>
+              </nav>
             </motion.section>
           )}
 
@@ -410,7 +470,7 @@ export default function SafariClient({ safari }: SafariClientProps) {
           <CustomButton variant="secondary" onClick={() => router.back()}>
             Back
           </CustomButton>
-        </section>
+        </main>
       </main>
     </>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { CustomButton } from '@/src/components/ui/custom-button';
 
 const blogs = [
   {
@@ -27,32 +28,51 @@ const blogs = [
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white pb-16">
-      <header className="mx-auto px-4 py-16 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-primary">Our Blog</h1>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-          Stories, tips, and inspiration for your next African adventure. Explore our latest articles below.
-        </p>
-      </header>
-      <section className="mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-        {blogs.map((blog) => (
-          <article key={blog.id} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col hover:scale-[1.02] transition-transform">
-            <figure className="relative h-56 w-full overflow-hidden">
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-              />
-            </figure>
-            <section className="p-6 flex-1 flex flex-col">
-              <h2 className="text-xl font-bold mb-2 text-primary">{blog.title}</h2>
-              <p className="text-gray-700 mb-4 flex-1">{blog.excerpt}</p>
-              <Link href={blog.url} className="inline-block mt-auto text-orange-700 font-semibold hover:underline">
-                Read More
-              </Link>
-            </section>
-          </article>
-        ))}
+    <main className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="relative py-8 md:py-8 lg:py-12 bg-gradient-to-b from-primary/10 via-secondary/10 to-background">
+        <div className="container">
+          <header className="text-center space-y-6 lg:space-y-8">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-primary">
+              Our Blog
+            </h1>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+              Stories, tips, and inspiration for your next African adventure. Explore our latest articles below.
+            </p>
+          </header>
+        </div>
+      </section>
+
+      {/* Blog Posts Section */}
+      <section className="py-8 md:py-12 lg:py-16 bg-background">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {blogs.map((blog) => (
+              <article key={blog.id} className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                <figure className="relative h-48 md:h-56 w-full overflow-hidden">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                  />
+                </figure>
+                <section className="p-6 space-y-4">
+                  <h2 className="text-lg md:text-xl font-bold text-primary leading-tight">
+                    {blog.title}
+                  </h2>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {blog.excerpt}
+                  </p>
+                  <nav aria-label={`Read more about ${blog.title}`}>
+                    <CustomButton variant="primary" size="sm" href={blog.url}>
+                      Read More
+                    </CustomButton>
+                  </nav>
+                </section>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
     </main>
   );

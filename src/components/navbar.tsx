@@ -108,7 +108,7 @@ export function Navbar() {
               </FlatNavItem>
             }
           />
-          <FlatNavItem href="#contact">
+          <FlatNavItem href="/contact">
             Contact
           </FlatNavItem>
           <FlatNavItem href="/blog">

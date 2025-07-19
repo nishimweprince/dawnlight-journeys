@@ -48,7 +48,7 @@ export function Safaris() {
         <CustomButton
             size="lg"
             href="/safaris"
-            variant={`secondary`}
+            variant={`primary`}
             className="flex items-center gap-2 w-fit self-center"
           >
             View all safaris
