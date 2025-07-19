@@ -283,11 +283,11 @@ export default function SafariClient({ safari }: SafariClientProps) {
                         ? safari.images
                         : safari.images.slice(0, 3)
                       ).map((image, index) => (
-                        <figure key={index} className="relative">
+                        <figure key={index} className="relative group">
                           <img
                             src={image}
                             alt={safari?.title}
-                            className="w-full h-full object-cover rounded-lg"
+                            className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
                           />
                         </figure>
                       ))}

@@ -14,15 +14,16 @@ import {
   Activity,
 } from 'lucide-react';
 import React, { useState, useEffect, use } from 'react';
+import type { Metadata } from 'next';
+import { safariPackages } from '@/src/constants/safaris';
 
 const destinationData = [
   {
     slug: 'rwanda',
     name: 'Rwanda',
-    images: [
-      '/assets/destinations/rwanda-tourism.jpg',
-      '/assets/destinations/rwanda-tourism.jpg',
-    ],
+    images: safariPackages
+      ?.filter((p) => p.destination === 'Rwanda')
+      ?.flatMap((p) => p.images),
     description:
       'The land of a thousand hills, home to mountain gorillas and stunning landscapes. Rwanda offers visitors unforgettable experiences from gorilla trekking to vibrant city life.',
     longDescription:
@@ -88,10 +89,9 @@ const destinationData = [
   {
     slug: 'uganda',
     name: 'Uganda',
-    images: [
-      '/assets/destinations/uganda-tourism.jpg',
-      '/assets/destinations/uganda-tourism.jpg',
-    ],
+    images: safariPackages
+      ?.filter((p) => p.destination === 'Uganda')
+      ?.flatMap((p) => p.images),
     description:
       'The pearl of Africa with diverse wildlife, including gorillas, chimpanzees, and the Big Five.',
     longDescription:
@@ -160,6 +160,148 @@ function getDestinationBySlug(slug: string) {
   return destinationData.find((d) => d.slug === slug);
 }
 
+async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const destination = getDestinationBySlug(slug);
+
+  if (!destination) {
+    return {
+      title: 'Destination Not Found | Dawnlight Journeys',
+      description: 'Destination not found.',
+    };
+  }
+
+  return {
+    title: `${destination.name} Safari Adventure | Dawnlight Journeys`,
+    description: destination.description,
+    keywords: [
+      `${destination.name.toLowerCase()} safari`,
+      `${destination.name.toLowerCase()} tourism`,
+      `${destination.name.toLowerCase()} travel`,
+      `${destination.name.toLowerCase()} adventure`,
+      `${destination.name.toLowerCase()} wildlife`,
+      `${destination.name.toLowerCase()} gorilla trekking`,
+      `${destination.name.toLowerCase()} chimpanzee tracking`,
+      `${destination.name.toLowerCase()} national park`,
+      `${destination.name.toLowerCase()} culture`,
+      `${destination.name.toLowerCase()} experience`,
+      `${destination.name.toLowerCase()} tour`,
+      `${destination.name.toLowerCase()} holiday`,
+      `${destination.name.toLowerCase()} vacation`,
+      `${destination.name.toLowerCase()} trip`,
+      `${destination.name.toLowerCase()} journey`,
+      `${destination.name.toLowerCase()} operator`,
+      `${destination.name.toLowerCase()} company`,
+      `${destination.name.toLowerCase()} agency`,
+      `${destination.name.toLowerCase()} guide`,
+      `${destination.name.toLowerCase()} expert`,
+      'safari',
+      'uganda',
+      'rwanda',
+      'africa',
+      'wildlife',
+      'adventure',
+      'travel',
+      'tour',
+      'nature',
+      'conservation',
+      'eco-tourism',
+      'cultural tour',
+      'wildlife photography',
+      'bird watching',
+      'mountain gorilla',
+      'chimpanzee',
+      'big five',
+      'national park',
+      'nature reserve',
+      'wildlife sanctuary',
+      'conservation area',
+      'protected area',
+      'biodiversity',
+      'endangered species',
+      'wildlife conservation',
+      'sustainable tourism',
+      'responsible travel',
+      'eco-friendly tourism',
+      'green tourism',
+      'nature tourism',
+      'wildlife tourism',
+      'adventure tourism',
+      'cultural tourism',
+      'heritage tourism',
+      'indigenous tourism',
+      'community tourism',
+      'local tourism',
+      'authentic tourism',
+      'traditional tourism',
+      'tribal tourism',
+      'african tourism',
+      'east african tourism',
+      'african adventure',
+      'african wildlife',
+      'african culture',
+      'african heritage',
+      'african tradition',
+      'african experience',
+      'african journey',
+      'african safari',
+      'african tour',
+      'african holiday',
+      'african vacation',
+      'african trip',
+      'african operator',
+      'african company',
+      'african agency',
+      'african guide',
+      'african expert',
+      'dawnlight journeys',
+    ],
+    openGraph: {
+      title: `${destination.name} Safari Adventure | Dawnlight Journeys`,
+      description: destination.description,
+      images: destination.images.map((image) => ({
+        url: image || '',
+        width: 1200,
+        height: 630,
+        alt: `${destination.name} Safari Adventure`,
+      })),
+      type: 'article',
+      url: `https://dawnlightjourneysrwanda.com/destinations/${destination.slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${destination.name} Safari Adventure | Dawnlight Journeys`,
+      description: destination.description,
+      images: destination.images.map((image) => ({
+        url: image || '',
+        width: 1200,
+        height: 630,
+        alt: `${destination.name} Safari Adventure`,
+      })),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        'max-snippet': -1,
+        'max-image-preview': 'large',
+        'max-video-preview': -1,
+      },
+    },
+    alternates: {
+      canonical: `https://dawnlightjourneysrwanda.com/destinations/${destination.slug}`,
+    },
+  };
+}
+
 export default function DestinationDetailsPage({
   params,
 }: {
@@ -171,6 +313,12 @@ export default function DestinationDetailsPage({
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [showAllImages, setShowAllImages] = useState(false);
+
+  // Get safaris for this destination
+  const destinationSafaris = safariPackages
+    .filter((safari) => safari.destination === destination.name)
+    .slice(0, 3);
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -204,7 +352,7 @@ export default function DestinationDetailsPage({
           {destination.images.map((image, index) => (
             <Image
               key={index}
-              src={image}
+              src={image || ''}
               alt={`${destination.name} - Image ${index + 1}`}
               fill
               priority={index === 0}
@@ -330,6 +478,59 @@ export default function DestinationDetailsPage({
               </ul>
             </section>
 
+            {/* Gallery Section */}
+            {destination.images && destination.images.length > 1 && (
+              <section className="mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+                  Gallery
+                </h2>
+                <article className="bg-white rounded-xl shadow-lg p-4 md:p-8">
+                  {destination.images && destination.images.length > 0 ? (
+                    <>
+                      <nav className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {(showAllImages
+                          ? destination.images
+                          : destination.images.slice(0, 3)
+                        ).map((image, index) => (
+                          <figure key={index} className="relative group">
+                            <img
+                              src={image || ''}
+                              alt={`${destination.name} - Image ${index + 1}`}
+                              className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </figure>
+                        ))}
+                      </nav>
+
+                      {destination.images.length > 3 && (
+                        <nav className="flex justify-center mt-6">
+                          <CustomButton
+                            variant="secondary"
+                            onClick={() => setShowAllImages(!showAllImages)}
+                            className="flex items-center gap-2"
+                          >
+                            {showAllImages ? (
+                              <>
+                                <ChevronLeft className="h-4 w-4" />
+                                Show Less
+                              </>
+                            ) : (
+                              <>
+                                <ChevronRight className="h-4 w-4" />
+                                Show All ({destination.images.length} images)
+                              </>
+                            )}
+                          </CustomButton>
+                        </nav>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-primary-700">No images available.</p>
+                  )}
+                </article>
+              </section>
+            )}
+
             {/* Tour Info Section */}
             <section className="mb-12 grid md:grid-cols-2 gap-8">
               <article className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
@@ -429,14 +630,75 @@ export default function DestinationDetailsPage({
                           : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="p-6 pt-0 text-gray-600 border-t border-gray-100">
+                      <article className="p-6 pt-0 text-gray-600 border-t border-gray-100">
                         <p className="leading-relaxed">{faq.answer}</p>
-                      </div>
+                      </article>
                     </section>
                   </li>
                 ))}
               </ul>
             </section>
+
+            {/* Safari Packages Section */}
+            {destinationSafaris.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+                  Popular {destination.name} Safaris
+                </h2>
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {destinationSafaris.map((safari) => (
+                    <li
+                      key={safari.id}
+                      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
+                    >
+                      <figure className="relative h-48 overflow-hidden">
+                        <img
+                          src={safari.image}
+                          alt={safari.title}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                        />
+                        <figcaption className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      </figure>
+                      <article className="p-6">
+                        <h3 className="text-lg font-bold mb-2 text-gray-900">
+                          {safari.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                          {safari.description}
+                        </p>
+                        <ul className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                          <li className="flex items-center gap-1">
+                            <Clock className="h-4 w-4" />
+                            {safari.duration}
+                          </li>
+                          <li className="flex items-center gap-1">
+                            <MapPin className="h-4 w-4" />
+                            {safari.location}
+                          </li>
+                        </ul>
+                        <CustomButton
+                          variant="primary"
+                          size="sm"
+                          href={safari.url}
+                          className="w-full"
+                        >
+                          View Details
+                        </CustomButton>
+                      </article>
+                    </li>
+                  ))}
+                </ul>
+                <nav className="text-center mt-8">
+                  <CustomButton
+                    variant="outline"
+                    size="lg"
+                    href={`/safaris?destination=${destination.name}`}
+                  >
+                    View All {destination.name} Safaris
+                  </CustomButton>
+                </nav>
+              </section>
+            )}
           </article>
 
           {/* Sidebar */}
@@ -444,7 +706,7 @@ export default function DestinationDetailsPage({
             <article className="bg-white rounded-2xl shadow-lg sticky top-8 overflow-hidden">
               <figure className="aspect-[4/3] relative">
                 <Image
-                  src={destination.images[0]}
+                  src={destination?.images[0] || ''}
                   alt={destination.name}
                   fill
                   className="object-cover"

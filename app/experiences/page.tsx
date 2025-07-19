@@ -1,29 +1,14 @@
 'use client';
 
+import type { Metadata } from 'next';
 import { CustomButton } from '../../src/components/ui/custom-button';
 import React, { useState } from 'react';
 import { experiences } from '../../src/constants/experiences';
-import type { Metadata } from 'next';
 
 const metadata: Metadata = {
   title: 'Unique Experiences | Dawnlight Journeys',
   description:
     'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
-  openGraph: {
-    title: 'Unique Experiences | Dawnlight Journeys',
-    description:
-      'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
-    images: ['/assets/safaris/wildlife-safari.jpg'],
-    type: 'website',
-    url: 'https://dawnlightjourneysrwanda.com/experiences',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Unique Experiences | Dawnlight Journeys',
-    description:
-      'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
-    images: ['/assets/safaris/wildlife-safari.jpg'],
-  },
   keywords: [
     'africa experiences',
     'wildlife photography',
@@ -34,7 +19,112 @@ const metadata: Metadata = {
     'conservation volunteering',
     'uganda experiences',
     'rwanda experiences',
+    'gorilla trekking experience',
+    'chimpanzee tracking experience',
+    'wildlife photography experience',
+    'cultural tour experience',
+    'adventure experience africa',
+    'eco-tourism experience',
+    'sustainable travel experience',
+    'local community experience',
+    'traditional village experience',
+    'african heritage experience',
+    'indigenous culture experience',
+    'tribal experience',
+    'african tradition experience',
+    'cultural immersion experience',
+    'authentic safari experience',
+    'local guide experience',
+    'community tourism experience',
+    'wildlife conservation experience',
+    'bird watching experience',
+    'photography safari experience',
+    'adventure trekking experience',
+    'mountain climbing experience',
+    'conservation volunteering experience',
+    'wildlife encounter experience',
+    'african wildlife experience',
+    'big five experience',
+    'mountain gorilla experience',
+    'chimpanzee experience',
+    'african culture experience',
+    'local community tour',
+    'traditional village visit',
+    'african heritage tour',
+    'indigenous culture tour',
+    'tribal experience tour',
+    'african tradition tour',
+    'cultural immersion tour',
+    'authentic safari tour',
+    'local guide tour',
+    'community tourism tour',
+    'wildlife conservation tour',
+    'bird watching tour',
+    'photography safari tour',
+    'adventure trekking tour',
+    'mountain climbing tour',
+    'conservation volunteering tour',
+    'wildlife encounter tour',
+    'african wildlife tour',
+    'big five tour',
+    'mountain gorilla tour',
+    'chimpanzee tour',
+    'african culture tour',
   ],
+  openGraph: {
+    title: 'Unique Experiences | Dawnlight Journeys',
+    description:
+      'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/custom-experiences_africa',
+        width: 1200,
+        height: 630,
+        alt: 'Custom African Safari Experiences',
+      },
+      {
+        url: 'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wildlife-photography_experience',
+        width: 1200,
+        height: 630,
+        alt: 'Wildlife Photography Experience',
+      },
+      {
+        url: 'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cultural-immersion_experience',
+        width: 1200,
+        height: 630,
+        alt: 'Cultural Immersion Experience',
+      },
+    ],
+    type: 'website',
+    url: 'https://dawnlightjourneysrwanda.com/experiences',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Unique Experiences | Dawnlight Journeys',
+    description:
+      'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
+    images: [
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/custom-experiences_africa',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wildlife-photography_experience',
+      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cultural-immersion_experience',
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://dawnlightjourneysrwanda.com/experiences',
+  },
 };
 
 export default function ExperiencesPage() {

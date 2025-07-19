@@ -16,7 +16,8 @@ export const destinations: Destination[] = [
   {
     id: 1,
     name: 'Rwanda',
-    image: '/assets/destinations/rwanda-tourism.jpg',
+    image:
+      'https://res.cloudinary.com/nishimweprince/image/upload/v1752330253/dawnlight-journeys/gorrillas-4_f71j1k.webp',
     description:
       'The land of a thousand hills, home to mountain gorillas and stunning landscapes.',
     url: '/destinations/rwanda',
@@ -48,7 +49,7 @@ export const destinations: Destination[] = [
     image: '/assets/destinations/uganda-tourism.jpg',
     description:
       'The pearl of Africa with diverse wildlife, including gorillas, chimpanzees, and the Big Five.',
-    url: '/destinations/uganda',
+    url: 'https://res.cloudinary.com/nishimweprince/image/upload/v1752332362/dawnlight-journeys/lake-mburo-2_i4lpc6.jpg',
     slug: 'uganda',
     location: 'East Africa',
     highlights: [
