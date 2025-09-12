@@ -1,9 +1,10 @@
+'use client';
+
 import type { Metadata } from 'next';
 import React from 'react';
-import Link from 'next/link';
 import { CustomButton } from '@/src/components/ui/custom-button';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Blog - Safari Stories & Travel Tips | Dawnlight Journeys',
   description: 'Discover inspiring safari stories, travel tips, and expert advice for your African adventure. Read about gorilla trekking, wildlife photography, cultural experiences, and more from our travel experts.',
   keywords: [
