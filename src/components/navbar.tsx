@@ -100,15 +100,13 @@ export function Navbar() {
               </FlatNavItem>
             }
           />
-          <DropdownMenu
-            items={experienceItems}
-            trigger={
-              <FlatNavItem href="/experiences" hasDropdown>
-                Experiences
-              </FlatNavItem>
-            }
-          />
-          <FlatNavItem href="/contact">
+          <FlatNavItem href="#experiences">
+            Experiences
+          </FlatNavItem>
+          <FlatNavItem href="#faq">
+            FAQ
+          </FlatNavItem>
+          <FlatNavItem href="#contact">
             Contact
           </FlatNavItem>
           <FlatNavItem href="/blog">
@@ -148,12 +146,18 @@ export function Navbar() {
               items={destinationItems}
               onItemClick={() => setIsMenuOpen(false)}
             />
-            <MobileExpandableSection
-              title="Experiences"
-              href="/experiences"
-              items={experienceItems}
-              onItemClick={() => setIsMenuOpen(false)}
-            />
+            <FlatNavItem 
+              href="#experiences"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Experiences
+            </FlatNavItem>
+            <FlatNavItem 
+              href="#faq"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              FAQ
+            </FlatNavItem>
             <FlatNavItem 
               href="#contact"
               onClick={() => setIsMenuOpen(false)}

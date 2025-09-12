@@ -1,7 +1,31 @@
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+'use client';
+
+import { Facebook, Instagram, X, Youtube } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
+import { sendNewsletterEmail } from '@/lib/email';
 
 export function Footer() {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+    
+    try {
+      await sendNewsletterEmail({ email });
+      setSubmitMessage('Successfully subscribed to our newsletter!');
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter subscription error:', error);
+      setSubmitMessage('Failed to subscribe. Please check your configuration and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <footer className="py-12 border-t">
       <main className="container">
@@ -31,8 +55,8 @@ export function Footer() {
                 href="#"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
+                <X className="h-5 w-5" />
+                <span className="sr-only">X (Twitter)</span>
               </Link>
               <Link
                 href="#"
@@ -148,18 +172,31 @@ export function Footer() {
             <p className="text-muted-foreground mb-4">
               Subscribe to our newsletter for travel tips and exclusive offers.
             </p>
-            <form className="space-y-2">
+            {submitMessage && (
+              <div className={`mb-4 p-2 rounded-md text-xs ${
+                submitMessage.includes('successfully') || submitMessage.includes('Success')
+                  ? 'bg-green-100 text-green-800 border border-green-200'
+                  : 'bg-red-100 text-red-800 border border-red-200'
+              }`}>
+                {submitMessage}
+              </div>
+            )}
+            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Your email address"
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
                 required
+                disabled={isSubmitting}
               />
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Subscribe
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
             </form>
           </section>

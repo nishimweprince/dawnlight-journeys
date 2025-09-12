@@ -2,6 +2,7 @@ import React, { forwardRef, HTMLAttributes } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 import Link from "next/link"
+import { handleSmoothScroll } from "../../lib/smooth-scroll"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center rounded-xs text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -35,8 +36,16 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement>, VariantP
 
 const CustomButton = forwardRef<HTMLButtonElement, ButtonProps>(({ className, variant, size, href, ...props }, ref) => {
   if (href) {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      // Try smooth scrolling first
+      if (handleSmoothScroll(href)) {
+        e.preventDefault();
+        return;
+      }
+    };
+
     return (
-      <Link href={href} className={cn(buttonVariants({ variant, size, className }))}>
+      <Link href={href} className={cn(buttonVariants({ variant, size, className }))} onClick={handleClick}>
         {props.children}
       </Link>
     )

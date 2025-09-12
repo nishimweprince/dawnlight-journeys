@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { handleSmoothScroll } from '../../lib/smooth-scroll';
 
 interface FlatNavItemProps {
   href: string;
@@ -20,10 +21,21 @@ export const FlatNavItem: React.FC<FlatNavItemProps> = ({
   className,
   onClick
 }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Try smooth scrolling first
+    if (handleSmoothScroll(href, onClick)) {
+      e.preventDefault();
+      return;
+    }
+    
+    // If not a hash link, call the original onClick
+    if (onClick) onClick();
+  };
+
   return (
     <Link
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       className={cn(
         // Base styles with flat design principles
         'relative px-3 py-2 text-sm font-medium transition-colors duration-200',

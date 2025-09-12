@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from 'next';
 import { Hero } from '../src/components/hero';
 import { Destinations } from '../src/components/destinations';
@@ -7,9 +9,10 @@ import { Affiliates } from '../src/components/affiliates';
 import { FAQ } from '../src/components/faq';
 import { Contact } from '../src/components/contact';
 import { ThemeProvider } from '../src/components/theme-provider';
+import { ScrollToTop } from '../src/components/scroll-to-top';
 import { FaWhatsapp } from 'react-icons/fa';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Dawnlight Journeys - Unforgettable Safari Adventures in Uganda & Rwanda',
   description: 'Experience the magic of Africa with Dawnlight Journeys. Discover gorilla trekking, wildlife safaris, cultural tours, and luxury adventures in Uganda and Rwanda. Expert guides, personalized service, and unforgettable memories await.',
   keywords: [
@@ -156,6 +159,7 @@ export default function Page() {
           <FAQ />
           <Contact />
         </section>
+        <ScrollToTop />
         <a
           href="https://wa.me/250785917385"
           target="_blank"
