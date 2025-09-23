@@ -7,7 +7,7 @@ export function Hero() {
       {/* Hero Background */}
       <figure className="absolute inset-0 z-0 w-full h-full m-0">
         <img
-          src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/gorilla-hero_asdfbd"
+          src="https://res.cloudinary.com/nishimweprince/image/upload/v1757926872/dawnlight-journeys/Hero_qnprrr.jpg"
           alt="African Safari"
           className="w-full h-full object-cover object-center"
           style={{ minHeight: '100vh', minWidth: '100vw' }}
