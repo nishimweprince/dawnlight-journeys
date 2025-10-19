@@ -44,10 +44,11 @@ export function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-16 md:py-24 bg-background">
+    <section id="faq" className="py-12 md:py-16 bg-slate-50">
       <main className="container">
         <header className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-foreground">Frequently Asked Questions</h2>
+          <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Find answers to common questions about traveling to Rwanda and Uganda.
           </p>

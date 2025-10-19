@@ -4,57 +4,51 @@ import { safariPackages } from "../constants/safaris"
 
 export function Safaris() {
   return (
-    <section id="safaris" className="py-16 md:py-24">
-      <main className="container flex flex-col gap-8">
-        <header className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-          <section>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Safari Packages</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Carefully crafted itineraries to give you the ultimate African wildlife experience.
-            </p>
-          </section>
+    <section id="safaris" className="py-12 md:py-16">
+      <div className="container flex flex-col gap-8">
+        <header className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-primary">Best Seller Safaris</h2>
+          <hr className="w-24 h-1 bg-primary mx-auto border-0" />
         </header>
 
-        <article className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 list-none">
           {safariPackages.slice(0, 6).map((safari) => (
-            <figure
-              key={safari.id}
-              className="group bg-background rounded-xl overflow-hidden border shadow-sm hover:shadow-md transition-shadow"
-            >
-              <section className="relative overflow-hidden">
+            <li key={safari.id} className="group bg-gray-900 rounded-lg overflow-hidden hover:shadow-xl transition-all">
+              <figure>
                 <img
                   src={safari.image || "/assets/common/placeholder.svg"}
                   alt={safari.title}
-                  className="w-full aspect-[4/3] max-h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                <span className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                  {safari.duration}
-                </span>
-              </section>
-              <figcaption className="p-6">
-                <p className="text-sm text-muted-foreground mb-2">{safari.location}</p>
-                <p className="mb-4">
-                  {safari.description.length > 100
-                    ? safari.description.slice(0, 100) + "..."
-                    : safari.description}
-                </p>
-                <CustomButton variant="secondary" size="sm" href={safari.url} className="w-full">
-                  View Details
-                </CustomButton>
-              </figcaption>
-            </figure>
+                <figcaption className="p-5 bg-white">
+                  <h3 className="font-bold text-lg mb-2 text-foreground">{safari.title}</h3>
+                  <address className="text-sm text-muted-foreground mb-2 not-italic">{safari.location}</address>
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {safari.description}
+                  </p>
+                  <footer className="flex items-center justify-between">
+                    <time className="text-sm font-semibold text-primary">{safari.duration}</time>
+                    <CustomButton variant="primary" size="sm" href={safari.url}>
+                      View Details
+                    </CustomButton>
+                  </footer>
+                </figcaption>
+              </figure>
+            </li>
           ))}
-        </article>
-        <CustomButton
+        </ul>
+        <footer className="flex justify-center mt-4">
+          <CustomButton
             size="lg"
             href="/safaris"
-            variant={`primary`}
-            className="flex items-center gap-2 w-fit self-center"
+            variant="primary"
+            className="flex items-center gap-2"
           >
             View all safaris
-            <ArrowRight className="h-5 w-5" />
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </CustomButton>
-      </main>
+        </footer>
+      </div>
     </section>
   )
 }

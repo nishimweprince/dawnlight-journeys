@@ -8,10 +8,11 @@ export function Affiliates() {
   ]
 
   return (
-      <section id="affiliates" className="py-16 md:py-24">
+      <section id="affiliates" className="py-12 md:py-16 bg-slate-50">
       <main className="container">
         <header className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Our Trusted Partners</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-foreground">Affiliates</h2>
+          <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             We work with the best in the industry to ensure your African adventure is safe, sustainable, and
             unforgettable.

@@ -1,101 +1,63 @@
 import type React from "react"
-import { Camera, Coffee, Compass, Users } from "lucide-react"
 import { CustomButton } from "./ui/custom-button"
 import Link from "next/link"
+import { experiences as allExperiences } from "../constants/experiences"
 
-const experiences = [
-  {
-    id: 1,
-    title: "Wildlife Photography",
-    icon: Camera,
-    description: "Capture stunning images of Africa's incredible wildlife with expert guidance.",
-    url: "/experiences/photography",
-  },
-  {
-    id: 2,
-    title: "Cultural Immersion",
-    icon: Users,
-    description: "Connect with local communities and experience authentic African traditions.",
-    url: "/experiences/cultural",
-  },
-  {
-    id: 3,
-    title: "Adventure Trekking",
-    icon: Compass,
-    description: "Explore breathtaking landscapes on foot with experienced local guides.",
-    url: "/experiences/trekking",
-  },
-  {
-    id: 4,
-    title: "Culinary Experiences",
-    icon: Coffee,
-    description: "Taste authentic African cuisine and learn traditional cooking methods.",
-    url: "/experiences/culinary",
-  },
-]
+// Display only first 4 experiences on homepage
+const experiences = allExperiences.slice(0, 4)
 
 export function Experiences() {
   return (
-    <section id="experiences" className="py-16 md:py-12">
-      <main className="container">
+    <section id="experiences" className="py-12 md:py-16 bg-primary">
+      <div className="container">
         <header className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">Unforgettable Experiences</h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Go beyond the ordinary safari with our curated experiences that connect you with the heart of Africa.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-white">Rwanda & Uganda Safari Experiences</h2>
+          <hr className="w-24 h-1 bg-primary mx-auto border-0" />
         </header>
-        <section className="flex justify-center mt-12">
-        <CustomButton
-          variant="primary"
-          size="lg"
-          href="/experiences"
-          className="flex items-center gap-2 w-fit self-center"
-        >
-          View All Experiences
-          <ArrowRight className="h-5 w-5" />
-        </CustomButton>
-      </section>
-        <article className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 my-12">
+
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 list-none">
           {experiences.map((experience) => {
             const Icon = experience.icon
 
             return (
-              <article key={experience.id} className="bg-muted/10 cursor-pointer hover:scale-[1.01] duration-300 rounded-xl p-6 hover:bg-muted/50 transition-all">
-                <figure className="bg-primary/10 text-primary rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                  <Icon className="h-6 w-6" />
+              <li key={experience.id} className="bg-white overflow-hidden rounded-lg hover:shadow-xl transition-all group">
+                <figure className="relative aspect-[4/3] overflow-hidden">
+                  <img
+                    src={experience.image}
+                    alt={experience.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="bg-primary/90 backdrop-blur-sm rounded-full p-2 w-10 h-10 flex items-center justify-center mb-2">
+                      <Icon className="h-5 w-5 text-white" aria-hidden="true" />
+                    </div>
+                  </div>
                 </figure>
-                <h3 className="text-xl font-bold mb-2">{experience.title}</h3>
-                <p className="text-muted-foreground mb-4">{experience.description}</p>
-                <Link href={experience.url} className="text-primary font-medium hover:underline inline-flex items-center">
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Link>
-              </article>
+                <section className="p-6">
+                  <h3 className="text-lg font-bold mb-3 text-foreground">{experience.title}</h3>
+                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">{experience.description}</p>
+                  <Link href={experience.url} className="text-primary font-semibold hover:underline inline-flex items-center text-sm">
+                    Learn more <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </section>
+              </li>
             )
           })}
-        </article>
+        </ul>
 
-        <article className="rounded-xl overflow-hidden">
-          <section className="grid md:grid-cols-2">
-            <section className="p-8 md:p-12 flex flex-col justify-center">
-              <h3 className="text-2xl font-bold mb-4">Create Your Custom Experience</h3>
-              <p className="mb-6">
-                Looking for something unique? We specialize in creating custom experiences tailored to your interests,
-                timeframe, and budget.
-              </p>
-              <CustomButton variant="primary" size="lg" href="https://wa.me/250785917385" className="self-start">
-                Contact Us to Customize
-              </CustomButton>
-            </section>
-            <figure className="relative min-h-[300px]">
-              <img
-                src="/assets/experiences/custom-experiences.jpg"
-                alt="Custom Safari Experience"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </figure>
-          </section>
-        </article>
-      </main>
+        <footer className="flex justify-center mt-4">
+          <CustomButton
+            variant="secondary"
+            size="lg"
+            href="/experiences"
+            className="flex items-center gap-2 hover:!bg-white/90 hover:!text-primary"
+          >
+            Discover More Experiences
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </CustomButton>
+        </footer>
+      </div>
     </section>
   )
 }

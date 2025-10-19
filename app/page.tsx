@@ -1,10 +1,12 @@
 'use client';
 
 import type { Metadata } from 'next';
+import { motion } from 'framer-motion';
 import { Hero } from '../src/components/hero';
-import { Destinations } from '../src/components/destinations';
+import { WhyTravel } from '../src/components/why-travel';
 import { Safaris } from '../src/components/safaris';
 import { Experiences } from '../src/components/experiences';
+import { Testimonials } from '../src/components/testimonials';
 import { Affiliates } from '../src/components/affiliates';
 import { FAQ } from '../src/components/faq';
 import { Contact } from '../src/components/contact';
@@ -149,15 +151,65 @@ const metadata: Metadata = {
 export default function Page() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="wildlife-adventures-theme">
-      <main className="flex min-h-screen flex-col">
-        <section className="flex-1">
-          <Hero />
-          <Destinations />
-          <Safaris />
-          <Experiences />
-          <Affiliates />
-          <FAQ />
-          <Contact />
+      <main className="flex min-h-screen flex-col scroll-smooth">
+        <section className="flex flex-col gap-0 !my-0">
+          <section id="home">
+            <Hero />
+          </section>
+          <motion.section
+            id="why-travel"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <WhyTravel />
+          </motion.section>
+          <motion.section
+            id="safaris"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Safaris />
+          </motion.section>
+          <motion.section
+            id="experiences"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Experiences />
+          </motion.section>
+          <motion.section
+            id="testimonials"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Testimonials />
+          </motion.section>
+          <motion.section
+            id="affiliates"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Affiliates />
+          </motion.section>
+          <motion.section
+            id="contact"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Contact />
+          </motion.section>
         </section>
         <ScrollToTop />
         <a

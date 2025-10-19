@@ -209,13 +209,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
                   role="menuitem"
                 >
                   <span className="font-medium">{item.name}</span>
-                  {item.description && (
-                    <small className="text-xs text-gray-500 mt-1 block">
-                      {item.description && item.description.length > 50
-                        ? item.description.slice(0, 50) + '...'
-                        : item.description}
-                    </small>
-                  )}
                 </Link>
               </li>
             ))}

@@ -9,6 +9,7 @@ import { DropdownMenu } from './ui/dropdown-menu';
 import { MobileExpandableSection } from './ui/mobile-expandable-section';
 import { getDestinationDropdownItems, getExperienceDropdownItems } from '../lib/dropdown-utils';
 import { safariPackages } from '../constants/safaris';
+import { capitalizeString } from '../utils/strings.util';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,10 +75,13 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-4">
+          <FlatNavItem href="/">
+            Home
+          </FlatNavItem>
         <DropdownMenu
             items={safariPackages?.filter(safari => safari.destination === 'Rwanda')?.map(safari => ({
               id: safari.id,
-              name: safari.title,
+              name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
               href: safari.url,
               description: safari.description
             }))}
@@ -90,7 +94,7 @@ export function Navbar() {
           <DropdownMenu
             items={safariPackages?.filter(safari => safari.destination === 'Uganda')?.map(safari => ({
               id: safari.id,
-              name: safari.title,
+              name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
               href: safari.url,
               description: safari.description
             }))}
@@ -100,13 +104,13 @@ export function Navbar() {
               </FlatNavItem>
             }
           />
-          <FlatNavItem href="#experiences">
+          <FlatNavItem href="/experiences">
             Experiences
           </FlatNavItem>
-          <FlatNavItem href="#faq">
+          <FlatNavItem href="/faq">
             FAQ
           </FlatNavItem>
-          <FlatNavItem href="#contact">
+          <FlatNavItem href="/contact">
             Contact
           </FlatNavItem>
           <FlatNavItem href="/blog">
@@ -140,31 +144,37 @@ export function Navbar() {
       {isMenuOpen && (
         <section className="md:hidden container py-3 pb-5 border-t bg-white/95 rounded-b-xl shadow-lg">
           <nav className="flex flex-col space-y-3">
+            <FlatNavItem
+              href="/"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </FlatNavItem>
             <MobileExpandableSection
               title="Destinations"
               href="/destinations"
               items={destinationItems}
               onItemClick={() => setIsMenuOpen(false)}
             />
-            <FlatNavItem 
-              href="#experiences"
+            <FlatNavItem
+              href="/experiences"
               onClick={() => setIsMenuOpen(false)}
             >
               Experiences
             </FlatNavItem>
-            <FlatNavItem 
-              href="#faq"
+            <FlatNavItem
+              href="/faq"
               onClick={() => setIsMenuOpen(false)}
             >
               FAQ
             </FlatNavItem>
-            <FlatNavItem 
-              href="#contact"
+            <FlatNavItem
+              href="/contact"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </FlatNavItem>
-            <FlatNavItem 
+            <FlatNavItem
               href="/blog"
               onClick={() => setIsMenuOpen(false)}
             >
