@@ -120,7 +120,7 @@ export const metadata: Metadata = {
 
 export default function DestinationsPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50">
+    <main className="min-h-screen flex flex-col bg-background">
       {/* Hero Section */}
       <header className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <img
@@ -312,7 +312,7 @@ export default function DestinationsPage() {
 
           {/* Call to Action */}
           <section className="text-center mt-16 sm:mt-20">
-            <article className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto">
+            <article className="shadow-md bg-white rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto">
               <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
                 Ready to Start Your Journey?
               </h3>

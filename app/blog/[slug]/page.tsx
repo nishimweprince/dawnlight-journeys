@@ -514,7 +514,7 @@ export default function BlogSinglePage() {
 
   return (
     <>
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-background">
         <meta name="robots" content="noindex" />
         {/* Article Container */}
         <article className="max-w-4xl mx-auto px-4 py-8">

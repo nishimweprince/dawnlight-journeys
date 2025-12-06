@@ -95,27 +95,114 @@ export const MobileExpandableSection: React.FC<MobileExpandableSectionProps> = (
           "border-l-2 border-orange-100 pl-3"
         )}>
           {items.map((item) => (
+            item.children && item.children.length > 0 ? (
+              <NestedMobileSection
+                key={item.id}
+                item={item}
+                onItemClick={handleSubItemClick}
+              />
+            ) : (
+              <Link
+                key={item.id}
+                href={item.href}
+                onClick={handleSubItemClick}
+                className={cn(
+                  // Base link styling with flat design
+                  "block px-3 py-2 text-sm transition-colors duration-150",
+                  // Flat design hover states
+                  "text-gray-600 hover:text-orange-600 hover:bg-orange-50",
+                  // Focus states for accessibility
+                  "focus:outline-none focus:text-orange-600 focus:bg-orange-50",
+                  // Flat design shape
+                  "rounded-md",
+                  // Remove any shadows or 3D effects
+                  "border-0 shadow-none"
+                )}
+              >
+                <div className="font-medium">{item.name}</div>
+                {item.description && (
+                  <div className="text-xs text-gray-500 mt-1">
+                    {item.description}
+                  </div>
+                )}
+              </Link>
+            )
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Nested mobile section component for handling nested items
+interface NestedMobileSectionProps {
+  item: DropdownItem;
+  onItemClick: () => void;
+}
+
+const NestedMobileSection: React.FC<NestedMobileSectionProps> = ({ item, onItemClick }) => {
+  const [isNestedExpanded, setIsNestedExpanded] = useState(false);
+
+  const handleNestedToggle = (event: React.MouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setIsNestedExpanded(!isNestedExpanded);
+  };
+
+  return (
+    <div className="w-full">
+      <div className="flex items-center justify-between">
+        <Link
+          href={item.href}
+          onClick={onItemClick}
+          className={cn(
+            'flex-1 px-3 py-2 text-sm font-medium transition-colors duration-200',
+            'text-gray-700 hover:text-orange-600 hover:bg-orange-50',
+            'rounded-md',
+            'border-0 shadow-none'
+          )}
+        >
+          {item.name}
+        </Link>
+        <button
+          onClick={handleNestedToggle}
+          className={cn(
+            'p-2 rounded-md transition-colors duration-200',
+            'text-gray-500 hover:text-orange-600 hover:bg-orange-50',
+            'focus:outline-none focus:text-orange-600 focus:bg-orange-50',
+            'border-0 shadow-none'
+          )}
+          aria-expanded={isNestedExpanded}
+        >
+          {isNestedExpanded ? (
+            <ChevronUp className="h-4 w-4" />
+          ) : (
+            <ChevronDown className="h-4 w-4" />
+          )}
+        </button>
+      </div>
+      {isNestedExpanded && item.children && (
+        <div className={cn(
+          "mt-2 ml-4 space-y-1 transition-all duration-200 ease-out",
+          "border-l-2 border-orange-100 pl-3"
+        )}>
+          {item.children.map((child) => (
             <Link
-              key={item.id}
-              href={item.href}
-              onClick={handleSubItemClick}
+              key={child.id}
+              href={child.href}
+              onClick={onItemClick}
               className={cn(
-                // Base link styling with flat design
                 "block px-3 py-2 text-sm transition-colors duration-150",
-                // Flat design hover states
                 "text-gray-600 hover:text-orange-600 hover:bg-orange-50",
-                // Focus states for accessibility
                 "focus:outline-none focus:text-orange-600 focus:bg-orange-50",
-                // Flat design shape
                 "rounded-md",
-                // Remove any shadows or 3D effects
                 "border-0 shadow-none"
               )}
             >
-              <div className="font-medium">{item.name}</div>
-              {item.description && (
+              <div className="font-medium">{child.name}</div>
+              {child.description && (
                 <div className="text-xs text-gray-500 mt-1">
-                  {item.description}
+                  {child.description}
                 </div>
               )}
             </Link>

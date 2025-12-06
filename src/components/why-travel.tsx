@@ -41,7 +41,7 @@ const features = [
 
 export function WhyTravel() {
   return (
-    <section className="py-12 md:py-16 bg-primary">
+    <section className="py-8 md:py-12 bg-primary">
       <div className="container">
         <header className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight mb-4">

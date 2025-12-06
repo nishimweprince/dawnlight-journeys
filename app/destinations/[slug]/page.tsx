@@ -344,7 +344,7 @@ export default function DestinationDetailsPage({
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col bg-gradient-to-b from-orange-50 to-white">
+    <main className="min-h-screen flex flex-col bg-background">
       {/* Hero Section */}
       <header className="relative w-full h-[60vh] md:h-[70vh] lg:h-[80vh] flex items-end overflow-hidden">
         {/* Image Slider */}
@@ -378,21 +378,6 @@ export default function DestinationDetailsPage({
           >
             <ChevronRight className="h-6 w-6" />
           </button>
-        </nav>
-        {/* Image indicator dots */}
-        <nav className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {destination.images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentImageIndex
-                  ? 'bg-white scale-125'
-                  : 'bg-white/50'
-              }`}
-              aria-label={`Go to image ${index + 1}`}
-            />
-          ))}
         </nav>
         <span
           className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"

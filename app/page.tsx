@@ -13,6 +13,7 @@ import { Contact } from '../src/components/contact';
 import { ThemeProvider } from '../src/components/theme-provider';
 import { ScrollToTop } from '../src/components/scroll-to-top';
 import { FaWhatsapp } from 'react-icons/fa';
+import { Destinations } from '@/src/components/destinations';
 
 const metadata: Metadata = {
   title: 'Dawnlight Journeys - Unforgettable Safari Adventures in Uganda & Rwanda',
@@ -164,6 +165,15 @@ export default function Page() {
             viewport={{ once: true }}
           >
             <WhyTravel />
+          </motion.section>
+          <motion.section
+            id="why-travel"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Destinations />
           </motion.section>
           <motion.section
             id="safaris"

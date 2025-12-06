@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { CustomButton } from './ui/custom-button';
 
 const heroImages = [
   {
@@ -39,9 +40,8 @@ export function Hero() {
             key={index}
             src={image.url}
             alt={image.alt}
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${
-              index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
             style={{ minHeight: '100vh', minWidth: '100vw' }}
           />
         ))}
@@ -50,18 +50,23 @@ export function Hero() {
       </figure>
 
       {/* Hero Content */}
-      <main className="container relative z-10 py-16 flex items-center justify-center min-h-screen">
-        <header className="max-w-4xl text-center text-white space-y-6">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight uppercase">
-              Unforgettable Mountain Gorilla Trekking Safaris
-              <span className="block mt-2">Rwanda & Uganda</span>
+      <main className="container relative z-10 py-16 flex items-center justify-start min-h-screen">
+        <header className="max-w-3xl text-white space-y-6">
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+              Explore Africa's
+              <span className="block text-[#D9B166]">Wonders</span>
             </h1>
-            <div className="w-24 h-1 bg-primary mx-auto"></div>
-            <p className="text-lg md:text-xl text-white/95 leading-relaxed max-w-3xl mx-auto">
-              Experience the magic of Africa with Dawnlight Journeys. Discover gorilla trekking, wildlife safaris, cultural tours, and luxury adventures in Uganda and Rwanda.
+            <p className="text-xl md:text-2xl text-white/95 leading-relaxed max-w-2xl">
+              Unforgettable safaris, gorilla trekking, and cultural journeys with
+              <span className="font-semibold text-[#D9B166]"> Dawnlight Journeys</span>.
             </p>
           </div>
+          <nav aria-label="Hero call to action" className="pt-4">
+            <CustomButton variant="primary" size="lg" href="#safaris">
+              Get started
+            </CustomButton>
+          </nav>
         </header>
       </main>
     </section>

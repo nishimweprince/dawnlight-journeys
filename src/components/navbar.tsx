@@ -3,26 +3,55 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FlatNavItem } from './ui/flat-nav-item';
 import { FlatButton } from './ui/flat-button';
 import { DropdownMenu } from './ui/dropdown-menu';
 import { MobileExpandableSection } from './ui/mobile-expandable-section';
-import { getDestinationDropdownItems, getExperienceDropdownItems } from '../lib/dropdown-utils';
 import { safariPackages } from '../constants/safaris';
 import { capitalizeString } from '../utils/strings.util';
+import type { DropdownItem } from './ui/dropdown-menu';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const mobileMenuRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
 
-  // Get dropdown items
-  const destinationItems = getDestinationDropdownItems();
-  const experienceItems = getExperienceDropdownItems();
+  // Check if we're on the homepage
+  const isHomePage = pathname === '/';
+
+  // Create nested destinations structure with safaris
+  const destinationsDropdownItems: DropdownItem[] = [
+    {
+      id: 1,
+      name: 'Rwanda',
+      href: '/destinations/rwanda',
+      children: safariPackages
+        .filter(safari => safari.destination === 'Rwanda')
+        .map(safari => ({
+          id: safari.id,
+          name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
+          href: safari.url
+        }))
+    },
+    {
+      id: 2,
+      name: 'Uganda',
+      href: '/destinations/uganda',
+      children: safariPackages
+        .filter(safari => safari.destination === 'Uganda')
+        .map(safari => ({
+          id: safari.id,
+          name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
+          href: safari.url
+        }))
+    }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 150);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -53,67 +82,74 @@ export function Navbar() {
     };
   }, [isMenuOpen]);
 
+  // Determine if navbar should be transparent (only on homepage and not scrolled)
+  const isTransparent = isHomePage && !scrolled;
+
   return (
     <header
       className={
         `sticky top-0 z-50 w-full transition-all duration-300 ` +
-        (scrolled
+        (scrolled || !isHomePage
           ? 'bg-white/80 backdrop-blur border-b shadow-lg rounded-b-xl'
-          : 'bg-white/85')
+          : 'bg-transparent')
       }
+      style={{ overflow: 'visible' }}
     >
-      <section className="container flex h-16 items-center justify-between">
+      <section className="container flex h-16 items-center justify-between" style={{ overflow: 'visible' }}>
         <Link href="/" className="flex items-center gap-2">
           <img
             src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1"
             alt="Logo"
             className="h-12 w-12 rounded-full"
           />
-          <span className="font-extrabold text-lg tracking-tight text-black-800">
+          <span className={`font-extrabold text-lg tracking-tight transition-colors duration-300 ${
+            isTransparent ? 'text-white drop-shadow-lg' : 'text-black-800'
+          }`}>
             Dawnlight Journeys
           </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-4">
-          <FlatNavItem href="/">
+          <FlatNavItem
+            href="/"
+            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
+          >
             Home
           </FlatNavItem>
-        <DropdownMenu
-            items={safariPackages?.filter(safari => safari.destination === 'Rwanda')?.map(safari => ({
-              id: safari.id,
-              name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
-              href: safari.url,
-              description: safari.description
-            }))}
-            trigger={
-              <FlatNavItem href="/destinations/rwanda" hasDropdown>
-                Rwanda
-              </FlatNavItem>
-            }
-          />
           <DropdownMenu
-            items={safariPackages?.filter(safari => safari.destination === 'Uganda')?.map(safari => ({
-              id: safari.id,
-              name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
-              href: safari.url,
-              description: safari.description
-            }))}
+            items={destinationsDropdownItems}
             trigger={
-              <FlatNavItem href="/destinations/uganda" hasDropdown>
-                Uganda
+              <FlatNavItem
+                href="/destinations"
+                hasDropdown
+                className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
+              >
+                Destinations
               </FlatNavItem>
             }
           />
-          <FlatNavItem href="/experiences">
+          <FlatNavItem
+            href="/experiences"
+            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
+          >
             Experiences
           </FlatNavItem>
-          <FlatNavItem href="/faq">
+          <FlatNavItem
+            href="/faq"
+            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
+          >
             FAQ
           </FlatNavItem>
-          <FlatNavItem href="/contact">
+          <FlatNavItem
+            href="/contact"
+            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
+          >
             Contact
           </FlatNavItem>
-          <FlatNavItem href="/blog">
+          <FlatNavItem
+            href="/blog"
+            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
+          >
             Blog
           </FlatNavItem>
           <FlatButton
@@ -127,16 +163,18 @@ export function Navbar() {
         </nav>
 
         <button
-          className="md:hidden p-1.5 rounded-md hover:bg-accent"
+          className={`md:hidden p-1.5 rounded-md transition-colors duration-300 ${
+            isTransparent ? 'hover:bg-white/20' : 'hover:bg-accent'
+          }`}
           onClick={(e) => {
             e.preventDefault();
             setIsMenuOpen(!isMenuOpen);
           }}
         >
           {isMenuOpen ? (
-            <X className="h-5 w-5" />
+            <X className={`h-5 w-5 ${isTransparent ? 'text-white' : ''}`} />
           ) : (
-            <Menu className="h-5 w-5" />
+            <Menu className={`h-5 w-5 ${isTransparent ? 'text-white' : ''}`} />
           )}
         </button>
       </section>
@@ -153,7 +191,7 @@ export function Navbar() {
             <MobileExpandableSection
               title="Destinations"
               href="/destinations"
-              items={destinationItems}
+              items={destinationsDropdownItems}
               onItemClick={() => setIsMenuOpen(false)}
             />
             <FlatNavItem

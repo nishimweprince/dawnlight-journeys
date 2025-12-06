@@ -193,48 +193,89 @@ export default function SafariClient({ safari }: SafariClientProps) {
 
         {/* Content Sections */}
         <main className="container mx-auto px-4 py-16 space-y-16">
-          {/* Safari Overview */}
-          <motion.article
+          {/* Safari Overview with Highlights and Booking Card */}
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="flex items-center justify-center"
+            className="grid lg:grid-cols-3 gap-8"
           >
+            {/* Main Content - Highlights */}
+            <div className="lg:col-span-2 space-y-6">
+              {safari?.highlights && safari.highlights.length > 0 && (
+                <article className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 md:p-8">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">
+                    Safari Highlights
+                  </h2>
+                  <ul className="grid md:grid-cols-2 gap-4 list-none">
+                    {safari.highlights.map((highlight, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-foreground leading-relaxed">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+              
+              {safari?.bestTime && (
+                <article className="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
+                  <h3 className="text-xl font-bold mb-3 text-foreground flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-primary" />
+                    Best Time to Visit
+                  </h3>
+                  <p className="text-muted-foreground">{safari.bestTime}</p>
+                </article>
+              )}
+            </div>
 
             {/* Booking Card */}
-            <aside className="w-full max-w-md">
-              <aside className="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
-                <h3 className="text-xl font-bold mb-4">Book This Safari</h3>
-                <dl className="space-y-4 mb-6">
-                  <article className="flex justify-between">
-                    <dt className="text-muted-foreground">Duration:</dt>
-                    <dd className="font-semibold">{safari?.duration}</dd>
+            <aside className="lg:col-span-1">
+              <div className="bg-white rounded-2xl shadow-xl p-6 sticky top-8 border border-gray-100">
+                <h3 className="text-xl font-bold mb-6 text-foreground">Book This Safari</h3>
+                <dl className="space-y-4 mb-6 pb-6 border-b border-gray-200">
+                  <article className="flex justify-between items-center">
+                    <dt className="text-muted-foreground flex items-center gap-2">
+                      <Clock className="h-4 w-4" />
+                      Duration:
+                    </dt>
+                    <dd className="font-semibold text-foreground">{safari?.duration}</dd>
                   </article>
-                  <article className="flex justify-between">
-                    <dt className="text-muted-foreground">Group Size:</dt>
-                    <dd className="font-semibold">{safari?.groupSize}</dd>
-                  </article>
-                  <article className="flex justify-between">
-                    <dt className="text-muted-foreground">Difficulty:</dt>
-                    <dd className="font-semibold">{safari?.difficulty}</dd>
-                  </article>
+                  {safari?.groupSize && (
+                    <article className="flex justify-between items-center">
+                      <dt className="text-muted-foreground flex items-center gap-2">
+                        <Users className="h-4 w-4" />
+                        Group Size:
+                      </dt>
+                      <dd className="font-semibold text-foreground">{safari.groupSize}</dd>
+                    </article>
+                  )}
+                  {safari?.difficulty && (
+                    <article className="flex justify-between items-center">
+                      <dt className="text-muted-foreground flex items-center gap-2">
+                        <Star className="h-4 w-4" />
+                        Difficulty:
+                      </dt>
+                      <dd className="font-semibold text-foreground">{safari.difficulty}</dd>
+                    </article>
+                  )}
                 </dl>
                 <CustomButton
                   variant="primary"
                   size="lg"
                   href="https://wa.me/250785917385"
-                  className="w-full"
+                  className="w-full mb-4"
                 >
                   <Send className="h-4 w-4 mr-2" />
                   Get Quote
                 </CustomButton>
-                <p className="text-sm text-muted-foreground mt-4 text-center">
+                <p className="text-xs text-muted-foreground text-center">
                   Contact us for custom pricing and availability
                 </p>
-              </aside>
+              </div>
             </aside>
-          </motion.article>
+          </motion.section>
 
           {/* Itinerary - Gamified Version */}
           {safari?.itinerary?.length && safari.itinerary.length > 1 && (
@@ -370,80 +411,99 @@ export default function SafariClient({ safari }: SafariClientProps) {
           )}
 
           {/* Inclusions & Exclusions */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-8"
-          >
-            <article className="bg-green-50 rounded-2xl p-6">
-              <h3 className="text-lg md:text-xl font-bold mb-4 text-green-800 flex items-center gap-2">
-                <CheckCircle className="h-5 w-5" />
-                What's Included
-              </h3>
-              <ul className="space-y-3">
-                {safari?.inclusions?.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-4 w-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-green-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="bg-red-50 rounded-2xl p-6">
-              <h3 className="text-lg md:text-xl font-bold mb-4 text-red-800 flex items-center gap-2">
-                <XCircle className="h-5 w-5" />
-                What's Not Included
-              </h3>
-              <ul className="space-y-3">
-                {safari?.exclusions?.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <XCircle className="h-4 w-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span className="text-red-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </motion.section>
-
-                    {/* Images */}
-                    {safari?.images && safari.images.length > 1 && (
+          {(safari?.inclusions?.length || safari?.exclusions?.length) && (
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="grid md:grid-cols-2 gap-6"
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-center">
-                Gallery
-              </h2>
-              <article className="bg-white rounded-xl shadow-lg p-4 md:p-8">
+              {safari?.inclusions && safari.inclusions.length > 0 && (
+                <article className="bg-gradient-to-br from-green-50 to-green-100/50 rounded-2xl p-6 md:p-8 border border-green-200/50 shadow-md">
+                  <h3 className="text-xl md:text-2xl font-bold mb-6 text-green-800 flex items-center gap-2">
+                    <CheckCircle className="h-6 w-6" />
+                    What's Included
+                  </h3>
+                  <ul className="space-y-3">
+                    {safari.inclusions.map((item, index) => (
+                      <li key={index} className="flex items-start gap-3 group">
+                        <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <span className="text-green-800 leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {safari?.exclusions && safari.exclusions.length > 0 && (
+                <article className="bg-gradient-to-br from-red-50 to-red-100/50 rounded-2xl p-6 md:p-8 border border-red-200/50 shadow-md">
+                  <h3 className="text-xl md:text-2xl font-bold mb-6 text-red-800 flex items-center gap-2">
+                    <XCircle className="h-6 w-6" />
+                    What's Not Included
+                  </h3>
+                  <ul className="space-y-3">
+                    {safari.exclusions.map((item, index) => (
+                      <li key={index} className="flex items-start gap-3 group">
+                        <XCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <span className="text-red-800 leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+            </motion.section>
+          )}
+
+          {/* Images Gallery */}
+          {safari?.images && safari.images.length > 1 && (
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <header className="text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                  Photo Gallery
+                </h2>
+                <p className="text-muted-foreground">
+                  Explore stunning moments from this safari adventure
+                </p>
+              </header>
+              <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 lg:p-8 border border-gray-100">
                 {safari?.images && safari.images.length > 0 ? (
                   <>
-                    <nav className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                       {(showAllImages
                         ? safari.images
-                        : safari.images.slice(0, 3)
+                        : safari.images.slice(0, 6)
                       ).map((image, index) => (
-                        <figure key={index} className="relative group aspect-[4/3] overflow-hidden rounded-lg">
+                        <figure 
+                          key={index} 
+                          className="relative group aspect-[4/3] overflow-hidden rounded-xl cursor-pointer"
+                        >
                           <img
                             src={image}
-                            alt={safari?.title}
-                            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                            alt={`${safari?.title} - Image ${index + 1}`}
+                            className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                            <p className="text-white text-sm font-medium">View Full Image</p>
+                          </div>
                         </figure>
                       ))}
-                    </nav>
+                    </div>
 
-                    {safari.images.length > 3 && (
-                      <nav className="flex justify-center mt-6">
+                    {safari.images.length > 6 && (
+                      <div className="flex justify-center mt-8">
                         <CustomButton
                           variant="secondary"
                           onClick={() => setShowAllImages(!showAllImages)}
-                          className="flex items-center gap-2"
+                          className="flex items-center gap-2 px-6 py-3"
                         >
                           {showAllImages ? (
                             <>
@@ -453,17 +513,17 @@ export default function SafariClient({ safari }: SafariClientProps) {
                           ) : (
                             <>
                               <ChevronRight className="h-4 w-4" />
-                              Show All ({safari.images.length} images)
+                              Show All {safari.images.length} Images
                             </>
                           )}
                         </CustomButton>
-                      </nav>
+                      </div>
                     )}
                   </>
                 ) : (
-                  <p className="text-primary-700">No images available.</p>
+                  <p className="text-center text-muted-foreground py-8">No images available.</p>
                 )}
-              </article>
+              </div>
             </motion.section>
           )}
 
@@ -474,11 +534,17 @@ export default function SafariClient({ safari }: SafariClientProps) {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              className="space-y-8"
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-                Frequently Asked Questions
-              </h2>
-              <nav className="space-y-4">
+              <header className="text-center">
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-muted-foreground">
+                  Everything you need to know about this safari
+                </p>
+              </header>
+              <div className="space-y-4 max-w-4xl mx-auto">
                 {safari?.faqs?.map((faq, index) => (
                   <motion.article
                     key={index}
@@ -486,17 +552,20 @@ export default function SafariClient({ safari }: SafariClientProps) {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-white rounded-2xl shadow-lg p-6"
+                    className="bg-white rounded-2xl shadow-md p-6 md:p-8 border border-gray-100 hover:shadow-lg transition-shadow duration-300"
                   >
-                    <h3 className="text-base md:text-lg font-bold mb-3 text-primary">
+                    <h3 className="text-lg md:text-xl font-bold mb-4 text-primary flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm font-bold mt-0.5">
+                        Q
+                      </span>
                       {faq?.question}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground leading-relaxed pl-9">
                       {faq?.answer}
                     </p>
                   </motion.article>
                 ))}
-              </nav>
+              </div>
             </motion.section>
           )}
 
@@ -506,28 +575,37 @@ export default function SafariClient({ safari }: SafariClientProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center bg-primary/5 rounded-2xl p-8"
+            className="text-center bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl p-8 md:p-12 border border-primary/20 shadow-lg"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 text-foreground">
               Ready for Your Safari Adventure?
             </h2>
-            <p className="text-base md:text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               Contact us to customize this safari package or get more
-              information about availability and pricing.
+              information about availability and pricing. Our expert team is ready to help you plan your perfect African adventure.
             </p>
-            <CustomButton
-              variant="primary"
-              size="lg"
-              href="https://wa.me/250785917385"
-            >
-              <Send className="h-4 w-4 mr-2" />
-              Contact Us Now
-            </CustomButton>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <CustomButton
+                variant="primary"
+                size="lg"
+                href="https://wa.me/250785917385"
+                className="px-8 py-4 text-base"
+              >
+                <Send className="h-5 w-5 mr-2" />
+                Contact Us Now
+              </CustomButton>
+              <CustomButton
+                variant="secondary"
+                size="lg"
+                onClick={() => router.back()}
+                className="px-8 py-4 text-base"
+              >
+                <ChevronLeft className="h-5 w-5 mr-2" />
+                Back to Safaris
+              </CustomButton>
+            </div>
           </motion.section>
 
-          <CustomButton variant="secondary" onClick={() => router.back()}>
-            Back
-          </CustomButton>
         </main>
       </main>
     </>

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { X } from 'lucide-react';
+import { X, ChevronRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useIsMobile } from '../../../hooks/use-mobile';
 
@@ -11,6 +11,7 @@ export interface DropdownItem {
   name: string;
   href: string;
   description?: string;
+  children?: DropdownItem[];
 }
 
 interface DropdownMenuProps {
@@ -20,8 +21,8 @@ interface DropdownMenuProps {
   dropdownClassName?: string;
 }
 
-export const DropdownMenu: React.FC<DropdownMenuProps> = ({ 
-  items, 
+export const DropdownMenu: React.FC<DropdownMenuProps> = ({
+  items,
   trigger,
   className,
   dropdownClassName
@@ -58,7 +59,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   const handleTriggerClick = (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
-    
+
     if (isOpen) {
       closeDropdown();
     } else {
@@ -129,33 +130,34 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onKeyDown={handleKeyDown}
+      style={{ overflow: 'visible' }}
     >
-      <button
-        type="button"
+      <div
         onClick={isMobile ? handleTriggerClick : undefined}
-        className="w-full text-left bg-transparent border-0 p-0 m-0"
-        tabIndex={0}
+        className={isMobile ? "cursor-pointer" : ""}
+        tabIndex={isMobile ? 0 : -1}
         aria-haspopup="menu"
         aria-expanded={isOpen}
+        role={isMobile ? "button" : undefined}
       >
         {trigger}
-      </button>
-      
+      </div>
+
       {isOpen && (
         <menu
           ref={dropdownRef}
           className={cn(
             // Base positioning and layout - responsive for mobile
-            isMobile 
+            isMobile
               ? "fixed inset-x-4 top-20 z-50" // Full width on mobile with margins
-              : "absolute top-full left-0 mt-1 w-72 z-50", // Standard dropdown on desktop
+              : "absolute top-full left-0 mt-1 w-72 z-[100]", // Standard dropdown on desktop with high z-index
             // Flat design styling
             "bg-white border border-gray-200 rounded-md shadow-lg",
             // Animation classes
             "transition-all duration-200 ease-out",
             // Conditional visibility for smooth animations
-            isVisible 
-              ? "opacity-100 translate-y-0" 
+            isVisible
+              ? "opacity-100 translate-y-0"
               : "opacity-0 -translate-y-1",
             dropdownClassName
           )}
@@ -166,6 +168,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
             }
           }}
           role="menu"
+          style={{ overflow: 'visible' }}
         >
           {/* Mobile close button */}
           {isMobile && (
@@ -184,37 +187,199 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
               </button>
             </header>
           )}
-          
-          <ul className="py-2 max-h-[80vh] overflow-y-auto" role="none">
-            {items.map((item, index) => (
-              <li key={item.id} role="none">
-                <Link
-                  href={item.href}
-                  className={cn(
-                    // Base link styling with flat design
-                    "block px-4 py-3 text-sm transition-colors duration-150",
-                    // Flat design hover states
-                    "text-gray-700 hover:text-primary hover:bg-primary/10",
-                    // Focus states for accessibility
-                    "focus:outline-none focus:text-primary focus:bg-primary/10",
-                    // Remove any shadows or 3D effects
-                    "border-0 shadow-none"
-                  )}
-                  onClick={() => {
-                    setIsVisible(false);
-                    setTimeout(() => setIsOpen(false), 150);
-                  }}
-                  // Keyboard navigation support
-                  tabIndex={isVisible ? 0 : -1}
-                  role="menuitem"
-                >
-                  <span className="font-medium">{item.name}</span>
-                </Link>
-              </li>
+
+          <ul
+            className={cn(
+              "py-2",
+              isMobile ? "max-h-[80vh] overflow-y-auto" : "overflow-visible"
+            )}
+            role="none"
+            style={{ overflow: isMobile ? 'auto' : 'visible' }}
+          >
+            {items.map((item) => (
+              <NestedDropdownItem
+                key={item.id}
+                item={item}
+                isVisible={isVisible}
+                isMobile={isMobile}
+                onItemClick={() => {
+                  setIsVisible(false);
+                  setTimeout(() => setIsOpen(false), 150);
+                }}
+              />
             ))}
           </ul>
         </menu>
       )}
     </nav>
+  );
+};
+
+// Nested dropdown item component
+interface NestedDropdownItemProps {
+  item: DropdownItem;
+  isVisible: boolean;
+  isMobile: boolean;
+  onItemClick: () => void;
+}
+
+const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
+  item,
+  isVisible,
+  isMobile,
+  onItemClick
+}) => {
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
+  const submenuRef = useRef<HTMLDivElement>(null);
+  const itemRef = useRef<HTMLLIElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const hasChildren = item.children && item.children.length > 0;
+
+  const handleMouseEnter = () => {
+    if (hasChildren && !isMobile) {
+      // Clear any existing timeout
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setIsSubmenuOpen(true);
+      setIsSubmenuVisible(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (hasChildren && !isMobile) {
+      // Add a small delay before closing to allow mouse to move to submenu
+      timeoutRef.current = setTimeout(() => {
+        setIsSubmenuVisible(false);
+        setTimeout(() => setIsSubmenuOpen(false), 150);
+      }, 150);
+    }
+  };
+
+  const handleSubmenuMouseEnter = () => {
+    // Cancel close timeout when mouse enters submenu
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  const handleSubmenuMouseLeave = () => {
+    if (hasChildren && !isMobile) {
+      timeoutRef.current = setTimeout(() => {
+        setIsSubmenuVisible(false);
+        setTimeout(() => setIsSubmenuOpen(false), 150);
+      }, 150);
+    }
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <li
+      ref={itemRef}
+      role="none"
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ overflow: 'visible' }}
+    >
+      <Link
+        href={item.href}
+        className={cn(
+          // Base link styling with flat design
+          "block px-4 py-3 text-sm transition-colors duration-150",
+          // Flat design hover states
+          "text-gray-700 hover:text-primary hover:bg-primary/10",
+          // Focus states for accessibility
+          "focus:outline-none focus:text-primary focus:bg-primary/10",
+          // Remove any shadows or 3D effects
+          "border-0 shadow-none",
+          // Flex layout for nested items
+          hasChildren && "flex items-center justify-between"
+        )}
+        onClick={(e) => {
+          if (hasChildren && isMobile) {
+            e.preventDefault();
+            setIsSubmenuOpen(!isSubmenuOpen);
+          } else if (!hasChildren) {
+            onItemClick();
+          }
+        }}
+        // Keyboard navigation support
+        tabIndex={isVisible ? 0 : -1}
+        role="menuitem"
+      >
+        <span className="font-medium">{item.name}</span>
+        {hasChildren && (
+          <ChevronRight className="h-4 w-4 ml-2 flex-shrink-0" />
+        )}
+      </Link>
+
+      {hasChildren && isSubmenuOpen && (
+        <div
+          ref={submenuRef}
+          className={cn(
+            // Base positioning - absolute for desktop, relative for mobile
+            isMobile
+              ? "relative left-0 w-full pl-4 mt-2"
+              : "absolute left-full top-0 ml-1 w-64 z-[110]", // Higher z-index for nesting
+            // Styling
+            isMobile
+              ? "bg-gray-50 border-l-2 border-primary/20 rounded-md"
+              : "bg-white border border-gray-200 rounded-md shadow-xl",
+            "py-2",
+            // Animation classes (desktop only)
+            !isMobile && "transition-all duration-200 ease-out",
+            !isMobile && (isSubmenuVisible
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 -translate-x-2")
+          )}
+          onMouseEnter={handleSubmenuMouseEnter}
+          onMouseLeave={handleSubmenuMouseLeave}
+          style={{ overflow: 'visible' }}
+        >
+          <ul
+            role="none"
+            className={cn(
+              isMobile ? "space-y-1" : "max-h-[70vh] overflow-y-auto"
+            )}
+            style={!isMobile ? {
+              scrollbarWidth: 'thin',
+              scrollbarColor: '#d1d5db #f3f4f6'
+            } : undefined}
+          >
+            {item.children!.map((child) => (
+              <li key={child.id} role="none">
+                <Link
+                  href={child.href}
+                  className={cn(
+                    "block px-4 py-3 text-sm transition-colors duration-150",
+                    "text-gray-700 hover:text-primary hover:bg-primary/10",
+                    "focus:outline-none focus:text-primary focus:bg-primary/10",
+                    "border-0 shadow-none"
+                  )}
+                  onClick={onItemClick}
+                  role="menuitem"
+                >
+                  <span className="font-medium">{child.name}</span>
+                  {child.description && (
+                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">{child.description}</p>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </li>
   );
 };

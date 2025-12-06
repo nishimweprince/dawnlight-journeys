@@ -120,7 +120,7 @@ export default function FAQPage() {
     });
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary to-primary/90 text-white py-16 md:py-24">
         <div className="container">
@@ -294,7 +294,7 @@ export default function FAQPage() {
       </section>
 
       {/* Quick Links */}
-      <section className="py-12 bg-slate-50">
+      <section className="py-12 bg-background">
         <div className="container">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-xl font-bold mb-6 text-center">Helpful Resources</h3>

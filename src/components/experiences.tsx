@@ -1,52 +1,106 @@
+'use client';
+
 import type React from "react"
 import { CustomButton } from "./ui/custom-button"
 import Link from "next/link"
 import { experiences as allExperiences } from "../constants/experiences"
+import { motion } from "framer-motion"
 
-// Display only first 4 experiences on homepage
 const experiences = allExperiences.slice(0, 4)
 
 export function Experiences() {
   return (
-    <section id="experiences" className="py-12 md:py-16 bg-primary">
+    <section id="experiences" className="py-8 md:py-12 bg-primary">
       <div className="container">
+        {/* Section Header */}
         <header className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-white">Rwanda & Uganda Safari Experiences</h2>
-          <hr className="w-24 h-1 bg-primary mx-auto border-0" />
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-white">
+            East African Hidden Treasures
+          </h2>
+          <hr className="w-24 h-1 bg-white mx-auto border-0" />
         </header>
 
-        <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 list-none">
-          {experiences.map((experience) => {
+        {/* Alternating Rows */}
+        <div className="space-y-12 md:space-y-16">
+          {experiences.map((experience, index) => {
             const Icon = experience.icon
+            const isEven = index % 2 === 1
+
+            const imageVariants = {
+              hidden: { opacity: 0, x: isEven ? 100 : -100 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any }
+              }
+            }
+
+            const textVariants = {
+              hidden: { opacity: 0, x: isEven ? -100 : 100 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any, delay: 0.2 }
+              }
+            }
 
             return (
-              <li key={experience.id} className="bg-white overflow-hidden rounded-lg hover:shadow-xl transition-all group">
-                <figure className="relative aspect-[4/3] overflow-hidden">
+              <article
+                key={experience.id}
+                className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center"
+              >
+                {/* Image Column */}
+                <motion.figure
+                  className={`relative overflow-hidden rounded-xl group ${
+                    isEven ? 'lg:order-2' : 'lg:order-1'
+                  }`}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={imageVariants}
+                >
                   <img
                     src={experience.image}
                     alt={experience.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="bg-primary/90 backdrop-blur-sm rounded-full p-2 w-10 h-10 flex items-center justify-center mb-2">
-                      <Icon className="h-5 w-5 text-white" aria-hidden="true" />
-                    </div>
+                  <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm rounded-full p-3 w-12 h-12 flex items-center justify-center">
+                    <Icon className="h-6 w-6 text-white" aria-hidden="true" />
                   </div>
-                </figure>
-                <section className="p-6">
-                  <h3 className="text-lg font-bold mb-3 text-foreground">{experience.title}</h3>
-                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">{experience.description}</p>
-                  <Link href={experience.url} className="text-primary font-semibold hover:underline inline-flex items-center text-sm">
-                    Learn more <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                </motion.figure>
+
+                {/* Text Column */}
+                <motion.section
+                  className={`space-y-4 ${
+                    isEven ? 'lg:order-1' : 'lg:order-2'
+                  }`}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={textVariants}
+                >
+                  <h3 className="text-2xl md:text-3xl font-bold text-white">
+                    {experience.title}
+                  </h3>
+                  <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                    {experience.description}
+                  </p>
+                  <Link
+                    href={experience.url}
+                    className="inline-flex items-center gap-2 text-white font-semibold hover:underline hover:gap-3 transition-all text-sm md:text-base group/link"
+                  >
+                    Learn more
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover/link:translate-x-1" aria-hidden="true" />
                   </Link>
-                </section>
-              </li>
+                </motion.section>
+              </article>
             )
           })}
-        </ul>
+        </div>
 
-        <footer className="flex justify-center mt-4">
+        {/* Footer CTA */}
+        <footer className="flex justify-center mt-12">
           <CustomButton
             variant="secondary"
             size="lg"

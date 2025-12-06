@@ -8,7 +8,7 @@ export function Affiliates() {
   ]
 
   return (
-      <section id="affiliates" className="py-12 md:py-16 bg-slate-50">
+      <section id="affiliates" className="py-8 md:py-12 bg-slate-50">
       <main className="container">
         <header className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-foreground">Affiliates</h2>
