@@ -5,6 +5,29 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { sendNewsletterEmail } from '@/lib/email';
 
+const quickLinks = [
+  { href: '/destinations', label: 'Destinations' },
+  { href: '/safaris', label: 'Safaris' },
+  { href: '/experiences', label: 'Experiences' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const destinationLinks = [
+  { href: '/destinations/rwanda', label: 'Rwanda' },
+  { href: '/destinations/uganda', label: 'Uganda' },
+  { href: '/destinations/volcanoes-national-park', label: 'Volcanoes National Park' },
+  { href: '/destinations/bwindi-impenetrable-forest', label: 'Bwindi Forest' },
+  { href: '/destinations/queen-elizabeth-national-park', label: 'Queen Elizabeth NP' },
+];
+
+const socials = [
+  { href: '#', label: 'Facebook', Icon: Facebook },
+  { href: '#', label: 'X (Twitter)', Icon: X },
+  { href: '#', label: 'Instagram', Icon: Instagram },
+  { href: '#', label: 'YouTube', Icon: Youtube },
+];
+
 export function Footer() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,221 +37,197 @@ export function Footer() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitMessage('');
-    
     try {
       await sendNewsletterEmail({ email });
-      setSubmitMessage('Successfully subscribed to our newsletter!');
+      setSubmitMessage('Successfully subscribed!');
       setEmail('');
     } catch (error) {
       console.error('Newsletter subscription error:', error);
-      setSubmitMessage('Failed to subscribe. Please check your configuration and try again.');
+      setSubmitMessage('Failed to subscribe. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  /* Shared link style via inline handlers for warm hover */
+  const footerLink =
+    'font-outfit text-sm leading-relaxed transition-colors duration-200 cursor-pointer';
+  const footerLinkColor = { color: 'rgba(245,240,232,0.45)' };
+
   return (
-    <footer className="py-12 border-t">
-      <main className="container">
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer
+      className="relative overflow-hidden bg-dj-dark grain-overlay"
+      style={{ background: '#0F0E0C' }}
+    >
+      {/* Gold top accent */}
+      <div
+        className="h-px w-full"
+        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(212,167,106,0.4) 50%, transparent 100%)' }}
+        aria-hidden="true"
+      />
+
+      <div className="container relative z-10 pt-14 pb-8">
+
+        {/* Main footer grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+
+          {/* Brand column */}
           <article>
-            <header className="flex items-center gap-2 mb-4">
+            <Link href="/" className="flex items-center gap-2.5 mb-5 group">
               <img
                 src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1"
-                alt="Logo"
-                className="h-8 w-8"
+                alt="Dawnlight Journeys logo"
+                className="h-9 w-9 rounded-full ring-1 transition-transform group-hover:scale-105"
+                style={{ ringColor: 'rgba(212,167,106,0.3)' } as React.CSSProperties}
               />
-              <span className="font-bold text-xl">Dawnlight Journeys</span>
-            </header>
-            <p className="text-muted-foreground mb-4">
-              Unforgettable Dawnlight Journeys in Rwanda and Uganda. Experience
-              the magic of Africa.
+              <span className="font-playfair font-bold text-base text-white">
+                Dawnlight Journeys
+              </span>
+            </Link>
+            <p className="font-outfit text-sm leading-[1.7] mb-6" style={{ color: 'rgba(245,240,232,0.42)' }}>
+              Unforgettable safari experiences in Rwanda and Uganda.
+              Where the wild heart of Africa awaits.
             </p>
-            <nav className="flex space-x-4">
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <X className="h-5 w-5" />
-                <span className="sr-only">X (Twitter)</span>
-              </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link
-                href="#"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Youtube className="h-5 w-5" />
-                <span className="sr-only">YouTube</span>
-              </Link>
+            <nav className="flex gap-3" aria-label="Social media">
+              {socials.map(({ href, label, Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
+                  style={{
+                    border: '1px solid rgba(212,167,106,0.2)',
+                    color: 'rgba(245,240,232,0.4)',
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = '#D4A76A';
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(212,167,106,0.2)';
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.4)';
+                  }}
+                  aria-label={label}
+                >
+                  <Icon className="h-3.5 w-3.5" />
+                </Link>
+              ))}
             </nav>
           </article>
 
-          <nav>
-            <h3 className="font-bold text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/destinations"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Destinations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/safaris"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Safaris
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/experiences"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Experiences
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
+          {/* Quick links */}
+          <nav aria-label="Quick links">
+            <h3 className="font-outfit font-semibold text-xs tracking-[0.14em] uppercase mb-5" style={{ color: '#D4A76A' }}>
+              Quick Links
+            </h3>
+            <ul className="space-y-3 list-none">
+              {quickLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={footerLink}
+                    style={footerLinkColor}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.45)'; }}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
-          <nav>
-            <h3 className="font-bold text-lg mb-4">Destinations</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/destinations/rwanda"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Rwanda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/destinations/uganda"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Uganda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/destinations/volcanoes-national-park"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Volcanoes National Park
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/destinations/bwindi-impenetrable-forest"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Bwindi Impenetrable Forest
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/destinations/queen-elizabeth-national-park"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Queen Elizabeth National Park
-                </Link>
-              </li>
+          {/* Destinations */}
+          <nav aria-label="Destinations">
+            <h3 className="font-outfit font-semibold text-xs tracking-[0.14em] uppercase mb-5" style={{ color: '#D4A76A' }}>
+              Destinations
+            </h3>
+            <ul className="space-y-3 list-none">
+              {destinationLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className={footerLink}
+                    style={footerLinkColor}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A'; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.45)'; }}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 
+          {/* Newsletter */}
           <section>
-            <h3 className="font-bold text-lg mb-4">Subscribe</h3>
-            <p className="text-muted-foreground mb-4">
-              Subscribe to our newsletter for travel tips and exclusive offers.
+            <h3 className="font-outfit font-semibold text-xs tracking-[0.14em] uppercase mb-5" style={{ color: '#D4A76A' }}>
+              Stay Updated
+            </h3>
+            <p className="font-outfit text-sm leading-relaxed mb-5" style={{ color: 'rgba(245,240,232,0.42)' }}>
+              Travel tips, safari insights, and exclusive offers — direct to your inbox.
             </p>
             {submitMessage && (
-              <div className={`mb-4 p-2 rounded-md text-xs ${
-                submitMessage.includes('successfully') || submitMessage.includes('Success')
-                  ? 'bg-green-100 text-green-800 border border-green-200'
-                  : 'bg-red-100 text-red-800 border border-red-200'
-              }`}>
+              <p className="font-outfit text-xs mb-3" style={{ color: submitMessage.includes('successfully') ? '#4ade80' : '#f87171' }}>
                 {submitMessage}
-              </div>
+              </p>
             )}
-            <form onSubmit={handleNewsletterSubmit} className="space-y-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                required
-                disabled={isSubmitting}
-              />
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <div style={{ borderBottom: '1.5px solid rgba(212,167,106,0.3)' }}>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="w-full bg-transparent py-2 font-outfit text-sm outline-none"
+                  style={{ color: 'rgba(245,240,232,0.85)' }}
+                  required
+                  disabled={isSubmitting}
+                  onFocus={(e) => { (e.currentTarget.parentElement as HTMLDivElement).style.borderBottomColor = '#D97B2B'; }}
+                  onBlur={(e) => { (e.currentTarget.parentElement as HTMLDivElement).style.borderBottomColor = 'rgba(212,167,106,0.3)'; }}
+                />
+              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="font-outfit text-xs font-semibold tracking-[0.1em] uppercase transition-colors duration-200 disabled:opacity-50"
+                style={{ color: '#D4A76A' }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#D97B2B'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#D4A76A'; }}
               >
-                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                {isSubmitting ? 'Subscribing...' : 'Subscribe →'}
               </button>
             </form>
           </section>
-        </section>
+        </div>
 
-        <footer className="border-t pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {new Date().getFullYear()} Dawnlight Journeys. All rights
-            reserved.
+        {/* Bottom bar */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8"
+          style={{ borderTop: '1px solid rgba(212,167,106,0.1)' }}
+        >
+          <p className="font-outfit text-xs" style={{ color: 'rgba(245,240,232,0.3)' }}>
+            © {new Date().getFullYear()} Dawnlight Journeys. All rights reserved.
           </p>
-          <nav className="flex space-x-6">
-            <a
-              href="/privacy-policy"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="/terms-of-service"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="/cookie-policy"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Cookie Policy
-            </a>
+          <nav className="flex gap-5" aria-label="Legal">
+            {[
+              { href: '/privacy-policy', label: 'Privacy Policy' },
+              { href: '/terms-of-service', label: 'Terms of Service' },
+              { href: '/cookie-policy', label: 'Cookie Policy' },
+            ].map(({ href, label }) => (
+              <a
+                key={href}
+                href={href}
+                className="font-outfit text-xs transition-colors duration-200"
+                style={{ color: 'rgba(245,240,232,0.3)' }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A'; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.3)'; }}
+              >
+                {label}
+              </a>
+            ))}
           </nav>
-        </footer>
-      </main>
+        </div>
+      </div>
     </footer>
   );
 }

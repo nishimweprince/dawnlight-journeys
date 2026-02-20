@@ -1,18 +1,33 @@
 'use client';
 
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { CustomButton } from './ui/custom-button';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useState } from 'react';
 import { sendContactEmail } from '@/lib/email';
 
+const contactItems = [
+  {
+    icon: MapPin,
+    label: 'Our Locations',
+    content: 'Kigali, Rwanda · Kampala, Uganda',
+    href: undefined,
+  },
+  {
+    icon: Mail,
+    label: 'Email Us',
+    content: 'info@dawnlightjourneysrwanda.com',
+    href: 'mailto:info@dawnlightjourneysrwanda.com',
+  },
+  {
+    icon: Phone,
+    label: 'Call Us',
+    content: '+250 785 917 385',
+    href: 'tel:+250785917385',
+  },
+];
+
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
 
@@ -20,10 +35,9 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitMessage('');
-    
     try {
       await sendContactEmail(formData);
-      setSubmitMessage('Message sent successfully! We\'ll get back to you soon.');
+      setSubmitMessage("Message sent successfully! We'll get back to you soon.");
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Contact form error:', error);
@@ -35,125 +49,159 @@ export function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  /* Shared label style */
+  const labelStyle = {
+    display: 'block',
+    fontFamily: 'var(--font-outfit, system-ui)',
+    fontSize: '0.7rem',
+    fontWeight: 600,
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase' as const,
+    color: 'rgba(44,36,32,0.55)',
+    marginBottom: '0.5rem',
+  };
+
   return (
-    <section id="contact" className="py-16 md:py-24 bg-background relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
+    <section
+      id="contact"
+      className="relative py-20 md:py-28 overflow-hidden"
+      style={{ background: '#1B3A2D' }}
+      aria-labelledby="contact-heading"
+    >
+      {/* Ambient glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 60% 50% at 15% 50%, rgba(212,167,106,0.06) 0%, transparent 70%)' }}
+        aria-hidden="true"
+      />
 
-      <main className="container relative z-10">
-        <header className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-foreground">
-            Get In Touch
-          </h2>
-          <hr className="w-24 h-1 bg-primary mx-auto border-0 mb-4" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to embark on your African adventure? We're here to help plan your perfect journey
-          </p>
-        </header>
-        <article className="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-          <section className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-primary/10">
-              <h3 className="text-2xl font-bold mb-6 text-foreground">Contact Information</h3>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                Our travel experts are ready to help you plan the perfect African safari experience.
-                Reach out to us through any of the channels below.
-              </p>
+      <div className="container relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
 
-              <nav className="space-y-6">
-                <article className="group hover:bg-primary/5 p-4 rounded-xl transition-colors">
-                  <div className="flex items-start gap-4">
-                    <figure className="bg-primary/10 group-hover:bg-primary group-hover:text-white text-primary rounded-full w-12 h-12 flex items-center justify-center shrink-0 transition-colors">
-                      <MapPin className="h-6 w-6" aria-hidden="true" />
-                    </figure>
-                    <section>
-                      <h4 className="font-bold text-lg mb-2 text-foreground">Our Locations</h4>
-                      <address className="not-italic text-muted-foreground space-y-1">
-                        <p>Kigali, Rwanda</p>
-                        <p>Kampala, Uganda</p>
-                      </address>
-                    </section>
-                  </div>
-                </article>
-
-                <article className="group hover:bg-primary/5 p-4 rounded-xl transition-colors">
-                  <div className="flex items-start gap-4">
-                    <figure className="bg-primary/10 group-hover:bg-primary group-hover:text-white text-primary rounded-full w-12 h-12 flex items-center justify-center shrink-0 transition-colors">
-                      <Mail className="h-6 w-6" aria-hidden="true" />
-                    </figure>
-                    <section>
-                      <h4 className="font-bold text-lg mb-2 text-foreground">Email Us</h4>
-                      <a
-                        href="mailto:info@dawnlightjourneysrwanda.com"
-                        className="text-primary hover:underline font-medium"
-                      >
-                        info@dawnlightjourneysrwanda.com
-                      </a>
-                    </section>
-                  </div>
-                </article>
-
-                <article className="group hover:bg-primary/5 p-4 rounded-xl transition-colors">
-                  <div className="flex items-start gap-4">
-                    <figure className="bg-primary/10 group-hover:bg-primary group-hover:text-white text-primary rounded-full w-12 h-12 flex items-center justify-center shrink-0 transition-colors">
-                      <Phone className="h-6 w-6" aria-hidden="true" />
-                    </figure>
-                    <section>
-                      <h4 className="font-bold text-lg mb-2 text-foreground">Call Us</h4>
-                      <a href="tel:+250785917385" className="text-muted-foreground hover:text-primary transition-colors font-medium">
-                        Rwanda: +250 785 917 385
-                      </a>
-                    </section>
-                  </div>
-                </article>
-              </nav>
-            </div>
-
-            <footer className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-2 border-green-200 shadow-md">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="bg-green-500 rounded-full p-3">
-                  <FaWhatsapp className="h-6 w-6 text-white" aria-hidden="true" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-foreground">Instant Support</h4>
-                  <p className="text-sm text-muted-foreground">Chat with us on WhatsApp</p>
-                </div>
-              </div>
-              <CustomButton
-                variant="primary"
-                size="lg"
-                href="https://wa.me/250785917385"
-                className="w-full bg-green-600 border-green-600 hover:bg-green-700"
+          {/* LEFT: Contact info */}
+          <section className="space-y-8">
+            <header>
+              <p className="section-label mb-4">Get In Touch</p>
+              <span style={{ display: 'block', width: '2.5rem', height: '2px', background: 'linear-gradient(90deg, #D4A76A, #D97B2B)', borderRadius: '9999px', marginBottom: '1.25rem' }} />
+              <h2
+                id="contact-heading"
+                className="font-playfair font-bold text-white leading-tight"
+                style={{ fontSize: 'clamp(1.85rem, 3.5vw, 2.75rem)' }}
               >
-                <FaWhatsapp className="h-5 w-5 mr-2" />
-                Start WhatsApp Chat
-              </CustomButton>
-            </footer>
+                Plan Your<br />
+                <span style={{ color: '#D4A76A' }}>Perfect Journey</span>
+              </h2>
+              <p className="mt-4 font-outfit text-sm leading-relaxed" style={{ color: 'rgba(245,240,232,0.6)' }}>
+                Our travel experts are ready to craft your bespoke African safari experience.
+                Reach out through any of the channels below — we respond within 24 hours.
+              </p>
+            </header>
+
+            {/* Contact items */}
+            <nav className="space-y-5" aria-label="Contact information">
+              {contactItems.map(({ icon: Icon, label, content, href }) => (
+                <div key={label} className="flex items-start gap-4">
+                  <div
+                    className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{
+                      background: 'rgba(212,167,106,0.12)',
+                      border: '1px solid rgba(212,167,106,0.25)',
+                    }}
+                  >
+                    <Icon className="w-4 h-4" strokeWidth={1.5} style={{ color: '#D4A76A' }} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="font-outfit text-xs tracking-[0.1em] uppercase font-semibold mb-1" style={{ color: 'rgba(245,240,232,0.45)' }}>
+                      {label}
+                    </p>
+                    {href ? (
+                      <a
+                        href={href}
+                        className="font-outfit text-sm font-medium transition-colors duration-200"
+                        style={{ color: 'rgba(245,240,232,0.85)' }}
+                        onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A'; }}
+                        onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.85)'; }}
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <address className="not-italic font-outfit text-sm font-medium" style={{ color: 'rgba(245,240,232,0.85)' }}>
+                        {content}
+                      </address>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </nav>
+
+            {/* WhatsApp CTA with pulse */}
+            <a
+              href="https://wa.me/250785917385"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-2xl p-5 transition-all duration-200 hover:scale-[1.02] animate-pulse-ring"
+              style={{
+                background: 'rgba(34,197,94,0.12)',
+                border: '1px solid rgba(34,197,94,0.3)',
+              }}
+            >
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                style={{ background: '#22c55e' }}
+              >
+                <FaWhatsapp className="w-5 h-5 text-white" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="font-outfit font-semibold text-sm" style={{ color: 'rgba(245,240,232,0.9)' }}>
+                  Chat on WhatsApp
+                </p>
+                <p className="font-outfit text-xs" style={{ color: 'rgba(245,240,232,0.5)' }}>
+                  Instant response · +250 785 917 385
+                </p>
+              </div>
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 ml-auto" style={{ color: '#22c55e' }} aria-hidden="true">
+                <path d="M4 10h12M11 5l5 5-5 5" />
+              </svg>
+            </a>
           </section>
 
-          <aside className="bg-white rounded-2xl p-8 shadow-lg border border-primary/10">
+          {/* RIGHT: Form */}
+          <aside
+            className="rounded-2xl p-8 md:p-10"
+            style={{
+              background: '#F5F0E8',
+            }}
+          >
             <div className="mb-8">
-              <h3 className="text-2xl font-bold mb-2 text-foreground">Send Us a Message</h3>
-              <p className="text-muted-foreground">Fill out the form below and we'll get back to you within 24 hours</p>
+              <h3 className="font-playfair font-bold text-xl mb-1" style={{ color: '#2C2420' }}>
+                Send Us a Message
+              </h3>
+              <p className="font-outfit text-sm" style={{ color: 'rgba(44,36,32,0.55)' }}>
+                We'll get back to you within 24 hours.
+              </p>
             </div>
 
             {submitMessage && (
-              <div className={`mb-6 p-4 rounded-xl text-sm font-medium ${
-                submitMessage.includes('successfully') || submitMessage.includes('Success')
-                  ? 'bg-green-50 text-green-800 border-2 border-green-200'
-                  : 'bg-red-50 text-red-800 border-2 border-red-200'
-              }`}>
+              <div
+                className="mb-6 p-4 rounded-xl text-sm font-medium font-outfit"
+                style={{
+                  background: submitMessage.includes('successfully') ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)',
+                  border: `1px solid ${submitMessage.includes('successfully') ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`,
+                  color: submitMessage.includes('successfully') ? '#15803d' : '#b91c1c',
+                }}
+              >
                 {submitMessage}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <fieldset className="grid sm:grid-cols-2 gap-4">
-                <section className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-semibold text-foreground flex items-center gap-2">
-                    Full Name <span className="text-red-500">*</span>
+            <form onSubmit={handleSubmit} className="space-y-7">
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="name" style={labelStyle}>
+                    Full Name <span style={{ color: '#D97B2B' }}>*</span>
                   </label>
                   <input
                     id="name"
@@ -161,15 +209,16 @@ export function Contact() {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all bg-gray-50 hover:bg-white"
-                    placeholder="John Doe"
+                    className="input-safari"
+                    style={{ color: '#2C2420' }}
+                    placeholder="Your full name"
                     required
                     disabled={isSubmitting}
                   />
-                </section>
-                <section className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-semibold text-foreground flex items-center gap-2">
-                    Email Address <span className="text-red-500">*</span>
+                </div>
+                <div>
+                  <label htmlFor="email" style={labelStyle}>
+                    Email Address <span style={{ color: '#D97B2B' }}>*</span>
                   </label>
                   <input
                     id="email"
@@ -177,17 +226,18 @@ export function Contact() {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all bg-gray-50 hover:bg-white"
-                    placeholder="john@example.com"
+                    className="input-safari"
+                    style={{ color: '#2C2420' }}
+                    placeholder="you@example.com"
                     required
                     disabled={isSubmitting}
                   />
-                </section>
-              </fieldset>
+                </div>
+              </div>
 
-              <section className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-semibold text-foreground flex items-center gap-2">
-                  Subject <span className="text-red-500">*</span>
+              <div>
+                <label htmlFor="subject" style={labelStyle}>
+                  Subject <span style={{ color: '#D97B2B' }}>*</span>
                 </label>
                 <input
                   id="subject"
@@ -195,16 +245,17 @@ export function Contact() {
                   type="text"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all bg-gray-50 hover:bg-white"
-                  placeholder="Safari Booking Inquiry"
+                  className="input-safari"
+                  style={{ color: '#2C2420' }}
+                  placeholder="Safari booking inquiry"
                   required
                   disabled={isSubmitting}
                 />
-              </section>
+              </div>
 
-              <section className="space-y-2">
-                <label htmlFor="message" className="text-sm font-semibold text-foreground flex items-center gap-2">
-                  Message <span className="text-red-500">*</span>
+              <div>
+                <label htmlFor="message" style={labelStyle}>
+                  Message <span style={{ color: '#D97B2B' }}>*</span>
                 </label>
                 <textarea
                   id="message"
@@ -212,34 +263,40 @@ export function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all resize-none bg-gray-50 hover:bg-white"
+                  className="input-safari resize-none"
+                  style={{ color: '#2C2420' }}
                   placeholder="Tell us about your dream safari experience..."
                   required
                   disabled={isSubmitting}
                 />
-              </section>
+              </div>
 
-              <CustomButton
-                variant="primary"
-                size="lg"
-                className="w-full shadow-lg hover:shadow-xl transition-shadow"
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn-ember w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
-                    Sending Message...
+                    <span
+                      className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin"
+                      aria-hidden="true"
+                    />
+                    Sending...
                   </>
                 ) : (
                   <>
-                    <Send className="h-5 w-5 mr-2" />
                     Send Message
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+                      <path d="M4 10h12M11 5l5 5-5 5" />
+                    </svg>
                   </>
                 )}
-              </CustomButton>
+              </button>
             </form>
           </aside>
-        </article>
-      </main>
+        </div>
+      </div>
     </section>
   );
 }

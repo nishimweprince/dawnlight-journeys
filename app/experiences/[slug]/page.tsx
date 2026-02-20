@@ -1,58 +1,29 @@
 import React from 'react';
-import { Star, MapPin, Clock, Calendar, Send } from 'lucide-react';
-import { CustomButton } from '../../../src/components/ui/custom-button';
+import { MapPin, Clock, Calendar, Star } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { experiences } from '../../../src/constants/experiences';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const experience = experiences?.find(
     (exp) => exp?.slug === slug || exp?.url?.split('/')?.pop() === slug
   );
   if (!experience) {
-    return {
-      title: 'Experience Not Found | Dawnlight Journeys',
-      description: 'Experience not found.',
-      keywords: ['experience', 'uganda', 'rwanda', 'africa', 'adventure'].join(
-        ', '
-      ),
-      openGraph: {
-        title: 'Experience Not Found | Dawnlight Journeys',
-        description: 'Experience not found.',
-        images: ['/assets/common/placeholder.svg'],
-        type: 'article',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: 'Experience Not Found | Dawnlight Journeys',
-        description: 'Experience not found.',
-        images: ['/assets/common/placeholder.svg'],
-      },
-    };
+    return { title: 'Experience Not Found | Dawnlight Journeys' };
   }
   return {
     title: `${experience.title} | Dawnlight Journeys`,
     description: experience.description,
-    keywords: [
-      experience.title?.toLowerCase(),
-      'experience',
-      'uganda',
-      'rwanda',
-      'africa',
-      'adventure',
-    ].join(', '),
     openGraph: {
       title: `${experience.title} | Dawnlight Journeys`,
       description: experience.description,
       images: [experience.image || '/assets/common/placeholder.svg'],
       type: 'article',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${experience.title} | Dawnlight Journeys`,
-      description: experience.description,
-      images: [experience.image || '/assets/common/placeholder.svg'],
     },
   };
 }
@@ -60,339 +31,472 @@ async function generateMetadata({ params }: { params: { slug: string } }) {
 export default async function ExperiencePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const experience = experiences?.find(
     (exp) => exp?.slug === slug || exp?.url?.split('/')?.pop() === slug
   );
   if (!experience) return notFound();
-  const Icon = experience?.icon;
-  const images =
-    experience?.images || (experience?.image ? [experience.image] : []);
+
+  const Icon = experience.icon;
+  const images = experience.images || (experience.image ? [experience.image] : []);
 
   return (
-    <>
-      <main className="bg-background min-h-screen">
-        {/* Hero Section with Booking Card */}
-        <section className="relative">
-          <figure className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-            <img
-              src={experience?.image}
-              alt={experience?.title}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-            <figcaption className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-            {/* Booking Card floating on hero (desktop) */}
-            <aside className="hidden md:block absolute top-8 right-8 z-20 w-80">
-              <section className="bg-white rounded-2xl shadow-lg p-6">
-                <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-                <dl className="space-y-4 mb-6">
-                  {experience?.duration && (
-                    <div className="flex justify-between">
-                      <dt className="text-muted-foreground">Duration:</dt>
-                      <dd className="font-semibold">{experience?.duration}</dd>
-                    </div>
-                  )}
-                  {experience?.difficulty && (
-                    <div className="flex justify-between">
-                      <dt className="text-muted-foreground">Difficulty:</dt>
-                      <dd className="font-semibold">
-                        {experience?.difficulty}
-                      </dd>
-                    </div>
-                  )}
-                  {experience?.bestTime && (
-                    <div className="flex justify-between">
-                      <dt className="text-muted-foreground">Best Time:</dt>
-                      <dd className="font-semibold">{experience?.bestTime}</dd>
-                    </div>
-                  )}
-                </dl>
-                <CustomButton
-                  variant="primary"
-                  size="lg"
-                  href="https://wa.me/250785917385"
-                  className="w-full"
-                >
-                  <Send className="h-4 w-4 mr-2" />
-                  Contact Us Now
-                </CustomButton>
-              </section>
-            </aside>
-          </figure>
-          {/* Hero Content */}
-          <header className="container mx-auto px-4 py-8 md:py-12 relative z-10">
-            <article className="text-center max-w-4xl mx-auto">
-              <header className="flex items-center justify-center mb-4">
-                <Icon className="h-12 w-12 mr-4" />
-                <h1 className="text-4xl md:text-6xl font-bold drop-shadow-lg">
-                  {experience?.title}
-                </h1>
-              </header>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto drop-shadow mb-8">
-                {experience?.description}
-              </p>
-              <nav
-                className="flex flex-wrap justify-center gap-4 text-sm mb-8"
-                aria-label="Experience quick info"
-              >
-                {experience?.duration && (
-                  <span className="flex items-center bg-white/20 rounded-full px-4 py-2">
-                    <Clock className="h-4 w-4 mr-2" />
-                    {experience?.duration}
-                  </span>
-                )}
-                {experience?.difficulty && (
-                  <span className="flex items-center bg-white/20 rounded-full px-4 py-2">
-                    <Star className="h-4 w-4 mr-2" />
-                    {experience?.difficulty}
-                  </span>
-                )}
-                {experience?.bestTime && (
-                  <span className="flex items-center bg-white/20 rounded-full px-4 py-2">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    {experience?.bestTime}
-                  </span>
-                )}
-              </nav>
-              {/* Booking Card for mobile */}
-              <aside className="block md:hidden mx-auto max-w-xs mb-8">
-                <section className="bg-white rounded-2xl shadow-lg p-6">
-                  <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-                  <dl className="space-y-4 mb-6">
-                    {experience?.duration && (
-                      <div className="flex justify-between">
-                        <dt className="text-muted-foreground">Duration:</dt>
-                        <dd className="font-semibold">
-                          {experience?.duration}
-                        </dd>
-                      </div>
-                    )}
-                    {experience?.difficulty && (
-                      <div className="flex justify-between">
-                        <dt className="text-muted-foreground">Difficulty:</dt>
-                        <dd className="font-semibold">
-                          {experience?.difficulty}
-                        </dd>
-                      </div>
-                    )}
-                    {experience?.bestTime && (
-                      <div className="flex justify-between">
-                        <dt className="text-muted-foreground">Best Time:</dt>
-                        <dd className="font-semibold">
-                          {experience?.bestTime}
-                        </dd>
-                      </div>
-                    )}
-                  </dl>
-                  <CustomButton
-                    variant="primary"
-                    size="lg"
-                    href="https://wa.me/250785917385"
-                    className="w-full"
-                  >
-                    <Send className="h-4 w-4 mr-2" />
-                    Contact Us Now
-                  </CustomButton>
-                </section>
-              </aside>
-            </article>
-          </header>
-        </section>
+    <main className="min-h-screen" style={{ background: '#F5F0E8' }}>
 
-        {/* Gallery Section (if multiple images) */}
-        {images.length > 1 && (
-          <section className="container mx-auto px-4 py-8">
-            <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-            <figure className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`${experience.title} image ${idx + 1}`}
-                  className="rounded-lg object-cover w-full h-48"
-                />
-              ))}
-            </figure>
-          </section>
-        )}
+      {/* ── Hero ── */}
+      <header className="relative overflow-hidden" style={{ minHeight: '60vh' }}>
+        <img
+          src={experience.image}
+          alt={experience.title}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(26,23,20,0.92) 0%, rgba(26,23,20,0.5) 55%, rgba(26,23,20,0.2) 100%)',
+          }}
+          aria-hidden="true"
+        />
+        {/* Grain */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
+          }}
+          aria-hidden="true"
+        />
 
-        {/* Main Content: Overview, Itinerary, FAQ, Inclusions/Exclusions/Packing */}
-        <section className="container mx-auto px-4 py-16 space-y-16">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Left: Overview, Itinerary, FAQ, Accordions */}
-            <main className="lg:col-span-2 space-y-12">
-              {/* Overview */}
-              <article>
-                <h2 className="text-3xl font-bold mb-6">Experience Overview</h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  {experience?.description}
-                </p>
-                {experience?.locations && experience?.locations?.length > 0 && (
-                  <section className="flex items-start gap-3 mb-6">
-                    <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold mb-1">Locations</h4>
-                      <p className="text-muted-foreground">
-                        {experience.locations.join(', ')}
-                      </p>
-                    </div>
-                  </section>
-                )}
-              </article>
-              {/* Itinerary */}
-              <section
-                className="space-y-6"
-              >
-                <h2 className="text-2xl md:text-3xl font-bold text-center">
-                  Itinerary
-                </h2>
-                <article className="bg-white rounded-xl shadow-lg p-4 md:p-8">
-                  {experience?.itinerary && experience.itinerary.length > 0 ? (
-                    <ol className="relative border-l-2 border-primary-200 ml-2 md:ml-6">
-                      {experience.itinerary.map((day, idx) => (
-                        <li
-                          key={idx}
-                          className="mb-8 last:mb-0 ml-2 md:ml-4 relative flex flex-col sm:flex-row gap-4 md:gap-6"
-                        >
-                          {/* Timeline marker */}
-                          <figure className="flex flex-row sm:flex-col items-center sm:items-center mb-2 sm:mb-0">
-                            {experience?.itinerary &&
-                              idx !== experience.itinerary.length - 1 && (
-                                <hr className="h-8 w-1 sm:w-1 sm:h-full bg-primary-200 mt-1 mb-1 sm:mt-1 sm:mb-1" />
-                              )}
-                          </figure>
-                          {/* Day content */}
-                          <section className="flex-1 bg-primary-50 rounded-lg shadow p-4 md:p-6 transition hover:shadow-xl">
-                            <header className="mb-2 md:mb-3">
-                              <h3 className="text-lg md:text-xl font-bold text-primary-800">
-                                {day.title}
-                              </h3>
-                            </header>
-                            <p className="text-primary-700 text-sm md:text-base leading-relaxed whitespace-pre-line">
-                              {day.details}
-                            </p>
-                          </section>
-                        </li>
-                      ))}
-                    </ol>
-                  ) : (
-                    <p className="text-primary-700">No itinerary available.</p>
-                  )}
-                </article>
-              </section>
-              {/* FAQ */}
-              {experience.faqs && experience.faqs.length > 0 && (
-                <section>
-                  <h2 className="text-3xl font-bold mb-8 text-center">
-                    Frequently Asked Questions
-                  </h2>
-                  <section className="space-y-4">
-                    {experience.faqs.map((faq, index) => (
-                      <article
-                        key={index}
-                        className="bg-white rounded-2xl shadow-lg p-6"
-                      >
-                        <h3 className="text-lg font-bold mb-3 text-primary">
-                          {faq.question}
-                        </h3>
-                        <p className="text-muted-foreground">{faq.answer}</p>
-                      </article>
-                    ))}
-                  </section>
-                </section>
-              )}
-              {/* Inclusions/Exclusions/Packing List Accordions */}
-              {(experience.inclusions || experience.exclusions) && (
-                <section>
-                  <h2 className="text-3xl font-bold mb-8 text-center">
-                    Good to Know
-                  </h2>
-                  <section className="space-y-4">
-                    {experience.inclusions &&
-                      experience.inclusions.length > 0 && (
-                        <details className="bg-green-50 rounded-2xl p-6">
-                          <summary className="text-xl font-bold mb-4 text-green-800 cursor-pointer">
-                            What's Included
-                          </summary>
-                          <ul className="space-y-2 mt-4">
-                            {experience.inclusions.map((item, index) => (
-                              <li
-                                key={index}
-                                className="flex items-start gap-3"
-                              >
-                                <div className="w-2 h-2 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="text-green-700">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </details>
-                      )}
-                    {experience.exclusions &&
-                      experience.exclusions.length > 0 && (
-                        <details className="bg-red-50 rounded-2xl p-6">
-                          <summary className="text-xl font-bold mb-4 text-red-800 cursor-pointer">
-                            What's Not Included
-                          </summary>
-                          <ul className="space-y-2 mt-4">
-                            {experience.exclusions.map((item, index) => (
-                              <li
-                                key={index}
-                                className="flex items-start gap-3"
-                              >
-                                <div className="w-2 h-2 bg-red-600 rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="text-red-700">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </details>
-                      )}
-                  </section>
-                </section>
-              )}
-              {/* Back Button */}
-              <nav className="mt-8" aria-label="Back to experiences">
-                <CustomButton href="/experiences">
-                  Back to Experiences
-                </CustomButton>
-              </nav>
-            </main>
-            {/* Right: Highlights Sidebar */}
-            <aside className="lg:col-span-1">
-              {experience.highlights && experience.highlights.length > 0 && (
-                <section className="rounded-2xl p-8 mb-8">
-                  <h3 className="text-xl font-bold mb-4">
-                    Experience Highlights
-                  </h3>
-                  <ul className="space-y-3">
-                    {experience.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
-            </aside>
-          </div>
-        </section>
-        {/* Persistent Contact Us button for mobile */}
-        <aside className="fixed bottom-4 left-0 right-0 z-50 flex justify-center md:hidden pointer-events-none">
-          <nav className="pointer-events-auto" aria-label="Contact Us">
-            <CustomButton
-              variant="primary"
-              size="lg"
-              href="https://wa.me/250785917385"
-              className="shadow-lg"
+        {/* Hero content */}
+        <div className="container relative z-10 flex flex-col justify-end h-full pb-14 pt-36">
+          {/* Back link */}
+          <Link
+            href="/experiences"
+            className="inline-flex items-center gap-2 mb-8 font-outfit text-xs tracking-[0.12em] uppercase transition-colors duration-200 w-fit text-[rgba(245,240,232,0.45)] hover:text-[#D4A76A]"
+          >
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5" aria-hidden="true">
+              <path d="M16 10H4M9 5l-5 5 5 5" />
+            </svg>
+            All Experiences
+          </Link>
+
+          {/* Icon + title */}
+          <div className="flex items-center gap-4 mb-4">
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center shrink-0"
+              style={{
+                background: 'rgba(212,167,106,0.18)',
+                border: '1px solid rgba(212,167,106,0.4)',
+                backdropFilter: 'blur(8px)',
+              }}
             >
-              <Send className="h-4 w-4 mr-2" />
-              Contact Us
-            </CustomButton>
-          </nav>
-        </aside>
-      </main>
-    </>
+              <Icon className="w-5 h-5" style={{ color: '#D4A76A' }} aria-hidden="true" />
+            </div>
+            <span
+              className="font-outfit text-xs tracking-[0.18em] uppercase font-semibold"
+              style={{ color: '#D4A76A' }}
+            >
+              Experience
+            </span>
+          </div>
+
+          <h1
+            className="font-playfair font-bold text-white leading-tight mb-5"
+            style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)' }}
+          >
+            {experience.title}
+          </h1>
+
+          {/* Quick facts */}
+          <div className="flex flex-wrap gap-3">
+            {experience.duration && (
+              <span
+                className="inline-flex items-center gap-2 font-outfit text-xs px-3.5 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(245,240,232,0.1)',
+                  border: '1px solid rgba(245,240,232,0.15)',
+                  color: 'rgba(245,240,232,0.75)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <Clock className="w-3 h-3" aria-hidden="true" />
+                {experience.duration}
+              </span>
+            )}
+            {experience.difficulty && (
+              <span
+                className="inline-flex items-center gap-2 font-outfit text-xs px-3.5 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(245,240,232,0.1)',
+                  border: '1px solid rgba(245,240,232,0.15)',
+                  color: 'rgba(245,240,232,0.75)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <Star className="w-3 h-3" aria-hidden="true" />
+                {experience.difficulty}
+              </span>
+            )}
+            {experience.bestTime && (
+              <span
+                className="inline-flex items-center gap-2 font-outfit text-xs px-3.5 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(245,240,232,0.1)',
+                  border: '1px solid rgba(245,240,232,0.15)',
+                  color: 'rgba(245,240,232,0.75)',
+                  backdropFilter: 'blur(8px)',
+                }}
+              >
+                <Calendar className="w-3 h-3" aria-hidden="true" />
+                {experience.bestTime}
+              </span>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* ── Main Content ── */}
+      <div className="container py-14 md:py-20">
+        <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
+
+          {/* ── Left column ── */}
+          <div className="lg:col-span-2 space-y-14">
+
+            {/* Overview */}
+            <section>
+              <SectionHeading>Experience Overview</SectionHeading>
+              <p className="font-outfit text-base leading-relaxed mb-6" style={{ color: 'rgba(44,36,32,0.72)' }}>
+                {experience.description}
+              </p>
+              {experience.locations && experience.locations.length > 0 && (
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0" style={{ color: '#D4A76A' }} aria-hidden="true" />
+                  <div>
+                    <p className="font-outfit text-xs tracking-[0.1em] uppercase font-semibold mb-1" style={{ color: 'rgba(44,36,32,0.45)' }}>
+                      Locations
+                    </p>
+                    <p className="font-outfit text-sm" style={{ color: 'rgba(44,36,32,0.72)' }}>
+                      {experience.locations.join(' · ')}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Gallery */}
+            {images.length > 1 && (
+              <section>
+                <SectionHeading>Gallery</SectionHeading>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {images.map((img: string, idx: number) => (
+                    <figure
+                      key={idx}
+                      className="rounded-xl overflow-hidden"
+                      style={{ aspectRatio: '4/3' }}
+                    >
+                      <img
+                        src={img}
+                        alt={`${experience.title} — photo ${idx + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Itinerary */}
+            {experience.itinerary && experience.itinerary.length > 0 && (
+              <section>
+                <SectionHeading>Itinerary</SectionHeading>
+                <ol className="space-y-4">
+                  {experience.itinerary.map((day: { title: string; details: string }, idx: number) => (
+                    <li key={idx} className="relative flex gap-5">
+                      {/* Timeline line */}
+                      <div className="flex flex-col items-center">
+                        <div
+                          className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-outfit text-xs font-bold"
+                          style={{
+                            background: 'rgba(212,167,106,0.15)',
+                            border: '1.5px solid rgba(212,167,106,0.4)',
+                            color: '#D4A76A',
+                          }}
+                        >
+                          {idx + 1}
+                        </div>
+                        {idx < (experience.itinerary?.length ?? 0) - 1 && (
+                          <div
+                            className="flex-1 w-px mt-2"
+                            style={{ background: 'rgba(212,167,106,0.2)' }}
+                          />
+                        )}
+                      </div>
+                      {/* Content */}
+                      <div
+                        className="flex-1 rounded-xl p-5 mb-4"
+                        style={{
+                          background: 'white',
+                          border: '1px solid rgba(212,167,106,0.12)',
+                          boxShadow: '0 2px 12px rgba(44,36,32,0.06)',
+                        }}
+                      >
+                        <h3
+                          className="font-playfair font-bold mb-2"
+                          style={{ color: '#2C2420', fontSize: '1.05rem' }}
+                        >
+                          {day.title}
+                        </h3>
+                        <p
+                          className="font-outfit text-sm leading-relaxed whitespace-pre-line"
+                          style={{ color: 'rgba(44,36,32,0.68)' }}
+                        >
+                          {day.details}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
+            {/* FAQ */}
+            {experience.faqs && experience.faqs.length > 0 && (
+              <section>
+                <SectionHeading>Frequently Asked Questions</SectionHeading>
+                <div className="space-y-4">
+                  {experience.faqs.map((faq: { question: string; answer: string }, idx: number) => (
+                    <details
+                      key={idx}
+                      className="rounded-xl overflow-hidden group"
+                      style={{
+                        background: 'white',
+                        border: '1px solid rgba(212,167,106,0.15)',
+                      }}
+                    >
+                      <summary
+                        className="font-playfair font-bold text-base px-6 py-4 cursor-pointer list-none flex items-center justify-between"
+                        style={{ color: '#2C2420' }}
+                      >
+                        {faq.question}
+                        <svg
+                          viewBox="0 0 20 20"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          className="w-4 h-4 shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180"
+                          style={{ color: '#D4A76A' }}
+                          aria-hidden="true"
+                        >
+                          <path d="M5 8l5 5 5-5" />
+                        </svg>
+                      </summary>
+                      <div
+                        className="px-6 pb-5"
+                        style={{ borderTop: '1px solid rgba(212,167,106,0.1)' }}
+                      >
+                        <p
+                          className="font-outfit text-sm leading-relaxed pt-4"
+                          style={{ color: 'rgba(44,36,32,0.68)' }}
+                        >
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Inclusions / Exclusions */}
+            {(experience.inclusions || experience.exclusions) && (
+              <section>
+                <SectionHeading>Good to Know</SectionHeading>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  {experience.inclusions && experience.inclusions.length > 0 && (
+                    <div
+                      className="rounded-xl p-6"
+                      style={{
+                        background: 'rgba(27,58,45,0.05)',
+                        border: '1px solid rgba(27,58,45,0.18)',
+                      }}
+                    >
+                      <h4
+                        className="font-outfit font-semibold text-xs tracking-[0.14em] uppercase mb-4"
+                        style={{ color: '#1B3A2D' }}
+                      >
+                        What's Included
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {experience.inclusions.map((item: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3 font-outfit text-sm" style={{ color: 'rgba(44,36,32,0.72)' }}>
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#1B3A2D' }} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {experience.exclusions && experience.exclusions.length > 0 && (
+                    <div
+                      className="rounded-xl p-6"
+                      style={{
+                        background: 'rgba(239,68,68,0.04)',
+                        border: '1px solid rgba(239,68,68,0.18)',
+                      }}
+                    >
+                      <h4
+                        className="font-outfit font-semibold text-xs tracking-[0.14em] uppercase mb-4"
+                        style={{ color: '#b91c1c' }}
+                      >
+                        Not Included
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {experience.exclusions.map((item: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3 font-outfit text-sm" style={{ color: 'rgba(44,36,32,0.72)' }}>
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#ef4444' }} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+          </div>
+
+          {/* ── Right sidebar ── */}
+          <aside className="lg:col-span-1 space-y-6">
+
+            {/* Booking card */}
+            <div
+              className="rounded-2xl p-7 sticky top-24"
+              style={{
+                background: '#1B3A2D',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+              }}
+            >
+              <p
+                className="font-outfit text-xs tracking-[0.18em] uppercase mb-5"
+                style={{ color: '#D4A76A' }}
+              >
+                Book This Experience
+              </p>
+
+              {/* Details */}
+              <dl className="space-y-3 mb-6">
+                {experience.duration && (
+                  <div className="flex items-center justify-between">
+                    <dt className="font-outfit text-xs" style={{ color: 'rgba(245,240,232,0.45)' }}>Duration</dt>
+                    <dd className="font-outfit text-sm font-semibold" style={{ color: 'rgba(245,240,232,0.85)' }}>{experience.duration}</dd>
+                  </div>
+                )}
+                {experience.difficulty && (
+                  <div className="flex items-center justify-between">
+                    <dt className="font-outfit text-xs" style={{ color: 'rgba(245,240,232,0.45)' }}>Difficulty</dt>
+                    <dd className="font-outfit text-sm font-semibold" style={{ color: 'rgba(245,240,232,0.85)' }}>{experience.difficulty}</dd>
+                  </div>
+                )}
+                {experience.bestTime && (
+                  <div className="flex items-center justify-between">
+                    <dt className="font-outfit text-xs" style={{ color: 'rgba(245,240,232,0.45)' }}>Best Time</dt>
+                    <dd className="font-outfit text-sm font-semibold" style={{ color: 'rgba(245,240,232,0.85)' }}>{experience.bestTime}</dd>
+                  </div>
+                )}
+              </dl>
+
+              <div
+                className="mb-5"
+                style={{ borderTop: '1px solid rgba(212,167,106,0.15)' }}
+              />
+
+              <a
+                href="https://wa.me/250785917385"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ember w-full justify-center"
+              >
+                Book via WhatsApp
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" />
+                </svg>
+              </a>
+
+              <Link
+                href="/contact"
+                className="mt-3 w-full flex items-center justify-center font-outfit text-xs font-semibold tracking-[0.1em] uppercase py-3 rounded-full transition-all duration-200 border border-[rgba(245,240,232,0.12)] text-[rgba(245,240,232,0.55)] hover:border-[rgba(212,167,106,0.4)] hover:text-[#D4A76A]"
+              >
+                Send an Enquiry
+              </Link>
+            </div>
+
+            {/* Highlights */}
+            {experience.highlights && experience.highlights.length > 0 && (
+              <div
+                className="rounded-2xl p-7"
+                style={{
+                  background: 'white',
+                  border: '1px solid rgba(212,167,106,0.15)',
+                  boxShadow: '0 2px 16px rgba(44,36,32,0.07)',
+                }}
+              >
+                <p
+                  className="font-outfit text-xs tracking-[0.14em] uppercase font-semibold mb-5"
+                  style={{ color: '#D4A76A' }}
+                >
+                  Highlights
+                </p>
+                <ul className="space-y-3">
+                  {experience.highlights.map((highlight: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3 font-outfit text-sm" style={{ color: 'rgba(44,36,32,0.72)' }}>
+                      <span
+                        className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        style={{ background: '#D4A76A' }}
+                      />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </aside>
+        </div>
+      </div>
+
+      {/* ── Mobile sticky CTA ── */}
+      <div className="fixed bottom-5 left-0 right-0 z-50 flex justify-center pointer-events-none md:hidden">
+        <a
+          href="https://wa.me/250785917385"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ember pointer-events-auto shadow-xl"
+        >
+          Book via WhatsApp
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" />
+          </svg>
+        </a>
+      </div>
+    </main>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-6">
+      <h2
+        className="font-playfair font-bold"
+        style={{ fontSize: 'clamp(1.3rem, 2.5vw, 1.75rem)', color: '#2C2420' }}
+      >
+        {children}
+      </h2>
+      <div
+        className="mt-2 h-px"
+        style={{ background: 'linear-gradient(90deg, #D4A76A, rgba(212,167,106,0))', width: '3rem' }}
+      />
+    </div>
   );
 }

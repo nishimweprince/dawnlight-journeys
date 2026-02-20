@@ -1,12 +1,27 @@
+import { Playfair_Display, Outfit } from 'next/font/google';
 import { Navbar } from '../src/components/navbar';
-import { FaWhatsapp } from 'react-icons/fa';
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Footer } from '@/src/components/footer';
-import Link from 'next/link';
 import { safariPackages } from '../src/constants/safaris';
 import { experiences } from '../src/constants/experiences';
 import { FloatingContact } from '@/src/components/floating-contact';
+
+/* ── Google Fonts via next/font (zero layout shift, self-hosted) ── */
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
 
 // Select 3 unique random safari images for SEO
 const shuffledSafaris = safariPackages.sort(() => 0.5 - Math.random());
@@ -173,7 +188,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#4A6741',
+  themeColor: '#1B3A2D',
 };
 
 export default function RootLayout({
@@ -182,7 +197,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
       <link
         rel="icon"
         href="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1"

@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, HelpCircle, Mail, Phone, Search, X } from 'lucide-react';
-import { CustomButton } from '../../src/components/ui/custom-button';
-import type { Metadata } from 'next';
+import { ChevronDown, Mail, Search, X } from 'lucide-react';
+import Link from 'next/link';
 
 const faqs = [
   {
@@ -92,7 +91,16 @@ const faqs = [
   },
 ];
 
-const categories = ['All', 'Planning', 'Visa & Travel', 'Activities', 'Health & Safety', 'Wildlife', 'Accommodation', 'Pricing'];
+const categories = [
+  'All',
+  'Planning',
+  'Visa & Travel',
+  'Activities',
+  'Health & Safety',
+  'Wildlife',
+  'Accommodation',
+  'Pricing',
+];
 
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -103,14 +111,14 @@ export default function FAQPage() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const clearSearch = () => {
-    setSearchQuery('');
-  };
+  const clearSearch = () => setSearchQuery('');
 
-  // Filter by category first, then by search query
   const filteredFaqs = faqs
-    .filter(faq => selectedCategory === 'All' || faq.category === selectedCategory)
-    .filter(faq => {
+    .filter(
+      (faq) =>
+        selectedCategory === 'All' || faq.category === selectedCategory
+    )
+    .filter((faq) => {
       if (!searchQuery.trim()) return true;
       const query = searchQuery.toLowerCase();
       return (
@@ -120,216 +128,344 @@ export default function FAQPage() {
     });
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary to-primary/90 text-white py-16 md:py-24">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6">
-              <HelpCircle className="w-10 h-10" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Frequently Asked Questions
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Find answers to common questions about traveling to Rwanda and Uganda with Dawnlight Journeys
-            </p>
+    <div className="min-h-screen" style={{ background: '#F5F0E8' }}>
 
-            {/* Search Box */}
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Search FAQs by question or answer..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-12 py-4 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 shadow-lg"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={clearSearch}
-                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
-                    aria-label="Clear search"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                )}
-              </div>
-              {searchQuery && (
-                <p className="mt-3 text-sm text-white/80">
-                  {filteredFaqs.length} {filteredFaqs.length === 1 ? 'result' : 'results'} found for "{searchQuery}"
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── Hero ── */}
+      <header
+        className="relative overflow-hidden"
+        style={{ background: '#1B3A2D', paddingTop: '5rem' }}
+      >
+        {/* Grain */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.035]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
+          }}
+          aria-hidden="true"
+        />
 
-      {/* Category Filter */}
-      <section className="bg-white border-b sticky top-16 z-40">
-        <div className="container py-4">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {categories.map((category) => (
+        <div className="container relative z-10 pt-12 pb-20 max-w-3xl">
+          <p
+            className="font-outfit text-xs tracking-[0.18em] uppercase mb-4"
+            style={{ color: '#D4A76A' }}
+          >
+            Support
+          </p>
+          <h1
+            className="font-playfair font-bold text-white leading-tight mb-5"
+            style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}
+          >
+            Frequently Asked Questions
+          </h1>
+          <p
+            className="font-outfit text-base leading-relaxed mb-8"
+            style={{ color: 'rgba(245,240,232,0.6)' }}
+          >
+            Find answers to common questions about travelling to Rwanda and
+            Uganda with Dawnlight Journeys.
+          </p>
+
+          {/* Search input */}
+          <div className="relative max-w-xl">
+            <Search
+              className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 pointer-events-none"
+              style={{ color: 'rgba(44,36,32,0.4)' }}
+            />
+            <input
+              type="text"
+              placeholder="Search questions…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-11 pr-11 py-3.5 rounded-full font-outfit text-sm focus:outline-none transition-all duration-200"
+              style={{
+                background: '#fff',
+                border: '2px solid transparent',
+                color: '#2C2420',
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = '#D4A76A';
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = 'transparent';
+              }}
+            />
+            {searchQuery && (
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === category
-                    ? 'bg-primary text-white shadow-md'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                onClick={clearSearch}
+                className="absolute right-4 top-1/2 -translate-y-1/2 transition-colors duration-150"
+                style={{ color: 'rgba(44,36,32,0.4)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#1B3A2D';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'rgba(44,36,32,0.4)';
+                }}
+                aria-label="Clear search"
               >
-                {category}
+                <X className="h-4 w-4" />
               </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Content */}
-      <section className="py-12 md:py-16">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
-              {filteredFaqs.map((faq, index) => (
-                <article
-                  key={faq.id}
-                  className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden border border-gray-100"
-                >
-                  <button
-                    className="flex w-full justify-between items-center text-left p-6 hover:bg-gray-50 transition-colors"
-                    onClick={() => toggleFaq(index)}
-                  >
-                    <div className="flex-1 pr-4">
-                      <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-2">
-                        {faq.category}
-                      </span>
-                      <h3 className="text-lg font-bold text-foreground">
-                        {faq.question}
-                      </h3>
-                    </div>
-                    <ChevronDown
-                      className={`h-6 w-6 text-primary flex-shrink-0 transition-transform duration-300 ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-                  <div
-                    className={`transition-all duration-300 overflow-hidden ${
-                      openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <div className="px-6 pb-6">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            {/* No Results */}
-            {filteredFaqs.length === 0 && (
-              <div className="text-center py-12 bg-white rounded-xl shadow-sm">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-                  <Search className="w-8 h-8 text-gray-400" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">No Results Found</h3>
-                <p className="text-muted-foreground mb-6">
-                  {searchQuery
-                    ? `No FAQs found matching "${searchQuery}". Try different keywords or browse all categories.`
-                    : 'No FAQs found in this category.'}
-                </p>
-                {searchQuery && (
-                  <button
-                    onClick={clearSearch}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                    Clear Search
-                  </button>
-                )}
-              </div>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* Contact CTA */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
-              Still Have Questions?
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Can't find the answer you're looking for? Our team is here to help you plan your perfect safari adventure.
+          {searchQuery && (
+            <p
+              className="mt-3 font-outfit text-xs"
+              style={{ color: 'rgba(245,240,232,0.5)' }}
+            >
+              {filteredFaqs.length}{' '}
+              {filteredFaqs.length === 1 ? 'result' : 'results'} for &ldquo;
+              {searchQuery}&rdquo;
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CustomButton
-                variant="primary"
-                size="lg"
-                href="/contact"
-                className="flex items-center gap-2"
+          )}
+        </div>
+
+        {/* Diagonal bottom edge */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-14 pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(to bottom right, transparent 49%, #F5F0E8 50%)',
+          }}
+          aria-hidden="true"
+        />
+      </header>
+
+      {/* ── Category Filter ── */}
+      <section
+        className="sticky top-16 z-40 py-4"
+        style={{
+          background: '#F5F0E8',
+          borderBottom: '1px solid rgba(27,58,45,0.08)',
+        }}
+      >
+        <div className="container flex flex-wrap gap-2 justify-center">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className="font-outfit text-xs font-semibold px-4 py-2 rounded-full transition-all duration-200"
+              style={
+                selectedCategory === category
+                  ? {
+                      background: '#1B3A2D',
+                      color: '#D4A76A',
+                      border: '1px solid rgba(212,167,106,0.3)',
+                    }
+                  : {
+                      background: 'rgba(27,58,45,0.06)',
+                      color: 'rgba(44,36,32,0.6)',
+                      border: '1px solid rgba(27,58,45,0.1)',
+                    }
+              }
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* ── FAQ List ── */}
+      <section className="py-12">
+        <div className="container max-w-3xl">
+          <div className="space-y-3">
+            {filteredFaqs.map((faq, index) => (
+              <article
+                key={faq.id}
+                className="rounded-2xl overflow-hidden"
+                style={{
+                  background: '#fff',
+                  border: '1px solid rgba(27,58,45,0.07)',
+                  boxShadow: '0 2px 8px rgba(27,58,45,0.04)',
+                }}
               >
-                <Mail className="w-5 h-5" />
-                Contact Us
-              </CustomButton>
-              <CustomButton
-                variant="secondary"
-                size="lg"
-                href="https://wa.me/250785917385"
-                className="flex items-center gap-2"
+                <button
+                  className="flex w-full justify-between items-start text-left p-5 gap-4 transition-colors duration-150"
+                  onClick={() => toggleFaq(index)}
+                >
+                  <div className="flex-1">
+                    <span
+                      className="inline-block font-outfit text-[10px] tracking-[0.1em] uppercase font-semibold px-2.5 py-0.5 rounded-full mb-2"
+                      style={{
+                        background: 'rgba(212,167,106,0.12)',
+                        color: '#8B5E3C',
+                        border: '1px solid rgba(212,167,106,0.2)',
+                      }}
+                    >
+                      {faq.category}
+                    </span>
+                    <h3
+                      className="font-playfair font-bold text-base leading-snug"
+                      style={{ color: '#2C2420' }}
+                    >
+                      {faq.question}
+                    </h3>
+                  </div>
+                  <ChevronDown
+                    className="h-4 w-4 flex-shrink-0 mt-1 transition-transform duration-300"
+                    style={{
+                      color: '#D4A76A',
+                      transform:
+                        openIndex === index ? 'rotate(180deg)' : 'rotate(0deg)',
+                    }}
+                  />
+                </button>
+                <div
+                  className="overflow-hidden transition-all duration-300"
+                  style={{
+                    maxHeight: openIndex === index ? '500px' : '0',
+                    opacity: openIndex === index ? 1 : 0,
+                  }}
+                >
+                  <p
+                    className="px-5 pb-5 font-outfit text-sm leading-relaxed"
+                    style={{ color: 'rgba(44,36,32,0.7)' }}
+                  >
+                    {faq.answer}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* No results */}
+          {filteredFaqs.length === 0 && (
+            <div
+              className="text-center py-14 rounded-2xl"
+              style={{
+                background: 'rgba(27,58,45,0.04)',
+                border: '1px solid rgba(27,58,45,0.08)',
+              }}
+            >
+              <Search
+                className="w-8 h-8 mx-auto mb-4"
+                style={{ color: 'rgba(44,36,32,0.25)' }}
+              />
+              <h3
+                className="font-playfair font-bold text-lg mb-2"
+                style={{ color: '#2C2420' }}
               >
-                <Phone className="w-5 h-5" />
-                Call: +250 785 917 385
-              </CustomButton>
+                No Results Found
+              </h3>
+              <p
+                className="font-outfit text-sm mb-6"
+                style={{ color: 'rgba(44,36,32,0.55)' }}
+              >
+                {searchQuery
+                  ? `No FAQs match "${searchQuery}". Try different keywords or browse all categories.`
+                  : 'No FAQs found in this category.'}
+              </p>
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="inline-flex items-center gap-2 font-outfit text-xs font-semibold px-4 py-2 rounded-full transition-all duration-200"
+                  style={{
+                    background: 'rgba(27,58,45,0.08)',
+                    border: '1px solid rgba(27,58,45,0.15)',
+                    color: '#1B3A2D',
+                  }}
+                >
+                  <X className="w-3.5 h-3.5" />
+                  Clear search
+                </button>
+              )}
             </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── Contact CTA ── */}
+      <section className="py-14 md:py-20" style={{ background: '#1A1714' }}>
+        <div className="container max-w-2xl text-center">
+          <p
+            className="font-outfit text-xs tracking-[0.18em] uppercase mb-4"
+            style={{ color: '#D4A76A' }}
+          >
+            Still Have Questions?
+          </p>
+          <h2
+            className="font-playfair font-bold text-white mb-4"
+            style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
+          >
+            Our Team Is Here to Help
+          </h2>
+          <p
+            className="font-outfit text-sm mb-8"
+            style={{ color: 'rgba(245,240,232,0.5)' }}
+          >
+            {"Can't find the answer you're looking for? Reach out and we'll help you plan your perfect safari."}
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link href="/contact" className="btn-ember">
+              Contact Us
+              <Mail className="w-4 h-4" />
+            </Link>
+            <a
+              href="https://wa.me/250785917385"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-outfit text-sm font-semibold px-6 py-3 rounded-full transition-all duration-200 border border-[rgba(212,167,106,0.3)] text-[rgba(245,240,232,0.7)] hover:border-[#D4A76A] hover:text-[#D4A76A]"
+            >
+              WhatsApp: +250 785 917 385
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Quick Links */}
-      <section className="py-12 bg-background">
-        <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold mb-6 text-center">Helpful Resources</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <a
-                href="/safaris"
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
+      {/* ── Helpful Resources ── */}
+      <section className="py-12 container">
+        <h3
+          className="font-playfair font-bold text-center mb-8"
+          style={{
+            fontSize: 'clamp(1.2rem, 2vw, 1.5rem)',
+            color: '#2C2420',
+          }}
+        >
+          Helpful Resources
+        </h3>
+        <div className="grid md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+          {[
+            {
+              href: '/safaris',
+              title: 'Browse Safaris',
+              body: 'Explore our curated safari packages',
+            },
+            {
+              href: '/destinations',
+              title: 'Destinations',
+              body: 'Discover Rwanda & Uganda',
+            },
+            {
+              href: '/blog',
+              title: 'Travel Journal',
+              body: 'Tips, guides, and travel stories',
+            },
+          ].map((r) => (
+            <Link
+              key={r.href}
+              href={r.href}
+              className="rounded-2xl p-5 text-center transition-all duration-200 group block"
+              style={{
+                background: '#fff',
+                border: '1px solid rgba(27,58,45,0.08)',
+                boxShadow: '0 2px 8px rgba(27,58,45,0.04)',
+              }}
+            >
+              <h4
+                className="font-playfair font-bold text-base mb-1.5 transition-colors duration-150 group-hover:text-[#D4A76A]"
+                style={{ color: '#1B3A2D' }}
               >
-                <h4 className="font-bold text-primary mb-2">Browse Safaris</h4>
-                <p className="text-sm text-muted-foreground">
-                  Explore our safari packages
-                </p>
-              </a>
-              <a
-                href="/destinations"
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
+                {r.title}
+              </h4>
+              <p
+                className="font-outfit text-xs"
+                style={{ color: 'rgba(44,36,32,0.55)' }}
               >
-                <h4 className="font-bold text-primary mb-2">Destinations</h4>
-                <p className="text-sm text-muted-foreground">
-                  Discover Rwanda & Uganda
-                </p>
-              </a>
-              <a
-                href="/blog"
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow text-center"
-              >
-                <h4 className="font-bold text-primary mb-2">Travel Blog</h4>
-                <p className="text-sm text-muted-foreground">
-                  Tips and travel guides
-                </p>
-              </a>
-            </div>
-          </div>
+                {r.body}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
+
     </div>
   );
 }

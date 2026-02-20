@@ -1,11 +1,9 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FlatNavItem } from './ui/flat-nav-item';
-import { FlatButton } from './ui/flat-button';
 import { DropdownMenu } from './ui/dropdown-menu';
 import { MobileExpandableSection } from './ui/mobile-expandable-section';
 import { safariPackages } from '../constants/safaris';
@@ -15,221 +13,274 @@ import type { DropdownItem } from './ui/dropdown-menu';
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const mobileMenuRef = useRef<HTMLElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  // Check if we're on the homepage
   const isHomePage = pathname === '/';
 
-  // Create nested destinations structure with safaris
   const destinationsDropdownItems: DropdownItem[] = [
     {
       id: 1,
       name: 'Rwanda',
       href: '/destinations/rwanda',
       children: safariPackages
-        .filter(safari => safari.destination === 'Rwanda')
-        .map(safari => ({
+        .filter((safari) => safari.destination === 'Rwanda')
+        .map((safari) => ({
           id: safari.id,
-          name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
-          href: safari.url
-        }))
+          name: safari.title
+            ?.split(' ')
+            .map((word) => capitalizeString(word))
+            .join(' '),
+          href: safari.url,
+        })),
     },
     {
       id: 2,
       name: 'Uganda',
       href: '/destinations/uganda',
       children: safariPackages
-        .filter(safari => safari.destination === 'Uganda')
-        .map(safari => ({
+        .filter((safari) => safari.destination === 'Uganda')
+        .map((safari) => ({
           id: safari.id,
-          name: safari.title?.split(' ').map(word => capitalizeString(word)).join(' '),
-          href: safari.url
-        }))
-    }
+          name: safari.title
+            ?.split(' ')
+            .map((word) => capitalizeString(word))
+            .join(' '),
+          href: safari.url,
+        })),
+    },
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 150);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle outside tap to close mobile menu
   useEffect(() => {
     if (!isMenuOpen) return;
-
-    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
-      if (
-        mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target as Node)
-      ) {
+    const handleOutside = (e: MouseEvent | TouchEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
       }
     };
-
-    const handleMouseDown = (event: MouseEvent) => handleOutsideClick(event);
-    const handleTouchStart = (event: TouchEvent) => handleOutsideClick(event);
-
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('touchstart', handleTouchStart);
-
+    document.addEventListener('mousedown', handleOutside);
+    document.addEventListener('touchstart', handleOutside);
     return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('mousedown', handleOutside);
+      document.removeEventListener('touchstart', handleOutside);
     };
   }, [isMenuOpen]);
 
-  // Determine if navbar should be transparent (only on homepage and not scrolled)
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMenuOpen]);
+
   const isTransparent = isHomePage && !scrolled;
 
+  /* Nav link styles */
+  const navLinkBase =
+    'relative font-outfit text-[0.82rem] font-medium tracking-wide transition-colors duration-200 px-1 py-1';
+  const navLinkTransparent =
+    'text-white/85 hover:text-white after:bg-white';
+  const navLinkSolid =
+    'text-dj-text/80 hover:text-dj-forest after:bg-dj-gold';
+  const navLinkUnderline =
+    "after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:transition-[width] after:duration-300 hover:after:w-full";
+
   return (
-    <header
-      className={
-        `sticky top-0 z-50 w-full transition-all duration-300 ` +
-        (scrolled || !isHomePage
-          ? 'bg-white/80 backdrop-blur border-b shadow-lg rounded-b-xl'
-          : 'bg-transparent')
-      }
-      style={{ overflow: 'visible' }}
-    >
-      <section className="container flex h-16 items-center justify-between" style={{ overflow: 'visible' }}>
-        <Link href="/" className="flex items-center gap-2">
-          <img
-            src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1"
-            alt="Logo"
-            className="h-12 w-12 rounded-full"
-          />
-          <span className={`font-extrabold text-lg tracking-tight transition-colors duration-300 ${
-            isTransparent ? 'text-white drop-shadow-lg' : 'text-black-800'
-          }`}>
-            Dawnlight Journeys
-          </span>
-        </Link>
+    <>
+      {/* Gold top accent bar */}
+      <div
+        className="fixed top-0 left-0 right-0 z-[60] h-[2px]"
+        style={{ background: 'linear-gradient(90deg, #D4A76A, #D97B2B, #D4A76A)' }}
+        aria-hidden="true"
+      />
 
-        <nav className="hidden md:flex items-center gap-4">
-          <FlatNavItem
-            href="/"
-            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
-          >
-            Home
-          </FlatNavItem>
-          <DropdownMenu
-            items={destinationsDropdownItems}
-            trigger={
-              <FlatNavItem
-                href="/destinations"
-                hasDropdown
-                className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
-              >
-                Destinations
-              </FlatNavItem>
-            }
-          />
-          <FlatNavItem
-            href="/experiences"
-            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
-          >
-            Experiences
-          </FlatNavItem>
-          <FlatNavItem
-            href="/faq"
-            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
-          >
-            FAQ
-          </FlatNavItem>
-          <FlatNavItem
-            href="/contact"
-            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
-          >
-            Contact
-          </FlatNavItem>
-          <FlatNavItem
-            href="/blog"
-            className={isTransparent ? 'text-white hover:text-white hover:bg-white/20' : ''}
-          >
-            Blog
-          </FlatNavItem>
-          <FlatButton
-            href="/safaris"
-            variant="primary"
-            size="default"
-            className="ml-4"
-          >
-            Plan Trip
-          </FlatButton>
-        </nav>
+      <header
+        ref={mobileMenuRef as React.RefObject<HTMLDivElement>}
+        className={`
+          fixed top-[2px] left-0 right-0 z-50 w-full
+          transition-all duration-300 ease-in-out
+          ${scrolled || !isHomePage
+            ? 'bg-dj-charcoal/95 backdrop-blur-md shadow-[0_2px_24px_rgba(0,0,0,0.35)]'
+            : 'bg-transparent'}
+        `}
+      >
+        <div className="container flex h-16 items-center justify-between" style={{ overflow: 'visible' }}>
 
-        <button
-          className={`md:hidden p-1.5 rounded-md transition-colors duration-300 ${
-            isTransparent ? 'hover:bg-white/20' : 'hover:bg-accent'
-          }`}
-          onClick={(e) => {
-            e.preventDefault();
-            setIsMenuOpen(!isMenuOpen);
-          }}
-        >
-          {isMenuOpen ? (
-            <X className={`h-5 w-5 ${isTransparent ? 'text-white' : ''}`} />
-          ) : (
-            <Menu className={`h-5 w-5 ${isTransparent ? 'text-white' : ''}`} />
-          )}
-        </button>
-      </section>
-
-      {isMenuOpen && (
-        <section className="md:hidden container py-3 pb-5 border-t bg-white/95 rounded-b-xl shadow-lg">
-          <nav className="flex flex-col space-y-3">
-            <FlatNavItem
-              href="/"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </FlatNavItem>
-            <MobileExpandableSection
-              title="Destinations"
-              href="/destinations"
-              items={destinationsDropdownItems}
-              onItemClick={() => setIsMenuOpen(false)}
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+            <img
+              src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/dawnlight-journeys-logo_igdyc1"
+              alt="Dawnlight Journeys logo"
+              className="h-9 w-9 rounded-full ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105"
             />
-            <FlatNavItem
-              href="/experiences"
-              onClick={() => setIsMenuOpen(false)}
+            <span
+              className={`font-playfair font-bold text-base tracking-tight transition-colors duration-300 hidden sm:block ${
+                isTransparent ? 'text-white' : 'text-white'
+              }`}
             >
-              Experiences
-            </FlatNavItem>
-            <FlatNavItem
-              href="/faq"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              FAQ
-            </FlatNavItem>
-            <FlatNavItem
-              href="/contact"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </FlatNavItem>
-            <FlatNavItem
-              href="/blog"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Blog
-            </FlatNavItem>
-            <FlatButton
-              href="/safaris"
-              variant="primary"
-              size="lg"
-              className="mt-2 text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
+              Dawnlight Journeys
+            </span>
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1" style={{ overflow: 'visible' }}>
+            {[
+              { href: '/', label: 'Home' },
+              { href: '/experiences', label: 'Experiences' },
+              { href: '/faq', label: 'FAQ' },
+              { href: '/contact', label: 'Contact' },
+              { href: '/blog', label: 'Blog' },
+            ].map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`${navLinkBase} ${isTransparent ? navLinkTransparent : navLinkSolid} ${navLinkUnderline}`}
+                style={{ color: isTransparent ? undefined : '#F5F0E8' }}
+              >
+                {label}
+              </Link>
+            ))}
+
+            {/* Destinations dropdown */}
+            <DropdownMenu
+              items={destinationsDropdownItems}
+              trigger={
+                <button
+                  className={`${navLinkBase} flex items-center gap-1 ${
+                    isTransparent ? 'text-white/85 hover:text-white' : 'hover:text-white'
+                  }`}
+                  style={{ color: isTransparent ? undefined : '#F5F0E8' }}
+                >
+                  Destinations
+                  <ChevronDown className="h-3 w-3 opacity-70" aria-hidden="true" />
+                </button>
+              }
+            />
+
+            {/* Plan Trip pill CTA */}
+            <Link href="/safaris" className="btn-forest-pill ml-3">
               Plan Trip
-            </FlatButton>
+            </Link>
           </nav>
-        </section>
-      )}
-    </header>
+
+          {/* Mobile hamburger */}
+          <button
+            className={`md:hidden flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-200 ${
+              isTransparent ? 'hover:bg-white/15 text-white' : 'hover:bg-white/10 text-white'
+            }`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+          >
+            {isMenuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+      </header>
+
+      {/* ── Full-screen mobile overlay ── */}
+      <div
+        className={`
+          fixed inset-0 z-40 bg-dj-charcoal flex flex-col
+          transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+          ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+        `}
+        aria-hidden={!isMenuOpen}
+      >
+        {/* Decorative gold accent top */}
+        <div
+          className="h-[2px] w-full"
+          style={{ background: 'linear-gradient(90deg, #D4A76A, #D97B2B, #D4A76A)' }}
+        />
+
+        <div className="flex-1 flex flex-col justify-center px-8 py-16">
+          <nav className="space-y-1" role="navigation" aria-label="Mobile navigation">
+            {[
+              { href: '/', label: 'Home', delay: '0.05s' },
+              { href: '/experiences', label: 'Experiences', delay: '0.1s' },
+              { href: '/faq', label: 'FAQ', delay: '0.15s' },
+              { href: '/contact', label: 'Contact', delay: '0.2s' },
+              { href: '/blog', label: 'Blog', delay: '0.25s' },
+            ].map(({ href, label, delay }) => (
+              <div
+                key={href}
+                className={`transition-all duration-500 ${
+                  isMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+                }`}
+                style={{ transitionDelay: isMenuOpen ? delay : '0s' }}
+              >
+                <Link
+                  href={href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block font-playfair text-4xl font-bold text-white/80 hover:text-white py-3 border-b border-white/8 transition-colors duration-200 tracking-tight"
+                >
+                  {label}
+                </Link>
+              </div>
+            ))}
+
+            {/* Destinations expandable */}
+            <div
+              className={`transition-all duration-500 ${
+                isMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+              }`}
+              style={{ transitionDelay: isMenuOpen ? '0.3s' : '0s' }}
+            >
+              <MobileExpandableSection
+                title="Destinations"
+                href="/destinations"
+                items={destinationsDropdownItems}
+                onItemClick={() => setIsMenuOpen(false)}
+              />
+            </div>
+          </nav>
+
+          {/* Mobile CTA */}
+          <div
+            className={`mt-12 transition-all duration-500 ${
+              isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
+            style={{ transitionDelay: isMenuOpen ? '0.38s' : '0s' }}
+          >
+            <Link
+              href="/safaris"
+              onClick={() => setIsMenuOpen(false)}
+              className="btn-ember text-base w-full justify-center"
+            >
+              Plan Your Safari
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+                <path d="M4 10h12M11 5l5 5-5 5" />
+              </svg>
+            </Link>
+          </div>
+
+          {/* Decorative contact mini */}
+          <div
+            className={`mt-8 transition-all duration-500 ${
+              isMenuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ transitionDelay: isMenuOpen ? '0.44s' : '0s' }}
+          >
+            <p className="font-outfit text-xs tracking-[0.14em] uppercase text-white/35 mb-2">
+              Get in touch
+            </p>
+            <a
+              href="https://wa.me/250785917385"
+              className="font-outfit text-sm text-white/60 hover:text-dj-gold transition-colors"
+            >
+              +250 785 917 385
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

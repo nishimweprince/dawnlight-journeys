@@ -2,210 +2,319 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Montserrat', system-ui, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-/* Custom animations for destinations page */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-delay {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
-}
-
-.animate-fade-in-delay {
-  animation: fade-in-delay 1.2s ease-out 0.3s forwards;
-  opacity: 0;
-}
-
-/* Smooth scroll animations */
-@keyframes slide-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-slide-in-up {
-  animation: slide-in-up 0.6s ease-out forwards;
-}
-
-.animate-slide-in-left {
-  animation: slide-in-left 0.6s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.6s ease-out forwards;
-}
-
-/* Scroll-triggered animations */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.scroll-animate.animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* =====================================================
+   BASE LAYER — Design Tokens & CSS Variables
+   ===================================================== */
 @layer base {
   :root {
-    --background: 220 13% 95%;
-    /* Slate/gray background instead of white */
-    --foreground: 180 100% 14%;
-    /* #004643 */
-    --card: 0 0% 100%;
-    --card-foreground: 180 100% 14%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 180 100% 14%;
-    --primary: 180 100% 14%;
-    /* #004643 */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 120 9% 50%;
-    /* #708D81 */
-    --secondary-foreground: 0 0% 9%;
-    --muted: 220 13% 85%;
-    /* Muted gray */
-    --muted-foreground: 220 9% 25%;
-    /* Darker text for better contrast */
-    --accent: 220 13% 88%;
-    --accent-foreground: 180 100% 14%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 80%;
-    --input: 220 13% 88%;
-    --ring: 180 100% 14%;
-    --chart-1: 180 100% 14%;
-    /* Primary */
-    --chart-2: 120 9% 50%;
-    /* Secondary */
-    --chart-3: 45 100% 10%;
-    /* Tertiary */
-    --chart-4: 180 100% 20%;
-    /* Lighter primary */
-    --chart-5: 120 9% 60%;
-    /* Lighter secondary */
+    /* Shadcn/Radix required vars — mapped to safari palette */
+    --background: 40 33% 96%;        /* Warm Ivory #F5F0E8 */
+    --foreground: 15 15% 16%;        /* Off-black #2C2420   */
+    --card: 40 28% 99%;
+    --card-foreground: 15 15% 16%;
+    --popover: 40 28% 99%;
+    --popover-foreground: 15 15% 16%;
+    --primary: 160 35% 17%;          /* Deep Forest #1B3A2D */
+    --primary-foreground: 40 33% 96%;
+    --secondary: 25 38% 38%;         /* Warm Bronze #8B5E3C */
+    --secondary-foreground: 40 33% 96%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 25 15% 45%;
+    --accent: 33 47% 62%;            /* Safari Gold  #D4A76A */
+    --accent-foreground: 15 15% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 33% 96%;
+    --border: 40 20% 84%;
+    --input: 40 20% 84%;
+    --ring: 33 47% 62%;
     --radius: 0.5rem;
-    --sidebar-background: 220 13% 92%;
-    --sidebar-foreground: 180 100% 14%;
-    --sidebar-primary: 180 100% 14%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 220 13% 85%;
-    --sidebar-accent-foreground: 180 100% 14%;
-    --sidebar-border: 220 13% 80%;
-    --sidebar-ring: 180 100% 14%;
+
+    /* ── Brand palette (raw hex for inline use) ── */
+    --dj-bronze:     #8B5E3C;
+    --dj-gold:       #D4A76A;
+    --dj-gold-light: #C8956C;
+    --dj-forest:     #1B3A2D;
+    --dj-charcoal:   #1A1714;
+    --dj-cream:      #F5F0E8;
+    --dj-ivory:      #FAF7F2;
+    --dj-ember:      #D97B2B;
+    --dj-text-dark:  #2C2420;
   }
 
   .dark {
-    --background: 180 100% 14%;
-    --foreground: 0 0% 98%;
-    --card: 180 100% 14%;
-    --card-foreground: 0 0% 98%;
-    --popover: 180 100% 14%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 120 9% 50%;
-    /* Secondary becomes primary in dark mode */
-    --primary-foreground: 180 100% 14%;
-    --secondary: 45 100% 10%;
-    /* Tertiary becomes secondary in dark mode */
-    --secondary-foreground: 0 0% 98%;
-    --muted: 45 100% 10%;
-    --muted-foreground: 120 9% 50%;
-    --accent: 45 100% 10%;
-    --accent-foreground: 0 0% 98%;
+    --background: 20 11% 9%;
+    --foreground: 40 33% 96%;
+    --card: 20 10% 12%;
+    --card-foreground: 40 33% 96%;
+    --primary: 33 47% 55%;
+    --primary-foreground: 20 11% 9%;
+    --secondary: 25 38% 38%;
+    --secondary-foreground: 40 33% 96%;
+    --muted: 20 10% 15%;
+    --muted-foreground: 40 20% 65%;
+    --accent: 33 47% 62%;
+    --accent-foreground: 20 11% 9%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 45 100% 10%;
-    --input: 45 100% 10%;
-    --ring: 120 9% 50%;
-    --chart-1: 120 9% 50%;
-    /* Secondary */
-    --chart-2: 45 100% 10%;
-    /* Tertiary */
-    --chart-3: 180 100% 14%;
-    /* Primary */
-    --chart-4: 120 9% 60%;
-    /* Lighter secondary */
-    --chart-5: 45 100% 15%;
-    /* Lighter tertiary */
-    --sidebar-background: 180 100% 14%;
-    --sidebar-foreground: 120 9% 50%;
-    --sidebar-primary: 120 9% 50%;
-    --sidebar-primary-foreground: 180 100% 14%;
-    --sidebar-accent: 45 100% 10%;
-    --sidebar-accent-foreground: 120 9% 50%;
-    --sidebar-border: 45 100% 10%;
-    --sidebar-ring: 120 9% 50%;
+    --destructive-foreground: 40 33% 96%;
+    --border: 20 10% 20%;
+    --input: 20 10% 20%;
+    --ring: 33 47% 62%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Account for sticky navbar */
+    scroll-padding-top: 80px;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-outfit, 'Outfit'), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Headings default to Playfair Display */
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
+    line-height: 1.15;
+  }
+}
+
+/* =====================================================
+   ANIMATION KEYFRAMES
+   ===================================================== */
+
+/* Ken Burns — subtle zoom/pan for hero images */
+@keyframes ken-burns-a {
+  from { transform: scale(1.0) translate(0%, 0%); }
+  to   { transform: scale(1.08) translate(-1.5%, -1%); }
+}
+@keyframes ken-burns-b {
+  from { transform: scale(1.0) translate(0%, 0%); }
+  to   { transform: scale(1.08) translate(1%, -1.5%); }
+}
+@keyframes ken-burns-c {
+  from { transform: scale(1.0) translate(0%, 0%); }
+  to   { transform: scale(1.08) translate(-1%, 1.5%); }
+}
+.animate-ken-a { animation: ken-burns-a 12s ease-in-out infinite alternate; }
+.animate-ken-b { animation: ken-burns-b 14s ease-in-out infinite alternate; }
+.animate-ken-c { animation: ken-burns-c 13s ease-in-out infinite alternate; }
+
+/* Fade-up with stagger support */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up          { animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+.animate-fade-up-d1       { animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards; opacity: 0; }
+.animate-fade-up-d2       { animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.30s forwards; opacity: 0; }
+.animate-fade-up-d3       { animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards; opacity: 0; }
+.animate-fade-up-d4       { animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.60s forwards; opacity: 0; }
+
+/* Fade-in (opacity only) */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in          { animation: fade-in 0.8s ease-out forwards; }
+.animate-fade-in-delay    { animation: fade-in 0.8s ease-out 0.3s forwards; opacity: 0; }
+
+/* Scroll indicator bounce */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0);   opacity: 0.9; }
+  50%       { transform: translateY(7px); opacity: 0.45; }
+}
+.animate-scroll-bounce { animation: scroll-bounce 2s ease-in-out infinite; }
+
+/* Indicator bar pulse */
+@keyframes pulse-bar {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* WhatsApp pulse ring */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0   rgba(34, 197, 94, 0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0   rgba(34, 197, 94, 0); }
+}
+.animate-pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+
+/* Shimmer skeleton */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Slide-in helpers */
+@keyframes slide-in-up    { from { opacity: 0; transform: translateY(30px);  } to { opacity: 1; transform: none; } }
+@keyframes slide-in-left  { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
+@keyframes slide-in-right { from { opacity: 0; transform: translateX(30px);  } to { opacity: 1; transform: none; } }
+
+.animate-slide-in-up    { animation: slide-in-up    0.7s ease-out forwards; }
+.animate-slide-in-left  { animation: slide-in-left  0.7s ease-out forwards; }
+.animate-slide-in-right { animation: slide-in-right 0.7s ease-out forwards; }
+
+/* Scroll-triggered class */
+.scroll-animate { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.scroll-animate.animate { opacity: 1; transform: none; }
+
+/* =====================================================
+   DESIGN UTILITIES
+   ===================================================== */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+
+  /* Gold gradient line (replaces plain <hr>) */
+  .gold-line {
+    width: 3rem; height: 2px; border: none;
+    background: linear-gradient(90deg, #D4A76A, #D97B2B);
+    border-radius: 9999px;
+    display: block;
+  }
+
+  /* Section label — small uppercase tracked */
+  .section-label {
+    font-family: var(--font-outfit, system-ui), sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #D4A76A;
+  }
+
+  /* Grain texture overlay (pseudo-element) */
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px;
+    opacity: 0.045;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Card lift on hover */
+  .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .card-lift:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.12); }
+
+  /* Image zoom parent */
+  .img-zoom-parent { overflow: hidden; }
+  .img-zoom-parent img { transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1); }
+  .img-zoom-parent:hover img { transform: scale(1.06); }
+
+  /* Animated underline link */
+  .link-underline {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: currentColor;
+    transition: width 0.32s ease;
+  }
+  .link-underline:hover::after { width: 100%; }
+  .link-underline:hover .link-arrow-icon { transform: translateX(4px); }
+  .link-arrow-icon { transition: transform 0.24s ease; }
+
+  /* Bottom-border input */
+  .input-safari {
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid rgba(200, 149, 108, 0.5);
+    border-radius: 0;
+    padding: 0.6rem 0;
+    color: inherit;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: var(--font-outfit, system-ui), sans-serif;
+  }
+  .input-safari::placeholder { color: rgba(44, 36, 32, 0.4); }
+  .input-safari:focus { border-bottom-color: #D97B2B; }
+
+  /* Ember CTA button */
+  .btn-ember {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #D97B2B 0%, #E8913A 100%);
+    color: white;
+    border-radius: 9999px;
+    padding: 0.85rem 2.25rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    box-shadow: 0 4px 18px rgba(217, 123, 43, 0.28);
+    font-family: var(--font-outfit, system-ui), sans-serif;
+    text-decoration: none;
+  }
+  .btn-ember:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 28px rgba(217, 123, 43, 0.42);
+  }
+
+  /* Forest pill button (nav Plan Trip) */
+  .btn-forest-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #D4A76A;
+    color: #1A1714;
+    border-radius: 9999px;
+    padding: 0.5rem 1.35rem;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    font-family: var(--font-outfit, system-ui), sans-serif;
+  }
+  .btn-forest-pill:hover {
+    background: #D97B2B;
+    color: white;
+    transform: scale(1.03);
+    box-shadow: 0 4px 18px rgba(217, 123, 43, 0.35);
+  }
+
+  /* Dark section texture */
+  .bg-dj-dark {
+    background-color: #1A1714;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(139, 94, 60, 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, rgba(27, 58, 45, 0.08) 0%, transparent 60%);
+  }
+
+  /* Topo background for cream sections */
+  .bg-dj-cream-topo {
+    background-color: #F5F0E8;
+    background-image:
+      radial-gradient(ellipse at 0% 0%, rgba(212, 167, 106, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(27, 58, 45, 0.04) 0%, transparent 50%);
   }
 }

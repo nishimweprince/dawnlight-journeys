@@ -1,135 +1,19 @@
 'use client';
 
 import type { Metadata } from 'next';
-import { CustomButton } from '../../src/components/ui/custom-button';
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { experiences } from '../../src/constants/experiences';
 
 const metadata: Metadata = {
   title: 'Unique Experiences | Dawnlight Journeys',
   description:
-    'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
-  keywords: [
-    'africa experiences',
-    'wildlife photography',
-    'cultural immersion',
-    'adventure trekking',
-    'mountain climbing',
-    'bird watching',
-    'conservation volunteering',
-    'uganda experiences',
-    'rwanda experiences',
-    'gorilla trekking experience',
-    'chimpanzee tracking experience',
-    'wildlife photography experience',
-    'cultural tour experience',
-    'adventure experience africa',
-    'eco-tourism experience',
-    'sustainable travel experience',
-    'local community experience',
-    'traditional village experience',
-    'african heritage experience',
-    'indigenous culture experience',
-    'tribal experience',
-    'african tradition experience',
-    'cultural immersion experience',
-    'authentic safari experience',
-    'local guide experience',
-    'community tourism experience',
-    'wildlife conservation experience',
-    'bird watching experience',
-    'photography safari experience',
-    'adventure trekking experience',
-    'mountain climbing experience',
-    'conservation volunteering experience',
-    'wildlife encounter experience',
-    'african wildlife experience',
-    'big five experience',
-    'mountain gorilla experience',
-    'chimpanzee experience',
-    'african culture experience',
-    'local community tour',
-    'traditional village visit',
-    'african heritage tour',
-    'indigenous culture tour',
-    'tribal experience tour',
-    'african tradition tour',
-    'cultural immersion tour',
-    'authentic safari tour',
-    'local guide tour',
-    'community tourism tour',
-    'wildlife conservation tour',
-    'bird watching tour',
-    'photography safari tour',
-    'adventure trekking tour',
-    'mountain climbing tour',
-    'conservation volunteering tour',
-    'wildlife encounter tour',
-    'african wildlife tour',
-    'big five tour',
-    'mountain gorilla tour',
-    'chimpanzee tour',
-    'african culture tour',
-  ],
-  openGraph: {
-    title: 'Unique Experiences | Dawnlight Journeys',
-    description:
-      'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
-    images: [
-      {
-        url: 'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/custom-experiences_africa',
-        width: 1200,
-        height: 630,
-        alt: 'Custom African Safari Experiences',
-      },
-      {
-        url: 'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wildlife-photography_experience',
-        width: 1200,
-        height: 630,
-        alt: 'Wildlife Photography Experience',
-      },
-      {
-        url: 'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cultural-immersion_experience',
-        width: 1200,
-        height: 630,
-        alt: 'Cultural Immersion Experience',
-      },
-    ],
-    type: 'website',
-    url: 'https://dawnlightjourneysrwanda.com/experiences',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Unique Experiences | Dawnlight Journeys',
-    description:
-      'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa. Wildlife photography, cultural immersion, trekking, and more.',
-    images: [
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/custom-experiences_africa',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/wildlife-photography_experience',
-      'https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/cultural-immersion_experience',
-    ],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false,
-      'max-snippet': -1,
-      'max-image-preview': 'large',
-      'max-video-preview': -1,
-    },
-  },
-  alternates: {
-    canonical: 'https://dawnlightjourneysrwanda.com/experiences',
-  },
+    'Go beyond the ordinary safari with curated adventures that connect you with the heart of Africa.',
 };
 
 export default function ExperiencesPage() {
   const [search, setSearch] = useState('');
-  // Filter experiences by search query (title or description)
+
   const filteredExperiences = experiences.filter((exp) => {
     const query = search.toLowerCase();
     return (
@@ -137,159 +21,289 @@ export default function ExperiencesPage() {
       exp.description.toLowerCase().includes(query)
     );
   });
+
   return (
-    <main className="bg-background min-h-screen">
-      {/* Hero Section */}
-      <header className="relative h-64 sm:h-72 md:h-96 lg:h-[28rem] flex items-center justify-center bg-black/60">
+    <main className="min-h-screen" style={{ background: '#F5F0E8' }}>
+
+      {/* ── Hero ── */}
+      <header
+        className="relative flex items-end overflow-hidden"
+        style={{ minHeight: '55vh' }}
+      >
         <img
           src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/tourism-experiences_mtcka4"
-          alt="Experiences Hero"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-70"
+          alt="Safari experiences hero"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <section className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-        <section className="relative z-10 text-center text-white w-full px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 drop-shadow-lg">
-            Unforgettable Experiences
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto drop-shadow">
-            Go beyond the ordinary safari with curated adventures that connect
-            you with the heart of Africa.
+        {/* Layered gradients */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(26,23,20,0.92) 0%, rgba(26,23,20,0.55) 50%, rgba(26,23,20,0.25) 100%)',
+          }}
+          aria-hidden="true"
+        />
+        {/* Grain */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")`,
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="container relative z-10 pb-16 pt-36">
+          <p
+            className="font-outfit text-xs tracking-[0.22em] uppercase mb-4 flex items-center gap-3"
+            style={{ color: '#D4A76A' }}
+          >
+            <span className="inline-block h-px w-8" style={{ background: '#D4A76A' }} />
+            Curated Adventures
           </p>
-        </section>
+          <h1
+            className="font-playfair font-bold text-white leading-none mb-4"
+            style={{ fontSize: 'clamp(2.6rem, 5.5vw, 4.5rem)' }}
+          >
+            Unforgettable<br />
+            <span style={{ color: '#D4A76A', fontStyle: 'italic' }}>Experiences</span>
+          </h1>
+          <p
+            className="font-outfit text-base leading-relaxed max-w-lg"
+            style={{ color: 'rgba(245,240,232,0.62)' }}
+          >
+            Go beyond the ordinary safari with curated adventures that connect
+            you with the wild heart of Africa.
+          </p>
+        </div>
       </header>
 
-      {/* Search Bar */}
-      <section className="container flex justify-center px-4 my-8">
-        <section className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5">
+      {/* ── Search ── */}
+      <section className="container py-10" aria-label="Search experiences">
+        <div className="max-w-xl mx-auto">
           <form
-            className="relative flex items-center"
+            className="relative"
             role="search"
-            aria-label="Search experiences"
             onSubmit={(e) => e.preventDefault()}
           >
             <input
               type="text"
-              placeholder="Search experiences by title or description..."
+              placeholder="Search by activity, destination…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full px-5 py-3 border-2 border-primary/20 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-primary/40 text-base bg-white transition-all duration-200 placeholder:text-muted-foreground"
-              style={{ minHeight: '3.25rem' }}
+              className="w-full font-outfit text-sm bg-white rounded-full py-3.5 pl-5 pr-12 outline-none transition-all duration-200"
+              style={{
+                color: '#2C2420',
+                border: '1.5px solid rgba(212,167,106,0.3)',
+                boxShadow: '0 2px 12px rgba(44,36,32,0.06)',
+              }}
+              onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = '#D97B2B'; }}
+              onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = 'rgba(212,167,106,0.3)'; }}
               aria-label="Search experiences"
             />
-            <span className="absolute right-4 text-primary/60 pointer-events-none">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-                <circle
-                  cx="11"
-                  cy="11"
-                  r="7"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M20 20L16.65 16.65"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
+            <span
+              className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              style={{ color: 'rgba(44,36,32,0.35)' }}
+            >
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
+                <path d="M20 20L16.65 16.65" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
             </span>
           </form>
-          <p className="mt-2 text-sm text-muted-foreground text-center">
-            Find your perfect adventure by keyword, activity, or highlight.
-          </p>
-        </section>
-      </section>
 
-      {/* Experiences Grid */}
-      <section className="container py-12 sm:py-16 md:py-20 lg:py-24">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
-          {filteredExperiences?.map((exp) => {
-            const Icon = exp?.icon;
-            return (
-              <li
-                key={exp.id}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col hover:scale-105 transition-transform"
-              >
-                <figure className="relative h-40 sm:h-48 w-full overflow-hidden">
-                  <img
-                    src={exp?.image}
-                    alt={exp?.title}
-                    className="w-full h-full object-cover"
-                  />
-                </figure>
-                <section className="p-4 sm:p-6 flex-1 flex flex-col">
-                  <header className="flex items-center mb-3">
-                    <span className="bg-primary/10 text-primary rounded-full p-2 mr-3 flex-shrink-0">
-                      <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                    </span>
-                    <h2 className="text-lg sm:text-xl font-bold line-clamp-2">
-                      {exp?.title}
-                    </h2>
-                  </header>
-                  <p className="text-muted-foreground mb-4 flex-1 text-sm sm:text-base line-clamp-3">
-                    {exp?.description}
-                  </p>
-                  <ul className="mb-4 space-y-1">
-                    {exp?.highlights
-                      ?.slice(0, 3)
-                      ?.map((h: string, i: number) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground"
-                        >
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                          <span className="line-clamp-1">{h}</span>
-                        </li>
-                      ))}
-                  </ul>
-                  <footer className="mt-auto flex flex-col gap-2">
-                    <CustomButton variant="primary" size="sm" href={exp?.url}>
-                      Learn More
-                    </CustomButton>
-                    <CustomButton
-                      variant="outline"
-                      size="sm"
-                      href="https://wa.me/250785917385"
-                    >
-                      Book Now
-                    </CustomButton>
-                  </footer>
-                </section>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
-
-      {/* Custom Experience Section */}
-      <section className="py-12 sm:py-16 md:py-20">
-        <article className="container grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-          <section className="order-2 md:order-1">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
-              Create Your Custom Experience
-            </h2>
-            <p className="mb-6 sm:mb-8 text-base sm:text-lg text-muted-foreground">
-              Looking for something unique? We specialize in creating custom
-              experiences tailored to your interests, timeframe, and budget. Let
-              us help you design your dream African adventure.
+          {search && (
+            <p className="font-outfit text-xs mt-3 text-center" style={{ color: 'rgba(44,36,32,0.45)' }}>
+              {filteredExperiences.length} result{filteredExperiences.length !== 1 ? 's' : ''} for &ldquo;{search}&rdquo;
             </p>
-            <CustomButton
-              variant="primary"
-              size="lg"
-              href="https://wa.me/250785917385"
-              className="w-full sm:w-auto"
-            >
-              Contact Us to Customize
-            </CustomButton>
-          </section>
-          <figure className="relative h-48 sm:h-64 md:h-72 w-full rounded-xl overflow-hidden shadow-lg order-1 md:order-2">
-            <img
-              src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/tourism-experiences_mtcka4"
-              alt="Custom Experience"
-              className="w-full h-full object-cover"
-            />
-          </figure>
-        </article>
+          )}
+        </div>
+      </section>
+
+      {/* ── Experiences Grid ── */}
+      <section className="container pb-16 md:pb-24">
+        {filteredExperiences.length === 0 ? (
+          <p className="text-center font-outfit text-sm py-16" style={{ color: 'rgba(44,36,32,0.45)' }}>
+            No experiences match your search. Try a different keyword.
+          </p>
+        ) : (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredExperiences.map((exp) => {
+              const Icon = exp.icon;
+              return (
+                <li key={exp.id}>
+                  <article
+                    className="group flex flex-col h-full rounded-2xl overflow-hidden"
+                    style={{
+                      background: 'white',
+                      boxShadow: '0 2px 20px rgba(44,36,32,0.08)',
+                    }}
+                  >
+                    {/* Image */}
+                    <Link href={exp.url} className="block overflow-hidden relative" style={{ aspectRatio: '4/3' }}>
+                      <img
+                        src={exp.image}
+                        alt={exp.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      {/* Dark gradient */}
+                      <div
+                        className="absolute inset-0"
+                        style={{ background: 'linear-gradient(to top, rgba(26,23,20,0.65) 0%, transparent 55%)' }}
+                      />
+                      {/* Icon badge */}
+                      <div
+                        className="absolute top-4 left-4 w-9 h-9 rounded-full flex items-center justify-center"
+                        style={{
+                          background: 'rgba(212,167,106,0.18)',
+                          border: '1px solid rgba(212,167,106,0.4)',
+                          backdropFilter: 'blur(8px)',
+                        }}
+                      >
+                        <Icon className="w-4 h-4" style={{ color: '#D4A76A' }} aria-hidden="true" />
+                      </div>
+                    </Link>
+
+                    {/* Body */}
+                    <div className="flex flex-col flex-1 p-6">
+                      <Link href={exp.url}>
+                        <h2
+                          className="font-playfair font-bold leading-snug mb-2 transition-colors duration-200"
+                          style={{ fontSize: 'clamp(1rem, 1.4vw, 1.15rem)', color: '#2C2420' }}
+                          onMouseEnter={(e) => { (e.currentTarget as HTMLHeadingElement).style.color = '#8B5E3C'; }}
+                          onMouseLeave={(e) => { (e.currentTarget as HTMLHeadingElement).style.color = '#2C2420'; }}
+                        >
+                          {exp.title}
+                        </h2>
+                      </Link>
+
+                      <p
+                        className="font-outfit text-sm leading-relaxed mb-4 flex-1 line-clamp-3"
+                        style={{ color: 'rgba(44,36,32,0.58)' }}
+                      >
+                        {exp.description}
+                      </p>
+
+                      {/* Highlights */}
+                      {exp.highlights && exp.highlights.length > 0 && (
+                        <ul className="mb-5 space-y-1.5">
+                          {exp.highlights.slice(0, 3).map((h: string, i: number) => (
+                            <li
+                              key={i}
+                              className="flex items-start gap-2 font-outfit text-xs"
+                              style={{ color: 'rgba(44,36,32,0.55)' }}
+                            >
+                              <span
+                                className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0"
+                                style={{ background: '#D4A76A' }}
+                              />
+                              <span className="line-clamp-1">{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {/* Actions */}
+                      <div
+                        className="flex items-center gap-3 pt-4 mt-auto"
+                        style={{ borderTop: '1px solid rgba(212,167,106,0.15)' }}
+                      >
+                        <Link
+                          href={exp.url}
+                          className="link-underline font-outfit text-xs font-semibold tracking-[0.1em] uppercase inline-flex items-center gap-1.5 flex-1"
+                          style={{ color: '#8B5E3C' }}
+                        >
+                          Learn More
+                          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 link-arrow-icon" aria-hidden="true">
+                            <path d="M4 10h12M11 5l5 5-5 5" />
+                          </svg>
+                        </Link>
+                        <a
+                          href="https://wa.me/250785917385"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-outfit text-xs font-semibold tracking-[0.08em] uppercase px-4 py-2 rounded-full transition-all duration-200"
+                          style={{
+                            background: 'rgba(212,167,106,0.12)',
+                            color: '#8B5E3C',
+                            border: '1px solid rgba(212,167,106,0.3)',
+                          }}
+                          onMouseEnter={(e) => {
+                            (e.currentTarget as HTMLAnchorElement).style.background = '#D97B2B';
+                            (e.currentTarget as HTMLAnchorElement).style.color = 'white';
+                            (e.currentTarget as HTMLAnchorElement).style.borderColor = '#D97B2B';
+                          }}
+                          onMouseLeave={(e) => {
+                            (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(212,167,106,0.12)';
+                            (e.currentTarget as HTMLAnchorElement).style.color = '#8B5E3C';
+                            (e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(212,167,106,0.3)';
+                          }}
+                        >
+                          Book
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </section>
+
+      {/* ── Custom Experience CTA ── */}
+      <section
+        className="relative py-16 md:py-20 overflow-hidden"
+        style={{ background: '#1B3A2D' }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse 60% 50% at 80% 50%, rgba(212,167,106,0.07) 0%, transparent 70%)' }}
+          aria-hidden="true"
+        />
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <p className="font-outfit text-xs tracking-[0.2em] uppercase mb-4" style={{ color: '#D4A76A' }}>
+                Bespoke Travel
+              </p>
+              <h2
+                className="font-playfair font-bold text-white leading-tight mb-5"
+                style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)' }}
+              >
+                Create Your Custom<br />
+                <span style={{ color: '#D4A76A' }}>Experience</span>
+              </h2>
+              <p
+                className="font-outfit text-sm leading-relaxed mb-8"
+                style={{ color: 'rgba(245,240,232,0.6)' }}
+              >
+                Looking for something unique? We specialize in crafting custom
+                adventures tailored to your interests, timeframe, and budget.
+              </p>
+              <a
+                href="https://wa.me/250785917385"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ember"
+              >
+                Contact Us to Customize
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+                  <path d="M4 10h12M11 5l5 5-5 5" />
+                </svg>
+              </a>
+            </div>
+
+            <figure className="rounded-2xl overflow-hidden" style={{ aspectRatio: '4/3' }}>
+              <img
+                src="https://res.cloudinary.com/nishimweprince/image/upload/f_auto,q_auto/v1/dawnlight-journeys/tourism-experiences_mtcka4"
+                alt="Custom Experience"
+                className="w-full h-full object-cover"
+              />
+            </figure>
+          </div>
+        </div>
       </section>
     </main>
   );

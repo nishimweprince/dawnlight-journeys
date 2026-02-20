@@ -29,37 +29,30 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [desktopAlign, setDesktopAlign] = useState<'left' | 'right'>('left');
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLMenuElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
-  // Handle mouse enter with slight delay for better UX (desktop only)
   const handleMouseEnter = () => {
-    if (isMobile) return; // Disable hover on mobile
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    if (isMobile) return;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setIsOpen(true);
-    // Small delay for fade-in animation
     setTimeout(() => setIsVisible(true), 10);
   };
 
-  // Handle mouse leave with delay to prevent flickering (desktop only)
   const handleMouseLeave = () => {
-    if (isMobile) return; // Disable hover on mobile
+    if (isMobile) return;
     timeoutRef.current = setTimeout(() => {
       setIsVisible(false);
-      // Wait for fade-out animation before hiding
       setTimeout(() => setIsOpen(false), 150);
     }, 100);
   };
 
-  // Handle tap/click for mobile and desktop
   const handleTriggerClick = (event: React.MouseEvent) => {
     event.preventDefault();
     event.stopPropagation();
-
     if (isOpen) {
       closeDropdown();
     } else {
@@ -67,66 +60,64 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     }
   };
 
-  // Open dropdown
   const openDropdown = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setIsOpen(true);
     setTimeout(() => setIsVisible(true), 10);
   };
 
-  // Close dropdown
   const closeDropdown = () => {
     setIsVisible(false);
     setTimeout(() => setIsOpen(false), 150);
   };
 
-  // Handle keyboard navigation
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Escape' && isOpen) {
-      closeDropdown();
-    }
+    if (event.key === 'Escape' && isOpen) closeDropdown();
   };
 
-  // Handle outside click to close dropdown (mobile)
+  useEffect(() => {
+    if (!isOpen || isMobile || !dropdownRef.current || !containerRef.current) return;
+
+    const setBestAlignment = () => {
+      const triggerRect = containerRef.current?.getBoundingClientRect();
+      const dropdownRect = dropdownRef.current?.getBoundingClientRect();
+      if (!triggerRect || !dropdownRect) return;
+
+      const viewportPadding = 12;
+      const wouldOverflowRight = triggerRect.left + dropdownRect.width > window.innerWidth - viewportPadding;
+      setDesktopAlign(wouldOverflowRight ? 'right' : 'left');
+    };
+
+    setBestAlignment();
+    window.addEventListener('resize', setBestAlignment);
+    return () => window.removeEventListener('resize', setBestAlignment);
+  }, [isOpen, isMobile]);
+
   useEffect(() => {
     if (!isMobile || !isOpen) return;
-
     const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         closeDropdown();
       }
     };
-
-    const handleMouseDown = (event: MouseEvent) => handleOutsideClick(event);
-    const handleTouchStart = (event: TouchEvent) => handleOutsideClick(event);
-
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('touchstart', handleTouchStart);
-
+    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('touchstart', handleOutsideClick);
     return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('touchstart', handleOutsideClick);
     };
   }, [isMobile, isOpen]);
 
-  // Clean up timeout on unmount
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
 
   return (
     <nav
       ref={containerRef}
-      className={cn("relative", className)}
+      className={cn('relative', className)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onKeyDown={handleKeyDown}
@@ -134,11 +125,11 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     >
       <div
         onClick={isMobile ? handleTriggerClick : undefined}
-        className={isMobile ? "cursor-pointer" : ""}
+        className={isMobile ? 'cursor-pointer' : ''}
         tabIndex={isMobile ? 0 : -1}
         aria-haspopup="menu"
         aria-expanded={isOpen}
-        role={isMobile ? "button" : undefined}
+        role={isMobile ? 'button' : undefined}
       >
         {trigger}
       </div>
@@ -147,40 +138,47 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
         <menu
           ref={dropdownRef}
           className={cn(
-            // Base positioning and layout - responsive for mobile
             isMobile
-              ? "fixed inset-x-4 top-20 z-50" // Full width on mobile with margins
-              : "absolute top-full left-0 mt-1 w-72 z-[100]", // Standard dropdown on desktop with high z-index
-            // Flat design styling
-            "bg-white border border-gray-200 rounded-md shadow-lg",
-            // Animation classes
-            "transition-all duration-200 ease-out",
-            // Conditional visibility for smooth animations
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-1",
+              ? 'fixed inset-x-4 top-20 z-50'
+              : `absolute top-full mt-2 z-[100] w-[min(18rem,calc(100vw-1rem))] ${
+                  desktopAlign === 'right' ? 'right-0' : 'left-0'
+                }`,
+            /* Dark charcoal panel matching the navbar */
+            'rounded-xl border',
+            'transition-all duration-200 ease-out',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-1',
             dropdownClassName
           )}
-          // Prevent dropdown from closing when hovering over it
+          style={{
+            background: '#1A1714',
+            border: '1px solid rgba(212,167,106,0.18)',
+            boxShadow: '0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,167,106,0.06)',
+            overflow: 'visible',
+          }}
           onMouseEnter={() => {
-            if (timeoutRef.current) {
-              clearTimeout(timeoutRef.current);
-            }
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
           }}
           role="menu"
-          style={{ overflow: 'visible' }}
         >
+          {/* Gold top accent */}
+          <div
+            className="h-px w-full rounded-t-xl"
+            style={{ background: 'linear-gradient(90deg, transparent, rgba(212,167,106,0.5), transparent)' }}
+          />
+
           {/* Mobile close button */}
           {isMobile && (
-            <header className="flex justify-between items-center px-4 py-2 border-b border-gray-100">
-              <span className="text-sm font-medium text-gray-700">Menu</span>
+            <header
+              className="flex justify-between items-center px-4 py-3"
+              style={{ borderBottom: '1px solid rgba(212,167,106,0.1)' }}
+            >
+              <span className="font-outfit text-xs tracking-[0.14em] uppercase" style={{ color: '#D4A76A' }}>
+                Destinations
+              </span>
               <button
                 onClick={closeDropdown}
-                className={cn(
-                  "p-1 rounded-md transition-colors duration-200",
-                  "text-gray-500 hover:text-primary hover:bg-primary/10",
-                  "focus:outline-none focus:text-primary focus:bg-primary/10"
-                )}
+                className="p-1 rounded-md transition-colors duration-200"
+                style={{ color: 'rgba(245,240,232,0.4)' }}
                 aria-label="Close menu"
               >
                 <X className="h-4 w-4" />
@@ -189,10 +187,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
           )}
 
           <ul
-            className={cn(
-              "py-2",
-              isMobile ? "max-h-[80vh] overflow-y-auto" : "overflow-visible"
-            )}
+            className={cn('py-2', isMobile ? 'max-h-[80vh] overflow-y-auto' : 'overflow-visible')}
             role="none"
             style={{ overflow: isMobile ? 'auto' : 'visible' }}
           >
@@ -215,7 +210,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   );
 };
 
-// Nested dropdown item component
 interface NestedDropdownItemProps {
   item: DropdownItem;
   isVisible: boolean;
@@ -227,10 +221,11 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
   item,
   isVisible,
   isMobile,
-  onItemClick
+  onItemClick,
 }) => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
+  const [openToLeft, setOpenToLeft] = useState(false);
   const submenuRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLLIElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -239,10 +234,7 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
 
   const handleMouseEnter = () => {
     if (hasChildren && !isMobile) {
-      // Clear any existing timeout
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       setIsSubmenuOpen(true);
       setIsSubmenuVisible(true);
     }
@@ -250,7 +242,6 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
 
   const handleMouseLeave = () => {
     if (hasChildren && !isMobile) {
-      // Add a small delay before closing to allow mouse to move to submenu
       timeoutRef.current = setTimeout(() => {
         setIsSubmenuVisible(false);
         setTimeout(() => setIsSubmenuOpen(false), 150);
@@ -259,10 +250,7 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
   };
 
   const handleSubmenuMouseEnter = () => {
-    // Cancel close timeout when mouse enters submenu
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
   const handleSubmenuMouseLeave = () => {
@@ -274,14 +262,29 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
     }
   };
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isSubmenuOpen || isMobile || !itemRef.current || !submenuRef.current) return;
+
+    const setBestDirection = () => {
+      const itemRect = itemRef.current?.getBoundingClientRect();
+      const submenuWidth = submenuRef.current?.getBoundingClientRect().width || 256;
+      if (!itemRect) return;
+
+      const viewportPadding = 12;
+      const shouldOpenLeft = itemRect.right + submenuWidth + viewportPadding > window.innerWidth;
+      setOpenToLeft(shouldOpenLeft);
+    };
+
+    setBestDirection();
+    window.addEventListener('resize', setBestDirection);
+    return () => window.removeEventListener('resize', setBestDirection);
+  }, [isSubmenuOpen, isMobile]);
 
   return (
     <li
@@ -295,17 +298,18 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
       <Link
         href={item.href}
         className={cn(
-          // Base link styling with flat design
-          "block px-4 py-3 text-sm transition-colors duration-150",
-          // Flat design hover states
-          "text-gray-700 hover:text-primary hover:bg-primary/10",
-          // Focus states for accessibility
-          "focus:outline-none focus:text-primary focus:bg-primary/10",
-          // Remove any shadows or 3D effects
-          "border-0 shadow-none",
-          // Flex layout for nested items
-          hasChildren && "flex items-center justify-between"
+          'flex items-center justify-between px-4 py-3 font-outfit text-sm transition-colors duration-150',
+          'border-0 shadow-none focus:outline-none'
         )}
+        style={{ color: 'rgba(245,240,232,0.75)' }}
+        onMouseEnter={(e) => {
+          (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A';
+          (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(212,167,106,0.06)';
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.75)';
+          (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
+        }}
         onClick={(e) => {
           if (hasChildren && isMobile) {
             e.preventDefault();
@@ -314,13 +318,15 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
             onItemClick();
           }
         }}
-        // Keyboard navigation support
         tabIndex={isVisible ? 0 : -1}
         role="menuitem"
       >
         <span className="font-medium">{item.name}</span>
         {hasChildren && (
-          <ChevronRight className="h-4 w-4 ml-2 flex-shrink-0" />
+          <ChevronRight
+            className="h-3.5 w-3.5 flex-shrink-0"
+            style={{ color: 'rgba(212,167,106,0.5)' }}
+          />
         )}
       </Link>
 
@@ -328,51 +334,69 @@ const NestedDropdownItem: React.FC<NestedDropdownItemProps> = ({
         <div
           ref={submenuRef}
           className={cn(
-            // Base positioning - absolute for desktop, relative for mobile
             isMobile
-              ? "relative left-0 w-full pl-4 mt-2"
-              : "absolute left-full top-0 ml-1 w-64 z-[110]", // Higher z-index for nesting
-            // Styling
-            isMobile
-              ? "bg-gray-50 border-l-2 border-primary/20 rounded-md"
-              : "bg-white border border-gray-200 rounded-md shadow-xl",
-            "py-2",
-            // Animation classes (desktop only)
-            !isMobile && "transition-all duration-200 ease-out",
-            !isMobile && (isSubmenuVisible
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-2")
+              ? 'relative left-0 w-full pl-4 mt-1'
+              : `absolute top-0 z-[110] w-[min(16rem,calc(100vw-1.25rem))] ${
+                  openToLeft ? 'right-full mr-1' : 'left-full ml-1'
+                }`,
+            'py-2 rounded-xl',
+            !isMobile && 'transition-all duration-200 ease-out',
+            !isMobile &&
+              (isSubmenuVisible
+                ? 'opacity-100 translate-x-0'
+                : `opacity-0 ${openToLeft ? 'translate-x-2' : '-translate-x-2'}`)
           )}
+          style={
+            isMobile
+              ? { borderLeft: '1px solid rgba(212,167,106,0.15)', marginLeft: '1rem' }
+              : {
+                  background: '#1A1714',
+                  border: '1px solid rgba(212,167,106,0.18)',
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.55)',
+                  overflow: 'visible',
+                }
+          }
           onMouseEnter={handleSubmenuMouseEnter}
           onMouseLeave={handleSubmenuMouseLeave}
-          style={{ overflow: 'visible' }}
         >
+          {/* Gold accent top */}
+          {!isMobile && (
+            <div
+              className="h-px w-full"
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(212,167,106,0.4), transparent)' }}
+            />
+          )}
           <ul
             role="none"
-            className={cn(
-              isMobile ? "space-y-1" : "max-h-[70vh] overflow-y-auto"
-            )}
-            style={!isMobile ? {
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#d1d5db #f3f4f6'
-            } : undefined}
+            className={isMobile ? 'space-y-0.5 py-1' : 'max-h-[70vh] overflow-y-auto py-1'}
+            style={
+              !isMobile
+                ? { scrollbarWidth: 'thin', scrollbarColor: 'rgba(212,167,106,0.3) transparent' }
+                : undefined
+            }
           >
             {item.children!.map((child) => (
               <li key={child.id} role="none">
                 <Link
                   href={child.href}
-                  className={cn(
-                    "block px-4 py-3 text-sm transition-colors duration-150",
-                    "text-gray-700 hover:text-primary hover:bg-primary/10",
-                    "focus:outline-none focus:text-primary focus:bg-primary/10",
-                    "border-0 shadow-none"
-                  )}
+                  className="block px-4 py-2.5 font-outfit text-sm transition-colors duration-150 focus:outline-none"
+                  style={{ color: 'rgba(245,240,232,0.65)' }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = '#D4A76A';
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(212,167,106,0.06)';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(245,240,232,0.65)';
+                    (e.currentTarget as HTMLAnchorElement).style.background = 'transparent';
+                  }}
                   onClick={onItemClick}
                   role="menuitem"
                 >
                   <span className="font-medium">{child.name}</span>
                   {child.description && (
-                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">{child.description}</p>
+                    <p className="text-xs mt-0.5 line-clamp-1" style={{ color: 'rgba(245,240,232,0.35)' }}>
+                      {child.description}
+                    </p>
                   )}
                 </Link>
               </li>

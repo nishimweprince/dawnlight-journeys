@@ -1,135 +1,177 @@
 'use client';
 
-import type React from "react"
-import { CustomButton } from "./ui/custom-button"
-import Link from "next/link"
-import { experiences as allExperiences } from "../constants/experiences"
-import { motion } from "framer-motion"
+import Link from "next/link";
+import { experiences as allExperiences } from "../constants/experiences";
+import { motion } from "framer-motion";
 
-const experiences = allExperiences.slice(0, 4)
+const experiences = allExperiences.slice(0, 5);
 
 export function Experiences() {
+  const [featured, ...rest] = experiences;
+
   return (
-    <section id="experiences" className="py-8 md:py-12 bg-primary">
-      <div className="container">
+    <section
+      id="experiences"
+      className="relative py-20 md:py-28 overflow-hidden"
+      style={{ background: '#F5F0E8' }}
+      aria-labelledby="experiences-heading"
+    >
+      {/* Decorative glow */}
+      <div
+        className="absolute top-0 right-0 w-96 h-96 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(139,94,60,0.055) 0%, transparent 70%)' }}
+        aria-hidden="true"
+      />
+
+      <div className="container relative z-10">
         {/* Section Header */}
-        <header className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase mb-4 text-white">
-            East African Hidden Treasures
-          </h2>
-          <hr className="w-24 h-1 bg-white mx-auto border-0" />
+        <header className="mb-12">
+          <p className="section-label mb-4">Experiences</p>
+          <span style={{ display: 'block', width: '2.5rem', height: '2px', background: 'linear-gradient(90deg, #D4A76A, #D97B2B)', borderRadius: '9999px', marginBottom: '1.25rem' }} />
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <h2
+              id="experiences-heading"
+              className="font-playfair font-bold leading-tight"
+              style={{ fontSize: 'clamp(1.85rem, 3.5vw, 2.75rem)', color: '#2C2420' }}
+            >
+              East African<br />
+              <span style={{ color: '#8B5E3C' }}>Hidden Treasures</span>
+            </h2>
+            <Link
+              href="/experiences"
+              className="link-underline font-outfit text-sm font-semibold shrink-0 hidden sm:inline-flex"
+              style={{ color: '#8B5E3C' }}
+            >
+              Discover All Experiences
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 link-arrow-icon" aria-hidden="true">
+                <path d="M4 10h12M11 5l5 5-5 5" />
+              </svg>
+            </Link>
+          </div>
         </header>
 
-        {/* Alternating Rows */}
-        <div className="space-y-12 md:space-y-16">
-          {experiences.map((experience, index) => {
-            const Icon = experience.icon
-            const isEven = index % 2 === 1
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" role="list">
 
-            const imageVariants = {
-              hidden: { opacity: 0, x: isEven ? 100 : -100 },
-              visible: {
-                opacity: 1,
-                x: 0,
-                transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any }
-              }
-            }
-
-            const textVariants = {
-              hidden: { opacity: 0, x: isEven ? -100 : 100 },
-              visible: {
-                opacity: 1,
-                x: 0,
-                transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any, delay: 0.2 }
-              }
-            }
-
-            return (
-              <article
-                key={experience.id}
-                className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center"
+          {/* Featured card — spans 2 columns on lg */}
+          {featured && (
+            <motion.div
+              className="lg:col-span-2 group relative rounded-2xl overflow-hidden img-zoom-parent"
+              style={{ minHeight: '380px' }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              role="listitem"
+            >
+              <img
+                src={featured.image}
+                alt={featured.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: 'linear-gradient(to top, rgba(26,23,20,0.85) 0%, rgba(26,23,20,0.18) 55%, transparent 100%)' }}
+              />
+              <div
+                className="absolute top-5 left-5 rounded-full px-3 py-1"
+                style={{ background: 'rgba(212,167,106,0.18)', border: '1px solid rgba(212,167,106,0.4)', backdropFilter: 'blur(8px)' }}
               >
-                {/* Image Column */}
-                <motion.figure
-                  className={`relative overflow-hidden rounded-xl group ${
-                    isEven ? 'lg:order-2' : 'lg:order-1'
-                  }`}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={imageVariants}
+                <span className="font-outfit text-xs tracking-[0.1em] uppercase font-medium" style={{ color: '#D4A76A' }}>
+                  Featured
+                </span>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-7">
+                <h3 className="font-playfair font-bold text-white mb-2 leading-snug" style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.75rem)' }}>
+                  {featured.title}
+                </h3>
+                <p className="font-outfit text-sm leading-relaxed mb-4 line-clamp-2" style={{ color: 'rgba(245,240,232,0.72)' }}>
+                  {featured.description}
+                </p>
+                <Link
+                  href={featured.url}
+                  className="link-underline font-outfit text-xs font-semibold tracking-[0.1em] uppercase"
+                  style={{ color: '#D4A76A' }}
                 >
-                  <img
-                    src={experience.image}
-                    alt={experience.title}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm rounded-full p-3 w-12 h-12 flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                </motion.figure>
+                  Explore
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 link-arrow-icon" aria-hidden="true">
+                    <path d="M4 10h12M11 5l5 5-5 5" />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
+          )}
 
-                {/* Text Column */}
-                <motion.section
-                  className={`space-y-4 ${
-                    isEven ? 'lg:order-1' : 'lg:order-2'
-                  }`}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  variants={textVariants}
+          {/* Secondary cards */}
+          {rest.map((experience, index) => (
+            <motion.div
+              key={experience.id}
+              className="group relative rounded-2xl overflow-hidden img-zoom-parent"
+              style={{ minHeight: '200px' }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: index * 0.07 }}
+              role="listitem"
+            >
+              <img
+                src={experience.image}
+                alt={experience.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: 'linear-gradient(to top, rgba(26,23,20,0.88) 0%, rgba(26,23,20,0.12) 60%, transparent 100%)' }}
+              />
+              {/* Hover description */}
+              <div
+                className="absolute inset-0 flex items-center justify-center p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ background: 'rgba(26,23,20,0.65)', backdropFilter: 'blur(2px)' }}
+              >
+                <p className="font-outfit text-sm text-center leading-relaxed" style={{ color: 'rgba(245,240,232,0.88)' }}>
+                  {experience.description}
+                </p>
+              </div>
+              <div
+                className="absolute top-4 left-4 rounded-full px-2.5 py-1"
+                style={{ background: 'rgba(26,23,20,0.72)', border: '1px solid rgba(212,167,106,0.3)', backdropFilter: 'blur(6px)' }}
+              >
+                <span className="font-outfit text-[0.6rem] tracking-[0.1em] uppercase font-medium" style={{ color: '#D4A76A' }}>
+                  Experience
+                </span>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <h3 className="font-playfair font-bold text-white text-lg leading-snug mb-2">
+                  {experience.title}
+                </h3>
+                <Link
+                  href={experience.url}
+                  className="link-underline font-outfit text-xs font-semibold tracking-[0.1em] uppercase"
+                  style={{ color: 'rgba(212,167,106,0.85)' }}
+                  aria-label={`Learn more about ${experience.title}`}
                 >
-                  <h3 className="text-2xl md:text-3xl font-bold text-white">
-                    {experience.title}
-                  </h3>
-                  <p className="text-white/90 text-base md:text-lg leading-relaxed">
-                    {experience.description}
-                  </p>
-                  <Link
-                    href={experience.url}
-                    className="inline-flex items-center gap-2 text-white font-semibold hover:underline hover:gap-3 transition-all text-sm md:text-base group/link"
-                  >
-                    Learn more
-                    <ArrowRight className="h-5 w-5 transition-transform group-hover/link:translate-x-1" aria-hidden="true" />
-                  </Link>
-                </motion.section>
-              </article>
-            )
-          })}
+                  Learn More
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 link-arrow-icon" aria-hidden="true">
+                    <path d="M4 10h12M11 5l5 5-5 5" />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Footer CTA */}
-        <footer className="flex justify-center mt-12">
-          <CustomButton
-            variant="secondary"
-            size="lg"
-            href="/experiences"
-            className="flex items-center gap-2 hover:!bg-white/90 hover:!text-primary"
-          >
-            Discover More Experiences
-            <ArrowRight className="h-5 w-5" aria-hidden="true" />
-          </CustomButton>
-        </footer>
+        {/* Mobile CTA */}
+        <div className="flex justify-center mt-10 sm:hidden">
+          <Link href="/experiences" className="btn-ember">
+            Discover All Experiences
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
+              <path d="M4 10h12M11 5l5 5-5 5" />
+            </svg>
+          </Link>
+        </div>
       </div>
     </section>
-  )
-}
-
-function ArrowRight(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  )
+  );
 }

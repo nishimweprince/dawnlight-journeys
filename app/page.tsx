@@ -12,7 +12,6 @@ import { FAQ } from '../src/components/faq';
 import { Contact } from '../src/components/contact';
 import { ThemeProvider } from '../src/components/theme-provider';
 import { ScrollToTop } from '../src/components/scroll-to-top';
-import { FaWhatsapp } from 'react-icons/fa';
 import { Destinations } from '@/src/components/destinations';
 
 const metadata: Metadata = {
@@ -153,84 +152,68 @@ export default function Page() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="wildlife-adventures-theme">
       <main className="flex min-h-screen flex-col scroll-smooth">
-        <section className="flex flex-col gap-0 !my-0">
+        <div className="flex flex-col gap-0">
           <section id="home">
             <Hero />
           </section>
-          <motion.section
-            id="why-travel"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <WhyTravel />
-          </motion.section>
-          <motion.section
-            id="why-travel"
+          </motion.div>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <Destinations />
-          </motion.section>
-          <motion.section
-            id="safaris"
+          </motion.div>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <Safaris />
-          </motion.section>
-          <motion.section
-            id="experiences"
+          </motion.div>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <Experiences />
-          </motion.section>
-          <motion.section
-            id="testimonials"
+          </motion.div>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <Testimonials />
-          </motion.section>
-          <motion.section
-            id="affiliates"
+          </motion.div>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <Affiliates />
-          </motion.section>
-          <motion.section
-            id="contact"
+          </motion.div>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
             <Contact />
-          </motion.section>
-        </section>
+          </motion.div>
+        </div>
         <ScrollToTop />
-        <a
-          href="https://wa.me/250785917385"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-colors"
-          aria-label="Chat on WhatsApp"
-        >
-          <FaWhatsapp className="w-6 h-6" />
-        </a>
       </main>
     </ThemeProvider>
   );
