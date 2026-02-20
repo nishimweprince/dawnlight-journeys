@@ -105,4 +105,14 @@ body {
     font-style: normal;
     font-weight: 300;
   }
+
+  /* Text selection — Primary teal highlight */
+  ::selection {
+    background-color: #004643;
+    color: #fff;
+  }
+  ::-moz-selection {
+    background-color: #004643;
+    color: #fff;
+  }
 }

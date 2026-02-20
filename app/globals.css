@@ -83,6 +83,16 @@
     font-family: var(--font-playfair, 'Playfair Display'), Georgia, serif;
     line-height: 1.15;
   }
+
+  /* Text selection — Safari Gold highlight, Forest Green text */
+  ::selection {
+    background-color: rgba(212, 167, 106, 0.38);
+    color: #1B3A2D;
+  }
+  ::-moz-selection {
+    background-color: rgba(212, 167, 106, 0.38);
+    color: #1B3A2D;
+  }
 }
 
 /* =====================================================
